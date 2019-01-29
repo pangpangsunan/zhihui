@@ -21,6 +21,17 @@
             </div>
         </nav>
         <router-view/>
+        <div class="bg-black container">
+            <div class="col-sm-4">Copyright@2019.All rights reserved</div>
+            <div class="col-sm-4">沪CP备 000001号</div>
+            <div class="col-sm-4">
+                <ul>
+                    <li>客服电话</li>
+                    <li>0157-28874128-6</li>
+                    <li>Email：cs@xiaotongtech.net</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
