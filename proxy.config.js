@@ -18,4 +18,8 @@
   }
  */
 
-module.exports = {};
+module.exports = {
+    '/edu': {
+        target: "http://www.zhihui-app.com"
+    }
+};
