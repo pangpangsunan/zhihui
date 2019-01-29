@@ -4,8 +4,12 @@
             <div class="container">
                 <img src="@/assets/cat.jpg" width="50" height="50" style="margin-top:10px;" alt="">
                 <ul class="pull-right menu">
-                    <li><a href="">发布课程需求</a></li>
-                    <li><a href="">帮助与反馈</a></li>
+                    <li>
+                        <router-link to="/">发布课程需求</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">帮助与反馈</router-link>
+                    </li>
                     <li>
                         <div class="dropdown">
                             <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -14,15 +18,29 @@
                                 <span style="color: #000;" class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                <li><a href="">完整资料</a></li>
-                                <li><a href="">绑定手机</a></li>
-                                <li><a href="">修改密码</a></li>
+                                <li>
+                                    <router-link to="/">完整资料</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/">绑定手机</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/">修改密码</router-link>
+                                </li>
                                 <li class="divider"></li>
-                                <li><a href="">学习兴趣</a></li>
-                                <li><a href="">课程订单</a></li>
-                                <li><a href="">发票管理</a></li>
+                                <li>
+                                    <router-link to="/">学习兴趣</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/">课程订单</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/">发票管理</router-link>
+                                </li>
                                 <li class="divider"></li>
-                                <li><a href="">退出登录</a></li>
+                                <li>
+                                    <router-link to="/">退出登录</router-link>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -45,8 +63,8 @@
                 </li>
             </ul>
             <div class="col-sm-2 top-right">
-                <a href="/"><i class="glyphicon glyphicon-comment"></i> 消息</a>
-                <a href="/"><i class="glyphicon glyphicon-envelope"></i> 私信</a>
+                <router-link to="/"><i class="glyphicon glyphicon-comment"></i> 消息</router-link>
+                <router-link to="/"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
             </div>
         </nav>
         <router-view/>
