@@ -35,13 +35,13 @@
                     <router-link to="/">首页</router-link>
                 </li>
                 <li>
-                    <router-link to="/">分类课程</router-link>
+                    <router-link to="/courses">分类课程</router-link>
                 </li>
                 <li>
-                    <router-link to="/">已购课程</router-link>
+                    <router-link to="/buyered">已购课程</router-link>
                 </li>
                 <li>
-                    <router-link to="/">我的关注</router-link>
+                    <router-link to="/myview">我的关注</router-link>
                 </li>
             </ul>
             <div class="col-sm-2 top-right">
