@@ -31,16 +31,16 @@
         </div>
         <nav id="nav" class="container">
             <ul class="nav nav-tabs col-sm-10">
-                <li>
+                <li :class="active('home')">
                     <router-link to="/">首页</router-link>
                 </li>
-                <li>
+                <li :class="active('courses')">
                     <router-link to="/courses">分类课程</router-link>
                 </li>
-                <li>
+                <li :class="active('buyered')">
                     <router-link to="/buyered">已购课程</router-link>
                 </li>
-                <li>
+                <li :class="active('myview')">
                     <router-link to="/myview">我的关注</router-link>
                 </li>
             </ul>
@@ -96,3 +96,16 @@
         color: #eee;
     }
 </style>
+
+<script>
+    export default {
+        methods: {
+            active(page) {
+                if (this.$route.name == page) {
+                    return 'active';
+                }
+                return '';
+            }
+        }
+    }
+</script>
