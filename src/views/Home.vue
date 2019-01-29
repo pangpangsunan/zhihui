@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <img :src="srcs[0].image" class="img-responsive" style="width:100%;height:300px;" alt="">
+        <img :src="srcs[0] ? srcs[0].image : ''" class="img-responsive" style="width:100%;height:300px;" alt="">
         <div>
             <p>为您推荐的课程</p>
             <ul>
