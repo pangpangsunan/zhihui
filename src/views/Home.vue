@@ -32,11 +32,6 @@
             return {
                 arr: [],
             }
-        }, filters: {
-            coursType(id) {
-                let arr = [null, '线下', '音频', '视频', '专栏'];
-                return arr[id]
-            }
         },
         components: {
             carousel: () => import('@/components/carousel.vue')

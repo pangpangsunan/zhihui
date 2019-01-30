@@ -6,7 +6,7 @@
         <ul class="list-group">
             <li class="list-group-item" v-for="item in courseList">
                 <img :src="item.courseInfo.image" width="400" height="400" alt="">
-                <p>{{ item.courseInfo.name }} <kbd>{{ item.courseInfo.type }}</kbd></p>
+                <p>{{ item.courseInfo.name }} <kbd v-if="item.courseInfo.type">{{ item.courseInfo.type|coursType }}</kbd></p>
                 <p class="text-danger">￥{{item.courseInfo.price}}</p>
                 <p>{{item.courseInfo.audiences}}</p>
                 <p>{{item.courseInfo.address}}</p>

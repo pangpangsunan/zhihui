@@ -7,10 +7,15 @@ import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.filter('coursType', id => {
+    let arr = [null, '线下', '音频', '视频', '专栏'];
+    return arr[id]
+});
 
 new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
