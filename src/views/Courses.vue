@@ -4,12 +4,12 @@
         <p>全部 - 经营管理 - 领导力</p>
         <p>4门课程</p>
         <ul class="list-group">
-            <li class="list-group-item">
-                <img src="@/assets/cat.jpg" width="400" height="400" alt="">
-                <p>国美出口 <kbd>线下</kbd></p>
-                <p class="text-danger">￥1200</p>
-                <p>张三丰</p>
-                <p>上海市梅龙广场9楼</p>
+            <li class="list-group-item" v-for="item in courseList">
+                <img :src="item.courseInfo.image" width="400" height="400" alt="">
+                <p>{{ item.courseInfo.name }} <kbd>{{ item.courseInfo.type }}</kbd></p>
+                <p class="text-danger">￥{{item.courseInfo.price}}</p>
+                <p>{{item.courseInfo.audiences}}</p>
+                <p>{{item.courseInfo.address}}</p>
             </li>
         </ul>
     </div>
@@ -19,8 +19,9 @@
 
     export default {
         created() {
-            axios.get('/edu/course/getDiscountCourse').then(p => {
-                this.courseList = p.data.content
+            axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
+                this.courseList = p.data.content.records
+                console.log(this.courseList)
             })
         },
         data() {

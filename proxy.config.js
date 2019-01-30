@@ -20,6 +20,7 @@
 
 module.exports = {
     '/edu': {
-        target: "http://www.zhihui-app.com"
+        // target: "http://www.zhihui-app.com"
+        target: "http://116.62.23.7:3060"
     }
 };

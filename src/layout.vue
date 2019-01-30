@@ -2,7 +2,7 @@
     <div id="app">
         <div class="bg-black">
             <div class="container">
-                <img src="@/assets/cat.jpg" width="50" height="50" style="margin-top:10px;" alt="">
+                <img src="@/assets/img_logo.png" style="margin-top:10px;" alt="">
                 <ul class="pull-right menu">
                     <li>
                         <router-link to="/">发布课程需求</router-link>
