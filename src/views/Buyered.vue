@@ -1,20 +1,20 @@
 <template>
     <div class="container">
-        <div v-if="nocourse">
+        <div v-if="!hasData">
             <img src="@/assets/img_course_nothing.png" alt="">
             <p>您尚未购买任何课程</p>
         </div>
-        <div v-if="!nocourse">
+        <div v-if="hasData">
             <br>
-            <p>全部 - 经营管理 - 领导力</p>
-            <p>4门课程</p>
+            <p>已购买的课程</p>
+            <p>{{ courseList.length }}门课程</p>
             <ul class="list-group">
                 <li class="list-group-item" v-for="item in courseList">
-                    <img :src="item.courseInfo.image" width="400" height="400" alt="">
-                    <p>{{ item.courseInfo.name }} <kbd>{{ item.courseInfo.type }}</kbd></p>
-                    <p class="text-danger">￥{{item.courseInfo.price}}</p>
-                    <p>{{item.courseInfo.audiences}}</p>
-                    <p>{{item.courseInfo.address}}</p>
+                    <img :src="item.image" width="400" height="400" alt="">
+                    <p>{{ item.name }} <kbd>{{ item.type|coursType }}</kbd></p>
+                    <p class="text-danger">￥{{item.price}}</p>
+                    <p>{{item.userName}}</p>
+                    <p>{{item.address}}</p>
                 </li>
             </ul>
         </div>
@@ -25,15 +25,20 @@
 
     export default {
         created() {
-            axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
-                this.courseList = p.data.content.records
-                console.log(this.courseList)
+            axios.get('/edu/order/getOrderList').then(p => {
+                for (let item of p.data.content.records) {
+                    for (let item1 of item.courseList) {
+                        item1.userName = item.userName
+                        this.courseList.push(item1)
+                    }
+                }
+                this.hasData = !!this.courseList;
             })
         },
         data() {
             return {
                 courseList: [],
-                nocourse: true
+                hasData: false
             }
         }
     }
