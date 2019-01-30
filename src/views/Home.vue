@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <img :src="srcs[0] ? srcs[0].image : ''" class="img-responsive" style="width:100%;height:300px;" alt="">
+        <carousel></carousel>
         <div>
             <p>为您推荐的课程</p>
             <ul>
@@ -28,19 +28,18 @@
                 .then(p => {
                     this.arr = p.data.content
                 })
-            axios.get('/edu/carousel/getCarouselList').then(p => {
-                this.srcs = p.data.content
-            })
         }, data() {
             return {
                 arr: [],
-                srcs: []
             }
         }, filters: {
             coursType(id) {
                 let arr = [null, '线下', '音频', '视频', '专栏'];
                 return arr[id]
             }
+        },
+        components: {
+            carousel: () => import('@/components/carousel.vue')
         }
     }
 </script>
