@@ -2,21 +2,25 @@
     body {
         background: url(assets/img_bg.png);
     }
+	html {
+		font-size:16px;
+	}
 
     .tabcontainer {
-        margin-top: 16px;
+        margin-top: 1rem;
     }
 
     #nav {
         background: #e4eaf3;
         padding: 0;
-        height: 50px;
+        height: 3.125rem;
     }
 
     .nav {
         margin: 0;
         padding: 0;
     }
+	
 
     ul.navbg li.active {
         color: #fff;
@@ -24,36 +28,43 @@
         background-color: #4459CC;
     }
 
+
     ul.navbg li.active a, ul.navbg li.active a:hover {
         background: transparent;
+		color:#fff;
     }
+	 ul.navbg li a:hover{
+		 background-color: #4459CC;
+		 color:#fff;
+	 }
 
-    .nav-tabs li a {
+    
+	.nav-tabs li a {
         display: inline-block;
-        width: 140px;
-        height: 50px;
-        line-height: 60px;
+        width: 8.75rem;
+        height: 3.125rem;
+        line-height: 3.75rem;
         text-align: center;
     }
 
     .top-left a {
         display: inline-block;
-        color: #666666;
+        color: #555555;
 
     }
 
     .top-right a {
         display: inline-block;
-        margin-top: 10px;
-        margin-left: 30px;
-        color: #666666;
+        margin-top: 1rem;
+        margin-left: 1.875rem;
+        color: #555555;
     }
 
     ul.menu > li {
         list-style-type: none;
         float: left;
-        margin-left: 20px;
-        margin-top: 10px;
+        margin-left: 1.25rem;
+        margin-top: 0.625rem;
     }
 
     .nav {
@@ -63,9 +74,9 @@
 
     .navbg li {
         float: left;
-        width: 15%;
-        height: 50px;
-        line-height: 50px;
+        width: 8.75rem;
+        height: 3.125rem;
+        line-height: 1.875rem;
     }
 
     .navbg li a:hover {
@@ -74,16 +85,46 @@
 
     .navbg li a {
         display: block;
-        height: 50px;
-        line-height: 50px;
+    
         padding: 0;
         margin: 0;
     }
+	.navbg>li>a{
+		text-align:center;
+		padding:0;
+	}
 
     .bg-black {
         background: #333;
         color: #eee;
     }
+	.kefu{
+		padding:0;
+		margin:0;
+	}
+	.kefu li {
+		list-style-type:none;
+	}
+	.kefu li:nth-child(1){
+		font-size:0.75rem;
+	}
+	.kefu li:nth-child(2){
+		font-family: HelveticaNeue-Medium;
+		font-size: 1.25rem;
+		color: #FFFFFF;
+	}
+	.kefu li:nth-child(3),.gray{
+		font-size:0.75rem;
+		color:#757A7C;
+	}
+	.bg-black .container {
+		position:relative;
+		padding-top:1rem;
+	}
+	.gray{
+		position:absolute;
+		top:2.8125rem;
+	}
 
 </style>
 <template>
@@ -117,13 +158,13 @@
         <router-view/>
         <br>
         <div class="bg-black">
-            <div class=" container">
-                <div class="col-sm-4">Copyright@2019.All rights reserved</div>
-                <div class="col-sm-4">沪CP备 000001号</div>
+            <div class="container">
+                <div class="col-sm-4 gray">Copyright@2019.All rights reserved</div>
+                <div class="col-sm-4 gray">沪CP备 000001号</div>
                 <div class="col-sm-4">
-                    <ul>
+                    <ul class="kefu">
                         <li class="text-right">客服电话</li>
-                        <li class="text-right"><b>0157-28874128-6</b></li>
+                        <li class="text-right">0157-28874128-6</li>
                         <li class="text-right">Email：cs@xiaotongtech.net</li>
                     </ul>
                 </div>
