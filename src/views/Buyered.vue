@@ -4,89 +4,28 @@
             <img src="@/assets/img_course_nothing.png" alt="">
             <p>您尚未购买任何课程</p>
         </div>
-        <!-- <div v-if="hasData">
-            <br>
-            <p>已购买的课程</p>
-            <p>{{ courseList.length }}门课程</p>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="item in courseList">
-                    <img :src="item.image" width="400" height="400" alt="">
-                    <p>{{ item.name }} <kbd>{{ item.type|coursType }}</kbd></p>
-                    <p class="text-danger">￥{{item.price}}</p>
-                    <p>{{item.userName}}</p>
-                    <p>{{item.address}}</p>
-                </li>
-            </ul>
-        </div> -->
+
 		<p class="navHead">全部 - 经营管理 - 领导力</p>
 		<p class="navTitle">
-			<span class="navTitleLeft">4门课程</span>
+			<span class="navTitleLeft">{{courseList.length}}门课程</span>
 			<span class="navTitleRight">全部类型<select></select></span>
 		</p>
-		<div class="coursesType">
-			
-			<div class="pro">
-				<div class="topImg"></div>
-				<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-				<div class="cPrice">￥1200</div>
+		<div class="coursesType" v-if="hasData">
+			<div class="pro" v-for="item in courseList">
+				<div class="topImg">
+					<img :src="item.image" alt="">
+				</div>
+				<div class="pTitle">{{ item.name }}<span class="online">{{ item.type|coursType }}</span></div>
+				<div class="cPrice">￥{{item.price}}</div>
 				<div class="cName">
 					<img src="@/assets/ic_home_teacher.png">
-					谢顿宁
+					{{item.userName}}
 				</div>
 				<div class="cName">
 					<img src="@/assets/ic_location.png">
-					上海市梅龙镇广场9楼
+					{{item.address}}
 				</div>
 			</div>
-			<div class="pro">
-				<div class="topImg"></div>
-				<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-				<div class="cPrice">￥1200</div>
-				<div class="cName">
-					<img src="@/assets/ic_home_teacher.png">
-					谢顿宁
-				</div>
-				<div class="cName">
-					<img src="@/assets/ic_location.png">
-					上海市梅龙镇广场9楼
-				</div>
-			</div>
-			<div class="pro">
-				<div class="topImg"></div>
-				<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-				<div class="cPrice">￥1200</div>
-				<div class="cName">
-					<img src="@/assets/ic_home_teacher.png">
-					谢顿宁
-				</div>
-				<div class="cName">
-					<img src="@/assets/ic_location.png">
-					上海市梅龙镇广场9楼
-				</div>
-			</div>
-			<div class="pro">
-				<div class="topImg"></div>
-				<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-				<div class="cPrice">￥1200</div>
-				<div class="cName">
-					<img src="@/assets/ic_home_teacher.png">
-					谢顿宁
-				</div>
-				<div class="cName">
-					<img src="@/assets/ic_location.png">
-					上海市梅龙镇广场9楼
-				</div>
-			</div>
-			
-			<!-- <ul class="list-group">
-			    <li class="list-group-item" v-for="item in courseList">
-			        <img :src="item.courseInfo.image" width="400" height="400" alt="">
-			        <p>{{ item.courseInfo.name }} <kbd v-if="item.courseInfo.type">{{ item.courseInfo.type|coursType }}</kbd></p>
-			        <p class="text-danger">￥{{item.courseInfo.price}}</p>
-			        <p>{{item.courseInfo.audiences}}</p>
-			        <p>{{item.courseInfo.address}}</p>
-			    </li>
-			</ul> -->
 		</div>
     </div>
 </template>
@@ -108,7 +47,6 @@
 	.navTitle {
 		color:#666666;
 		background-color:#F3F5F7;
-		padding:0;
 		margin:0;
 		font-size: 0.875rem;
 		padding:1rem 0 0 1rem;
@@ -138,7 +76,7 @@
 		line-height: 1.5rem;
 		padding:0.5rem 1rem 1rem 1rem;
 	}
-	.underline,.online{
+	.online{
 		display:inline-block;
 		width:40px;
 		height:20px;
