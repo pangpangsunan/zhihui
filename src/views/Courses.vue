@@ -60,7 +60,7 @@
 					上海市梅龙镇广场9楼
 				</div>
 			</div>
-			
+
 			<!-- <ul class="list-group">
 			    <li class="list-group-item" v-for="item in courseList">
 			        <img :src="item.courseInfo.image" width="400" height="400" alt="">
@@ -75,10 +75,7 @@
     </div>
 </template>
 <style>
-	
-	html {
-		font-size:16px;
-	}
+
 	.navHead {
 		color:#666666;
 		font-size:0.875rem;

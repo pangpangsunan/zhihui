@@ -1,11 +1,35 @@
 <style>
     body {
         background: url(assets/img_bg.png);
+        font-size: 16px;
     }
 	html {
-		font-size:16px;
+		font-size:16px!important;
+        font-family: SourceHanSansSC-Medium!important;
 	}
+    @media screen and (max-width: 1024px) {
+        html {
+            font-family: SourceHanSansSC-Medium!important;
+            font-size:13px!important;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        html {
+            font-family: SourceHanSansSC-Medium!important;
+            font-size:13px!important;
+            background: #000;
+        }
 
+    }
+    /*.no-attention*/
+    .no-attention {
+        text-align: center;
+        margin-top: 6rem;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+    }
     .tabcontainer {
         margin-top: 1rem;
     }
@@ -15,13 +39,11 @@
         padding: 0;
         height: 3.125rem;
     }
-
     .nav {
         margin: 0;
         padding: 0;
+        height: 3.125rem;
     }
-	
-
     ul.navbg li.active {
         color: #fff;
         cursor: default;
@@ -37,8 +59,6 @@
 		 background-color: #4459CC;
 		 color:#fff;
 	 }
-
-    
 	.nav-tabs li a {
         display: inline-block;
         width: 8.75rem;

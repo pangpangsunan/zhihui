@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <div v-if="!hasData">
+        <div v-if="!hasData" class="no-attention">
             <img src="@/assets/img_course_nothing.png" alt="">
             <p>您尚未购买任何课程</p>
         </div>
-
-		<p class="navHead">全部 - 经营管理 - 领导力</p>
+		<br>
+		<p class="navHead">已购买的课程</p>
 		<p class="navTitle">
 			<span class="navTitleLeft">{{courseList.length}}门课程</span>
 			<span class="navTitleRight">全部类型<select></select></span>
@@ -30,10 +30,6 @@
     </div>
 </template>
 <style>
-	
-	html {
-		font-size:16px;
-	}
 	.navHead {
 		color:#666666;
 		font-size:0.875rem;

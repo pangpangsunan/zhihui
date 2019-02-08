@@ -1,9 +1,8 @@
 <style>
-	html {
-		font-family:'SourceHanSansSC-Medium';
-		font-size:16px;
-	}
 
+	body {
+		font-family:'SourceHanSansSC-Medium';
+	}
 	.home-container {
 		background-color:#fff;
 	}
@@ -13,8 +12,7 @@
 			color:gray;
 			line-height:2.5rem;
 			padding-left:1.875rem;
-			border-radius:0.125rem;
-			margin:0;
+			border-radius:2px;
 			margin-top:0.8125rem;
 		}
 		.project-price {
@@ -30,7 +28,7 @@
 			font-size:0.625rem;
 			color:#fff;
 			text-align:center;
-			margin-left:0.3125rem;
+			margin-left:5px;
 		}
 		.online{
 			background-color:#1caf5f;
@@ -38,6 +36,7 @@
 		.home-wrapper{
 			width:75rem;
 			margin:0 atuo;
+			border:1px solid red;
 		}
 		.imglist:nth-of-type(odd){
 			background-color:#F3F5F7;
@@ -66,15 +65,13 @@
 			top:-0.625rem;
 		}
 		.project-name {
-			
+			font-size:1rem;
+			height:1rem;
 		}
 		.project-bg,.project-target,.project-address{
 			font-size:0.75rem;
 			color:#666666;
 			
-		}
-		.project-address img {
-			vertical-align:middle;
 		}
 		.btns{
 			position:absolute;
@@ -113,7 +110,7 @@
 						<h5 class="project-bg" >{{ item.course.background }}</h5>
 						<p class="project-price">￥{{ item.course.price }}</p>
 						<!-- <p class="project-target" >{{ item.course.target }}</p> -->
-						<p class="project-address"><span><img src="@/assets/ic_location.png"></span>{{ item.course.address}}</p>
+						<p class="project-address">{{ item.course.address}}</p>
 						<div class="btns">
 							<button id="trywatch">试看</button>
 							<button id="buy">购买</button>
