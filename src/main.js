@@ -1,10 +1,10 @@
 import Vue from 'vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './layout.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
 import $ from 'jquery'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 
 Vue.config.productionTip = false;
