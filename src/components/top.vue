@@ -9,14 +9,18 @@
         background: transparent;
         border: none;
     }
-
-    .publish, .help {
-        padding: 0 5px;
+    .bg-black {
+        background-color: #444444;
     }
+    .bg-black .container {
+        padding: 1rem;
+    }
+
+
 </style>
 <template>
     <div class="container">
-        <img src="@/assets/img_logo.png" style="margin-top:10px;" alt="">
+        <img src="@/assets/img_logo.png" style="vertical-align: middle" alt="">
         <ul class="pull-right menu">
             <li>
                 <span class="publish"><img src="@/assets/ic_publish.png"></span>
