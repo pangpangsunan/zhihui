@@ -1,28 +1,36 @@
 <style>
+    * {
+        padding-top: 0;
+        margin: 0;
+    }
+
     body {
         background: url(assets/img_bg.png);
         font-size: 16px;
     }
 
     html {
-        font-size: 16px;
-        font-family: SourceHanSansSC-Medium;
+        font-size: 16px !important;
+        font-family: SourceHanSansSC-Medium !important;
     }
 
     @media screen and (max-width: 1024px) {
         html {
-            font-size: 13px;
+            font-family: SourceHanSansSC-Medium !important;
+            font-size: 13px !important;
         }
     }
 
     @media screen and (max-width: 768px) {
         html {
-            font-size: 13px;
+            font-family: SourceHanSansSC-Medium !important;
+            font-size: 13px !important;
             background: #000;
         }
 
     }
 
+    /*.no-attention*/
     .no-attention {
         text-align: center;
         margin-top: 6rem;
@@ -31,6 +39,10 @@
     ul {
         padding: 0;
         margin: 0;
+    }
+
+    li {
+        list-style-type: none;
     }
 
     .tabcontainer {
@@ -54,6 +66,7 @@
         cursor: default;
         background-color: #4459CC;
     }
+
 
     ul.navbg li.active a, ul.navbg li.active a:hover {
         background: transparent;
@@ -158,6 +171,30 @@
     .gray {
         position: absolute;
         top: 2.8125rem;
+    }
+
+    .btns {
+        position: absolute;
+        right: 3.125rem;
+        top: 6.25rem;
+    }
+
+    #trywatch, #buy {
+        width: 6.75rem;
+        height: 2.25rem;
+        border: 1px solid #F5892A;
+        border-radius: 2px;
+        color: #F5892A;
+        font-size: 0.875rem;
+        /* margin-left:50%; */
+
+
+    }
+
+    #buy {
+        background-color: #F5892A;
+        color: #fff;
+        margin-left: 1rem;
     }
 
 </style>

@@ -1,34 +1,36 @@
 <style>
-	.menu a{
-		color:#fff;
-		font-size:13px;
-		
-	}
-	#dLabel{
-		background:transparent;
-		border:none;
-	}
-	.publish,.help{
-		padding: 0 5px;
-	}
+    .menu a {
+        color: #fff;
+        font-size: 13px;
+
+    }
+
+    #dLabel {
+        background: transparent;
+        border: none;
+    }
+
+    .publish, .help {
+        padding: 0 5px;
+    }
 </style>
 <template>
     <div class="container">
         <img src="@/assets/img_logo.png" style="margin-top:10px;" alt="">
         <ul class="pull-right menu">
             <li>
-			<span class="publish"><img src="@/assets/ic_publish.png"></span>
-			   <router-link to="/">发布课程需求</router-link>
+                <span class="publish"><img src="@/assets/ic_publish.png"></span>
+                <router-link to="/">发布课程需求</router-link>
             </li>
             <li>
-				<span class="help"><img src="@/assets/ic_help.png"></span>
+                <span class="help"><img src="@/assets/ic_help.png"></span>
                 <router-link to="/">帮助与反馈</router-link>
             </li>
             <li>
                 <div class="dropdown">
                     <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-							<span><img src="@/assets/img_avatar_default.png"></span>
+                        <span><img src="@/assets/img_avatar_default.png"></span>
                         <span style="color: #fff;">风清杨</span>
                         <span style="color: #fff;" class="caret"></span>
                     </button>
