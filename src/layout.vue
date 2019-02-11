@@ -60,6 +60,13 @@
         padding: 0;
         height: 3.125rem;
     }
+    .nav li {
+        height: 3.125rem;
+    }
+    .nav li a {
+        height: 3.125rem;
+        line-height: 3.125rem;
+    }
 
     ul.navbg li.active {
         color: #fff;
@@ -82,7 +89,7 @@
         display: inline-block;
         width: 8.75rem;
         height: 3.125rem;
-        line-height: 3.75rem;
+        line-height: 3.125rem;
         text-align: center;
     }
 
@@ -90,6 +97,9 @@
         display: inline-block;
         color: #555555;
 
+    }
+    .top-right {
+        width: 25%;
     }
 
     .top-right a {
@@ -103,7 +113,7 @@
         list-style-type: none;
         float: left;
         margin-left: 1.25rem;
-        margin-top: 0.625rem;
+
     }
 
     .nav {
@@ -205,7 +215,7 @@
         </div>
         <div class="container tabcontainer">
             <nav id="nav">
-                <ul class="nav col-sm-10 top-left navbg">
+                <ul class="nav col-sm-9 top-left navbg">
                     <li :class="active('home')">
                         <router-link to="/">首页</router-link>
                     </li>

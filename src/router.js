@@ -39,5 +39,10 @@ export default new Router({
             name: 'projectinfo',
             component: () => import( './views/ProjectInfo.vue')
         },
+        {
+            path: '/projectplay',
+            name: 'projectplay',
+            component: () => import( './views/ProjectPnfo.vue')
+        },
     ]
 })
