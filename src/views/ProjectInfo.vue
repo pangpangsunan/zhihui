@@ -18,14 +18,14 @@
         </div>
         <div class="projectab">
             <ul class="tab-list">
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
+                <li @click="this.current='page1'">one</li>
+                <li @click="this.current='page2'">two</li>
+                <li @click="this.current='page3'">three</li>
             </ul>
             <ul class="tab-content">
-                <li style="background-color:cornflowerblue;">我是one</li>
-                <li style="display: none;background-color: burlywood;">我是two</li>
-                <li style="display: none;background-color:mediumaquamarine;">我是three</li>
+                <li v-show="this.current==='page1'" style="background-color:cornflowerblue;">我是one</li>
+                <li v-show="this.current==='page2'" style="background-color: burlywood;">我是two</li>
+                <li v-show="this.current==='page3'" style="background-color:mediumaquamarine;">我是three</li>
             </ul>
         </div>
     </div>
@@ -109,3 +109,13 @@
     }
 
 </style>
+
+<script>
+    export default {
+        data() {
+            return {
+                current: 'page1'
+            }
+        }
+    }
+</script>

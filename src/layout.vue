@@ -11,20 +11,18 @@
 
     html {
         font-size: 16px !important;
-        font-family: SourceHanSansSC-Medium !important;
+        font-family: SourceHanSansSC-Medium;
     }
 
     @media screen and (max-width: 1024px) {
         html {
-            font-family: SourceHanSansSC-Medium !important;
-            font-size: 13px !important;
+            font-size: 13px;
         }
     }
 
     @media screen and (max-width: 768px) {
         html {
-            font-family: SourceHanSansSC-Medium !important;
-            font-size: 13px !important;
+            font-size: 13px;
             background: #000;
         }
 
