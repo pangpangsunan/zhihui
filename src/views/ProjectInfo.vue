@@ -18,14 +18,14 @@
         </div>
         <div class="projectab">
             <ul class="tab-list">
-                <li @click="this.current='page1'">one</li>
-                <li @click="this.current='page2'">two</li>
-                <li @click="this.current='page3'">three</li>
+                <li @click="current='page1'" :class="current==='page1'?'active':''">one</li>
+                <li @click="current='page2'" :class="current==='page2'?'active':''">two</li>
+                <li @click="current='page3'" :class="current==='page3'?'active':''">three</li>
             </ul>
             <ul class="tab-content">
-                <li v-show="this.current==='page1'" style="background-color:cornflowerblue;">我是one</li>
-                <li v-show="this.current==='page2'" style="background-color: burlywood;">我是two</li>
-                <li v-show="this.current==='page3'" style="background-color:mediumaquamarine;">我是three</li>
+                <li v-show="current==='page1'" style="background-color:cornflowerblue;">我是one</li>
+                <li v-show="current==='page2'" style="background-color: burlywood;">我是two</li>
+                <li v-show="current==='page3'" style="background-color:mediumaquamarine;">我是three</li>
             </ul>
         </div>
     </div>
@@ -108,6 +108,9 @@
         margin-top: 0px;
     }
 
+    .active {
+        background: purple;
+    }
 </style>
 
 <script>
