@@ -204,6 +204,63 @@
         color: #fff;
         margin-left: 1rem;
     }
+    .public-style-info {
+        position: relative;
+    }
+    .all-comment {
+        padding: 1rem;
+    }
+    .teacher-img {
+        width:3.75rem ;
+        height: 3.75rem;
+        border-radius: 1.875rem;
+    }
+    .all-comment .title {
+        color: #8087AB;
+        font-size:0.875rem ;
+        margin-top: 2rem;
+    }
+    .all-comment .info,.teacher-info {
+        font-size: 0.8125rem;
+        color: #666666;
+        padding-left: 5rem;
+    }
+    .teacher-info{
+        position: absolute;
+        left: 4rem;
+        top: 2rem;
+        padding: 0;
+    }
+    .all-comment .attention {
+        border: 1px solid #4459CC;
+        border-radius: 0.625rem;
+        width: 3rem;
+        height: 1.25rem;
+
+        font-size: 0.7rem;
+        text-align: center;
+        position: absolute;
+        left: 11rem;
+        top: 0.6rem;
+    }
+    .all-comment .attention a {
+        color:#4459CC;
+    }
+    .att-number {
+        color: #A5A5A5;
+        font-size: 0.7rem;
+        padding: 0 0.5rem;
+        position: absolute;
+        left: 7rem;
+        top: 0.8rem;
+    }
+    .all-comment .name {
+        color: #222222;
+        font-size: 1rem;
+        position: absolute;
+        left: 4rem;
+        top: .5rem;
+    }
 
 </style>
 <template>
