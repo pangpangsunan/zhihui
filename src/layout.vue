@@ -10,19 +10,19 @@
     }
 
     html {
-        font-size: 16px !important;
+        font-size: 16px;
         font-family: SourceHanSansSC-Medium;
     }
 
     @media screen and (max-width: 1024px) {
         html {
-            font-size: 13px !important;
+            font-size: 13px;
         }
     }
 
     @media screen and (max-width: 768px) {
         html {
-            font-size: 13px !important;
+            font-size: 13px;
             background: #000;
         }
 
@@ -73,7 +73,6 @@
         cursor: default;
         background-color: #4459CC;
     }
-
 
     ul.navbg li.active a, ul.navbg li.active a:hover {
         background: transparent;
@@ -155,6 +154,7 @@
         width: 22rem;
         float: left;
     }
+
     .kefu {
         margin-left: 4rem;
     }
@@ -173,11 +173,11 @@
         font-size: 0.75rem;
         color: #757A7C;
     }
-    .gray{
+
+    .gray {
         position: relative;
         top: 3rem;
     }
-
 
     /*navHead是二级导航标题，类似，全部 - 经营管理 - 领导力*/
     .navHead {
@@ -200,7 +200,6 @@
         color: #F5892A;
         font-size: 0.875rem;
         /* margin-left:50%; */
-
 
     }
 

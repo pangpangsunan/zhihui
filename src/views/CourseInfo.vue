@@ -11,7 +11,7 @@
                 <p class="price">$1200</p>
                 <p class="content">1234人学过</p>
                 <div class="btns">
-                    <button id="trywatch">试看</button>
+                    <button id="trywatch" @click="$router.replace('/projectplay')">试看</button>
                     <button id="buy">购买</button>
                 </div>
             </div>

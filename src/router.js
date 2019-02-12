@@ -35,14 +35,14 @@ export default new Router({
             component: () => import( './views/MyView.vue')
         },
         {
-            path: '/projectinfo',
-            name: 'projectinfo',
-            component: () => import( './views/ProjectInfo.vue')
+            path: '/courseInfo',
+            name: 'courseInfo',
+            component: () => import( './views/CourseInfo.vue')
         },
         {
-            path: '/projectplay',
-            name: 'projectplay',
-            component: () => import( './views/ProjectPlay.vue')
+            path: '/coursePlay',
+            name: 'coursePlay',
+            component: () => import( './views/CoursePlay.vue')
         },
     ]
 })

@@ -82,21 +82,23 @@
             <p class="recommad-title">为您推荐的课程</p>
             <ul class="ulwarpper">
                 <li class="col-sm-12 imglist" v-for="item in arr">
-                    <img :src="item.course.image" alt="" class="img">
-					<div class="font-list">
-						<h3 class="project-name">{{ item.course.name}} 
-							<span class="underline">{{ item.course.type|coursType }}</span>
-						</h3>
-						<h5 class="project-bg" >{{ item.course.background }}</h5>
-						<p class="project-price">￥{{ item.course.price }}</p>
-						<!-- <p class="project-target" >{{ item.course.target }}</p> -->
-						<p class="project-address">{{ item.course.address}}</p>
-						<div class="btns">
-							<button id="trywatch">试看</button>
-							<button id="buy">购买</button>
+                    <router-link to="/projectinfo">
+						<img :src="item.course.image" alt="" class="img">
+						<div class="font-list">
+							<h3 class="project-name">{{ item.course.name}}
+								<span class="underline">{{ item.course.type|coursType }}</span>
+							</h3>
+							<h5 class="project-bg" >{{ item.course.background }}</h5>
+							<p class="project-price">￥{{ item.course.price }}</p>
+							<!-- <p class="project-target" >{{ item.course.target }}</p> -->
+							<p class="project-address">{{ item.course.address}}</p>
+							<div class="btns">
+								<button id="trywatch">试看</button>
+								<button id="buy">购买</button>
+							</div>
+
 						</div>
-						
-					</div>
+					</router-link>
                 </li>
             </ul>
     

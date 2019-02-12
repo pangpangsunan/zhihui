@@ -8,17 +8,19 @@
 		<div class="coursesType">
 			
 			<div class="pro">
-				<div class="topImg"></div>
-				<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-				<div class="cPrice">￥1200</div>
-				<div class="cName">
-					<img src="@/assets/ic_home_teacher.png">
-					谢顿宁
-				</div>
-				<div class="cName">
-					<img src="@/assets/ic_location.png">
-					上海市梅龙镇广场9楼
-				</div>
+				<router-link to="/projectinfo">
+					<div class="topImg"></div>
+					<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
+					<div class="cPrice">￥1200</div>
+					<div class="cName">
+						<img src="@/assets/ic_home_teacher.png">
+						谢顿宁
+					</div>
+					<div class="cName">
+						<img src="@/assets/ic_location.png">
+						上海市梅龙镇广场9楼
+					</div>
+				</router-link>
 			</div>
 			<div class="pro">
 				<div class="topImg"></div>
