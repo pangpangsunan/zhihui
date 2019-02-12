@@ -16,13 +16,13 @@
 
     @media screen and (max-width: 1024px) {
         html {
-            font-size: 13px;
+            font-size: 13px !important;
         }
     }
 
     @media screen and (max-width: 768px) {
         html {
-            font-size: 13px;
+            font-size: 13px !important;
             background: #000;
         }
 
@@ -58,9 +58,11 @@
         padding: 0;
         height: 3.125rem;
     }
+
     .nav li {
         height: 3.125rem;
     }
+
     .nav li a {
         height: 3.125rem;
         line-height: 3.125rem;
@@ -96,6 +98,7 @@
         color: #555555;
 
     }
+
     .top-right {
         width: 25%;
     }
@@ -147,38 +150,40 @@
         color: #eee;
     }
 
-    .kefu {
-        padding: 0;
-        margin: 0;
-    }
-
-    .kefu li {
+    .con li {
         list-style-type: none;
+        width: 22rem;
+        float: left;
+    }
+    .kefu {
+        margin-left: 4rem;
     }
 
-    .kefu li:nth-child(1) {
+    .kefu div:nth-child(1) {
         font-size: 0.75rem;
     }
 
-    .kefu li:nth-child(2) {
+    .kefu div:nth-child(2) {
         font-family: HelveticaNeue-Medium;
         font-size: 1.25rem;
         color: #FFFFFF;
     }
 
-    .kefu li:nth-child(3), .gray {
+    .kefu div:nth-child(3), .gray {
         font-size: 0.75rem;
         color: #757A7C;
     }
-
-    .bg-black .container {
+    .gray{
         position: relative;
-        padding-top: 1rem;
+        top: 3rem;
     }
 
-    .gray {
-        position: absolute;
-        top: 2.8125rem;
+
+    /*navHead是二级导航标题，类似，全部 - 经营管理 - 领导力*/
+    .navHead {
+        color: #666666;
+        font-size: 0.875rem;
+        padding: 1rem 0 0.5rem 0;
     }
 
     .btns {
@@ -204,62 +209,76 @@
         color: #fff;
         margin-left: 1rem;
     }
-    .public-style-info {
-        position: relative;
+
+    .img-left {
+        width: 3.75rem;
+        height: 3.75rem;
+        border-radius: 3.75rem;
+        float: left;
     }
+
+    .public-style-info {
+        float: right;
+        width: 65rem;
+        padding-right: 4rem;
+        margin-top: 0.5rem;
+    }
+
+    .clear {
+        clear: both;
+    }
+
     .all-comment {
         padding: 1rem;
+        position: relative;
     }
+
     .teacher-img {
-        width:3.75rem ;
+        width: 3.75rem;
         height: 3.75rem;
         border-radius: 1.875rem;
     }
+
     .all-comment .title {
         color: #8087AB;
-        font-size:0.875rem ;
+        font-size: 0.875rem;
         margin-top: 2rem;
+
     }
-    .all-comment .info,.teacher-info {
+
+    .all-comment .info, .teacher-info {
         font-size: 0.8125rem;
         color: #666666;
         padding-left: 5rem;
     }
-    .teacher-info{
-        position: absolute;
-        left: 4rem;
-        top: 2rem;
+
+    .teacher-info {
         padding: 0;
     }
+
     .all-comment .attention {
         border: 1px solid #4459CC;
         border-radius: 0.625rem;
         width: 3rem;
         height: 1.25rem;
-
         font-size: 0.7rem;
         text-align: center;
-        position: absolute;
-        left: 11rem;
-        top: 0.6rem;
+        display: inline-block;
     }
+
     .all-comment .attention a {
-        color:#4459CC;
+        color: #4459CC;
     }
+
     .att-number {
         color: #A5A5A5;
         font-size: 0.7rem;
         padding: 0 0.5rem;
-        position: absolute;
-        left: 7rem;
-        top: 0.8rem;
     }
+
     .all-comment .name {
         color: #222222;
         font-size: 1rem;
-        position: absolute;
-        left: 4rem;
-        top: .5rem;
     }
 
 </style>
@@ -294,17 +313,15 @@
         <router-view/>
         <br>
         <div class="bg-black">
-            <div class="container">
-                <div class="col-sm-4 gray">Copyright@2019.All rights reserved</div>
-                <div class="col-sm-4 gray">沪CP备 000001号</div>
-                <div class="col-sm-4">
-                    <ul class="kefu">
-                        <li class="text-right">客服电话</li>
-                        <li class="text-right">0157-28874128-6</li>
-                        <li class="text-right">Email：cs@xiaotongtech.net</li>
-                    </ul>
-                </div>
-            </div>
+            <ul class="container con">
+                <li class="gray">Copyright@2019.All rights reserved</li>
+                <li class="gray" style="text-align: center;">沪CP备 000001号</li>
+                <li class="kefu">
+                    <div class="text-right">客服电话</div>
+                    <div class="text-right">0157-28874128-6</div>
+                    <div class="text-right">Email：cs@xiaotongtech.net</div>
+                </li>
+            </ul>
         </div>
     </div>
 </template>

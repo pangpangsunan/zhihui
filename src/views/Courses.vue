@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <br>
         <p class="navHead">全部 - 经营管理 - 领导力</p>
 		<p class="navTitle">
 			<span class="navTitleLeft">4门课程</span>
@@ -75,11 +74,6 @@
     </div>
 </template>
 <style>
-
-	.navHead {
-		color:#666666;
-		font-size:0.875rem;
-	}
 	.coursesType {
 		background-color:#F3F5F7;
 		boder-radius:2px;

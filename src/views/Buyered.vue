@@ -4,7 +4,6 @@
             <img src="@/assets/img_course_nothing.png" alt="">
             <p>您尚未购买任何课程</p>
         </div>
-		<br>
 		<p class="navHead">已购买的课程</p>
 		<p class="navTitle">
 			<span class="navTitleLeft">{{courseList.length}}门课程</span>
@@ -30,10 +29,7 @@
     </div>
 </template>
 <style>
-	.navHead {
-		color:#666666;
-		font-size:0.875rem;
-	}
+
 	.coursesType {
 		background-color:#F3F5F7;
 		boder-radius:2px;

@@ -15,6 +15,16 @@
     .bg-black .container {
         padding: 1rem;
     }
+    .dropdown {
+        font-size: 0.8125rem;
+        color: #fff;
+    }
+    .dropdown span {
+        display: inline-block;
+    }
+    .fengqingyang {
+        margin-top: 0.2rem;
+    }
 
 
 </style>
@@ -35,8 +45,8 @@
                     <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <span><img src="@/assets/img_avatar_default.png"></span>
-                        <span style="color: #fff;">风清杨</span>
-                        <span style="color: #fff;" class="caret"></span>
+                        <span class="fengqingyang">&nbsp;风清杨</span>
+                        <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li>

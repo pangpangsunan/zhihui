@@ -4,6 +4,7 @@
             <img src="@/assets/img_follow_nothing.png">
             <p>您尚未关注任何人</p>
         </div>
+        <p class="navHead">已关注12人</p>
         <ul class="list-group" v-if="hasData">
             <li class="list-group-item" v-for="item in arr">
                 <div class="attention-left">
@@ -28,7 +29,6 @@
         height: 10rem;
         background: #FFFFFF;
         border-radius: 2px;
-        margin-top: 1rem;
         border: none;
     }
     .img-circle {
