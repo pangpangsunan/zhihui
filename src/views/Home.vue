@@ -82,7 +82,7 @@
             <p class="recommad-title">为您推荐的课程</p>
             <ul class="ulwarpper">
                 <li class="col-sm-12 imglist" v-for="item in arr">
-                    <router-link to="/projectinfo">
+                    <router-link to="/courseInfo">
 						<img :src="item.course.image" alt="" class="img">
 						<div class="font-list">
 							<h3 class="project-name">{{ item.course.name}}

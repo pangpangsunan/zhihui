@@ -8,7 +8,7 @@
 		<div class="coursesType">
 			
 			<div class="pro">
-				<router-link to="/projectinfo">
+				<router-link to="/courseInfo">
 					<div class="topImg"></div>
 					<div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
 					<div class="cPrice">￥1200</div>
