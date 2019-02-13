@@ -6,7 +6,6 @@
         <p class="navHead">全部 - 经营管理 - 领导力</p>
         <p class="navTitle">
             <span class="navTitleLeft">4门课程</span>
-
             <span class="navTitleRight">全部类型
 				<span class="caret"></span>
 			</span>

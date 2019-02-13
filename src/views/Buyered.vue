@@ -7,7 +7,10 @@
 		<p class="navHead">已购买的课程</p>
 		<p class="navTitle">
 			<span class="navTitleLeft">{{courseList.length}}门课程</span>
-			<span class="navTitleRight">全部类型<select></select></span>
+			<span class="navTitleRight">全部类型
+				<span class="caret"></span>
+			</span>
+			<span class="clear"></span>
 		</p>
 		<div class="coursesType" v-if="hasData">
 			<div class="pro" v-for="item in courseList">
@@ -29,7 +32,14 @@
     </div>
 </template>
 <style>
+	.navTitleLeft {
+		float: left;
+	}
 
+	.navTitleRight {
+		float: right;
+		padding-right: 2rem;
+	}
 	.coursesType {
 		background-color:#F3F5F7;
 		boder-radius:2px;
