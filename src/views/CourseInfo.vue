@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+
         <p class="navHead">全部 - 推荐 - 美国出口管制新政大盘点</p>
         <div class="projectplay">
             <div class="left">
@@ -121,14 +122,17 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </template>
 
 
 <style>
+
     .inputcon {
         position: relative;
     }
+
     textarea {
         width: 69rem;
         height: 6.25rem;
@@ -139,7 +143,8 @@
         padding: 0.5rem;
 
     }
-    .sendbtn  {
+
+    .sendbtn {
         position: absolute;
         right: 1rem;
         bottom: 1rem;

@@ -1,12 +1,20 @@
 <template>
     <div class="container">
+		<!--<div class="diolog">-->
+			<!--123-->
+		<!--</div>-->
         <p class="navHead">全部 - 经营管理 - 领导力</p>
 		<p class="navTitle">
 			<span class="navTitleLeft">4门课程</span>
-			<span class="navTitleRight">全部类型<select></select></span>
+
+			<span class="navTitleRight">全部类型
+				<span class="caret"></span>
+			</span>
+
+			<span class="clear"></span>
 		</p>
 		<div class="coursesType">
-			
+
 			<div class="pro">
 				<router-link to="/courseInfo">
 					<div class="topImg"></div>
@@ -76,6 +84,17 @@
     </div>
 </template>
 <style>
+	.clear {
+		display: block;
+	}
+	.diolog {
+		width: 71.25rem;
+		height: 20rem;
+		background: rgba(34,34,34,0.80);
+		border-radius: 2px;
+		position: absolute;
+		margin: 0 auto;
+	}
 	.coursesType {
 		background-color:#F3F5F7;
 		boder-radius:2px;
@@ -91,10 +110,11 @@
 		padding:1rem 0 0 1rem;
 	}
 	.navTitleLeft {
-
+		float: left;
 	}
 	.navTitleRight {
-		
+		float: right;
+		padding-right: 2rem;
 	}
 	.pro {
 		width:22.25rem;

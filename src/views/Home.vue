@@ -51,6 +51,14 @@
 		.imglist{
 			list-style-type:none;
 			height:10rem;
+
+		}
+		.imglist a {
+			text-decoration: none;
+			color: #666666;
+		}
+		.imglist a .project-name{
+			color: #222222;
 		}
 		.img{
 			width:17.75rem;
@@ -73,6 +81,7 @@
 			color:#666666;
 			
 		}
+
 
 	</style>
 <template>
