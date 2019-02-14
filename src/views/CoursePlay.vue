@@ -4,7 +4,7 @@
         <p class="navHead">正在播放 - 美国出口管制新政大盘点</p>
         <div class="projectplay">
             <div class="videosp">
-                <video src="@/assets/sp2.mp4" width="100%" height="100%" controls="controls"></video>
+                <video src="http://47.92.130.227/upload/sp2.mp4" width="100%" height="100%" controls="controls"></video>
             </div>
             <div class="right">
                 <p class="title">美国出口管制新政大盘点</p>
