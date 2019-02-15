@@ -5,7 +5,7 @@
     }
 
     body {
-        background: url(assets/img_bg.png);
+        background: url(../assets/img_bg.png);
         font-size: 16px;
     }
 

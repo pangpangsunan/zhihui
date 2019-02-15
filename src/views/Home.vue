@@ -65,7 +65,7 @@
 			height:10rem;
 			float:left;
 			margin-left:-1rem;
-			
+
 		}
 		.font-list {
 			position:relative;
@@ -79,13 +79,13 @@
 		.project-bg,.project-target,.project-address{
 			font-size:0.75rem;
 			color:#666666;
-			
+
 		}
 
 
 	</style>
 <template>
-	
+
     <div class="container">
         <carousel></carousel>
             <p class="recommad-title">为您推荐的课程</p>
@@ -110,7 +110,7 @@
 					</router-link>
                 </li>
             </ul>
-    
+
     </div>
 </template>
 

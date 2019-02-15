@@ -1,48 +1,56 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home
-        },
-        {
-            path: '/about',
-            name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        },
-        {
-            path: '/courses',
-            name: 'courses',
-            component: () => import( './views/Courses.vue')
-        },
-        {
-            path: '/buyered',
-            name: 'buyered',
-            component: () => import( './views/Buyered.vue')
-        },
-        {
-            path: '/myview',
-            name: 'myview',
-            component: () => import( './views/MyView.vue')
-        },
-        {
-            path: '/courseInfo',
-            name: 'courseInfo',
-            component: () => import( './views/CourseInfo.vue')
-        },
-        {
-            path: '/coursePlay',
-            name: 'coursePlay',
-            component: () => import( './views/CoursePlay.vue')
-        },
+            name: '',
+            component: () => import('./views/layout.vue'),
+            children: [
+                {
+                    path: '',
+                    name: 'home',
+                    component: () => import('./views/Home.vue')
+                },
+                {
+                    path: 'courses',
+                    name: 'courses',
+                    component: () => import( './views/Courses.vue')
+                },
+                {
+                    path: 'buyered',
+                    name: 'buyered',
+                    component: () => import( './views/Buyered.vue')
+                },
+                {
+                    path: 'myview',
+                    name: 'myview',
+                    component: () => import( './views/MyView.vue')
+                },
+                {
+                    path: 'courseInfo',
+                    name: 'courseInfo',
+                    component: () => import( './views/CourseInfo.vue')
+                },
+                {
+                    path: 'coursePlay',
+                    name: 'coursePlay',
+                    component: () => import( './views/CoursePlay.vue')
+                },
+            ]
+        }, {
+            path: '/user',
+            name: 'user',
+            component: () => import('./views/User/layout.vue'),
+            children: [
+                {
+                    path: 'login',
+                    component: () => import('./views/User/Login.vue')
+                }
+            ]
+        }
     ]
 })

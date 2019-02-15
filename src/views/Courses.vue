@@ -179,7 +179,6 @@
         created() {
             axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
                 this.courseList = p.data.content.records
-                console.log(this.courseList)
             })
         },
         data() {
