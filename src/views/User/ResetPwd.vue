@@ -23,7 +23,7 @@
                     </router-link>
                 </div>
 
-                     <button type="submit" class="btn btn-default">完成</button>
+                     <button type="submit" class="btn1 btn-default" style="margin-top: 1rem">完成</button>
 
             </div>
         </div>

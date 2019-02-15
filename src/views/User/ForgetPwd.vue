@@ -9,10 +9,10 @@
                 <button type="submit" class="btn2 btn-default">邮箱验证</button>
             </div>
             <div class="text-grays">
-                <router-link to="/login">
+                <router-link to="/user/login">
                     <span class="text-gray1">用户登陆</span>
                 </router-link>
-                <router-link to="/register">
+                <router-link to="/user/register">
                     <span class="text-gray2">新用户注册</span>
                 </router-link>
             </div>
