@@ -11,9 +11,9 @@
                 <p class="content">线下课程</p>
                 <p class="price">$1200</p>
                 <p class="content">1234人学过</p>
-                <div class="btns">
-                    <button id="trywatch" @click="$router.replace('/coursePlay')">试看</button>
-                    <button id="buy">购买</button>
+                <div class="btns2">
+                    <button class="whitebtn" @click="$router.replace('/coursePlay')">试看</button>
+                    <button class="orangebtn" id="buy">购买</button>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@
         background-color: #E4EAF3;
     }
 
-    .btns {
+    .btns2 {
         width: 20rem;
         position: absolute;
         left: 0;

@@ -34,6 +34,26 @@
         margin-top: 6rem;
     }
 
+    .bluebtn, .orangebtn, .whitebtn {
+        width: 6.75rem;
+        height: 2.25rem;
+        background: #4459CC;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 0.875rem;
+    }
+
+    .orangebtn {
+        background-color: #F5892A;
+        color: #fff;
+    }
+
+    .whitebtn {
+        background-color: #fff;
+        border: 1px solid #F5892A;
+        color: #F5892A;
+    }
+
     ul {
         padding: 0;
         margin: 0;
@@ -186,26 +206,13 @@
         padding: 1rem 0 0.5rem 0;
     }
 
-    .btns {
+    .btns1 {
         position: absolute;
         right: 3.125rem;
         top: 6.25rem;
     }
 
-    #trywatch, #buy {
-        width: 6.75rem;
-        height: 2.25rem;
-        border: 1px solid #F5892A;
-        border-radius: 2px;
-        color: #F5892A;
-        font-size: 0.875rem;
-        /* margin-left:50%; */
-
-    }
-
     #buy {
-        background-color: #F5892A;
-        color: #fff;
         margin-left: 1rem;
     }
 

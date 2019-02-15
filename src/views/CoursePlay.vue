@@ -15,7 +15,7 @@
                     <span class="name">吴苏南</span>
                     <br>
                     <span class="att-number">12人关注ß</span>
-                    <button class="attentionbtn">关注</button>
+                    <button class="bluebtn attentionbtn">关注</button>
 
                     <div class="clear"></div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="all-comment">
                         <div class="inputcon">
                             <textarea placeholder="输入您的评论" rows="4" maxlength="50">wwwwwwww</textarea>
-                            <button class="sendbtn">发送</button>
+                            <button class="bluebtn sendbtn">发送</button>
                         </div>
                         <p class="title">共587条评论</p>
                         <div class="con-wrapper">
@@ -119,12 +119,6 @@
         position: absolute;
         right: 1rem;
         bottom: 1rem;
-        width: 6.75rem;
-        height: 2.25rem;
-        background: #4459CC;
-        border-radius: 2px;
-        color: #fff;
-        font-size: 0.875rem;
     }
 
     .attentionbtn {

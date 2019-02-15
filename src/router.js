@@ -44,5 +44,10 @@ export default new Router({
             name: 'coursePlay',
             component: () => import( './views/CoursePlay.vue')
         },
+        {
+            path: '/teachersHome',
+            name: 'teachersHome',
+            component: () => import( './views/TeachersHome.vue')
+        },
     ]
 })
