@@ -101,9 +101,9 @@
 							<p class="project-price">￥{{ item.course.price }}</p>
 							<!-- <p class="project-target" >{{ item.course.target }}</p> -->
 							<p class="project-address">{{ item.course.address}}</p>
-							<div class="btns">
-								<button id="trywatch">试看</button>
-								<button id="buy">购买</button>
+							<div class="btns1">
+								<button class="whitebtn">试看</button>
+								<button id="buy" class="orangebtn">购买</button>
 							</div>
 
 						</div>
