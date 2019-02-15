@@ -1,34 +1,33 @@
 <template>
-    <div class="container">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Remember me
-                        </label>
+    <div class="wrap">
+        <p class="big-title">学员登陆</p>
+        <div class="container">
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="tel" class="form-control" id="inputEmail3" placeholder="手机号码/用户名">
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Sign in</button>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+                    </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <span id="remenberpwdlink">忘记密码</span>
+                        <span id="registerlink">新用户注册</span>
+                    </div>
+                </div>
+
+                     <button type="submit" class="btn btn-default">登陆</button>
+
             </div>
         </div>
+
     </div>
+
 </template>
 
 <script>
@@ -36,9 +35,32 @@
 </script>
 
 <style scoped>
+
+
     .container {
+        width: 20rem;
+        height: 16.88rem;
         background: #fff;
-        margin-top: 50px;
-        padding-top: 20px;
+        padding: 2rem 1rem;
+
     }
+    .col-sm-12 input{
+        height: 3rem;
+        background: #E5E7EF;
+        border-radius: 2px;
+        border: none;
+    }
+    #remenberpwdlink,#registerlink {
+        border: none;
+        color: #AAAAAA;
+        letter-spacing: 0;
+        font-size: .88rem;
+        cursor: pointer;
+    }
+    #registerlink {
+        margin-left: 10rem;
+
+    }
+
+
 </style>

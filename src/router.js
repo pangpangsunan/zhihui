@@ -37,6 +37,10 @@ let router = new Router({
                     path: 'coursePlay',
                     component: () => import( './views/CoursePlay.vue')
                 },
+                {
+                    path: 'teachersHome',
+                    component: () => import( './views/TeachersHome.vue')
+                },
             ],
         },
         {

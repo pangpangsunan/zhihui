@@ -1,204 +1,273 @@
 <template>
-  <div class="container">
-    <!--<div class="diolog">-->
-    <!--123-->
-    <!--</div>-->
-    <p class="navHead">讲师主页</p>
-    <div class="teachers-wrapper">
-        <div class="teachers-wrapper-top">
-          <div class="teachers-img">
-            <img src="@/assets/cat.jpg" class="teachers-img">
-          </div>
+    <div class="container">
+        <!--<div class="diolog">-->
+        <!--123-->
+        <!--</div>-->
+        <p class="navHead">讲师主页</p>
+        <div class="teachers-wrapper">
+            <div class="teachers-wrapper-top">
+                <img src="@/assets/cat.jpg" class="teachers-img">
+                <div class="teachers-name">郑均益</div>
+                <div class="fans-number">1750 粉丝</div>
+                <div class="msg-btns">
+                    <button class="bluebtn">关注</button>
+                    <button class="orangebtn" style="margin-left: 1rem">私信</button>
+                </div>
+            </div>
+            <div class="teachers-info">
+                <p class="teacher-tag">个人简介</p>
+                <p style="text-align: left;">
+                    国际贸易与海事事务专家、世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。十一年中国海关工作经验，主要研究领域包括：商品归类、海关估价、原产地规则、风险管理、贸易管制等，曾为中国入世谈判提供智力支持。受国内外多个平台和机构邀请，常年为社会各界提供：理论研究、政策咨询、专题演讲、培训辅导等专业服务。</p>
+                <p class="spread">展开</p>
+                <div class="clear"></div>
+                <p class="teacher-tag">过往客户</p>
+                <p>服务客户主要为欧美一线企业，产业领域设计：汽车、电子、化工、生物医药、服装和快消品等。</p>
+                <p class="teacher-tag">语言能力</p>
+                <p>中文</p>
+                <p class="teacher-tag">从业经验</p>
+                <p>1999-12-31 至 2011-12-31 上海海关</p>
+
+            </div>
         </div>
-    </div>
-    <p class="navTitle">
-      <span class="navTitleLeft">4门课程</span>
-      <span class="navTitleRight">全部类型
+        <p class="navTitle" style="margin-top: 2rem;">
+            <span class="navTitleLeft">4门课程</span>
+            <span class="navTitleRight">全部类型
 				<span class="caret"></span>
 			</span>
 
-      <span class="clear"></span>
-    </p>
-    <div class="coursesType">
+            <span class="clear"></span>
+        </p>
+        <div class="coursesType">
 
-      <div class="pro">
-        <router-link to="/courseInfo">
-          <div class="topImg"></div>
-          <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-          <div class="cPrice">￥1200</div>
-          <div class="cName">
-            <img src="@/assets/ic_home_teacher.png">
-            谢顿宁
-          </div>
-          <div class="cName">
-            <img src="@/assets/ic_location.png">
-            上海市梅龙镇广场9楼
-          </div>
-        </router-link>
-      </div>
-      <div class="pro">
-        <div class="topImg"></div>
-        <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-        <div class="cPrice">￥1200</div>
-        <div class="cName">
-          <img src="@/assets/ic_home_teacher.png">
-          谢顿宁
-        </div>
-        <div class="cName">
-          <img src="@/assets/ic_location.png">
-          上海市梅龙镇广场9楼
-        </div>
-      </div>
-      <div class="pro">
-        <div class="topImg"></div>
-        <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-        <div class="cPrice">￥1200</div>
-        <div class="cName">
-          <img src="@/assets/ic_home_teacher.png">
-          谢顿宁
-        </div>
-        <div class="cName">
-          <img src="@/assets/ic_location.png">
-          上海市梅龙镇广场9楼
-        </div>
-      </div>
-      <div class="pro">
-        <div class="topImg"></div>
-        <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
-        <div class="cPrice">￥1200</div>
-        <div class="cName">
-          <img src="@/assets/ic_home_teacher.png">
-          谢顿宁
-        </div>
-        <div class="cName">
-          <img src="@/assets/ic_location.png">
-          上海市梅龙镇广场9楼
-        </div>
-      </div>
+            <div class="pro">
+                <router-link to="/courseInfo">
+                    <div class="topImg"></div>
+                    <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
+                    <div class="cPrice">￥1200</div>
+                    <div class="cName">
+                        <img src="@/assets/ic_home_teacher.png">
+                        谢顿宁
+                    </div>
+                    <div class="cName">
+                        <img src="@/assets/ic_location.png">
+                        上海市梅龙镇广场9楼
+                    </div>
+                </router-link>
+            </div>
+            <div class="pro">
+                <div class="topImg"></div>
+                <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
+                <div class="cPrice">￥1200</div>
+                <div class="cName">
+                    <img src="@/assets/ic_home_teacher.png">
+                    谢顿宁
+                </div>
+                <div class="cName">
+                    <img src="@/assets/ic_location.png">
+                    上海市梅龙镇广场9楼
+                </div>
+            </div>
+            <div class="pro">
+                <div class="topImg"></div>
+                <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
+                <div class="cPrice">￥1200</div>
+                <div class="cName">
+                    <img src="@/assets/ic_home_teacher.png">
+                    谢顿宁
+                </div>
+                <div class="cName">
+                    <img src="@/assets/ic_location.png">
+                    上海市梅龙镇广场9楼
+                </div>
+            </div>
+            <div class="pro">
+                <div class="topImg"></div>
+                <div class="pTitle">美国出口管制新政大盘点<span class="online">线上</span></div>
+                <div class="cPrice">￥1200</div>
+                <div class="cName">
+                    <img src="@/assets/ic_home_teacher.png">
+                    谢顿宁
+                </div>
+                <div class="cName">
+                    <img src="@/assets/ic_location.png">
+                    上海市梅龙镇广场9楼
+                </div>
+            </div>
 
-      <!-- <ul class="list-group">
-          <li class="list-group-item" v-for="item in courseList">
-              <img :src="item.courseInfo.image" width="400" height="400" alt="">
-              <p>{{ item.courseInfo.name }} <kbd v-if="item.courseInfo.type">{{ item.courseInfo.type|coursType }}</kbd></p>
-              <p class="text-danger">￥{{item.courseInfo.price}}</p>
-              <p>{{item.courseInfo.audiences}}</p>
-              <p>{{item.courseInfo.address}}</p>
-          </li>
-      </ul> -->
+            <!-- <ul class="list-group">
+                <li class="list-group-item" v-for="item in courseList">
+                    <img :src="item.courseInfo.image" width="400" height="400" alt="">
+                    <p>{{ item.courseInfo.name }} <kbd v-if="item.courseInfo.type">{{ item.courseInfo.type|coursType }}</kbd></p>
+                    <p class="text-danger">￥{{item.courseInfo.price}}</p>
+                    <p>{{item.courseInfo.audiences}}</p>
+                    <p>{{item.courseInfo.address}}</p>
+                </li>
+            </ul> -->
+        </div>
+
     </div>
-
-  </div>
 </template>
 <style>
-  .clear {
-    display: block;
-  }
 
-  .teachers-wrapper{
-    width: 71.25rem;
-    border-radius: 2px;
-  }
-  .teachers-wrapper-top{
-    background: #FFFFFF;
-    height: 20rem;
-    text-align: center;
-  }
-  .teachers-img {
-    width: 7.5rem;
-    height: 7.5rem;
-    border-radius: 7.5rem;
+    .clear {
+        display: block;
+    }
 
-  }
-  .coursesType {
-    background-color: #F3F5F7;
-    boder-radius: 2px;
-    display: flex;
-    flex-wrap: wrap;
-  }
+    .teachers-wrapper {
+        width: 71.25rem;
+        border-radius: 2px;
+        background-color: #F3F5F7;
+        text-align: center;
+    }
 
-  .navTitle {
-    color: #666666;
-    background-color: #F3F5F7;
-    padding: 0;
-    margin: 0;
-    font-size: 0.875rem;
-    padding: 1rem 0 0 1rem;
-  }
+    .teachers-wrapper-top {
+        background: #FFFFFF;
+        height: 20rem;
 
-  .navTitleLeft {
-    float: left;
-  }
+    }
 
-  .navTitleRight {
-    float: right;
-    padding-right: 2rem;
-  }
+    .teachers-img {
+        width: 7.5rem;
+        height: 7.5rem;
+        border-radius: 7.5rem;
+        margin-top: 3rem;
 
-  .pro {
-    width: 22.25rem;
-    height: 20.25rem;
-    margin-left: 1.2rem;
-    background-color: #fff;
-    margin-top: 1rem;
-  }
+    }
 
-  .topImg {
-    width: 22.25rem;
-    height: 12.875rem;
-    background-color: blue;
-  }
+    .teachers-info {
+        font-size: .812rem;
+        color: #666666;
+        padding: 1rem 1rem 2rem 1rem;
+        height: 8.75rem;
+        overflow: hidden;
+    }
 
-  .pTitle {
-    font-size: 1rem;
-    color: #222222;
-    letter-spacing: 0.5px;
-    line-height: 1.5rem;
-    padding: 0.5rem 1rem 1rem 1rem;
-  }
+    .teachers-info-open {
+        height: auto;
+    }
 
-  .underline, .online {
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    line-height: 20px;
-    border-radius: 10px;
-    background-color: #4459cc;
-    font-size: 10px;
-    color: #fff;
-    text-align: center;
-    margin-left: 5px;
-  }
+    .spread {
+        color: #4459CC;
+        font-size: .8125rem;
+        float: right;
+        cursor: pointer;
+    }
 
-  .cPrice {
-    font-size: 0.875rem;
-    color: #F5892A;
-    letter-spacing: 0.5px;
-    line-height: 1.2rem;
-    padding: 0 1rem;
-  }
 
-  .cName {
-    padding: 0.3rem 1.1rem;
-    font-size: 0.75rem;
-    color: #666666;
-    letter-spacing: 0.2px;
-    line-height: 0.75rem;
-  }
+
+    .teacher-tag {
+        font-size: .875rem;
+        color: #8087AB;
+        padding: .7rem 0;
+    }
+
+    .teachers-name {
+        color: #222222;
+        margin-top: 1rem;
+    }
+
+    .fans-number {
+        color: #888888;
+        font-size: .875rem;
+        margin-top: .5rem;
+    }
+
+
+    .msg-btns {
+        margin-top: 1rem;
+    }
+
+    .coursesType {
+        background-color: #F3F5F7;
+        boder-radius: 2px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .navTitle {
+        color: #666666;
+        background-color: #F3F5F7;
+        padding: 0;
+        margin: 0;
+        font-size: 0.875rem;
+        padding: 1rem 0 0 1rem;
+    }
+
+    .navTitleLeft {
+        float: left;
+    }
+
+    .navTitleRight {
+        float: right;
+        padding-right: 2rem;
+    }
+
+    .pro {
+        width: 22.25rem;
+        height: 20.25rem;
+        margin-left: 1.2rem;
+        background-color: #fff;
+        margin-top: 1rem;
+    }
+
+    .topImg {
+        width: 22.25rem;
+        height: 12.875rem;
+        background-color: blue;
+    }
+
+    .pTitle {
+        font-size: 1rem;
+        color: #222222;
+        letter-spacing: 0.5px;
+        line-height: 1.5rem;
+        padding: 0.5rem 1rem 1rem 1rem;
+    }
+
+    .underline, .online {
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 10px;
+        background-color: #4459cc;
+        font-size: 10px;
+        color: #fff;
+        text-align: center;
+        margin-left: 5px;
+    }
+
+    .cPrice {
+        font-size: 0.875rem;
+        color: #F5892A;
+        letter-spacing: 0.5px;
+        line-height: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    .cName {
+        padding: 0.3rem 1.1rem;
+        font-size: 0.75rem;
+        color: #666666;
+        letter-spacing: 0.2px;
+        line-height: 0.75rem;
+    }
 </style>
 <script>
-  import axios from 'axios'
+    import axios from 'axios'
 
-  export default {
-    created() {
-      axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
-        this.courseList = p.data.content.records
-        console.log(this.courseList)
-      })
-    },
-    data() {
-      return {
-        courseList: []
-      }
+    export default {
+        created() {
+            axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
+                this.courseList = p.data.content.records
+                console.log(this.courseList)
+            })
+        },
+        data() {
+            return {
+                courseList: []
+            }
+        }
     }
-  }
+
 </script>

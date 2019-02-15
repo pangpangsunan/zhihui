@@ -3,6 +3,9 @@
         padding-top: 0;
         margin: 0;
     }
+    a {
+        text-decoration: none;
+    }
 
     body {
         background: url(../assets/img_bg.png);
@@ -41,6 +44,7 @@
         border-radius: 2px;
         color: #fff;
         font-size: 0.875rem;
+        border: none;
     }
 
     .orangebtn {
