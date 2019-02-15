@@ -53,8 +53,8 @@ let router = new Router({
                     component: () => import('./views/User/Login.vue')
                 },
                 {
-                    path: 'fogetpwd',
-                    component: () => import('./views/User/FogetPwd.vue')
+                    path: 'forget',
+                    component: () => import('./views/User/ForgetPwd.vue')
                 },
                 {
                     path: 'resetpwd',

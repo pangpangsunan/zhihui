@@ -15,10 +15,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <router-link to="user/fogetpwd">
+                        <router-link to="/user/forget">
                             <span class="text-gray1">忘记密码</span>
                         </router-link>
-                        <router-link to="user/register">
+                        <router-link to="/user/register">
                             <span class="text-gray2">新用户注册</span>
                         </router-link>
 
@@ -53,8 +53,6 @@
         border-radius: 2px;
         border: none;
     }
-
-
 
 
 </style>
