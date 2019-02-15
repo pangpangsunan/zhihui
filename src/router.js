@@ -51,7 +51,28 @@ let router = new Router({
                 {
                     path: 'login',
                     component: () => import('./views/User/Login.vue')
+                },
+                {
+                    path: 'fogetpwd',
+                    component: () => import('./views/User/FogetPwd.vue')
+                },
+                {
+                    path: 'resetpwd',
+                    component: () => import('./views/User/ResetPwd.vue')
+                },
+                {
+                    path: 'success',
+                    component: () => import('./views/User/Success.vue')
+                },
+                {
+                    path: 'validate',
+                    component: () => import('./views/User/Validate.vue')
+                },
+                {
+                    path: 'register',
+                    component: () => import('./views/User/Register.vue')
                 }
+
             ]
         }
     ],

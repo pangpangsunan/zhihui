@@ -18,14 +18,15 @@
         background: url(../../assets/bg_login.png) no-repeat;
         background-size: cover;
     }
+    a{
+        text-decoration: none;
+    }
     .wrap {
         width: 20rem;
         height: 22rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -15rem;
-        margin-left: -11rem;
+       margin: 0 auto;
+        border: 1px solid red;
+        margin-top: 8rem;
     }
     .big-title {
         color: #FFFFFF;
@@ -33,12 +34,30 @@
         text-align: center;
         line-height: 1.75rem;
     }
-    .btn{
+    .btn1,.btn2{
         width: 18rem;
         height: 3rem;
         color: #fff;
         background: rgba(245,137,42,0.5);
         border: none;
+    }
+    .btn2{
+        background: rgba(68,89,204,1);
+        margin-top: 1rem;
+    }
+    .text-grays {
+        margin-top: 1rem;
+    }
+    .text-gray1, .text-gray2 {
+        border: none;
+        color: #AAAAAA;
+        letter-spacing: 0;
+        font-size: .88rem;
+        cursor: pointer;
+    }
+    .text-gray2 {
+        margin-left: 10rem;
+
     }
 
 </style>

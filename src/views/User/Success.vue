@@ -2,6 +2,7 @@
     <div class="wrap">
         <p class="big-title">学员登陆</p>
         <div class="container">
+
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -15,19 +16,16 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <router-link to="user/fogetpwd">
-                            <span class="text-gray1">忘记密码</span>
-                        </router-link>
-                        <router-link to="user/register">
-                            <span class="text-gray2">新用户注册</span>
-                        </router-link>
-
+                        <span id="remenberpwdlink">忘记密码</span>
+                        <span id="registerlink">新用户注册</span>
                     </div>
                 </div>
 
-                <button type="submit" class="btn1 btn-default">登陆</button>
+                     <button type="submit" class="btn btn-default">登陆</button>
+
             </div>
         </div>
+
     </div>
 
 </template>
@@ -46,15 +44,23 @@
         padding: 2rem 1rem;
 
     }
-
-    .col-sm-12 input {
+    .col-sm-12 input{
         height: 3rem;
         background: #E5E7EF;
         border-radius: 2px;
         border: none;
     }
+    #remenberpwdlink,#registerlink {
+        border: none;
+        color: #AAAAAA;
+        letter-spacing: 0;
+        font-size: .88rem;
+        cursor: pointer;
+    }
+    #registerlink {
+        margin-left: 10rem;
 
-
+    }
 
 
 </style>
