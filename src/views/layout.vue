@@ -88,7 +88,7 @@
         line-height: 3.125rem;
     }
 
-    ul.navbg li a.router-link-exact-active {
+    ul.navbg li a.active, ul.navbg li a:hover {
         background-color: #4459CC;
         color: #fff;
     }
@@ -252,16 +252,16 @@
             <nav id="nav">
                 <ul class="nav col-sm-9 top-left navbg">
                     <li>
-                        <router-link to="/">首页</router-link>
+                        <router-link to="/" active-class="active" exact>首页</router-link>
                     </li>
                     <li>
-                        <router-link to="/courses">分类课程</router-link>
+                        <router-link to="/courses" active-class="active" exact>分类课程</router-link>
                     </li>
                     <li>
-                        <router-link to="/buyered">已购课程</router-link>
+                        <router-link to="/buyered" active-class="active" exact>已购课程</router-link>
                     </li>
                     <li>
-                        <router-link to="/myview">我的关注</router-link>
+                        <router-link to="/myview" active-class="active" exact>我的关注</router-link>
                     </li>
                 </ul>
                 <div class="col-sm-2 top-right">

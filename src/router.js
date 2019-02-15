@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
     routes: [
         {
             path: '/',
@@ -12,7 +12,10 @@ export default new Router({
             children: [
                 {
                     path: '',
-                    component: () => import('./views/Home.vue')
+                    component: () => import('./views/Home.vue'),
+                    meta: {
+                        msg: "ths is msg"
+                    }
                 },
                 {
                     path: 'courses',
@@ -34,8 +37,9 @@ export default new Router({
                     path: 'coursePlay',
                     component: () => import( './views/CoursePlay.vue')
                 },
-            ]
-        }, {
+            ],
+        },
+        {
             path: '/user',
             name: 'user',
             component: () => import('./views/User/layout.vue'),
@@ -46,5 +50,12 @@ export default new Router({
                 }
             ]
         }
-    ]
-})
+    ],
+});
+
+router.beforeEach((to, from, next) => {
+    // console.log(to);
+    next()
+});
+
+export default router;
