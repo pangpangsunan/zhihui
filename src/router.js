@@ -12,32 +12,26 @@ export default new Router({
             children: [
                 {
                     path: '',
-                    name: 'home',
                     component: () => import('./views/Home.vue')
                 },
                 {
                     path: 'courses',
-                    name: 'courses',
                     component: () => import( './views/Courses.vue')
                 },
                 {
                     path: 'buyered',
-                    name: 'buyered',
                     component: () => import( './views/Buyered.vue')
                 },
                 {
                     path: 'myview',
-                    name: 'myview',
                     component: () => import( './views/MyView.vue')
                 },
                 {
                     path: 'courseInfo',
-                    name: 'courseInfo',
                     component: () => import( './views/CourseInfo.vue')
                 },
                 {
                     path: 'coursePlay',
-                    name: 'coursePlay',
                     component: () => import( './views/CoursePlay.vue')
                 },
             ]

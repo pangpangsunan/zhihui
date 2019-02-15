@@ -1,5 +1,8 @@
 <template>
-    <router-view></router-view>
+    <div>
+        <router-view></router-view>
+        <bottom></bottom>
+    </div>
 </template>
 
 <style>
@@ -7,3 +10,11 @@
         background: #f0f;
     }
 </style>
+
+<script>
+    export default {
+        components: {
+            bottom: () => import('@/components/bottom.vue')
+        }
+    }
+</script>

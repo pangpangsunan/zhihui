@@ -88,18 +88,7 @@
         line-height: 3.125rem;
     }
 
-    ul.navbg li.active {
-        color: #fff;
-        cursor: default;
-        background-color: #4459CC;
-    }
-
-    ul.navbg li.active a, ul.navbg li.active a:hover {
-        background: transparent;
-        color: #fff;
-    }
-
-    ul.navbg li a:hover {
+    ul.navbg li a.router-link-exact-active {
         background-color: #4459CC;
         color: #fff;
     }
@@ -148,13 +137,8 @@
         line-height: 1.875rem;
     }
 
-    .navbg li a:hover {
-        background-color: #4459CC;
-    }
-
     .navbg li a {
         display: block;
-
         padding: 0;
         margin: 0;
     }
@@ -164,35 +148,6 @@
         padding: 0;
     }
 
-    .bg-black {
-        background: #333;
-        color: #eee;
-    }
-
-    .con li {
-        list-style-type: none;
-        width: 22rem;
-        float: left;
-    }
-
-    .kefu {
-        margin-left: 4rem;
-    }
-
-    .kefu div:nth-child(1) {
-        font-size: 0.75rem;
-    }
-
-    .kefu div:nth-child(2) {
-        font-family: HelveticaNeue-Medium;
-        font-size: 1.25rem;
-        color: #FFFFFF;
-    }
-
-    .kefu div:nth-child(3), .gray {
-        font-size: 0.75rem;
-        color: #757A7C;
-    }
 
     .gray {
         position: relative;
@@ -296,16 +251,16 @@
         <div class="container tabcontainer">
             <nav id="nav">
                 <ul class="nav col-sm-9 top-left navbg">
-                    <li :class="active('home')">
+                    <li>
                         <router-link to="/">首页</router-link>
                     </li>
-                    <li :class="active('courses')">
+                    <li>
                         <router-link to="/courses">分类课程</router-link>
                     </li>
-                    <li :class="active('buyered')">
+                    <li>
                         <router-link to="/buyered">已购课程</router-link>
                     </li>
-                    <li :class="active('myview')">
+                    <li>
                         <router-link to="/myview">我的关注</router-link>
                     </li>
                 </ul>
@@ -318,33 +273,15 @@
 
         <router-view/>
         <br>
-        <div class="bg-black">
-            <ul class="container con">
-                <li class="gray">Copyright@2019.All rights reserved</li>
-                <li class="gray" style="text-align: center;">沪CP备 000001号</li>
-                <li class="kefu">
-                    <div class="text-right">客服电话</div>
-                    <div class="text-right">0157-28874128-6</div>
-                    <div class="text-right">Email：cs@xiaotongtech.net</div>
-                </li>
-            </ul>
-        </div>
+        <bottom></bottom>
     </div>
 </template>
 
-
 <script>
     export default {
-        methods: {
-            active(page) {
-                if (this.$route.name == page) {
-                    return 'active';
-                }
-                return '';
-            }
-        },
         components: {
-            top: () => import('@/components/top.vue')
+            top: () => import('@/components/top.vue'),
+            bottom: () => import('@/components/bottom.vue')
         }
     }
 </script>
