@@ -15,7 +15,7 @@
         font-family: "SourceHanSansSC-Regular";
     }
     body {
-        background: url(../../assets/img_bg_login.png) no-repeat;
+        background: url(../../assets/bg_login.png) no-repeat;
         background-size: cover;
     }
     .wrap {
