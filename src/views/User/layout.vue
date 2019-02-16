@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-view></router-view>
-        <bottom></bottom>
+        <!--<bottom></bottom>-->
     </div>
 </template>
 
@@ -37,7 +37,7 @@
         height: 16.88rem;
         background: #fff;
         padding: 2rem 1rem;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.20);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20);
         border-radius: 4px;
         margin-top: 1rem;
 
@@ -98,9 +98,9 @@
 </style>
 
 <script>
-    // export default {
-    //     components: {
-    //         bottom: () => import('@/components/bottom.vue')
-    //     }
-    // }
+    export default {
+        components: {
+            bottom: () => import('@/components/bottom.vue')
+        }
+    }
 </script>
