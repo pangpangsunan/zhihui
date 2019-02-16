@@ -11,7 +11,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="验证码" required pattern="\d{6}|\d{4}">
+                        <input type="text" class="form-control" placeholder="验证码" required pattern="\d{4}">
                     </div>
                     <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">获取验证码 {{ time
                         }}
