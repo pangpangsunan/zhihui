@@ -8,5 +8,8 @@ module.exports = {
                 $: 'jquery'
             })
         ]
+    },
+    devServer: {
+        disableHostCheck: true
     }
 };
