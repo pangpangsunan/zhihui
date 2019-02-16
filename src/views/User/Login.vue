@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn1">登陆</button>
+                    <button type="submit" class="btn1">登录</button>
                 </form>
 
 
