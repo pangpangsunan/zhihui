@@ -29,8 +29,18 @@
         width: 20rem;
         height: 22rem;
         margin: 0 auto;
-        border: 1px solid red;
         margin-top: 8rem;
+    }
+
+    .container {
+        width: 20rem;
+        height: 16.88rem;
+        background: #fff;
+        padding: 2rem 1rem;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.20);
+        border-radius: 4px;
+        margin-top: 1rem;
+
     }
 
     .big-title {
@@ -40,17 +50,24 @@
         line-height: 1.75rem;
     }
 
-    .btn1, .btn2 {
+    /*.btn1是橘黄色按钮，btn2是蓝色按钮，btn3是蓝色短按钮*/
+    .btn1, .btn2, .btn3 {
         width: 18rem;
         height: 3rem;
         color: #fff;
-        background: rgba(245, 137, 42, 0.5);
+        background: #F5892A;
         border: none;
+        border-radius: 2px;
     }
 
     .btn2 {
-        background: rgba(68, 89, 204, 1);
+        background: #4459CC;
         margin-top: 1rem;
+    }
+
+    .btn3 {
+        width: 5.7rem;
+        background: #4459CC;
     }
 
     .text-grays {
@@ -70,12 +87,20 @@
 
     }
 
+    .col-sm-12 input, .col-sm-8 input {
+        height: 3rem;
+        background: #E5E7EF;
+        border-radius: 2px;
+        border: none;
+        color: #222222;
+    }
+
 </style>
 
 <script>
-    export default {
-        components: {
-            bottom: () => import('@/components/bottom.vue')
-        }
-    }
+    // export default {
+    //     components: {
+    //         bottom: () => import('@/components/bottom.vue')
+    //     }
+    // }
 </script>

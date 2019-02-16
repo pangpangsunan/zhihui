@@ -5,8 +5,8 @@
 
             <div class="form-horizontal">
                 <p class="validate-title">请选择一种验证方式</p>
-                <button type="submit" class="btn2 btn-default">短信验证</button>
-                <button type="submit" class="btn2 btn-default">邮箱验证</button>
+                <button type="submit" class="btn2">短信验证</button>
+                <button type="submit" class="btn2">邮箱验证</button>
             </div>
             <div class="text-grays">
                 <router-link to="/user/login">

@@ -25,7 +25,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn1 btn-default">登陆</button>
+                <button type="submit" class="btn1">登陆</button>
             </div>
         </div>
     </div>
@@ -39,20 +39,8 @@
 <style scoped>
 
 
-    .container {
-        width: 20rem;
-        height: 16.88rem;
-        background: #fff;
-        padding: 2rem 1rem;
 
-    }
 
-    .col-sm-12 input {
-        height: 3rem;
-        background: #E5E7EF;
-        border-radius: 2px;
-        border: none;
-    }
 
 
 

@@ -6,12 +6,12 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="tel" class="form-control" id="inputEmail3" placeholder="请输入6-12位密码，支持英文字母与数字">
+                        <input type="tel" class="form-control" placeholder="请输入6-12位密码，支持英文字母与数字">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="再次输入新密码">
+                        <input type="password" class="form-control" placeholder="再次输入新密码">
                     </div>
                 </div>
                 <div class="text-grays">
@@ -23,7 +23,7 @@
                     </router-link>
                 </div>
 
-                     <button type="submit" class="btn1 btn-default" style="margin-top: 1rem">完成</button>
+                     <button type="submit" class="btn1" style="margin-top: 1rem">完成</button>
 
             </div>
         </div>
