@@ -99,10 +99,7 @@
     .gray {
         margin-top: 3rem;
     }
-    .bg-black{
-        position: relative;
-        bottom: 0;
-    }
+
 
 
 
