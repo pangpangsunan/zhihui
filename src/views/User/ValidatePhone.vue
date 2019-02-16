@@ -3,15 +3,17 @@
         <p class="big-title">验证手机号</p>
         <div class="container">
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" @submit.prevent="submit()">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="email" class="form-control" placeholder="请输入手机号" required pattern="^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$">
+                        <input type="text" v-model="phone" class="form-control" placeholder="请输入手机号" required
+                               pattern="^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="验证码" required pattern="\d{4}">
+                        <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
+                               pattern="\d{4}">
                     </div>
                     <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">
                         {{ time }}
@@ -38,29 +40,50 @@
 </template>
 
 <script>
+    import axios from 'axios'
+    import qs from 'querystring'
+
     export default {
         data() {
             return {
                 time: '获取验证码',
-                valCodeDisabled: false
+                valCodeDisabled: false,
+                phone: '15000000000',
+                valCode: null,
+                valCodeTrue: null,
+                msg: null,
+
             }
         }, methods: {
             getValCode() {
 
-                this.time = '60s';
-                this.valCodeDisabled = true;
-                let intval = setInterval(() => {
-                    let time = parseInt(this.time);
-                    if (--time <= 0) {
-                        this.time = '获取验证码';
-                        clearInterval(intval);
+                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.valCodeTrue = p.data.content;
 
-                        this.valCodeDisabled = false;
-                        return;
+                        this.time = '60s';
+                        this.valCodeDisabled = true;
+                        let intval = setInterval(() => {
+                            let time = parseInt(this.time);
+                            if (--time <= 0) {
+                                this.time = '获取验证码';
+                                clearInterval(intval);
+
+                                this.valCodeDisabled = false;
+                                return;
+                            }
+                            this.time = time + 's'
+
+                        }, 1000);
+
+                    } else {
+                        this.msg = '短信验证码发送失败'
                     }
-                    this.time = time + 's'
+                });
 
-                }, 1000);
+            },
+            submit() {
+
             }
         }
     }
@@ -68,23 +91,26 @@
 
 <style scoped>
 
-    .col-sm-12 input{
+    .col-sm-12 input {
         height: 3rem;
         background: #E5E7EF;
         border-radius: 2px;
         border: none;
     }
-    #remenberpwdlink,#registerlink {
+
+    #remenberpwdlink, #registerlink {
         border: none;
         color: #AAAAAA;
         letter-spacing: 0;
         font-size: .88rem;
         cursor: pointer;
     }
+
     #registerlink {
         margin-left: 10rem;
 
     }
+
     .btn3[disabled] {
         opacity: 0.5;
     }
