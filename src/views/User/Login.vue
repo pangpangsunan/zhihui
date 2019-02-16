@@ -1,7 +1,8 @@
 <template>
-    <div class="wrap">
-        <p class="big-title">学员登陆</p>
-        <div class="container">
+
+        <div class="wrap">
+            <p class="big-title">学员登陆</p>
+            <div class="container">
 
                 <form class="form-horizontal">
                     <div class="form-group">
@@ -30,8 +31,10 @@
                 </form>
 
 
+            </div>
         </div>
-    </div>
+
+
 
 </template>
 

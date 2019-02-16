@@ -1,7 +1,8 @@
 <template>
     <div>
         <router-view></router-view>
-        <!--<bottom></bottom>-->
+        <br>
+        <bottom></bottom>
     </div>
 </template>
 
@@ -20,6 +21,7 @@
         background: url(../../assets/bg_login.png) no-repeat;
         background-size: cover;
     }
+
 
     a {
         text-decoration: none;
@@ -94,6 +96,15 @@
         border: none;
         color: #222222;
     }
+    .gray {
+        margin-top: 3rem;
+    }
+    .bg-black{
+        position: relative;
+        bottom: 0;
+    }
+
+
 
 </style>
 
