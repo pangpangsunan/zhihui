@@ -13,8 +13,8 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" placeholder="验证码" required pattern="\d{6}|\d{4}">
                     </div>
-                    <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">获取验证码 {{ time
-                        }}
+                    <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">
+                        {{ time }}
                     </button>
                 </div>
                 <div class="form-group">
@@ -51,24 +51,24 @@
     export default {
         data() {
             return {
-                time: null,
+                time: '获取验证码',
                 valCodeDisabled: false
             }
         }, methods: {
             getValCode() {
 
-                this.time = 60;
+                this.time = '60s';
                 this.valCodeDisabled = true;
                 let intval = setInterval(() => {
-                    if (this.time <= 0) {
-                        this.time = null;
+                    let time = parseInt(this.time);
+                    if (--time <= 0) {
+                        this.time = '获取验证码';
                         clearInterval(intval);
 
                         this.valCodeDisabled = false;
                         return;
                     }
-
-                    this.time--;
+                    this.time = time + 's'
 
                 }, 1000);
             }
@@ -107,5 +107,7 @@
 
     }
 
-
+    .btn3[disabled] {
+        opacity: 0.5;
+    }
 </style>
