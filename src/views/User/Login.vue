@@ -1,7 +1,8 @@
 <template>
-    <div class="wrap">
-        <p class="big-title">学员登陆</p>
-        <div class="container">
+
+        <div class="wrap">
+            <p class="big-title">学员登陆</p>
+            <div class="container">
 
             <form class="form-horizontal" @submit.prevent="login()">
                 <div class="form-group">
@@ -23,6 +24,18 @@
                         <router-link to="/user/register">
                             <span class="text-gray2">新用户注册</span>
                         </router-link>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn1">登陆</button>
+                </form>
+
+
+            </div>
+        </div>
+
+
 
                     </div>
                 </div>
