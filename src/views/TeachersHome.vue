@@ -18,15 +18,17 @@
                 <p class="teacher-tag">个人简介</p>
                 <p style="text-align: left;">
                     国际贸易与海事事务专家、世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。十一年中国海关工作经验，主要研究领域包括：商品归类、海关估价、原产地规则、风险管理、贸易管制等，曾为中国入世谈判提供智力支持。受国内外多个平台和机构邀请，常年为社会各界提供：理论研究、政策咨询、专题演讲、培训辅导等专业服务。</p>
-                <p class="spread"><img src="@/assets/ic_expand.png"> 展开</p>
-                <div class="clear"></div>
-                <p class="teacher-tag">过往客户</p>
-                <p>服务客户主要为欧美一线企业，产业领域设计：汽车、电子、化工、生物医药、服装和快消品等。</p>
-                <p class="teacher-tag">语言能力</p>
-                <p>中文</p>
-                <p class="teacher-tag">从业经验</p>
-                <p>1999-12-31 至 2011-12-31 上海海关</p>
-
+                <p class="spread" @click="expand=true" v-show="!expand"><img src="@/assets/ic_expand.png"> 展开</p>
+                <div v-show="expand">
+                    <div class="clear"></div>
+                    <p class="teacher-tag">过往客户</p>
+                    <p>服务客户主要为欧美一线企业，产业领域设计：汽车、电子、化工、生物医药、服装和快消品等。</p>
+                    <p class="teacher-tag">语言能力</p>
+                    <p>中文</p>
+                    <p class="teacher-tag">从业经验</p>
+                    <p>1999-12-31 至 2011-12-31 上海海关</p>
+                    <p class="spread" @click="expand=false" v-show="expand"><img src="@/assets/ic_less.png"> 收起</p>
+                </div>
             </div>
         </div>
         <p class="navTitle" style="margin-top: 2rem;">
@@ -138,7 +140,7 @@
         font-size: .812rem;
         color: #666666;
         padding: 1rem 1rem 2rem 1rem;
-        height: 8.75rem;
+        /*height: 8.75rem;*/
         overflow: hidden;
     }
 
@@ -152,8 +154,6 @@
         float: right;
         cursor: pointer;
     }
-
-
 
     .teacher-tag {
         font-size: .875rem;
@@ -172,14 +172,13 @@
         margin-top: .5rem;
     }
 
-
     .msg-btns {
         margin-top: 1rem;
     }
 
     .coursesType {
         background-color: #F3F5F7;
-        boder-radius: 2px;
+        border-radius: 2px;
         display: flex;
         flex-wrap: wrap;
     }
@@ -187,7 +186,6 @@
     .navTitle {
         color: #666666;
         background-color: #F3F5F7;
-        padding: 0;
         margin: 0;
         font-size: 0.875rem;
         padding: 1rem 0 0 1rem;
@@ -260,14 +258,14 @@
         created() {
             axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
                 this.courseList = p.data.content.records
-                console.log(this.courseList)
             })
         },
         data() {
             return {
-                courseList: []
+                courseList: [],
+                expand: false
             }
-        }
+        },
     }
 
 </script>
