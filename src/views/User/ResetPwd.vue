@@ -3,7 +3,7 @@
         <p class="big-title">设置新密码</p>
         <div class="container">
 
-            <div class="form-horizontal">
+            <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="tel" class="form-control" placeholder="请输入6-12位密码，支持英文字母与数字">
@@ -25,7 +25,7 @@
 
                      <button type="submit" class="btn1" style="margin-top: 1rem">完成</button>
 
-            </div>
+            </form>
         </div>
 
     </div>

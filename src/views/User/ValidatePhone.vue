@@ -1,19 +1,21 @@
 <template xmlns="http://www.w3.org/1999/html">
     <div class="wrap">
-        <p class="big-title">新用户注册</p>
+        <p class="big-title">验证手机号</p>
         <div class="container">
 
-            <div class="form-horizontal">
+            <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="email" class="form-control" placeholder="邮箱地址">
+                        <input type="email" class="form-control" placeholder="请输入手机号" required pattern="^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"  placeholder="验证码">
+                        <input type="text" class="form-control" placeholder="验证码" required pattern="\d{4}">
                     </div>
-                    <button type="submit" class="btn3">获取验证码</button>
+                    <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">
+                        {{ time }}
+                    </button>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -28,7 +30,7 @@
 
                 <button type="submit" class="btn1">下一步</button>
 
-            </div>
+            </form>
         </div>
 
     </div>
@@ -36,7 +38,32 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        data() {
+            return {
+                time: '获取验证码',
+                valCodeDisabled: false
+            }
+        }, methods: {
+            getValCode() {
+
+                this.time = '60s';
+                this.valCodeDisabled = true;
+                let intval = setInterval(() => {
+                    let time = parseInt(this.time);
+                    if (--time <= 0) {
+                        this.time = '获取验证码';
+                        clearInterval(intval);
+
+                        this.valCodeDisabled = false;
+                        return;
+                    }
+                    this.time = time + 's'
+
+                }, 1000);
+            }
+        }
+    }
 </script>
 
 <style scoped>
@@ -57,6 +84,9 @@
     #registerlink {
         margin-left: 10rem;
 
+    }
+    .btn3[disabled] {
+        opacity: 0.5;
     }
 
 

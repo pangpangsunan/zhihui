@@ -65,8 +65,12 @@ let router = new Router({
                     component: () => import('./views/User/Success.vue')
                 },
                 {
-                    path: 'validate',
-                    component: () => import('./views/User/Validate.vue')
+                    path: 'validateemail',
+                    component: () => import('./views/User/ValidateEmail.vue')
+                },
+                {
+                    path: 'validatephone',
+                    component: () => import('./views/User/ValidatePhone.vue')
                 },
                 {
                     path: 'register',
