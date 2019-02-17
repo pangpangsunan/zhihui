@@ -32,19 +32,21 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 
     .coursesType {
         background-color: #F3F5F7;
         display: flex;
         flex-wrap: wrap;
     }
+
     .pro {
         width: 22.25rem;
         height: 20.25rem;
         margin-left: 1.2rem;
         margin-top: 1rem;
     }
+
     .course-img {
         width: 23.25rem;
         height: 12.88rem;
