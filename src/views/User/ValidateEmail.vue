@@ -17,6 +17,9 @@
                         {{ time }}
                     </button>
                 </div>
+                <div class="tips">
+                    <span v-if="msg">{{msg}}</span>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <router-link to="/user/login">

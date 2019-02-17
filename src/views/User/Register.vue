@@ -29,8 +29,11 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="password" class="form-control" placeholder="再次输入密码" v-model="password1" required>
-                        <p v-if="msg">{{msg}}</p>
+
                     </div>
+                </div>
+                <div class="tips">
+                    <span v-if="msg">{{msg}}</span>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">

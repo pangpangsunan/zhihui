@@ -1,14 +1,14 @@
 <template>
     <div class="bg-black">
-        <ul class="con">
-            <li class="gray left">Copyright@2019.All rights reserved</li>
-            <li class="gray center">沪CP备 000001号</li>
-            <li class="kefu">
+        <div class="con">
+            <div class="gray left">Copyright@2019.All rights reserved</div>
+            <div class="gray center">沪CP备 000001号</div>
+            <div class="kefu">
                 <div class="text-right font-bestsmall">客服电话</div>
                 <div class="text-right font-big">0157-28874128-6</div>
                 <div class="text-right font-bestsmall">Email：cs@xiaotongtech.net</div>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -28,8 +28,10 @@
         width: 71.25rem;
         display: flex;
         margin: 0 auto;
+        overflow: hidden;
+
     }
-    .con li {
+    .con div {
         width: 22rem;
     }
     .left{
@@ -38,9 +40,8 @@
     .center {
         text-align: center;
     }
-
     .gray {
-        line-height: 4rem;
+        margin-top: 1.3rem;
     }
 
     .kefu {

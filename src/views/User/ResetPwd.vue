@@ -14,6 +14,9 @@
                         <input type="password" class="form-control" placeholder="再次输入新密码">
                     </div>
                 </div>
+                <div class="tips">
+                    <span v-if="msg">{{msg}}</span>
+                </div>
                 <div class="text-grays">
                     <router-link to="/user/login">
                         <span class="text-gray1">用户登陆</span>

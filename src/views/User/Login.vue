@@ -1,8 +1,9 @@
 <template>
-
-        <div class="wrap">
-            <p class="big-title">学员登陆</p>
-            <div class="container">
+<div class="page">
+    <img src="@/assets/img_logo.png">
+    <div class="wrap">
+        <p class="big-title">学员登陆</p>
+        <div class="container">
 
             <form class="form-horizontal" @submit.prevent="login()">
                 <div class="form-group">
@@ -13,27 +14,35 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="password" class="form-control" v-model="password" placeholder="密码" required>
-                        <span v-if="msg">{{msg}}</span>
+
                     </div>
+
                 </div>
+                <div class="tips">
+                    <span v-if="msg">{{msg}}</span>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <router-link to="/user/forget">
-                            <span class="text-gray1">忘记密码</span>
-                        </router-link>
-                        <router-link to="/user/register">
-                            <span class="text-gray2">新用户注册</span>
-                        </router-link>
-
+                        <div class="text-gray">
+                            <router-link to="/user/forget">
+                                <span class="text-gray1">忘记密码</span>
+                            </router-link>
+                            <router-link to="/user/register">
+                                <span class="text-gray2">新用户注册</span>
+                            </router-link>
                         </div>
+
+
                     </div>
+                </div>
 
-                    <button type="submit" class="btn1">登录</button>
+                <button type="submit" class="btn1">登录</button>
             </form>
-            </div>
         </div>
+    </div>
+</div>
 </template>
-
 <script>
     //
     import axios from 'axios'
@@ -67,7 +76,3 @@
     }
 </script>
 
-<style scoped>
-
-
-</style>

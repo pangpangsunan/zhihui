@@ -1,7 +1,6 @@
 <template>
     <div>
         <router-view></router-view>
-        <br>
         <bottom></bottom>
     </div>
 </template>
@@ -17,14 +16,21 @@
         font-family: "SourceHanSansSC-Regular";
     }
 
-    body {
+
+    .page {
         background: url(../../assets/bg_login.png) no-repeat;
-        background-size: cover;
+        min-height: 50rem;
+    }
+
+    .img-log {
+        width: 8.25rem;
+        height: 3rem;
     }
 
     li {
         list-style-type: none;
     }
+
     a {
         text-decoration: none;
     }
@@ -32,7 +38,7 @@
     .wrap {
         width: 20rem;
         margin: 0 auto;
-        margin-top: 8rem;
+        padding-top: 10rem;
     }
 
     .container {
@@ -54,12 +60,15 @@
     }
 
     /*.btn1是橘黄色按钮，btn2是蓝色按钮，btn3是蓝色短按钮*/
+    button {
+        border: none;
+    }
+
     .btn1, .btn2, .btn3 {
         width: 18rem;
         height: 3rem;
         color: #fff;
         background: #F5892A;
-        border: none;
         border-radius: 2px;
     }
 
@@ -78,7 +87,6 @@
     }
 
     .text-gray1, .text-gray2 {
-        border: none;
         color: #AAAAAA;
         letter-spacing: 0;
         font-size: .88rem;
@@ -90,6 +98,13 @@
 
     }
 
+    .tips {
+        position: relative;
+        height: 1.5rem;
+        color: #D62A2A;
+        text-align: right;
+    }
+
     .col-sm-12 input, .col-sm-8 input {
         height: 3rem;
         background: #E5E7EF;
@@ -97,11 +112,21 @@
         border: none;
         color: #222222;
     }
-    .gray {
-        margin-top: 3rem;
+
+    .returnbtn {
+        font-size: 1rem;
+        background: #F5892A;
+        border-radius: 24px;
+        width: 18rem;
+        height: 3rem;
+        color: #fff;
+        margin-top: 2rem;
+
     }
 
-
+    .gray {
+        line-height: 4rem;
+    }
 
 
 </style>
