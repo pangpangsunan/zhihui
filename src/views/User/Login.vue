@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <input type="password" class="form-control" v-model="password" placeholder="密码" required>
-                        <p v-if="msg">{{msg}}</p>
+                        <span v-if="msg">{{msg}}</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,20 +29,9 @@
                     </div>
 
                     <button type="submit" class="btn1">登录</button>
-                </form>
-
-
+            </form>
             </div>
         </div>
-
-
-
-                    </div>
-                </div>
-                <button type="submit" class="btn1">登陆</button>
-            </form>
-        </div>
-    </div>
 </template>
 
 <script>

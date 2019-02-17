@@ -22,21 +22,22 @@
         background-size: cover;
     }
 
-
+    li {
+        list-style-type: none;
+    }
     a {
         text-decoration: none;
     }
 
     .wrap {
         width: 20rem;
-        height: 22rem;
         margin: 0 auto;
         margin-top: 8rem;
     }
 
     .container {
         width: 20rem;
-        height: 16.88rem;
+        height: 18rem;
         background: #fff;
         padding: 2rem 1rem;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20);

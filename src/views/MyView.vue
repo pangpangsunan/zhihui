@@ -4,103 +4,102 @@
             <img src="@/assets/img_follow_nothing.png">
             <p>您尚未关注任何人</p>
         </div>
-        <p class="navHead">已关注12人</p>
+        <p class="nav-title">已关注12人</p>
         <ul class="list-group" v-if="hasData">
-            <li class="list-group-item" v-for="item in arr">
-                <div class="attention-left">
-                    <img :src="item.userInfo.headimgurl"  class="img-circle pull-left">
+            <li class="list-group-item skin-white border-rad" v-for="item in arr">
+                <div class="box-attention">
+                    <div class="attention-left">
+                        <img :src="item.userInfo.headimgurl" class="img-circle">
+                    </div>
+                    <div class="attention-center">
                         <h3 class="teachname">{{item.userInfo.name}}</h3>
-                        <h5 class="attention-number">{{item.userInfo.balance}} 人关注 <a href="" class="attention">取消关注</a></h5>
+                        <h5 class="attention-number">{{item.userInfo.balance}} 人关注 <a href="" class="attention">取消关注</a>
+                        </h5>
                         <p class="duty">{{item.userInfo.label}}</p>
+                    </div>
+                    <div class="attention-right">
+                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                    </div>
                 </div>
 
-                <ul class="attention-right">
-                    <li><img :src="item.image" alt=""></li>
-                    <li><img :src="item.image" alt=""></li>
-                    <li><img :src="item.image" alt=""></li>
-                </ul>
             </li>
         </ul>
     </div>
 </template>
 <style>
-
-    .list-group-item{
+    .list-group-item {
+        width: 71.25rem;
         height: 10rem;
-        background: #FFFFFF;
-        border-radius: 2px;
+        display: flex;
         border: none;
-    }
-    .img-circle {
-        width: 7rem ;
-        height: 7rem;
-        vertical-align: middle;
-    }
-    .pull-left{
-        display: inline-block;
+        margin-top: 1rem;
     }
 
-    .teachname {
-        font-size: 1.25rem;
-        color:#222222;
-        margin-left: 1rem;
-    }
-    .attention-number,.duty {
-        font-size: 0.875rem;
-        color: #888888;
-        margin-left: 1rem;
-    }
-    .attention{
-        font-size: 0.875rem;
-        color: #4459CC;
+    .box-attention {
+        margin: 0;
+        width: 71.25rem;
+        display: flex;
     }
     .attention-left {
-        width: 23rem;
-        height: 8rem;
-        padding-top: 1rem;
-        float: left;
+        width: 8rem;
     }
-    .attention-right{
-        width: 46rem;
-        float: right;
+
+    .attention-center {
+        width: 15rem;
+        margin-top: .5rem;
     }
-    .attention-right li {
-        list-style-type: none;
-        float: left;
-        margin-left: 1rem;
-        padding-top: 0.5rem;
+    .attention-right {
+        margin-top: 0.7rem;
     }
-    .attention-right li img{
+    .attention-right span {
+        display: inline-block;
+        margin-left: 1.2rem;
+    }
+
+    .course-img {
         width: 14rem;
-        height: 7.875rem;
+        height: 7.5rem;
     }
+
+
+    .img-circle {
+        width: 7rem;
+        height: 7rem;
+        vertical-align: middle;
+        margin-top: 1rem;
+    }
+
     @media screen and (max-width: 768px) {
         html {
-            font-family: SourceHanSansSC-Medium!important;
-            font-size:13px!important;
+            font-family: SourceHanSansSC-Medium !important;
+            font-size: 13px !important;
             background: #000;
         }
+
         .attention-left {
-            width: 20rem;
+            width: 6rem;
             height: 8rem;
             padding-top: 1rem;
             float: left;
         }
-        .list-group-item{
-            height: 9rem;
+        .attention-center {
+            width: 8rem;
+        }
+
+        .list-group-item {
+            height: 8rem;
             background: #FFFFFF;
             border-radius: 2px;
             margin-top: 1rem;
             border: none;
         }
+
         .attention-right {
-            width: 33rem;
             margin-top: 1rem;
         }
-        .attention-right li img{
-            width: 9.5rem;
-            height: 5rem;
-        }
+
     }
 </style>
 <!--/edu/collection/getCollectionPage-->
