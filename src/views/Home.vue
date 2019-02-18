@@ -29,7 +29,7 @@
 
     </div>
 </template>
-<style>
+<style scoped>
     .recommad-title {
         height: 2.5rem;
         color: gray;

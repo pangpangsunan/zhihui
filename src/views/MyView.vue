@@ -30,7 +30,7 @@
         </ul>
     </div>
 </template>
-<style>
+<style scoped>
     .list-group-item {
         width: 71.25rem;
         height: 10rem;

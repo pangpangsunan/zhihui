@@ -193,7 +193,6 @@
     .main >>> .subtitle {
         color: #666666;
         background-color: #F3F5F7;
-        padding: 0;
         margin: 0;
         font-size: 0.875rem;
         padding: 1rem 0 0 1rem;
