@@ -15,7 +15,8 @@
                         <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
                                pattern="\d{4}">
                     </div>
-                    <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">
+                    <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
+                            @click="getValCode()">
                         {{ time }}
                     </button>
                 </div>
@@ -33,7 +34,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn1">下一步</button>
+                <button type="submit" class="orange-btn">下一步</button>
 
             </form>
         </div>
@@ -51,7 +52,7 @@
             return {
                 time: '获取验证码',
                 valCodeDisabled: false,
-                phone: '15000000000',
+                phone: null,
                 valCode: null,
                 valCodeTrue: null,
                 msg: null,
@@ -91,32 +92,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-    .col-sm-12 input {
-        height: 3rem;
-        background: #E5E7EF;
-        border-radius: 2px;
-        border: none;
-    }
-
-    #remenberpwdlink, #registerlink {
-        border: none;
-        color: #AAAAAA;
-        letter-spacing: 0;
-        font-size: .88rem;
-        cursor: pointer;
-    }
-
-    #registerlink {
-        margin-left: 10rem;
-
-    }
-
-    .btn3[disabled] {
-        opacity: 0.5;
-    }
-
-
-</style>

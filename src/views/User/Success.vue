@@ -3,7 +3,7 @@
         <p class="big-title">学员登陆</p>
         <div class="container">
             <p>重置密码成功</p>
-            <button class="returnbtn">返回登陆页面</button>
+            <button class="return-btn" @click="$router.replace('/user/login')">返回登陆页面</button>
         </div>
 
     </div>
@@ -16,15 +16,17 @@
 
 <style scoped>
 
-
     .container {
-        width: 20rem;
         height: 16.88rem;
-        background: #fff;
-        padding: 2rem 1rem;
-        text-align: center;
-
     }
 
-
+    .return-btn {
+        font-size: 1rem;
+        background: #F5892A;
+        border-radius: 24px;
+        width: 18rem;
+        height: 3rem;
+        color: #fff;
+        margin-top: 2rem;
+    }
 </style>

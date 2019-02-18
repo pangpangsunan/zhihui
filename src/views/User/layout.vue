@@ -1,111 +1,98 @@
 <template>
-    <div>
-        <router-view></router-view>
+    <div class="main">
+        <router-view class="content"></router-view>
         <bottom></bottom>
     </div>
 </template>
 
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
+<style scoped>
 
-    html {
-        font-size: 16px;
-        font-family: "SourceHanSansSC-Regular";
-    }
-
-
-    .page {
+    .main {
         background: url(../../assets/bg_login.png) no-repeat;
-        min-height: 50rem;
     }
 
-    .img-log {
+    .main .content {
+        min-height: 50rem;
+        width: 100%;
+    }
+
+    .main >>> .img-log {
         width: 8.25rem;
         height: 3rem;
     }
 
-    li {
-        list-style-type: none;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .wrap {
+    .main >>> .wrap {
         width: 20rem;
         margin: 0 auto;
         padding-top: 10rem;
     }
 
-    .container {
+    .main >>> .container {
         width: 20rem;
-        height: 18rem;
         background: #fff;
         padding: 2rem 1rem;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20);
         border-radius: 4px;
         margin-top: 1rem;
-
     }
 
-    .big-title {
+    .main >>> .big-title {
         color: #FFFFFF;
         font-size: 1.75rem;
         text-align: center;
         line-height: 1.75rem;
     }
 
-    /*.btn1是橘黄色按钮，btn2是蓝色按钮，btn3是蓝色短按钮*/
-    button {
-        border: none;
-    }
+    /*.orange-btn是橘黄色按钮，blue-btn2是蓝色按钮，blue-shot-btn是蓝色短按钮*/
 
-    .btn1, .btn2, .btn3 {
+    .main >>> .orange-btn, .main >>> .blue-btn, .main >>> .blue-shot-btn {
         width: 18rem;
         height: 3rem;
         color: #fff;
-        background: #F5892A;
         border-radius: 2px;
     }
 
-    .btn2 {
-        background: #4459CC;
-        margin-top: 1rem;
+    .main >>> .orange-btn {
+        background: #F5892A;
     }
 
-    .btn3 {
+    .main >>> .blue-btn {
+        background: #4459CC;
+    }
+
+    .main >>> .blue-shot-btn {
         width: 5.7rem;
         background: #4459CC;
     }
 
-    .text-grays {
+    .main >>> .btn-top-marge {
         margin-top: 1rem;
     }
 
-    .text-gray1, .text-gray2 {
+    .main >>> .text-grays {
+        margin-top: 1rem;
+    }
+
+    .main >>> .text-gray1, .main >>> .text-gray2 {
         color: #AAAAAA;
         letter-spacing: 0;
         font-size: .88rem;
         cursor: pointer;
     }
 
-    .text-gray2 {
+    .main >>> .text-gray2 {
         margin-left: 10rem;
 
     }
 
-    .tips {
+    .main >>> .tips {
         position: relative;
         height: 1.5rem;
         color: #D62A2A;
         text-align: right;
     }
 
-    .col-sm-12 input, .col-sm-8 input {
+    .main >>> .col-sm-12 input, .main >>> .col-sm-8 input {
         height: 3rem;
         background: #E5E7EF;
         border-radius: 2px;
@@ -113,22 +100,26 @@
         color: #222222;
     }
 
-    .returnbtn {
-        font-size: 1rem;
-        background: #F5892A;
-        border-radius: 24px;
-        width: 18rem;
-        height: 3rem;
-        color: #fff;
-        margin-top: 2rem;
-
-    }
-
-    .gray {
+    .main >>> .gray {
         line-height: 4rem;
     }
 
+    .main >>> #remenberpwd-link, .main >>> #register-link {
+        border: none;
+        color: #AAAAAA;
+        letter-spacing: 0;
+        font-size: .88rem;
+        cursor: pointer;
+    }
 
+    .main >>> #register-link {
+        margin-left: 10rem;
+
+    }
+
+    .main >>> .val-btn[disabled] {
+        opacity: 0.5;
+    }
 </style>
 
 <script>

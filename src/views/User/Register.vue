@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
     <div class="wrap">
         <p class="big-title">新用户注册</p>
         <div class="container">
@@ -15,7 +15,8 @@
                         <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
                                pattern="\d{4}">
                     </div>
-                    <button type="button" class="btn3" :disabled="valCodeDisabled" @click="getValCode()">
+                    <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
+                            @click="getValCode()">
                         {{ time }}
                     </button>
                 </div>
@@ -46,7 +47,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn1">完成注册</button>
+                <button type="submit" class="blue-btn">完成注册</button>
 
             </form>
         </div>
@@ -128,37 +129,7 @@
 </script>
 
 <style scoped>
-
-
     .container {
-        width: 20rem;
         height: 25.88rem;
-        background: #fff;
-        padding: 2rem 1rem;
-
-    }
-
-    .col-sm-12 input {
-        height: 3rem;
-        background: #E5E7EF;
-        border-radius: 2px;
-        border: none;
-    }
-
-    #remenberpwdlink, #registerlink {
-        border: none;
-        color: #AAAAAA;
-        letter-spacing: 0;
-        font-size: .88rem;
-        cursor: pointer;
-    }
-
-    #registerlink {
-        margin-left: 10rem;
-
-    }
-
-    .btn3[disabled] {
-        opacity: 0.5;
     }
 </style>

@@ -26,7 +26,7 @@
                     </router-link>
                 </div>
 
-                     <button type="submit" class="btn1" style="margin-top: 1rem">完成</button>
+                <button type="submit" class="blue-btn">完成</button>
 
             </form>
         </div>
@@ -36,36 +36,18 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        data() {
+            return {
+                msg: null
+            }
+        }
+    }
 </script>
 
 <style scoped>
 
-
     .container {
-        width: 20rem;
         height: 16.88rem;
-        background: #fff;
-        padding: 2rem 1rem;
-
     }
-    .col-sm-12 input{
-        height: 3rem;
-        background: #E5E7EF;
-        border-radius: 2px;
-        border: none;
-    }
-    #remenberpwdlink,#registerlink {
-        border: none;
-        color: #AAAAAA;
-        letter-spacing: 0;
-        font-size: .88rem;
-        cursor: pointer;
-    }
-    #registerlink {
-        margin-left: 10rem;
-
-    }
-
-
 </style>
