@@ -9,7 +9,9 @@
             <li class="list-group-item skin-white border-rad" v-for="item in arr">
                 <div class="box-attention">
                     <div class="attention-left">
-                        <img :src="item.userInfo.headimgurl" class="img-circle">
+                        <router-link to="/teachershome">
+                            <img :src="item.userInfo.headimgurl" class="img-circle">
+                        </router-link>
                     </div>
                     <div class="attention-center">
                         <h3 class="teachname">{{item.userInfo.name}}</h3>
@@ -42,6 +44,7 @@
         width: 71.25rem;
         display: flex;
     }
+
     .attention-left {
         width: 8rem;
     }
@@ -50,9 +53,11 @@
         width: 15rem;
         margin-top: .5rem;
     }
+
     .attention-right {
         margin-top: 0.7rem;
     }
+
     .attention-right span {
         display: inline-block;
         margin-left: 1.2rem;
@@ -63,7 +68,6 @@
         height: 7.5rem;
     }
 
-
     .img-circle {
         width: 7rem;
         height: 7rem;
@@ -72,18 +76,13 @@
     }
 
     @media screen and (max-width: 768px) {
-        html {
-            font-family: SourceHanSansSC-Medium !important;
-            font-size: 13px !important;
-            background: #000;
-        }
-
         .attention-left {
             width: 6rem;
             height: 8rem;
             padding-top: 1rem;
             float: left;
         }
+
         .attention-center {
             width: 8rem;
         }
@@ -99,10 +98,8 @@
         .attention-right {
             margin-top: 1rem;
         }
-
     }
 </style>
-<!--/edu/collection/getCollectionPage-->
 <script>
     import axios from 'axios'
 

@@ -1,51 +1,21 @@
-<style>
-    .menu a {
-        color: #fff;
-        font-size: 13px;
-
-    }
-
-    #dLabel {
-        background: transparent;
-        border: none;
-    }
-    .bg-black {
-        background-color: #444444;
-    }
-    .bg-black .container {
-        padding: 1rem;
-    }
-    .dropdown {
-        font-size: 0.8125rem;
-        color: #fff;
-    }
-    .dropdown span {
-        display: inline-block;
-    }
-    .fengqingyang {
-        margin-top: 0.2rem;
-    }
-
-
-</style>
 <template>
     <div class="container">
         <img src="@/assets/img_logo.png" style="vertical-align: middle" alt="">
         <ul class="pull-right menu">
             <li>
                 <span class="publish"><img src="@/assets/ic_publish.png"></span>
-                <router-link to="/">发布课程需求</router-link>
+                <router-link to="/" class="color-white">发布课程需求</router-link>
             </li>
             <li>
                 <span class="help"><img src="@/assets/ic_help.png"></span>
-                <router-link to="/">帮助与反馈</router-link>
+                <router-link to="/" class="color-white">帮助与反馈</router-link>
             </li>
             <li>
                 <div class="dropdown">
-                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <span><img src="@/assets/img_avatar_default.png"></span>
-                        <span class="fengqingyang">&nbsp;风清杨</span>
+                        <span class="username">&nbsp;风清杨</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -78,3 +48,38 @@
         </ul>
     </div>
 </template>
+<style scoped>
+    .menu {
+        font-size: 13px;
+    }
+
+    .color-white {
+        color: white;
+    }
+
+    .drop-btn {
+        background: transparent;
+        border: none;
+    }
+
+    .dropdown {
+        font-size: 0.8125rem;
+        color: #fff;
+    }
+
+
+    .dropdown span {
+        display: inline-block;
+    }
+
+    .username {
+        margin-top: 0.2rem;
+    }
+
+    ul.menu > li {
+        list-style-type: none;
+        float: left;
+        margin-left: 1.25rem;
+    }
+
+</style>

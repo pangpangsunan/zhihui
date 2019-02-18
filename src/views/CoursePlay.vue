@@ -15,19 +15,19 @@
                     <span>吴苏南</span>
                     <br>
                     <span class="font-middle">12人关注</span>
-                    <button class="bluebtn attentionbtn">关注</button>
+                    <button class="blue-btn attention-btn">关注</button>
 
-                    <div class="clear"></div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="clear"></div>
+            <div class="clearfix"></div>
         </div>
         <div class="course-tab pubwidth1 border-rad">
             <div class="tab-content skin-white">
                 <div class="all-comment">
                     <div class="inputcon">
-                        <textarea placeholder="输入您的评论" rows="4" maxlength="50">wwwwwwww</textarea>
-                        <button class="sendbtn border-rad">发送</button>
+                        <textarea placeholder="输入您的评论" class="minput">wwwwwwww</textarea>
+                        <button class="send-btn border-rad">发送</button>
                     </div>
                     <p class="title font-middle">共587条评论</p>
                     <div class="con-wrapper">
@@ -38,7 +38,7 @@
                             <br>
                             <span class="font-small font-small">全是干货，支持。</span>
                         </div>
-                        <div class="clear"></div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="con-wrapper">
                         <img src="@/assets/cat.jpg" class="img-left">
@@ -48,7 +48,7 @@
                             <br>
                             <span class="font-small">全是干货，支持。</span>
                         </div>
-                        <div class="clear"></div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="con-wrapper">
                         <img src="@/assets/cat.jpg" class="img-left">
@@ -58,7 +58,7 @@
                             <br>
                             <span class="font-small">全是干货，支持。</span>
                         </div>
-                        <div class="clear"></div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="con-wrapper">
                         <img src="@/assets/cat.jpg" class="img-left">
@@ -68,7 +68,7 @@
                             <br>
                             <span class="font-small">全是干货，支持。</span>
                         </div>
-                        <div class="clear"></div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="con-wrapper">
                         <img src="@/assets/cat.jpg" class="img-left">
@@ -78,7 +78,7 @@
                             <br>
                             <span class="font-small">全是干货，支持。</span>
                         </div>
-                        <div class="clear"></div>
+                        <div class="clearfix"></div>
                     </div>
                     <p class="title" style="text-align: center">继续滚动加载更多</p>
                 </div>
@@ -89,21 +89,22 @@
 
     </div>
 </template>
+<style scoped>
 
-
-<style>
-
-    .font-middle{
+    .font-middle {
         color: #222222;
     }
+
     .font-small {
         color: #666666;
 
     }
+
     .font-bestsmall {
         color: #A5A5A5;
         margin-left: .5rem;
     }
+
     .con-wrapper {
         border-bottom: 1px solid #D8D8D8;
         padding: 2rem 0;
@@ -137,6 +138,7 @@
         letter-spacing: 0;
         line-height: 24px;
     }
+
     .att-wrapper {
         margin-top: 10rem;
     }
@@ -149,6 +151,7 @@
         margin-top: 2rem;
         color: #8087AB;
     }
+
     .active {
         background: #ffffff;
     }

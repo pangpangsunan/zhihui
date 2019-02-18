@@ -1,16 +1,12 @@
-<template scoped>
+<template>
     <div class="container">
-        <!--<div class="diolog">-->
-        <!--123-->
-        <!--</div>-->
         <p class="nav-title">全部 - 经营管理 - 领导力</p>
         <p class="subtitle">
             <span class="course-number">4门课程</span>
             <span class="course-type">全部类型
 				<span class="caret"></span>
 			</span>
-
-            <span class="clear"></span>
+            <span class="clearfix"></span>
         </p>
         <div class="courses-wrapper border-rad">
             <div class="pro skin-white">
@@ -83,14 +79,8 @@
             </div>
         </div>
     </div>
-
-
 </template>
-<style>
-    .clear {
-        display: block;
-    }
-
+<style scoped>
     .diolog {
         width: 71.25rem;
         height: 20rem;
@@ -111,11 +101,13 @@
     .course-teacher, .course-price {
         margin-top: .8rem;
     }
+
     .courses-wrapper {
         background-color: #F3F5F7;
         display: flex;
         flex-wrap: wrap;
     }
+
     .pro {
         width: 22.25rem;
         height: 21rem;

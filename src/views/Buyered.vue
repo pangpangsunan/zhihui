@@ -10,7 +10,7 @@
             <span class="course-type">全部类型
 				<span class="caret"></span>
 			</span>
-            <span class="clear"></span>
+            <span class="clearfix"></span>
         </p>
         <div class="coursesType border-rad" v-if="hasData">
             <div class="pro skin-white" v-for="item in courseList">
