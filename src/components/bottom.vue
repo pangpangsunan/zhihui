@@ -32,7 +32,7 @@
 
     }
     .con div {
-        width: 22rem;
+        width: 24rem;
     }
     .left{
         text-align: left;

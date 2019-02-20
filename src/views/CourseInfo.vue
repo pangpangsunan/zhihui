@@ -1,4 +1,4 @@
-<template>
+<template scoped>
     <div class="container">
 
         <p class="nav-title">全部 - 推荐 - 美国出口管制新政大盘点</p>

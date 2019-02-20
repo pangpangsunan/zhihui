@@ -1,4 +1,4 @@
-<template>
+<template scoped>
     <div class="container">
         <div v-if="!hasData" class="no-attention">
             <img src="@/assets/img_course_nothing.png" alt="">
@@ -17,7 +17,6 @@
                 <img src="@/assets/cat.jpg" class="course-img">
                 <div class="course-list">
                     <div class="course-name">{{ item.name }}<span class="online">{{ item.type|coursType }}</span></div>
-                    <div class="course-price">￥{{item.price}}</div>
                     <div class="course-teacher">
                         <img src="@/assets/ic_home_teacher.png">
                         {{item.userName}}
@@ -48,9 +47,19 @@
     }
 
     .course-img {
-        width: 23.25rem;
-        height: 12.88rem;
+        width: 22.25rem;
+        height: 12rem;
     }
+    .course-list {
+        margin: 1rem ;
+    }
+    .course-teacher{
+        margin-top: 1rem;
+    }
+    .course-location {
+        margin-top: .5rem;
+    }
+
 </style>
 <script>
     import axios from 'axios'

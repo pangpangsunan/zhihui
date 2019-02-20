@@ -213,7 +213,7 @@
         top: 6.25rem;
     }
 
-    .main >>> #buy {
+    .main >>> .buy {
         margin-left: 1rem;
     }
 

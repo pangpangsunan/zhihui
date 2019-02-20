@@ -10,7 +10,7 @@
                     <img :src="item.course.image" alt="" class="courseimg">
                     <div class="font-list">
                         <h3 class="course-name">{{ item.course.name}}
-                            <span class="underline">{{ item.course.type|coursType }}</span>
+                            <span class="offline">{{ item.course.type|coursType }}</span>
                         </h3>
                         <h5 class="course-bg font-bestsmall">{{ item.course.background }}</h5>
                         <p class="course-price font-middle">￥{{ item.course.price }}</p>
