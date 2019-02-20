@@ -15,7 +15,7 @@
                     <span>吴苏南</span>
                     <br>
                     <span class="font-middle">12人关注</span>
-                    <button class="blue-btn attention-btn">关注</button>
+                    <button class="attention-btn blue-btn">关注</button>
 
                     <div class="clearfix"></div>
                 </div>
@@ -143,7 +143,7 @@
         margin-top: 10rem;
     }
 
-    .attentionbtn {
+    .attention-btn {
         margin-left: 7rem;
     }
 

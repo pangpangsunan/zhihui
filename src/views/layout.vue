@@ -128,6 +128,14 @@
         font-size: 0.875rem;
         border: none;
     }
+    .main >>> .font-style-gray {
+        color: #222222;
+        font-size: 1rem;
+    }
+    .main >>> .font-style-lightgray {
+        color: #888888;
+        font-size: .875rem;
+    }
 
     .main >>> .blue-btn {
         background: #4459CC;
@@ -243,7 +251,7 @@
         position: relative;
     }
 
-    .main >>> .minput {
+    .main >>> .minput{
         width: 69rem;
         height: 6.25rem;
         background: #E9EBEC;
@@ -265,9 +273,11 @@
         font-size: 0.875rem;
     }
 
-    .main >>> textarea.minput::-webkit-input-placeholder {
+    .main >>> textarea.minput::-webkit-input-placeholder,
+    .main >>> textarea.return-input::-webkit-input-placeholder{
         /* placeholder颜色  */
         color: #666666;
+        border: none;
     }
 
     /*课程信息和课程播放公用部分结束*/

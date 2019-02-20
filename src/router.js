@@ -41,6 +41,14 @@ let router = new Router({
                     path: 'teachersHome',
                     component: () => import( './views/TeachersHome.vue')
                 },
+                {
+                    path: 'help',
+                    component: () => import('./views/Help.vue')
+                },
+                {
+                    path: 'privatemsg',
+                    component: () => import('./views/PrivateMsg.vue')
+                },
             ],
         },
         {

@@ -1,4 +1,4 @@
-<template scoped>
+<template scpoed>
     <div class="container">
 
         <p class="nav-title">全部 - 推荐 - 美国出口管制新政大盘点</p>
@@ -13,7 +13,7 @@
                 <p class="font-middle course-studynum">1234人学过</p>
                 <div class="btns2">
                     <button class="white-btn" @click="$router.replace('/coursePlay')">试看</button>
-                    <button class="orange-btn buy">购买</button>
+                    <button class="buy orange-btn">购买</button>
                 </div>
             </div>
         </div>
@@ -38,12 +38,11 @@
                             <br>
                             <span class="font-small">世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。国际贸易与海事事务专家、世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。十一年中国海关工作经验，主要研究领域包括：商品归类、海关估价、原产地规则、风险管理、贸易管制等，曾为中国入世谈判提供智力支持。受国内外多个平台和机构邀请，常年为社会各界提供：理论研究、政策咨询、专题演讲、培训辅导等专业服务。</span>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clear"></div>
                         <p class="title">课程背景</p>
                         <p class="info font-small">2018年是美国对外贸易政策发生剧变的一年。在出口管制领域，美国政府多管齐下，全面加强了整个出口管制体系的立法与执法。</p>
                         <p class="title">课程受众</p>
-                        <p class="info font-small">
-                            企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，在保障生产经营活动的连续性和稳定性的同时有效控制合规风险？</p>
+                        <p class="info font-small">企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，在保障生产经营活动的连续性和稳定性的同时有效控制合规风险？</p>
                         <p class="title">学习目标</p>
                         <p class="info font-small">
                             课程要点（Agenda）<br>
@@ -74,7 +73,7 @@
                                 <span class="font-middle">吴苏南</span>
                                 <span class="font-bestsmall">2018-12-05 19:10</span>
                                 <br>
-                                <span class="font-small">全是干货，支持。</span>
+                                <span class="font-small font-small">全是干货，支持。</span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -114,7 +113,7 @@
                                 <span class="font-middle">吴苏南</span>
                                 <span class="font-bestsmall">2018-12-05 19:10</span>
                                 <br>
-                                <span class="font-small">具体的实现是通过getElementsByTagName方法，先对选项卡三个标头H3进行捕获，产生一个数组，我们利用for循环分别对每个标头选项H3添加一个index属性作为它的序号同时注册单击事件，当某个H3被单击时，我们先把所有的H3都变成原始状态，没active类，然后再把被单击的H3要添加一个active类使其变成白色，此时，我们还要知道被单击H3的序号，这样我们可以去，设定与之序号相同的DIV显示出来，而其它的DIV刚隐藏起来。</span>
+                                <span class="font-small">全是干货，支持。</span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -126,7 +125,9 @@
 
     </div>
 </template>
-<style scoped>
+
+
+<style>
     .pubwidth1 {
         width: 71.25rem;
     }
@@ -148,19 +149,16 @@
         left: 25rem;
         top: 1rem;
     }
-
     /*课程信息部分*/
     .all-comment .title {
         color: #8087AB;
         margin-top: 2rem;
 
     }
-
     .all-comment .info {
         color: #666666;
         margin-left: 4rem;
     }
-
     .all-comment .attention {
         border: 1px solid #4459CC;
         border-radius: 0.625rem;
@@ -176,13 +174,13 @@
     .all-comment .attention a {
         color: #4459CC;
     }
-
     /*课程信息结束*/
 
     .con-wrapper {
         border-bottom: 1px solid #D8D8D8;
         padding: 2rem 0;
     }
+
 
     .course-tab {
         margin-top: 2rem;
@@ -192,26 +190,21 @@
         height: 2.5rem;
         background-color: #E4EAF3;
     }
-
-    .font-middle {
+    .font-middle{
         color: #222222;
     }
-
     .font-small {
         color: #666666;
 
     }
-
     .font-bestsmall {
         color: #A5A5A5;
         margin-left: .5rem;
     }
-
     .course-studynum {
         color: #A5A5A5;
 
     }
-
     .btns2 {
         width: 20rem;
         position: absolute;
@@ -237,10 +230,10 @@
 
 <script>
     export default {
-        data() {
-            return {
-                current: 'page1'
-            }
-        }
+         data() {
+             return {
+                 current: 'page3'
+             }
+         }
     }
 </script>
