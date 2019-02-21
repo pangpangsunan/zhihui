@@ -1,4 +1,4 @@
-<template scoped>
+<template>
     <div class="container">
         <p class="nav-title">帮助与反馈</p>
         <div class="box-help skin-white border-rad">

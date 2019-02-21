@@ -1,4 +1,4 @@
-<template scoped>
+<template>
     <div class="container">
         <div v-if="!hasData" class="no-attention">
             <img src="@/assets/img_follow_nothing.png">

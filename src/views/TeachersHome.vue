@@ -1,4 +1,4 @@
-<template scoped>
+<template>
     <div class="container">
         <p class="navHead">讲师主页</p>
         <div class="teacher-wrapper">

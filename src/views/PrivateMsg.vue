@@ -1,4 +1,4 @@
-<template scoped>
+<template>
     <div class="container">
         <p class="nav-title">私信列表</p>
         <div class="msg-list skin-white border-rad">

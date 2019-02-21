@@ -1,4 +1,4 @@
-<template scoped>
+<template>
     <div class="container">
 
         <p class="nav-title">正在播放 - 美国出口管制新政大盘点</p>
