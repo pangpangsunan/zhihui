@@ -64,7 +64,7 @@
                     <div class="all-comment">
                         <div class="inputcon">
                             <textarea placeholder="输入您的评论" class="minput">wwwwwwww</textarea>
-                            <button class="send-btn border-rad">发送</button>
+                            <button class="send-btn">发送</button>
                         </div>
                         <p class="title font-middle">共587条评论</p>
                         <div class="con-wrapper">

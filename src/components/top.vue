@@ -52,6 +52,10 @@
     .menu {
         font-size: 13px;
     }
+    .menu >li {
+        line-height: 2rem;
+        height: 2rem;
+    }
 
     .color-white {
         color: white;
@@ -72,14 +76,13 @@
         display: inline-block;
     }
 
-    .username {
-        margin-top: 0.2rem;
-    }
+
 
     ul.menu > li {
         list-style-type: none;
         float: left;
         margin-left: 1.25rem;
     }
+
 
 </style>

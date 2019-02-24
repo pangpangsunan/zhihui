@@ -5,14 +5,27 @@
             <p>您尚未购买任何课程</p>
         </div>
         <p class="nav-title">已购买的课程</p>
-        <p class="subtitle">
-            <span class="course-number">{{courseList.length}}门课程</span>
-            <span class="course-type">全部类型
-				<span class="caret"></span>
-			</span>
-            <span class="clearfix"></span>
-        </p>
-        <div class="coursesType border-rad" v-if="hasData">
+        <div class="subtitle">
+            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="dropdown course-type">
+                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    <span class="course-type">全部类型
+				        <span class="caret"></span>
+			        </span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li>
+                        <router-link to="/">线上</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">线下</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="courses-category border-rad" v-if="hasData">
             <div class="pro skin-white" v-for="item in courseList">
                 <img src="@/assets/cat.jpg" class="course-img">
                 <div class="course-list">
@@ -32,13 +45,6 @@
     </div>
 </template>
 <style scoped>
-
-    .coursesType {
-        background-color: #F3F5F7;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
     .pro {
         width: 22.25rem;
         height: 20.25rem;
@@ -50,12 +56,15 @@
         width: 22.25rem;
         height: 12rem;
     }
+
     .course-list {
-        margin: 1rem ;
+        margin: 1rem;
     }
-    .course-teacher{
+
+    .course-teacher {
         margin-top: 1rem;
     }
+
     .course-location {
         margin-top: .5rem;
     }

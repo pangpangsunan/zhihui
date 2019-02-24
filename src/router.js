@@ -49,6 +49,14 @@ let router = new Router({
                     path: 'privatemsg',
                     component: () => import('./views/PrivateMsg.vue')
                 },
+                {
+                    path: 'chat',
+                    component: () => import('./views/Chat.vue')
+                },
+                {
+                    path: 'test',
+                    component: () => import('./views/Test.vue')
+                },
             ],
         },
         {

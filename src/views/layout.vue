@@ -19,8 +19,15 @@
                 </li>
             </ul>
             <div class="col-sm-2 top-right">
-                <router-link to="/"><i class="glyphicon glyphicon-comment"></i> 消息</router-link>
-                <router-link to="/"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
+                <router-link to="/" class="hover">
+                    <i class="glyphicon glyphicon-comment"></i>
+                    消息
+                    <div class="gonggao font-bestsmall">
+                        新年新优惠！购买线下课程，送直播课。此活动于 2019年1月10日
+                    </div>
+                </router-link>
+                <router-link to="/chat" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
+                <div class="clear"></div>
             </div>
 
         </div>
@@ -32,6 +39,9 @@
 </template>
 
 <style scoped>
+    .main >>> .clear {
+        clear: both;
+    }
 
     .main {
         background: url(../assets/img_bg.png);
@@ -65,17 +75,45 @@
         background-color: #4459CC;
         color: #fff;
     }
+    .top-right .hover, .top-right .private {
+        margin-top: 1rem;
+    }
 
-    .top-right {
-        width: 20%;
+    .top-right .hover {
+        float: left;
+    }
+    .top-right .private {
+        float: right;
     }
 
     .top-right a {
-        display: inline-block;
-        margin-top: 1rem;
         margin-left: 1.875rem;
         color: #555555;
     }
+
+    .hover {
+        overflow: hidden;
+        position: relative;
+
+    }
+
+    .hover:hover {
+        overflow: visible;
+    }
+
+    .hover .gonggao {
+        position: absolute;
+        left: -14rem;
+        top: 2rem;
+        width: 18rem;
+        padding: 1rem;
+        height: 4.5rem;
+        background: #fff;
+        box-shadow: 0 4px 4px 0 rgba(78, 82, 85, 0.50);
+        border-radius: 2px;
+        z-index: 100;
+    }
+
 
     .bg-black {
         background-color: #444444;
@@ -84,6 +122,7 @@
     .bg-black .container {
         padding: 1rem;
     }
+
 
     /*提取公共样式*/
     .main >>> .skin-white {
@@ -128,10 +167,12 @@
         font-size: 0.875rem;
         border: none;
     }
+
     .main >>> .font-style-gray {
         color: #222222;
         font-size: 1rem;
     }
+
     .main >>> .font-style-lightgray {
         color: #888888;
         font-size: .875rem;
@@ -224,6 +265,14 @@
     .main >>> .buy {
         margin-left: 1rem;
     }
+    .main >>> .drop-btn {
+        background: transparent;
+    }
+    .main >>> .courses-category {
+        background-color: #F3F5F7;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
 
     /*课程信息和课程播放公用部分开始*/
@@ -251,7 +300,7 @@
         position: relative;
     }
 
-    .main >>> .minput{
+    .main >>> .minput {
         width: 69rem;
         height: 6.25rem;
         background: #E9EBEC;
@@ -271,10 +320,11 @@
         background: #4459CC;
         color: #fff;
         font-size: 0.875rem;
+        border-radius: 2px;
     }
 
     .main >>> textarea.minput::-webkit-input-placeholder,
-    .main >>> textarea.return-input::-webkit-input-placeholder{
+    .main >>> textarea.return-input::-webkit-input-placeholder {
         /* placeholder颜色  */
         color: #666666;
         border: none;

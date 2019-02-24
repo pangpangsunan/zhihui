@@ -1,14 +1,26 @@
 <template>
     <div class="container">
         <p class="nav-title">全部 - 经营管理 - 领导力</p>
-        <p class="subtitle">
-            <span class="course-number">4门课程</span>
-            <span class="course-type">全部类型
-				<span class="caret"></span>
-			</span>
-            <span class="clearfix"></span>
-        </p>
-        <div class="courses-wrapper border-rad">
+        <div class="subtitle">
+            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="dropdown course-type">
+                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="course-type">全部类型
+				        <span class="caret"></span>
+			        </span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li>
+                        <router-link to="/">线上</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">线下</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class=" courses-category border-rad">
             <div class="pro skin-white">
                 <router-link to="/courseInfo">
                     <img src="@/assets/cat.jpg" class="course-img">
@@ -102,11 +114,6 @@
         margin-top: .8rem;
     }
 
-    .courses-wrapper {
-        background-color: #F3F5F7;
-        display: flex;
-        flex-wrap: wrap;
-    }
 
     .pro {
         width: 22.25rem;
