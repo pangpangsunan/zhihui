@@ -4,7 +4,43 @@
         <div class="chat-wrapper border-rad">
           <div class="chat-left">
             <div class="chat-content">
-                <ul id="chat-list"></ul>
+                <ul id="chat-list">
+                    <li>
+                        <div class="teacher-chat">
+                            <img src="@/assets/cat.jpg" class="touxiang">
+                            <div class="teacher-chat-bg font-middle">
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
+
+                            </div>
+                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="student-chat">
+                            <div class="student-chat-bg font-middle">
+                 您好您好您好您好您好您好您好您好您好您好您好您好您好您好
+                            </div>
+                            <img src="@/assets/cat.jpg" class="touxiang">
+                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="student-chat">
+                            <div class="student-chat-bg font-middle">
+                                您好
+                            </div>
+                            <img src="@/assets/cat.jpg" class="touxiang">
+                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
+
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="send-msg">
                 <textarea placeholder="非常感谢"></textarea>
@@ -23,6 +59,34 @@
     </div>
 </template>
 <style scoped>
+    .teacher-chat-bg {
+        background: #4459CC;
+        border-radius: 2px;
+        color: #fff;
+        padding: .8rem;
+        display: inline-block;
+        margin-left: .8rem;
+        margin-right: 10rem;
+        max-width: 30rem;
+    }
+    .student-chat-bg {
+        background: #EEEEEE;
+        border-radius: 2px;
+        color: #222222;
+        padding: .8rem;
+        display: inline-block;
+        text-align: left;
+        margin-left: 10rem;
+        max-width: 30rem;
+
+    }
+    .student-chat .send-time {
+        margin-right: 5rem;
+    }
+    .send-time {
+        color: #A5A5A5;
+        margin-left: 5rem;
+    }
     .chat-wrapper {
         background-color: #F4F6F7;
         width: 71.25rem;
@@ -82,6 +146,23 @@
 
     .font-small {
         color: #666666;
+    }
+    .touxiang {
+        width: 3.75rem;
+        height: 3.75rem;
+        border-radius: 3.76rem;
+        display: inline-block;
+    }
+
+    .teacher-chat ,.student-chat{
+        text-align: left;
+        padding: 1rem;
+    }
+    .student-chat {
+        text-align: right;
+    }
+    .student-chat .touxiang {
+        margin-left: .8rem;
     }
 
 
