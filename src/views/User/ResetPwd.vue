@@ -2,7 +2,6 @@
     <div class="wrap">
         <p class="big-title">设置新密码</p>
         <div class="container">
-
             <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -17,13 +16,18 @@
                 <div class="tips">
                     <span v-if="msg">{{msg}}</span>
                 </div>
-                <div class="text-grays">
-                    <router-link to="/user/login">
-                        <span class="text-gray1">用户登陆</span>
-                    </router-link>
-                    <router-link to="/user/register">
-                        <span class="text-gray2">新用户注册</span>
-                    </router-link>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="text-gray">
+                            <router-link to="/user/forget">
+                                <span class="text-gray1">用户登陆</span>
+                            </router-link>
+                            <router-link to="/user/register">
+                                <span class="text-gray2">新用户注册</span>
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="blue-btn">完成</button>
@@ -48,6 +52,6 @@
 <style scoped>
 
     .container {
-        height: 16.88rem;
+        height: 18.88rem;
     }
 </style>

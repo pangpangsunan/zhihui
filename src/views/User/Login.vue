@@ -4,7 +4,6 @@
         <div class="wrap">
             <p class="big-title">学员登陆</p>
             <div class="container">
-
                 <form class="form-horizontal" @submit.prevent="login()">
                     <div class="form-group">
                         <div class="col-sm-12">

@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <p class="navHead">讲师主页</p>
+        <p class="nav-title">讲师主页</p>
         <div class="teacher-wrapper">
             <div class="teacher-wrapper-top">
                 <img src="@/assets/cat.jpg" class="teacher-img">
-                <div class="teacher-name">郑均益</div>
+                <div class="teacher-name">123ee</div>
                 <div class="fans-number">1750 粉丝</div>
                 <div class="msg-btn">
                     <button class="blue-btn">关注</button>
@@ -28,14 +28,25 @@
                 </div>
             </div>
         </div>
-        <p class="nav-title" style="margin-top: 2rem;">
-            <span class="nav-title-left">4门课程</span>
-            <span class="nav-title-right">全部类型
-				<span class="caret"></span>
-			</span>
-
-            <span class="clearfix"></span>
-        </p>
+        <div class="subtitle">
+            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="dropdown course-type">
+                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="course-type">全部类型
+				        <span class="caret"></span>
+			        </span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li>
+                        <router-link to="/">线上</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">线下</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
         <div class="courses-type">
 
             <div class="pro">
@@ -98,7 +109,6 @@
 <style scoped>
 
     .teacher-wrapper {
-        width: 71.25rem;
         border-radius: 2px;
         background-color: #F3F5F7;
         text-align: center;
@@ -117,6 +127,9 @@
         margin-top: 3rem;
 
     }
+    .subtitle {
+       margin-top: 2rem!important;
+    }
 
     .teacher-info {
         font-size: .812rem;
@@ -126,9 +139,6 @@
         overflow: hidden;
     }
 
-    .teacher-info-open {
-        height: auto;
-    }
 
     .spread {
         color: #4459CC;
@@ -154,6 +164,7 @@
         margin-top: .5rem;
     }
 
+
     .msg-btn {
         margin-top: 1rem;
     }
@@ -165,22 +176,7 @@
         flex-wrap: wrap;
     }
 
-    .nav-title {
-        color: #666666;
-        background-color: #F3F5F7;
-        margin: 0;
-        font-size: 0.875rem;
-        padding: 1rem 0 0 1rem;
-    }
 
-    .nav-title-left {
-        float: left;
-    }
-
-    .nav-title-right {
-        float: right;
-        padding-right: 2rem;
-    }
 
     .pro {
         width: 22.25rem;
@@ -219,13 +215,20 @@
         letter-spacing: 0.2px;
         line-height: 0.75rem;
     }
+    @media screen and (max-width: 768px) {
+
+
+        .teachname {
+            font-size: 16px;
+        }
+    }
 </style>
 <script>
     import axios from 'axios'
 
     export default {
         created() {
-            axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
+            axios.get('/edu/course/getTeacherInfoByCourse?id=1').then(p => {
                 this.courseList = p.data.content.records
             })
         },

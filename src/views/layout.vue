@@ -4,7 +4,7 @@
             <top></top>
         </div>
         <div class="container navcontainer">
-            <ul class="nav col-sm-9">
+            <ul class="nav">
                 <li>
                     <router-link to="/" active-class="active" exact>首页</router-link>
                 </li>
@@ -18,7 +18,7 @@
                     <router-link to="/myview" active-class="active" exact>我的关注</router-link>
                 </li>
             </ul>
-            <div class="col-sm-2 top-right">
+            <div class="top-right">
                 <router-link to="/" class="hover">
                     <i class="glyphicon glyphicon-comment"></i>
                     消息
@@ -27,9 +27,7 @@
                     </div>
                 </router-link>
                 <router-link to="/chat" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
-                <div class="clear"></div>
             </div>
-
         </div>
 
         <router-view/>
@@ -47,16 +45,23 @@
         background: url(../assets/img_bg.png);
     }
 
+    .container {
+        padding: 0;
+    }
+
     .navcontainer {
-        width: 71.25rem;
-        height: 3.25rem;
         background: #e4eaf3;
         margin-top: 1rem;
         padding: 0;
+        height: 3.125rem;
+        position: relative;
     }
 
     .nav {
         height: 3.125rem;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 
     .nav li {
@@ -75,6 +80,13 @@
         background-color: #4459CC;
         color: #fff;
     }
+
+    .top-right {
+        width: 13%;
+        position: absolute;
+        right: 5%;
+    }
+
     .top-right .hover, .top-right .private {
         margin-top: 1rem;
     }
@@ -82,6 +94,7 @@
     .top-right .hover {
         float: left;
     }
+
     .top-right .private {
         float: right;
     }
@@ -123,6 +136,23 @@
         padding: 1rem;
     }
 
+    @media (max-width: 1024px) {
+
+        .top-right {
+            width: 16%;
+            position: absolute;
+            right: 5%;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .top-right {
+            width: 20%;
+            position: absolute;
+            right: 5%;
+        }
+    }
 
     /*提取公共样式*/
     .main >>> .skin-white {
@@ -157,6 +187,10 @@
     .main >>> .no-attention {
         text-align: center;
         margin-top: 6rem;
+    }
+
+    .main >>> .courses-category {
+        min-height: 30rem;
     }
 
     .main >>> .blue-btn, .main >>> .orange-btn, .main >>> .white-btn {
@@ -265,9 +299,11 @@
     .main >>> .buy {
         margin-left: 1rem;
     }
+
     .main >>> .drop-btn {
         background: transparent;
     }
+
     .main >>> .courses-category {
         background-color: #F3F5F7;
         display: flex;

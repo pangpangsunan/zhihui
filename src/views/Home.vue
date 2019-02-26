@@ -58,6 +58,9 @@
     .course-list:nth-child(odd) {
         background: #F3F5F7;
     }
+    .ulwarpper{
+        min-height:30rem ;
+    }
 </style>
 <script>
     import axios from 'axios'

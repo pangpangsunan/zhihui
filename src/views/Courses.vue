@@ -20,7 +20,7 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class=" courses-category border-rad">
+        <div class="courses-category border-rad">
             <div class="pro skin-white">
                 <router-link to="/courseInfo">
                     <img src="@/assets/cat.jpg" class="course-img">
@@ -125,6 +125,14 @@
     .course-img {
         width: 22.25rem;
         height: 12.875rem;
+    }
+    @media (max-width: 768px) {
+
+        .pro {
+            margin-left: 4rem;
+            margin-top: 2rem;
+        }
+
     }
 
 </style>

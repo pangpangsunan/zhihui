@@ -1,9 +1,5 @@
 <template>
     <div class="container">
-        <div v-if="!hasData" class="no-attention">
-            <img src="@/assets/img_course_nothing.png" alt="">
-            <p>您尚未购买任何课程</p>
-        </div>
         <p class="nav-title">已购买的课程</p>
         <div class="subtitle">
             <div class="course-number">{{courseList.length}}门课程</div>
@@ -42,6 +38,10 @@
 
             </div>
         </div>
+        <div v-if="!hasData" class="no-attention">
+            <img src="@/assets/img_course_nothing.png" alt="">
+            <p>您尚未购买任何课程</p>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -67,6 +67,14 @@
 
     .course-location {
         margin-top: .5rem;
+    }
+    @media (max-width: 768px) {
+
+        .pro {
+            margin-left: 4rem;
+            margin-top: 2rem;
+        }
+
     }
 
 </style>

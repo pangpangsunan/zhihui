@@ -8,7 +8,7 @@
             </li>
             <li>
                 <span class="help"><img src="@/assets/ic_help.png"></span>
-                <router-link to="/" class="color-white">帮助与反馈</router-link>
+                <router-link to="/help" class="color-white">帮助与反馈</router-link>
             </li>
             <li>
                 <div class="dropdown">
@@ -26,7 +26,7 @@
                             <router-link to="/">绑定手机</router-link>
                         </li>
                         <li>
-                            <router-link to="/">修改密码</router-link>
+                            <router-link to="user/resetpwd/">修改密码</router-link>
                         </li>
                         <li class="divider"></li>
                         <li>

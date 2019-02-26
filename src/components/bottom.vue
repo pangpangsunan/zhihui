@@ -1,13 +1,20 @@
 <template>
     <div class="bg-black">
-        <div class="con">
-            <div class="gray left">Copyright@2019.All rights reserved</div>
-            <div class="gray center">沪CP备 000001号</div>
-            <div class="kefu">
-                <div class="text-right font-bestsmall">客服电话</div>
-                <div class="text-right font-big">0157-28874128-6</div>
-                <div class="text-right font-bestsmall">Email：cs@xiaotongtech.net</div>
-            </div>
+        <div class="container">
+            <table>
+                <tr>
+                    <td colspan="3" class="right ">客服电话</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="font-big right">0157-28874128-6</td>
+                </tr>
+                <tr class="three">
+                    <td class="left">Copyright@2019.All rights reserved</td>
+                    <td class="center">沪CP备 000001号</td>
+                    <td class="right">Email：cs@xiaotongtech.net</td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </template>
@@ -24,29 +31,48 @@
         color: #eee;
         height: 6.25rem;
     }
-    .con {
-        width: 71.25rem;
-        display: flex;
-        margin: 0 auto;
-        overflow: hidden;
 
+    .three {
+        color: #757A7C;
+        text-align: center;
+        padding: 1rem;
     }
-    .con div {
-        width: 24rem;
+
+    table {
+        width: 100%;
+        font-size: 12px;
+        line-height: 2.1rem;
     }
-    .left{
-        text-align: left;
+
+    .right {
+        text-align: right;
     }
+
     .center {
         text-align: center;
     }
-    .gray {
-        margin-top: 1.3rem;
+
+    .left {
+        text-align: left;
     }
+
+    .con {
+        display: flex;
+        margin: 0 auto;
+        overflow: hidden;
+        text-align: right;
+
+    }
+
+    .con div {
+        width: 24rem;
+    }
+
 
     .kefu {
         text-align: right;
         margin-top: 1.6rem;
+        margin-right: 1rem;
     }
 
     .kefu div:nth-child(2) {

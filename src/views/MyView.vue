@@ -14,15 +14,18 @@
                         </router-link>
                     </div>
                     <div class="attention-center">
-                        <h3 class="teachname">{{item.userInfo.name}}</h3>
-                        <h5 class="attention-number">{{item.userInfo.balance}} 人关注 <a href="" class="attention">取消关注</a>
-                        </h5>
+                        <router-link to="/teachershome"  class="teachname">
+                            <div>{{item.userInfo.name}}</div>
+                        </router-link>
+                        <div class="attention-number">{{item.userInfo.balance}} 人关注 <a href="" class="attention">取消关注</a>
+                        </div>
                         <p class="duty">{{item.userInfo.label}}</p>
                     </div>
                     <div class="attention-right">
-                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
-                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
-                        <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                        <router-link to="/teachershome">
+                            <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                            <span><img src="@/assets/cat.jpg" class="course-img"></span>
+                        </router-link>
                     </div>
                 </div>
 
@@ -32,27 +35,34 @@
 </template>
 <style scoped>
     .list-group-item {
-        width: 71.25rem;
         height: 10rem;
         display: flex;
         border: none;
         margin-top: 1rem;
+        padding: 0.5rem;
     }
 
     .box-attention {
         margin: 0;
-        width: 71.25rem;
         display: flex;
     }
 
     .attention-left {
-        width: 8rem;
+
+        vertical-align: middle;
     }
 
     .attention-center {
-        width: 15rem;
+        width: 18rem;
+        margin-left: 2rem;
+        margin-top: 1.5rem;
+
+    }
+    .attention-number,.duty {
+        color:#888888;
         margin-top: .5rem;
     }
+
 
     .attention-right {
         margin-top: 0.7rem;
@@ -65,7 +75,7 @@
 
     .course-img {
         width: 14rem;
-        height: 7.5rem;
+        height: 7.9rem;
     }
 
     .img-circle {
@@ -74,29 +84,44 @@
         vertical-align: middle;
         margin-top: 1rem;
     }
+    .teachname {
+        color:#222222;
+        font-size: 24px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .teachname {
+            font-size: 20px;
+        }
+    }
+
 
     @media screen and (max-width: 768px) {
-        .attention-left {
-            width: 6rem;
-            height: 8rem;
-            padding-top: 1rem;
-            float: left;
+
+
+        .teachname {
+            font-size: 16px;
         }
 
-        .attention-center {
-            width: 8rem;
-        }
+
 
         .list-group-item {
             height: 8rem;
-            background: #FFFFFF;
-            border-radius: 2px;
-            margin-top: 1rem;
-            border: none;
+            padding-top: 0;
         }
 
         .attention-right {
-            margin-top: 1rem;
+            margin-top: .8rem;
+        }
+
+        .course-img {
+            width: 12rem;
+            height: 6.5rem;
+        }
+        .img-circle {
+            width: 6rem;
+            height: 6rem;
+            vertical-align: middle;
         }
     }
 </style>
