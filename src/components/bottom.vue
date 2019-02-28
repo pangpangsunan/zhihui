@@ -29,7 +29,6 @@
     .bg-black {
         background: #333;
         color: #eee;
-        height: 6.25rem;
     }
 
     .three {

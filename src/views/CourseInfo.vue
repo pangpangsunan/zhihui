@@ -42,7 +42,8 @@
                         <p class="title">课程背景</p>
                         <p class="info font-small">2018年是美国对外贸易政策发生剧变的一年。在出口管制领域，美国政府多管齐下，全面加强了整个出口管制体系的立法与执法。</p>
                         <p class="title">课程受众</p>
-                        <p class="info font-small">企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，在保障生产经营活动的连续性和稳定性的同时有效控制合规风险？</p>
+                        <p class="info font-small">
+                            企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，在保障生产经营活动的连续性和稳定性的同时有效控制合规风险？</p>
                         <p class="title">学习目标</p>
                         <p class="info font-small">
                             课程要点（Agenda）<br>
@@ -59,65 +60,27 @@
                         <p class="info font-small">上海市梅龙镇广场9楼</p>
                     </div>
                 </li>
-                <li v-show="current==='page2'" style="background-color: burlywood;">我是two</li>
+                <li v-show="current==='page2'">我是two</li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
                         <div class="inputcon">
-                            <textarea placeholder="输入您的评论" class="minput">wwwwwwww</textarea>
-                            <button class="send-btn">发送</button>
+                            <textarea placeholder="输入您的评论" class="minput" v-model="comment">wwwwwwww</textarea>
+                            <button class="send-btn" @click="send()">发送</button>
                         </div>
                         <p class="title font-middle">共587条评论</p>
-                        <div class="con-wrapper">
-                            <img src="@/assets/cat.jpg" class="img-left">
+
+
+                        <div class="con-wrapper" v-for="item in arr">
+                            <img :src="item.comment.headimgurl" class="img-left">
                             <div class="public-style-info">
-                                <span class="font-middle">吴苏南</span>
-                                <span class="font-bestsmall">2018-12-05 19:10</span>
+                                <span class="font-middle">{{item.comment.uname}}</span>
+                                <span class="font-bestsmall">{{item.comment.createDate}}</span>
                                 <br>
-                                <span class="font-small font-small">全是干货，支持。</span>
+                                <span class="font-small">{{item.comment.content}}。</span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="con-wrapper">
-                            <img src="@/assets/cat.jpg" class="img-left">
-                            <div class="public-style-info">
-                                <span class="font-middle">吴苏南</span>
-                                <span class="font-bestsmall">2018-12-05 19:10</span>
-                                <br>
-                                <span class="font-small">全是干货，支持。</span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="con-wrapper">
-                            <img src="@/assets/cat.jpg" class="img-left">
-                            <div class="public-style-info">
-                                <span class="font-middle">吴苏南</span>
-                                <span class="font-bestsmall">2018-12-05 19:10</span>
-                                <br>
-                                <span class="font-small">全是干货，支持。</span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="con-wrapper">
-                            <img src="@/assets/cat.jpg" class="img-left">
-                            <div class="public-style-info">
-                                <span class="font-middle">吴苏南</span>
-                                <span class="font-bestsmall">2018-12-05 19:10</span>
-                                <br>
-                                <span class="font-small">全是干货，支持。</span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="con-wrapper">
-                            <img src="@/assets/cat.jpg" class="img-left">
-                            <div class="public-style-info">
-                                <span class="font-middle">吴苏南</span>
-                                <span class="font-bestsmall">2018-12-05 19:10</span>
-                                <br>
-                                <span class="font-small">全是干货，支持。</span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <p class="title" style="text-align: center">继续滚动加载更多</p>
+                        <p class="title" style="text-align: center" @click="load()">继续滚动加载更多</p>
                     </div>
                 </li>
             </ul>
@@ -128,9 +91,6 @@
 
 
 <style scoped>
-    .pubwidth1 {
-        width: 71.25rem;
-    }
 
     .course-top {
         height: 13.5rem;
@@ -149,16 +109,19 @@
         left: 25rem;
         top: 1rem;
     }
+
     /*课程信息部分*/
     .all-comment .title {
         color: #8087AB;
         margin-top: 2rem;
 
     }
+
     .all-comment .info {
         color: #666666;
         margin-left: 4rem;
     }
+
     .all-comment .attention {
         border: 1px solid #4459CC;
         border-radius: 0.625rem;
@@ -174,6 +137,7 @@
     .all-comment .attention a {
         color: #4459CC;
     }
+
     /*课程信息结束*/
 
     .con-wrapper {
@@ -190,21 +154,26 @@
         height: 2.5rem;
         background-color: #E4EAF3;
     }
-    .font-middle{
+
+    .font-middle {
         color: #222222;
     }
+
     .font-small {
         color: #666666;
 
     }
+
     .font-bestsmall {
         color: #A5A5A5;
         margin-left: .5rem;
     }
+
     .course-studynum {
         color: #A5A5A5;
 
     }
+
     .btns2 {
         width: 20rem;
         position: absolute;
@@ -229,11 +198,90 @@
 </style>
 
 <script>
+    import axios from 'axios'
+    import qs from 'querystring'
+
     export default {
-         data() {
-             return {
-                 current: 'page3'
-             }
-         }
+        data() {
+            return {
+                pagenum: 1,
+                comment: '',
+                current: 'page3',
+                arr: [
+                    {
+                        "count": 2,
+                        "comment": {
+                            "id": 49,
+                            "createBy": 0,
+                            "createDate": 1542556800000,
+                            "updateBy": 0,
+                            "updateDate": null,
+                            "remark": null,
+                            "delFlag": 0,
+                            "cid": 103,
+                            "uid": 89,
+                            "uname": "学生1",
+                            "headimgurl": "http://thirdwx.qlogo.cn/mmopen/vi_32/oX72hn1bl4MLvd14N1ziaszYV0TsJztEhOwUeZ6Xf7L45CM5ibaJXgrxBR2FyL0PibS5ptOQYDkowPCZvsd2GJgpA/132",
+                            "pid": 0,
+                            "content": "很不错\n"
+                        }
+                    },
+                    {
+                        "count": 1,
+                        "comment": {
+                            "id": 52,
+                            "createBy": 0,
+                            "createDate": 1542643200000,
+                            "updateBy": 0,
+                            "updateDate": null,
+                            "remark": null,
+                            "delFlag": 0,
+                            "cid": 103,
+                            "uid": 94,
+                            "uname": "磊磊",
+                            "headimgurl": "http://thirdwx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEIvrfXPjYSn0AureofibSMKMjvp2pqPkXoH5gxxibAdLNbCLiaewmsd7RmLHvicvicyk1RibKTFiaJPZibriaw/132",
+                            "pid": 0,
+                            "content": "一般，感觉有点偏颇"
+                        }
+                    },
+
+                ]
+            }
+        },
+        created() {
+            this.load();
+        },
+        methods: {
+            load() {
+                axios.get("/edu/comment/getCommenPageByCourseNew", {
+                    params: {
+                        pagenum: this.pagenum
+                    }
+                }).then(p => {
+                    // this.arr = p.data.content.records;
+                    let arr = p.data.content.records;
+                    if (arr.length > 0) {
+                        for (let i of arr) {
+                            this.arr.push(i);
+                        }
+                        this.pagenum++;
+                    }
+
+
+                });
+            },
+            send() {
+                axios.post("/edu/comment/addComment", qs.stringify(
+                    {
+                        cid: 260,
+                        uid: localStorage.uid,
+                        content: this.comment
+
+                    }
+                ))
+            }
+
+        }
+
     }
 </script>

@@ -58,8 +58,9 @@
     .course-list:nth-child(odd) {
         background: #F3F5F7;
     }
-    .ulwarpper{
-        min-height:30rem ;
+
+    .ulwarpper {
+        min-height: 30rem;
     }
 </style>
 <script>
@@ -78,6 +79,7 @@
         },
         components: {
             carousel: () => import('@/components/carousel.vue')
-        }
+        },
+
     }
 </script>

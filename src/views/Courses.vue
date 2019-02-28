@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div class="diolog"></div>
         <p class="nav-title">全部 - 经营管理 - 领导力</p>
         <div class="subtitle">
             <div class="course-number">{{courseList.length}}门课程</div>

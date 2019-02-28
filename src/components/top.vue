@@ -10,12 +10,12 @@
                 <span class="help"><img src="@/assets/ic_help.png"></span>
                 <router-link to="/help" class="color-white">帮助与反馈</router-link>
             </li>
-            <li>
+            <li v-show="islogin()">
                 <div class="dropdown">
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <span><img src="@/assets/img_avatar_default.png"></span>
-                        <span class="username">&nbsp;风清杨</span>
+                        <span class="username">&nbsp;{{userinfo.userinfo.nickname}}</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -45,14 +45,22 @@
                     </ul>
                 </div>
             </li>
+            <li v-show="!islogin()">
+                <router-link to="/user/login" class="color-white">登陆</router-link>
+            </li>
+
         </ul>
+
     </div>
+
 </template>
 <style scoped>
+
     .menu {
         font-size: 13px;
     }
-    .menu >li {
+
+    .menu > li {
         line-height: 2rem;
         height: 2rem;
     }
@@ -77,7 +85,6 @@
     }
 
 
-
     ul.menu > li {
         list-style-type: none;
         float: left;
@@ -86,3 +93,19 @@
 
 
 </style>
+<script>
+    export default {
+        methods: {
+            islogin() {
+                return localStorage.uid > 0;
+            }
+        },
+        data(){
+            return {
+                userinfo:JSON.parse(localStorage.userinfo)
+            }
+        }
+    }
+
+
+</script>

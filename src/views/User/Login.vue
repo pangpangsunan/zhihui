@@ -59,7 +59,8 @@
                         platform: 1,
                     })).then(p => {
                     if (p.data.httpCode == 200) {
-                        localStorage.userinfo = p.data.content;
+                        localStorage.userinfo = JSON.stringify(p.data.content);
+                        localStorage.uid = p.data.content.userInfo.id;
                         this.$router.push('/')
                     } else {
                         this.msg = p.data.msg

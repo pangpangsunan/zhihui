@@ -4,7 +4,7 @@
         <div class="teacher-wrapper">
             <div class="teacher-wrapper-top">
                 <img src="@/assets/cat.jpg" class="teacher-img">
-                <div class="teacher-name">123ee</div>
+                <div class="teacher-name">{{obj.name}}</div>
                 <div class="fans-number">1750 粉丝</div>
                 <div class="msg-btn">
                     <button class="blue-btn">关注</button>
@@ -13,15 +13,15 @@
             </div>
             <div class="teacher-info">
                 <p class="teacher-tag">个人简介</p>
-                <p style="text-align: left;">
-                    国际贸易与海事事务专家、世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。十一年中国海关工作经验，主要研究领域包括：商品归类、海关估价、原产地规则、风险管理、贸易管制等，曾为中国入世谈判提供智力支持。受国内外多个平台和机构邀请，常年为社会各界提供：理论研究、政策咨询、专题演讲、培训辅导等专业服务。</p>
+                <p style="text-align: center;">{{obj2.introduction}}</p>
+
                 <p class="spread" @click="expand=true" v-show="!expand"><img src="@/assets/ic_expand.png"> 展开</p>
                 <div v-show="expand">
                     <div class="clearfix"></div>
                     <p class="teacher-tag">过往客户</p>
-                    <p>服务客户主要为欧美一线企业，产业领域设计：汽车、电子、化工、生物医药、服装和快消品等。</p>
+                    <p>{{obj2.customerIntroduction}}</p>
                     <p class="teacher-tag">语言能力</p>
-                    <p>中文</p>
+                    <p>{{obj.language}}</p>
                     <p class="teacher-tag">从业经验</p>
                     <p>1999-12-31 至 2011-12-31 上海海关</p>
                     <p class="spread" @click="expand=false" v-show="expand"><img src="@/assets/ic_less.png"> 收起</p>
@@ -29,9 +29,10 @@
             </div>
         </div>
         <div class="subtitle">
-            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="course-number">门课程</div>
             <div class="dropdown course-type">
-                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                     <span class="course-type">全部类型
 				        <span class="caret"></span>
 			        </span>
@@ -127,8 +128,9 @@
         margin-top: 3rem;
 
     }
+
     .subtitle {
-       margin-top: 2rem!important;
+        margin-top: 2rem !important;
     }
 
     .teacher-info {
@@ -177,7 +179,6 @@
     }
 
 
-
     .pro {
         width: 22.25rem;
         height: 20.25rem;
@@ -215,6 +216,7 @@
         letter-spacing: 0.2px;
         line-height: 0.75rem;
     }
+
     @media screen and (max-width: 768px) {
 
 
@@ -225,17 +227,27 @@
 </style>
 <script>
     import axios from 'axios'
+    import qs from 'querystring'
 
     export default {
         created() {
-            axios.get('/edu/course/getTeacherInfoByCourse?id=1').then(p => {
-                this.courseList = p.data.content.records
+            axios.get('/edu/course/getTeacherInfoByCourse', {
+                params: {
+                    cid: 268
+                }
+            }).then(p => {
+                this.obj = p.data.content.userInfo;
+                this.obj2 = p.data.content.userExtra;
+
+                console.log(this.obj2);
             })
         },
         data() {
             return {
-                courseList: [],
-                expand: false
+                obj: {},
+                obj2:{},
+                expand: false,
+
             }
         },
     }

@@ -1,5 +1,40 @@
 <template>
     <div class="main">
+        <div class="diolog">
+            <div class="public-course skin-white">
+                <form>
+                    <div class="form-group">
+                        <span>所属行业</span>
+                        <select>
+                            <option>请选择</option>
+                            <option>1234</option>
+                            <option>1234</option>
+                            <option>1234</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>所属行业</span>
+                        <select>
+                            <option>请选择</option>
+                            <option>1234</option>
+                            <option>1234</option>
+                            <option>1234</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>所属行业</span>
+                        <textarea>12344</textarea>
+
+                    </div>
+                    <div style="text-align: center">
+                        <button type="submit" class="blue-btn">发布</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
         <div class="bg-black">
             <top></top>
         </div>
@@ -33,16 +68,36 @@
         <router-view/>
         <br>
         <bottom></bottom>
+
     </div>
 </template>
 
 <style scoped>
-    .main >>> .clear {
-        clear: both;
+     .diolog {
+        background: rgba(34, 34, 34, 0.80);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 1000;
+        display: none;
     }
+    .main >>> .public-course {
+        width: 40rem;
+        height: 24.5rem;
+        margin: 5rem auto;
+        border-radius: 4px;
+        padding: 5rem;
+
+    }
+    .public-course form {
+        border: 1px solid red;
+    }
+
+
 
     .main {
         background: url(../assets/img_bg.png);
+        color: #222222;
     }
 
     .container {
@@ -159,29 +214,6 @@
         background-color: #fff;
     }
 
-    /*font-middle是表示20号的字体*/
-    .main >>> .font-big {
-        font-size: 1.25rem;
-    }
-
-    /*font-middle是表示14号的字体*/
-    .main >>> .font-middle {
-        font-size: .88rem;
-    }
-
-    /*font-middle是表示13号的字体*/
-    .main >>> .font-small {
-        font-size: .81rem;
-    }
-
-    /*font-middle是表示12号的字体*/
-    .main >>> .font-bestsmall {
-        font-size: .75rem;
-    }
-
-    .main >>> .border-rad {
-        border-radius: 2px;
-    }
 
     /*.no-attention*/
     .main >>> .no-attention {
@@ -193,56 +225,6 @@
         min-height: 30rem;
     }
 
-    .main >>> .blue-btn, .main >>> .orange-btn, .main >>> .white-btn {
-        width: 6.75rem;
-        height: 2.25rem;
-        border-radius: 2px;
-        color: #fff;
-        font-size: 0.875rem;
-        border: none;
-    }
-
-    .main >>> .font-style-gray {
-        color: #222222;
-        font-size: 1rem;
-    }
-
-    .main >>> .font-style-lightgray {
-        color: #888888;
-        font-size: .875rem;
-    }
-
-    .main >>> .blue-btn {
-        background: #4459CC;
-    }
-
-    .main >>> .orange-btn {
-        background-color: #F5892A;
-        color: #fff;
-    }
-
-    .main >>> .white-btn {
-        background-color: #fff;
-        border: 1px solid #F5892A;
-        color: #F5892A;
-    }
-
-    .main >>> .offline, .main >>> .online {
-        display: inline-block;
-        width: 2.5rem;
-        height: 1.25rem;
-        line-height: 1.25rem;
-        border-radius: 0.625rem;
-        background-color: #4459cc;
-        font-size: 0.625rem;
-        color: #fff;
-        text-align: center;
-        margin-left: 5px;
-    }
-
-    .main >>> .online {
-        background-color: #1caf5f;
-    }
 
     .main >>> .course-list a, .main >>> .pro a {
         color: #222222;
