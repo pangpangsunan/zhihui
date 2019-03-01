@@ -44,7 +44,7 @@
                     <router-link to="/" active-class="active" exact>首页</router-link>
                 </li>
                 <li>
-                    <router-link to="/courses" active-class="active" exact>分类课程</router-link>
+                    <router-link to="/courses" @click.prevent active-class="active" exact>分类课程</router-link>
                 </li>
                 <li>
                     <router-link to="/buyered" active-class="active" exact>已购课程</router-link>
@@ -53,6 +53,7 @@
                     <router-link to="/myview" active-class="active" exact>我的关注</router-link>
                 </li>
             </ul>
+
             <div class="top-right">
                 <router-link to="/" class="hover">
                     <i class="glyphicon glyphicon-comment"></i>
@@ -64,6 +65,12 @@
                 <router-link to="/chat" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
             </div>
         </div>
+        <div class="container" style="position: relative">
+            <div class="diolog-coursetype" v-if="$route.name=='courses'">
+                <coursetype></coursetype>
+            </div>
+        </div>
+
 
         <router-view/>
         <br>
@@ -76,7 +83,18 @@
     .main {
         color: #222222;
     }
-     .diolog {
+    .diolog-coursetype {
+        width: 100%;
+        height: 20rem;
+        background: rgba(34, 34, 34, 0.80);
+        border-radius: 2px;
+        position: absolute;
+        margin: 0 auto;
+
+
+    }
+
+    .diolog {
         background: rgba(34, 34, 34, 0.80);
         width: 100%;
         height: 100%;
@@ -84,6 +102,7 @@
         z-index: 1000;
         display: none;
     }
+
     .main >>> .public-course {
         width: 40rem;
         height: 24.5rem;
@@ -92,10 +111,10 @@
         padding: 5rem;
 
     }
+
     .public-course form {
         border: 1px solid red;
     }
-
 
 
     .main {
@@ -359,7 +378,8 @@
     export default {
         components: {
             top: () => import('@/components/top.vue'),
-            bottom: () => import('@/components/bottom.vue')
+            bottom: () => import('@/components/bottom.vue'),
+            coursetype: () => import('@/components/coursetype.vue')
         }
     }
 </script>

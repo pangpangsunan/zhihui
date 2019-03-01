@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <div class="diolog"></div>
         <p class="nav-title">全部 - 经营管理 - 领导力</p>
         <div class="subtitle">
             <div class="course-number">{{courseList.length}}门课程</div>
@@ -94,14 +93,7 @@
     </div>
 </template>
 <style scoped>
-    .diolog {
-        width: 71.25rem;
-        height: 20rem;
-        background: rgba(34, 34, 34, 0.80);
-        border-radius: 2px;
-        position: absolute;
-        margin: 0 auto;
-    }
+
 
     .course-name {
         margin-top: 1rem;

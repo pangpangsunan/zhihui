@@ -19,7 +19,8 @@ let router = new Router({
                 },
                 {
                     path: 'courses',
-                    component: () => import( './views/Courses.vue')
+                    component: () => import( './views/Courses.vue'),
+                    name: 'courses'
                 },
                 {
                     path: 'buyered',
