@@ -98,21 +98,26 @@ let router = new Router({
         {
             path: '/manage',
             name: 'manage',
-            component: () => import('./views/Manage/layout.vue'),
+            component: () => import('./views/layout.vue'),
             children: [
                 {
-                    path: 'interest',
-                    component: () => import('./views/Manage/Interest.vue')
+                    path: '',
+                    component: () => import('./views/Manage/layout.vue'),
+                    children: [
+                        {
+                            path: 'interest',
+                            component: () => import('./views/Manage/Interest.vue')
+                        },
+                        {
+                            path: 'order',
+                            component: () => import('./views/Manage/Order.vue')
+                        },
+                        {
+                            path: 'invoice',
+                            component: () => import('./views/Manage/Invoice.vue')
+                        },
+                    ]
                 },
-                {
-                    path: 'order',
-                    component: () => import('./views/Manage/Order.vue')
-                },
-                {
-                    path: 'invoice',
-                    component: () => import('./views/Manage/Invoice.vue')
-                },
-
 
             ]
 

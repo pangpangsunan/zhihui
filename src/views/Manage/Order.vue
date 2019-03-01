@@ -1,30 +1,6 @@
 <template>
     <div class="container">
-        <p class="nav-title">管理中心</p>
         <div class="manage-wrapper">
-            <div class="manage-left">
-                <ul class="manage-menu">
-                    <li>
-                        <router-link to="/" active-class="active" exact>完善资料</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" active-class="active" exact>绑定手机</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" active-class="active" exact>修改密码</router-link>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <router-link to="/manage/interest" active-class="active" exact>学习兴趣</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/manage/order" active-class="active" exact>课程订单</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/manage/invoice" active-class="active" exact>发票管理</router-link>
-                    </li>
-                </ul>
-            </div>
             <div class="manage-right">
                 <div class="manage-content">
                     <ul class="tab-list font-middle">
@@ -33,21 +9,16 @@
                         <li @click="current='page3';load(4)" :class="current==='page3'?'order-active':''">已取消</li>
                     </ul>
                     <div class="clear"></div>
-
-                    <ul>
-                        <li>
-                            <div class="orderlist" v-for="item in arr">
-                                <img :src="item.image" alt="" class="courseimg">
-                                {{item.name}}
-                                {{item.updateDate}}
-                                {{item.price}}
-                                {{item.orderid}}
-                                <button>申请发票</button>
-
-                            </div>
-                        </li>
-
-                    </ul>
+                    <div class="orderlist" v-for="item in arr">
+                        <img :src="item.image" alt="" class="course-img">
+                        <div class="course-info ">
+                            <div class="course-name">{{item.name}}</div>
+                            <div class="course-price font-middle">{{item.price}}</div>
+                            <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
+                            <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,58 +26,13 @@
 </template>
 <style scoped>
 
-    .container {
-        min-height: 40rem;
-    }
-
-    .manage-wrapper {
-        width: 100%;
-        height: 100%;
-    }
-
-    .manage-left {
-        width: 18%;
-        background: #FAFAFA;
-        border-radius: 2px;
-        float: left;
-        height: 43rem;
-    }
-
     .manage-right {
         width: 80%;
         background: #FFFFFF;
         border-radius: 2px;
         float: right;
-        height: 43rem;
+        min-height: 43rem;
 
-    }
-
-    .manage-menu {
-        text-align: center;
-        padding-top: 2rem;
-    }
-
-    .divider {
-        background: rgba(0, 0, 0, 0.08);
-        height: 1px !important;
-        margin: 0 1rem;
-    }
-
-    .manage-menu li {
-        height: 2.75rem;
-        line-height: 2.75rem;
-    }
-
-    .manage-menu a {
-        color: #222222;
-        height: 2.75rem;
-        line-height: 2.75rem;
-        display: block;
-    }
-
-    .manage-menu a .active, .manage-menu a:hover {
-        background-color: #4459CC;
-        color: #fff;
     }
 
     .manage-content {
@@ -135,8 +61,49 @@
         background-color: #F3F5F7;
         height: 8.75rem;
         margin-top: 2rem;
-        margin-left: 1.6rem;
+        text-align: left;
+
     }
+
+    .course-img {
+        width: 15.5rem;
+        height: 8.75rem;
+        float: left;
+    }
+
+    .course-info {
+        height: 8.75rem;
+        position: relative;
+
+        float: right;
+        width: 67%;
+    }
+
+    .course-name {
+        font-size: 1rem;
+        margin: 1rem 0;
+    }
+
+    .course-price {
+        color: #F5892A;
+    }
+    .orderid{
+        margin-top: 1rem;
+    }
+    .orderid,.order-finishedtime {
+        color: #666666;
+
+    }
+    @media screen and (max-width: 768px) {
+        .course-info {
+            width: 62%;
+        }
+        .orderid{
+            margin-top: .5rem;
+        }
+
+    }
+
 
 
 </style>
@@ -153,7 +120,7 @@
         },
         methods: {
             load(status) {
-                this.arr.length=0;
+                this.arr.length = 0;
                 axios.get('/edu/order/getOrderList', {
                     params: {
                         status: status

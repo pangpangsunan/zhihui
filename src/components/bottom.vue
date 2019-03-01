@@ -32,7 +32,7 @@
     }
 
     .three {
-        color: #757A7C;
+        color: #fff;
         text-align: center;
         padding: 1rem;
     }
@@ -55,30 +55,4 @@
         text-align: left;
     }
 
-    .con {
-        display: flex;
-        margin: 0 auto;
-        overflow: hidden;
-        text-align: right;
-
-    }
-
-    .con div {
-        width: 24rem;
-    }
-
-
-    .kefu {
-        text-align: right;
-        margin-top: 1.6rem;
-        margin-right: 1rem;
-    }
-
-    .kefu div:nth-child(2) {
-        color: #FFFFFF;
-    }
-
-    .kefu div:nth-child(3), .gray {
-        color: #757A7C;
-    }
 </style>

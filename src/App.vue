@@ -5,13 +5,14 @@
     * {
         padding: 0;
         margin: 0;
+
     }
 
     @media screen {
         html {
             font-size: 16px;
             font-family: "SourceHanSansSC-Regular";
-            color: #222222;
+
         }
     }
 
@@ -31,6 +32,7 @@
 
     button {
         border: none;
+        background: none;
     }
 
     ul {
@@ -128,6 +130,7 @@
     .clear {
         clear: both;
     }
+
 
 
 </style>

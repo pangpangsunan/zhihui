@@ -15,7 +15,7 @@
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <span><img src="@/assets/img_avatar_default.png"></span>
-                        <span class="username">&nbsp;{{userinfo.userinfo.nickname}}</span>
+                        <span class="username">&nbsp;{{userinfo.userInfo.nickname}}</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">

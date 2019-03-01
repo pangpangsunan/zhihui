@@ -73,6 +73,9 @@
 </template>
 
 <style scoped>
+    .main {
+        color: #222222;
+    }
      .diolog {
         background: rgba(34, 34, 34, 0.80);
         width: 100%;

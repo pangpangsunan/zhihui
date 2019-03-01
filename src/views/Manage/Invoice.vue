@@ -1,56 +1,44 @@
 <template>
     <div class="container">
-        <p class="nav-title">管理中心</p>
         <div class="manage-wrapper">
-            <div class="manage-left">
-                <ul class="manage-menu">
-                    <li>
-                        <router-link to="/" active-class="active" exact>完善资料</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" active-class="active" exact>绑定手机</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" active-class="active" exact>修改密码</router-link>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <router-link to="/manage/interest" active-class="active" exact>学习兴趣</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/manage/order" active-class="active" exact>课程订单</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/manage/invoice" active-class="active" exact>发票管理</router-link>
-                    </li>
-                </ul>
-            </div>
             <div class="manage-right">
+                <p class="font-middle" style="margin: 1rem">已保存的抬头信息</p>
+                <div class=" font-middle" v-for="item in arr">
+                    <div class="personal-invoice" v-if="item.type==1">
+                        <div class="invoice-title">{{item.title}}<span class="invoice-type">个人</span></div>
+                        <div>{{item.dutyParagraph}}</div>
+                        <router-link to="/">
+                            <span>修改</span>
+                        </router-link>
+                        <router-link to="/">
+                            <span>删除</span>
+                        </router-link>
+                    </div>
+                    <div class="company-invoice" v-if="item.type==2">
+                        <div class="invoice-title">{{item.title}}<span class="invoice-type">{{item.type}}公司</span></div>
+                        <div>纳税人识别号：{{item.dutyParagraph}}</div>
+                        <div>联系电话：{{item.phone}}</div>
+                        <div>单位地址：{{item.address}}</div>
+                        <div>开户银行：{{item.bank}}111</div>
+                        <div>银行卡号：{{item.bankAccount}}111</div>
+                        <div>邮寄地址：{{item.mailingAddress}}
+                            <router-link to="/" class="update-btn">
+                                <span>修改</span>
+                            </router-link>
+                            <router-link to="/" class="delete-btn">
+                                <span>删除</span>
+                            </router-link>
+                        </div>
 
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <style scoped>
-
-    .container {
-        min-height: 40rem;
-    }
-
-    .manage-wrapper {
-        border: 1px solid red;
-        width: 100%;
-        height: 100%;
-        height: 45rem;
-    }
-
-    .manage-left {
-        width: 18%;
-        background: #FAFAFA;
-        border-radius: 2px;
-        float: left;
-        height: 43rem;
-    }
 
     .manage-right {
         width: 80%;
@@ -61,32 +49,42 @@
 
     }
 
-    .manage-menu {
-        text-align: center;
-        padding-top: 2rem;
+    .personal-invoice, .company-invoice {
+        width: 80%;
+        background: #F1F1F1;
+        border-radius: 2px;
+        height: 7.13rem;
+        margin: 0 auto;
+
     }
 
-    .divider {
-        background: rgba(0, 0, 0, 0.08);
-        height: 1px!important;
-        margin: 0 1rem;
+    .company-invoice {
+        height: 13.63rem;
+        margin: 1rem auto;
+        padding: 1rem;
     }
 
-    .manage-menu li {
-        height: 2.75rem;
-        line-height: 2.75rem;
+    .company-invoice div {
+        color: #444444;
+        margin-top: .3rem;
     }
 
-    .manage-menu a {
-        color: #222222;
-        height: 2.75rem;
-        line-height: 2.75rem;
-        display: block;
+    .invoice-title {
+        font-weight: bold;
     }
 
-    .manage-menu a .active, .manage-menu a:hover {
-        background-color: #4459CC;
-        color: #fff;
+    .invoice-type {
+        color: #888888;
+        letter-spacing: 0.4px;
+        margin-left: 80%;
+    }
+    .update-btn,.delete-btn{
+        display: inline-block;margin-left: 55%;
+        color: #4459CC;
+
+    }
+    .delete-btn{
+        margin-left: 4%;
     }
 
 
@@ -96,16 +94,22 @@
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
+            axios.get('/edu/invoice/getInvoiceTitleListByUser', {
+                params: {
+                    uid: 192,
+                    // type: type
+                }
+            }).then(p => {
+                this.arr = p.data.content
             })
         }, data() {
             return {
-                arr: [],
-                hasData: false
+                arr: []
             }
-        }
+
+        },
+
     }
+
 </script>
 
