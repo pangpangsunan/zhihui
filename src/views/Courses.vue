@@ -1,10 +1,16 @@
 <template>
     <div class="container">
+        <div class="container" style="position: relative">
+            <div class="diolog-coursetype" v-if="init">
+                <coursetype></coursetype>
+            </div>
+        </div>
         <p class="nav-title">全部 - 经营管理 - 领导力</p>
         <div class="subtitle">
             <div class="course-number">{{courseList.length}}门课程</div>
             <div class="dropdown course-type">
-                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                     <span class="course-type">全部类型
 				        <span class="caret"></span>
 			        </span>
@@ -107,7 +113,6 @@
         margin-top: .8rem;
     }
 
-
     .pro {
         width: 22.25rem;
         height: 21rem;
@@ -119,6 +124,17 @@
         width: 22.25rem;
         height: 12.875rem;
     }
+
+    .diolog-coursetype {
+        width: 100%;
+        height: 20rem;
+        background: rgba(34, 34, 34, 0.80);
+        border-radius: 2px;
+        position: absolute;
+        margin: 0 auto;
+
+    }
+
     @media (max-width: 768px) {
 
         .pro {
@@ -140,8 +156,12 @@
         },
         data() {
             return {
-                courseList: []
+                courseList: [],
+                init: true
             }
+        },
+        components: {
+            coursetype: () => import('@/components/coursetype.vue')
         }
     }
 </script>

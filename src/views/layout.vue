@@ -65,12 +65,6 @@
                 <router-link to="/chat" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
             </div>
         </div>
-        <div class="container" style="position: relative">
-            <div class="diolog-coursetype" v-if="$route.name=='courses'">
-                <coursetype></coursetype>
-            </div>
-        </div>
-
 
         <router-view/>
         <br>
@@ -82,16 +76,6 @@
 <style scoped>
     .main {
         color: #222222;
-    }
-    .diolog-coursetype {
-        width: 100%;
-        height: 20rem;
-        background: rgba(34, 34, 34, 0.80);
-        border-radius: 2px;
-        position: absolute;
-        margin: 0 auto;
-
-
     }
 
     .diolog {
@@ -379,7 +363,7 @@
         components: {
             top: () => import('@/components/top.vue'),
             bottom: () => import('@/components/bottom.vue'),
-            coursetype: () => import('@/components/coursetype.vue')
+
         }
     }
 </script>

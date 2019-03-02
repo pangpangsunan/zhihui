@@ -15,7 +15,8 @@
                         <h5 class="course-bg font-bestsmall">{{ item.course.background }}</h5>
                         <p class="course-price font-middle">￥{{ item.course.price }}</p>
                         <!--<p class="course-target" >{{ item.course.target }}</p> -->
-                        <p class="course-teacher font-bestsmall"><img src="@/assets/ic_home_teacher.png"> 吴苏南</p>
+                        <p class="course-teacher font-bestsmall"><img src="@/assets/ic_home_teacher.png"> {{
+                            item.course['function'] }}</p>
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
                             item.course.address}}</p>
                         <div class="btns1">
