@@ -14,6 +14,8 @@ Vue.filter('coursType', id => {
     return arr[id]
 });
 
+store.commit('load');
+
 new Vue({
     router,
     store,

@@ -15,16 +15,15 @@ export default new Vuex.Store({
         logout(store) {
             store.baseinfo = null;
             localStorage.clear();
-        }
+        },
+        load(store) {
+            if (!store.baseinfo) {
+                store.baseinfo = JSON.parse(localStorage.getItem('userinfo'))
+            }
+        },
     },
     actions: {},
     getters: {
-        userBaseInfo(store) {
-            if (store.baseinfo) {
-                return store.baseinfo;
-            }
-            return store.baseinfo = JSON.parse(localStorage.getItem('userinfo'))
-        },
         userInfo(store) {
             if (store.baseinfo) {
                 return store.baseinfo.userInfo
