@@ -2,59 +2,48 @@
     <div class="container">
         <p class="nav-title">与小仙女对话</p>
         <div class="chat-wrapper border-rad">
-          <div class="chat-left">
-            <div class="chat-content">
-                <ul id="chat-list">
-                    <li>
-                        <div class="teacher-chat">
-                            <img src="@/assets/cat.jpg" class="touxiang">
-                            <div class="teacher-chat-bg font-middle">
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
+            <div class="chat-left">
+                <div class="chat-content">
+                    <ul id="chat-list">
+                        <li v-show="false">
+                            <div class="teacher-chat">
+                                <img src="@/assets/cat.jpg" class="touxiang">
+                                <div class="teacher-chat-bg font-middle">
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
+                                    您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
 
+                                </div>
+                                <div class="send-time font-bestsmall">2018-11-01 15:00</div>
                             </div>
-                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="student-chat">
-                            <div class="student-chat-bg font-middle">
-                 您好您好您好您好您好您好您好您好您好您好您好您好您好您好
+                        </li>
+                        <li v-for="item in arr">
+                            <div :class="msgcls(item)">
+                                <div class="student-chat-bg font-middle">
+                                    {{ item.content }}
+                                </div>
+                                <img :src="item.sendFromHeadimag" class="touxiang">
+                                <div class="send-time font-bestsmall">{{ item.sendDate|datetime }}</div>
                             </div>
-                            <img src="@/assets/cat.jpg" class="touxiang">
-                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="student-chat">
-                            <div class="student-chat-bg font-middle">
-                                您好
-                            </div>
-                            <img src="@/assets/cat.jpg" class="touxiang">
-                            <div class="send-time font-bestsmall">2018-11-01 15:00</div>
-
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="send-msg">
+                    <textarea placeholder="" v-model="content"></textarea>
+                    <button class="blue-btn" @click="send()">发送</button>
+                </div>
             </div>
-            <div class="send-msg">
-                <textarea placeholder="非常感谢"></textarea>
-                <button class="blue-btn">发送</button>
+            <div class="chat-right">
+                <img src="@/assets/cat.jpg" class="teachers-img">
+                <p class="teachers-name">吴苏南nnan</p>
+                <p class="font-small">12345个粉丝</p>
+                <!--<button class="blue-btn">关注</button>-->
+                <button class="attention ">已关注</button>
             </div>
-          </div>
-          <div class="chat-right">
-            <img src="@/assets/cat.jpg" class="teachers-img">
-              <p class="teachers-name">吴苏南nnan</p>
-              <p class="font-small">12345个粉丝</p>
-              <!--<button class="blue-btn">关注</button>-->
-              <button class="attention ">已关注</button>
-          </div>
-          <div class="clear"></div>
+            <div class="clear"></div>
         </div>
     </div>
 </template>
@@ -69,6 +58,7 @@
         margin-right: 10rem;
         max-width: 30rem;
     }
+
     .student-chat-bg {
         background: #EEEEEE;
         border-radius: 2px;
@@ -80,59 +70,71 @@
         max-width: 30rem;
 
     }
+
     .student-chat .send-time {
         margin-right: 5rem;
     }
+
     .send-time {
         color: #A5A5A5;
         margin-left: 5rem;
     }
+
     .chat-wrapper {
         background-color: #F4F6F7;
         width: 71.25rem;
         height: 45rem;
     }
+
     .chat-left {
         background: #FAFAFA;
         width: 50rem;
         height: 45rem;
         float: left;
     }
+
     .chat-content {
         height: 35rem;
     }
+
     .send-msg {
         height: 10rem;
         position: relative;
         background-color: #fff;
 
     }
+
     .send-msg .blue-btn {
         position: absolute;
         bottom: 1rem;
         right: 2rem;
     }
+
     .send-msg textarea {
         height: 8rem;
         width: 40rem;
         border: none;
         padding: 1rem;
     }
+
     .chat-right {
         float: right;
         text-align: center;
         width: 21rem;
         height: 45rem;
     }
+
     .teachers-img {
         width: 7.5rem;
         height: 7.5rem;
-        border-radius:7.5rem ;
+        border-radius: 7.5rem;
         margin-top: 6rem;
     }
+
     .teachers-name {
         margin-top: .6rem;
     }
+
     /*attetion表示已关注状态*/
     .attention {
         background-color: #F4F6F7;
@@ -147,6 +149,7 @@
     .font-small {
         color: #666666;
     }
+
     .touxiang {
         width: 3.75rem;
         height: 3.75rem;
@@ -154,33 +157,64 @@
         display: inline-block;
     }
 
-    .teacher-chat ,.student-chat{
+    .teacher-chat, .student-chat {
         text-align: left;
         padding: 1rem;
     }
+
     .student-chat {
         text-align: right;
     }
+
     .student-chat .touxiang {
         margin-left: .8rem;
     }
 
 
-
 </style>
 <script>
     import axios from 'axios'
+    import qs from 'querystring'
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
-            })
+            this.load()
         }, data() {
             return {
                 arr: [],
-                hasData: false
+                content: null,
+            }
+        }, methods: {
+            send() {
+                if (!this.content) {
+                    alert('消息为空');
+                    return;
+                }
+                axios.post('/edu/message/addMessage', qs.stringify({
+                    content: this.content,
+                    sendFrom: this.$store.getters.userInfo.id,
+                    sendToIds: this.$route.params.id,
+                    type: 3
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.load()
+                    } else {
+
+                    }
+                })
+            }, load() {
+                axios.get('/edu/message/getPrivateMessageDetail', {
+                    params: {
+                        uid: this.$store.getters.userInfo.id,
+                        uidother: this.$route.params.id
+                    }
+                }).then(p => {
+                    if (p.data.content) {
+                        this.arr = p.data.content;
+                    }
+                })
+            }, msgcls(item) {
+                return item.sendFromId == this.$store.getters.userInfo.id ? "student-chat" : "teacher-chat"
             }
         }
     }

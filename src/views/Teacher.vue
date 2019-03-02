@@ -8,7 +8,9 @@
                 <div class="fans-number">1750 粉丝</div>
                 <div class="msg-btn">
                     <button class="blue-btn">关注</button>
-                    <button class="orange-btn" style="margin-left: 1rem">私信</button>
+                    <button @click="$router.push({name:'chat',params:$route.params})" class="orange-btn"
+                            style="margin-left: 1rem">私信
+                    </button>
                 </div>
             </div>
             <div class="teacher-info">
@@ -141,7 +143,6 @@
         overflow: hidden;
     }
 
-
     .spread {
         color: #4459CC;
         font-size: .8125rem;
@@ -166,7 +167,6 @@
         margin-top: .5rem;
     }
 
-
     .msg-btn {
         margin-top: 1rem;
     }
@@ -177,7 +177,6 @@
         display: flex;
         flex-wrap: wrap;
     }
-
 
     .pro {
         width: 22.25rem;
@@ -219,7 +218,6 @@
 
     @media screen and (max-width: 768px) {
 
-
         .teachname {
             font-size: 16px;
         }
@@ -238,14 +236,12 @@
             }).then(p => {
                 this.obj = p.data.content.userInfo;
                 this.obj2 = p.data.content.userExtra;
-
-                console.log(this.obj2);
             })
         },
         data() {
             return {
                 obj: {},
-                obj2:{},
+                obj2: {},
                 expand: false,
 
             }

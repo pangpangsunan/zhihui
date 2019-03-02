@@ -39,8 +39,9 @@ let router = new Router({
                     component: () => import( './views/CoursePlay.vue')
                 },
                 {
-                    path: 'teachersHome',
-                    component: () => import( './views/TeachersHome.vue')
+                    path: 'teacher/:id',
+                    name: 'teacher',
+                    component: () => import( './views/Teacher.vue')
                 },
                 {
                     path: 'help',
@@ -51,7 +52,8 @@ let router = new Router({
                     component: () => import('./views/PrivateMsg.vue')
                 },
                 {
-                    path: 'chat',
+                    path: 'chat/:id',
+                    name:'chat',
                     component: () => import('./views/Chat.vue')
                 },
                 {

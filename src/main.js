@@ -14,6 +14,11 @@ Vue.filter('coursType', id => {
     return arr[id]
 });
 
+Vue.filter('datetime', time => {
+    let dt = new Date(time);
+    return dt.toLocaleString() + dt.toLocaleTimeString();
+});
+
 store.commit('load');
 
 new Vue({

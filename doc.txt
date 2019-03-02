@@ -4,3 +4,5 @@
 前缀
     http://www.zhihui-app.com/edu/
 
+`接口地址，可测试
+    http://www.zhihui-app.com/edu/swagger-ui.html

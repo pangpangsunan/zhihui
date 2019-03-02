@@ -9,20 +9,21 @@
             <li class="list-group-item skin-white border-rad" v-for="item in arr">
                 <div class="box-attention">
                     <div class="attention-left">
-                        <router-link to="/teachershome">
+                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}">
                             <img :src="item.userInfo.headimgurl" class="img-circle">
                         </router-link>
                     </div>
                     <div class="attention-center">
-                        <router-link to="/teachershome"  class="teachname">
+                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}" class="teachname">
                             <div>{{item.userInfo.name}}</div>
                         </router-link>
-                        <div class="attention-number">{{item.userInfo.balance}} 人关注 <a href="" class="attention">取消关注</a>
+                        <div class="attention-number">{{item.userInfo.balance}} 人关注 <a href=""
+                                                                                       class="attention">取消关注</a>
                         </div>
                         <p class="duty">{{item.userInfo.label}}</p>
                     </div>
                     <div class="attention-right">
-                        <router-link to="/teachershome">
+                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}">
                             <span><img src="@/assets/cat.jpg" class="course-img"></span>
                             <span><img src="@/assets/cat.jpg" class="course-img"></span>
                         </router-link>
@@ -58,11 +59,11 @@
         margin-top: 1.5rem;
 
     }
-    .attention-number,.duty {
-        color:#888888;
+
+    .attention-number, .duty {
+        color: #888888;
         margin-top: .5rem;
     }
-
 
     .attention-right {
         margin-top: 0.7rem;
@@ -84,8 +85,9 @@
         vertical-align: middle;
         margin-top: 1rem;
     }
+
     .teachname {
-        color:#222222;
+        color: #222222;
         font-size: 24px;
     }
 
@@ -95,15 +97,11 @@
         }
     }
 
-
     @media screen and (max-width: 768px) {
-
 
         .teachname {
             font-size: 16px;
         }
-
-
 
         .list-group-item {
             height: 8rem;
@@ -118,6 +116,7 @@
             width: 12rem;
             height: 6.5rem;
         }
+
         .img-circle {
             width: 6rem;
             height: 6rem;
@@ -130,7 +129,12 @@
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
+            axios.get('/edu/collection/getCollectionPage', {
+                params: {
+                    uid: 192,
+                    type: 2
+                }
+            }).then(p => {
                 this.arr = p.data.content.records
                 this.hasData = !!p.data.content.records
             })
