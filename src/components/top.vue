@@ -10,12 +10,12 @@
                 <span class="help"><img src="@/assets/ic_help.png"></span>
                 <router-link to="/help" class="color-white">帮助与反馈</router-link>
             </li>
-            <li v-show="islogin()">
+            <li v-if="$store.getters.isLogin">
                 <div class="dropdown">
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <span><img src="@/assets/img_avatar_default.png"></span>
-                        <span class="username">&nbsp;{{userinfo.userInfo.nickname}}</span>
+                        <span class="username">&nbsp;{{$store.getters.userInfo.nickname || 'null'}}</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -30,22 +30,22 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <router-link to="/">学习兴趣</router-link>
+                            <router-link to="/manage/interest">学习兴趣</router-link>
                         </li>
                         <li>
-                            <router-link to="/">课程订单</router-link>
+                            <router-link to="/manage/order">课程订单</router-link>
                         </li>
                         <li>
-                            <router-link to="/">发票管理</router-link>
+                            <router-link to="/manage/invoice">发票管理</router-link>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <router-link to="/">退出登录</router-link>
+                            <a href="#" @click.prevent="logout()">退出登录</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li v-show="!islogin()">
+            <li v-if="!$store.getters.isLogin">
                 <router-link to="/user/login" class="color-white">登陆</router-link>
             </li>
 
@@ -79,11 +79,9 @@
         color: #fff;
     }
 
-
     .dropdown span {
         display: inline-block;
     }
-
 
     ul.menu > li {
         list-style-type: none;
@@ -94,15 +92,14 @@
 
 </style>
 <script>
+
     export default {
-        methods: {
-            islogin() {
-                return localStorage.uid > 0;
-            }
+        data() {
+            return {}
         },
-        data(){
-            return {
-                userinfo:JSON.parse(localStorage.userinfo)
+        methods: {
+            logout() {
+                this.$store.commit('logout');
             }
         }
     }
