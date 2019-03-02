@@ -1,5 +1,4 @@
 <template>
-
     <div class="manage-right">
         <p class="font-middle" style="margin: 1rem">已保存的抬头信息</p>
         <div class=" font-middle" v-for="item in arr">
@@ -29,7 +28,6 @@
                         <span>删除</span>
                     </router-link>
                 </div>
-
 
             </div>
         </div>

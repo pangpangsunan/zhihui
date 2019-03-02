@@ -56,10 +56,7 @@ let router = new Router({
                     name:'chat',
                     component: () => import('./views/Chat.vue')
                 },
-                {
-                    path: 'test',
-                    component: () => import('./views/Test.vue')
-                },
+
             ],
         },
         {
@@ -118,6 +115,18 @@ let router = new Router({
                         {
                             path: 'invoice',
                             component: () => import('./views/Manage/Invoice.vue')
+                        },
+                        {
+                            path: 'bindphone',
+                            component: () => import('./views/Manage/BindPhone.vue')
+                        },
+                        {
+                            path: 'updateinfo',
+                            component: () => import('./views/Manage/UpdateInfo.vue')
+                        },
+                        {
+                            path: 'updatepasswords',
+                            component: () => import('./views/Manage/UpdatePassword.vue')
                         },
                     ]
                 },

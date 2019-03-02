@@ -1,28 +1,25 @@
 <template>
-    <div class="container">
-        <div class="manage-wrapper">
-            <div class="manage-right">
-                <div class="manage-content">
-                    <ul class="tab-list font-middle">
-                        <li @click="current='page1';load(1)" :class="current==='page1'?'order-active':''">已购课程</li>
-                        <li @click="current='page2';load(0)" :class="current==='page2'?'order-active':''">待支付</li>
-                        <li @click="current='page3';load(4)" :class="current==='page3'?'order-active':''">已取消</li>
-                    </ul>
-                    <div class="clear"></div>
-                    <div class="orderlist" v-for="item in arr">
-                        <img :src="item.image" alt="" class="course-img">
-                        <div class="course-info ">
-                            <div class="course-name">{{item.name}}</div>
-                            <div class="course-price font-middle">{{item.price}}</div>
-                            <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                            <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
+    <div class="manage-right">
+        <div class="manage-content">
+            <ul class="tab-list font-middle">
+                <li @click="current='page1';load(1)" :class="current==='page1'?'order-active':''">已购课程</li>
+                <li @click="current='page2';load(0)" :class="current==='page2'?'order-active':''">待支付</li>
+                <li @click="current='page3';load(4)" :class="current==='page3'?'order-active':''">已取消</li>
+            </ul>
+            <div class="clear"></div>
+            <div class="orderlist" v-for="item in arr">
+                <img :src="item.image" alt="" class="course-img">
+                <div class="course-info ">
+                    <div class="course-name">{{item.name}}</div>
+                    <div class="course-price font-middle">{{item.price}}</div>
+                    <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
                 </div>
+                <div class="clear"></div>
             </div>
         </div>
     </div>
+
 </template>
 <style scoped>
 
@@ -87,23 +84,26 @@
     .course-price {
         color: #F5892A;
     }
-    .orderid{
+
+    .orderid {
         margin-top: 1rem;
     }
-    .orderid,.order-finishedtime {
+
+    .orderid, .order-finishedtime {
         color: #666666;
 
     }
+
     @media screen and (max-width: 768px) {
         .course-info {
             width: 62%;
         }
-        .orderid{
+
+        .orderid {
             margin-top: .5rem;
         }
 
     }
-
 
 
 </style>
