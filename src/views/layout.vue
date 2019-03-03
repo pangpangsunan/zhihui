@@ -55,14 +55,14 @@
             </ul>
 
             <div class="top-right">
-                <router-link to="/" class="hover">
+                <router-link to="" class="hover">
                     <i class="glyphicon glyphicon-comment"></i>
                     消息
                     <div class="gonggao font-bestsmall">
                         新年新优惠！购买线下课程，送直播课。此活动于 2019年1月10日
                     </div>
                 </router-link>
-                <router-link to="/chat" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
+                <router-link to="/privatemsg" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
             </div>
         </div>
 

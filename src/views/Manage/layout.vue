@@ -6,13 +6,13 @@
                 <div class="manage-left">
                     <ul class="manage-menu">
                         <li>
-                            <router-link to="/" active-class="active" exact>完善资料</router-link>
+                            <router-link to="/manage/updateinfo" active-class="active" exact>完善资料</router-link>
                         </li>
                         <li>
-                            <router-link to="/" active-class="active" exact>绑定手机</router-link>
+                            <router-link to="/manage/bindphone" active-class="active" exact>绑定手机</router-link>
                         </li>
                         <li>
-                            <router-link to="/" active-class="active" exact>修改密码</router-link>
+                            <router-link to="/manage/updatepassword" active-class="active" exact>修改密码</router-link>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -40,10 +40,9 @@
         padding: 0;
     }
     .manage-wrapper {
-
         width: 100%;
         height: 100%;
-        height: 45rem;
+        min-height: 45rem;
     }
     .manage-left {
         width: 18%;
