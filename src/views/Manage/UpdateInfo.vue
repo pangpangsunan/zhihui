@@ -37,7 +37,7 @@
     .diolog {
         background: rgba(34, 34, 34, 0.80);
         width: 100%;
-        height: 100%;
+        height: 100vh;
         position: absolute;
         z-index: 1000;
         top: 0;
