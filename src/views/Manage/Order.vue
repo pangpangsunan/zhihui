@@ -1,5 +1,5 @@
 <template>
-    <div class="manage-right">
+    <div>
         <div class="manage-content">
             <ul class="tab-list font-middle">
                 <li @click="current='page1';load(1)" :class="current==='page1'?'order-active':''">已购课程</li>
@@ -23,14 +23,6 @@
 </template>
 <style scoped>
 
-    .manage-right {
-        width: 80%;
-        background: #FFFFFF;
-        border-radius: 2px;
-        float: right;
-        min-height: 43rem;
-
-    }
 
     .manage-content {
         text-align: center;

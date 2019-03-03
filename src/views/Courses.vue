@@ -50,7 +50,6 @@
 </template>
 <style scoped>
 
-
     .course-name {
         margin-top: 1rem;
     }
@@ -81,6 +80,7 @@
         background: rgba(34, 34, 34, 0.80);
         border-radius: 2px;
         position: absolute;
+        left: 0;
         margin: 0 auto;
 
     }

@@ -1,27 +1,28 @@
 <template>
     <div class="container">
         <p class="nav-title">已购买的课程</p>
-        <div class="subtitle">
-            <div class="course-number">{{arr.length}}门课程</div>
-            <div class="dropdown course-type" v-if="hasData">
-                <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+
+        <div class="courses-category border-rad" v-if="hasData">
+            <div class="subtitle">
+                <div class="course-number">{{arr.length}}门课程</div>
+                <div class="dropdown course-type" v-if="hasData">
+                    <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                     <span class="course-type">全部类型
 				        <span class="caret"></span>
 			        </span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                    <li>
-                        <router-link to="/">线上</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/">线下</router-link>
-                    </li>
-                </ul>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li>
+                            <router-link to="/">线上</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/">线下</router-link>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
-            <div class="clear"></div>
-        </div>
-        <div class="courses-category border-rad" v-if="hasData">
             <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})" class="pro skin-white"
                  v-for="item in arr">
                 <img :src="item.userInfo.headimgurl" class="course-img">
@@ -48,9 +49,12 @@
 <style scoped>
     .pro {
         width: 22.25rem;
-        height: 20.25rem;
+        min-height: 18rem;
         margin-left: 1.2rem;
         margin-top: 1rem;
+    }
+    .courses-category{
+        min-height: 40rem;
     }
 
     .course-img {

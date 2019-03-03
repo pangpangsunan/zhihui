@@ -1,103 +1,134 @@
 <template>
-        <div class="manage-wrapper">
-            <div class="manage-right">
-                <div class="manage-content">
-                    <div class="font-big">选择你感兴趣的知识</div>
-                    <div class="font-small">请至少选择一项</div>
-                    <table class="font-middle">
-                        <tr>
-                            <td>执行力</td>
-                            <td>营销策略</td>
-                            <td>客户关系维护</td>
-                        </tr>
-                        <tr>
-                            <td>中层管理</td>
-                            <td>销售实战</td>
-                            <td>政策解读</td>
-                        </tr>
-                    </table>
-                    <button class="blue-btn">保存</button>
-                </div>
+    <div>
+        <div class="page1">
+            <p>为了您的账号安全，请绑定手机号码</p>
+            <div class="bindphone-page">
+                <form class="form-horizontal" @submit.prevent="submit()">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" v-model="phone" class="form-control" placeholder="请输入手机号" required
+                                   pattern="^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
+                                   pattern="\d{4}">
+                        </div>
+                        <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
+                                @click="getValCode()">
+                            {{ time }}
+                        </button>
+                    </div>
+                    <div class="tips">
+                        <span v-if="msg">{{msg}}</span>
+                    </div>
+                    <button type="submit" class="orange-btn">绑定</button>
+
+                </form>
             </div>
-            <div class="clear"></div>
         </div>
+        <div class="page2">
+            <p>请设置新密码</p>
+            <div class="bindphone-page">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="password" v-model="password" class="form-control"
+                                   placeholder="请输入6-12位密码，支持英文字母与数字">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="password" v-model="password1" class="form-control" placeholder="再次输入新密码">
+                        </div>
+                    </div>
+                    <div class="tips">
+                        <span v-if="msg">{{msg}}</span>
+                    </div>
+
+                    <button type="submit" @click.prevent="resetpwd()" class="orange-btn">完成</button>
+
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
 </template>
 <style scoped>
-
-    .container {
-        min-height: 40rem;
-    }
-
-    .manage-wrapper {
-        width: 100%;
-        height: 100%;
-
-    }
-
-
-    .manage-right {
-        width: 80%;
-        background: #FFFFFF;
-        border-radius: 2px;
-        float: right;
-        height: 43rem;
-
-    }
-
-    .manage-content {
-        width: 80%;
-        margin-left: 6em;
+    p{
+        margin-top: 3rem;
         text-align: center;
-        margin-top: 2rem;
     }
-
-    .manage-content table {
-        margin: .5rem auto;
-        border-collapse: separate;
-        border-spacing: 1.2rem;
-        color: #444444;
-    }
-
-    .manage-content td {
-        width: 11.25rem;
-        height: 3.5rem;
-        background: #F1F1F1;
-        border-radius: 2px;
-        text-align: center;
-
-    }
-
-    /*.click-choice表示点击选项后每个选项背景色的变化*/
-    .manage-content td .click-choice {
-        color: #fff;
-        background-color: #4459CC;
-    }
-
-    .font-small {
-        color: #444444;
-        margin-top: .5rem;
-    }
-
-    .blue-btn {
-        width: 12rem;
-    }
-
-
 </style>
 <script>
     import axios from 'axios'
+    import qs from 'querystring'
+
     export default {
-        created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
-            })
-        }, data() {
+        data() {
             return {
-                arr: [],
-                hasData: false
+                time: '获取验证码',
+                valCodeDisabled: false,
+                phone: null,
+                valCode: null,
+                valCodeTrue: null,
+                msg: null,
+
             }
-        },
+        }, methods: {
+            resetpwd() {
+                if (this.password != this.password1) {
+                    this.msg = '两次密码不一致';
+                    return;
+                }
+                this.sendCode(p => {
+                    axios.post('/edu/user/changePassword', qs.stringify({
+                        phone: this.phone,
+                        code: p.content,
+                        password: this.password
+                    })).then(p => {
+                        if (p.data.httpCode == 200) {
+                            this.$router.push('/user/success')
+                        } else {
+                            this.msg = "接口调用失败"
+                        }
+                    })
+                })
+            },
+            getValCode() {
+
+                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.valCodeTrue = p.data.content;
+
+                        this.time = '60s';
+                        this.valCodeDisabled = true;
+                        let intval = setInterval(() => {
+                            let time = parseInt(this.time);
+                            if (--time <= 0) {
+                                this.time = '获取验证码';
+                                clearInterval(intval);
+
+                                this.valCodeDisabled = false;
+                                return;
+                            }
+                            this.time = time + 's'
+
+                        }, 1000);
+
+                    } else {
+                        this.msg = '短信验证码发送失败'
+                    }
+                });
+
+            },
+            submit() {
+
+            }
+        }
     }
 </script>
+
+
 

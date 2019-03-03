@@ -1,5 +1,5 @@
 <template>
-    <div class="manage-right">
+    <div>
         <p class="font-middle" style="margin: 1rem">已保存的抬头信息</p>
         <div class=" font-middle" v-for="item in arr">
             <div class="personal-invoice" v-if="item.type==1">
@@ -34,15 +34,6 @@
     </div>
 </template>
 <style scoped>
-
-    .manage-right {
-        width: 80%;
-        background: #FFFFFF;
-        border-radius: 2px;
-        float: right;
-        height: 43rem;
-
-    }
 
     .personal-invoice, .company-invoice {
         width: 80%;

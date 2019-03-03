@@ -9,12 +9,11 @@
                 <router-link :to="{name:'courseInfo',params:{id:item.course.id}}">
                     <img :src="item.course.image" alt="" class="courseimg">
                     <div class="font-list">
-                        <h3 class="course-name">{{ item.course.name}}
+                        <div class="course-name">{{ item.course.name}}
                             <span class="offline">{{ item.course.type|coursType }}</span>
-                        </h3>
+                        </div>
                         <h5 class="course-bg font-bestsmall">{{ item.course.background }}</h5>
                         <p class="course-price font-middle">￥{{ item.course.price }}</p>
-                        <!--<p class="course-target" >{{ item.course.target }}</p> -->
                         <p class="course-teacher font-bestsmall"><img src="@/assets/ic_home_teacher.png"> {{
                             item.course['function'] }}</p>
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
@@ -25,6 +24,8 @@
                         </div>
                     </div>
                 </router-link>
+
+
             </li>
         </ul>
 
@@ -39,17 +40,31 @@
         margin: 1rem 0 0 0;
     }
 
+    .course-list {
+        padding: 0;
+        height: 10rem;
+        position: relative;
+
+    }
+
+
     .courseimg {
         width: 17.75rem;
         height: 10rem;
-        float: left;
-        margin-left: -1rem;
     }
 
     .font-list {
-        position: relative;
-        left: 0.625rem;
-        top: -0.625rem;
+        position: absolute;
+        top: .8rem;
+        left: 18.5rem;
+        width: 70%;
+    }
+
+    .btns1 {
+        position: absolute;
+        right: 0;
+        top: 6.25rem;
+        z-index: 10;
     }
 
     .course-list:nth-child(even) {

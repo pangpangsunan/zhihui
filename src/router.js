@@ -127,7 +127,7 @@ let router = new Router({
                             component: () => import('./views/Manage/UpdateInfo.vue')
                         },
                         {
-                            path: 'updatepasswords',
+                            path: 'updatepassword',
                             component: () => import('./views/Manage/UpdatePassword.vue')
                         },
                     ]

@@ -35,6 +35,9 @@
     </div>
 </template>
 <style scoped>
+    .list-group {
+        min-height: 30rem;
+    }
     .list-group-item {
         height: 10rem;
         display: flex;

@@ -1,40 +1,5 @@
 <template>
     <div class="main">
-        <div class="diolog">
-            <div class="public-course skin-white">
-                <form>
-                    <div class="form-group">
-                        <span>所属行业</span>
-                        <select>
-                            <option>请选择</option>
-                            <option>1234</option>
-                            <option>1234</option>
-                            <option>1234</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <span>所属行业</span>
-                        <select>
-                            <option>请选择</option>
-                            <option>1234</option>
-                            <option>1234</option>
-                            <option>1234</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <span>所属行业</span>
-                        <textarea>12344</textarea>
-
-                    </div>
-                    <div style="text-align: center">
-                        <button type="submit" class="blue-btn">发布</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
         <div class="bg-black">
             <top></top>
         </div>
@@ -78,16 +43,7 @@
         color: #222222;
     }
 
-    .diolog {
-        background: rgba(34, 34, 34, 0.80);
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        z-index: 1000;
-        display: none;
-    }
-
-    .main > > > .public-course {
+    .main>>> .public-course {
         width: 40rem;
         height: 24.5rem;
         margin: 5rem auto;
@@ -214,81 +170,80 @@
     }
 
     /*提取公共样式*/
-    .main > > > .skin-white {
+    .main>>> .skin-white {
         background-color: #fff;
     }
 
     /*.no-attention*/
-    .main > > > .no-attention {
+    .main>>> .no-attention {
         text-align: center;
         margin-top: 6rem;
-    }
-
-    .main > > > .courses-category {
         min-height: 30rem;
     }
 
-    .main > > > .course-list a, .main > > > .pro a {
+    .main>>> .courses-category {
+        min-height: 30rem;
+    }
+
+    .main>>> .course-list a, .main>>> .pro a {
         color: #222222;
     }
 
-    .main > > > .course-price {
+    .main>>> .course-price {
         color: #f5892a;
     }
 
-    .main > > > .course-name {
+    .main>>> .course-name {
         height: 1rem;
-        font-size: 1rem;
-    }
-
-    .main > > > .course-bg, .main > > > .course-teacher, .main > > > .course-location {
         color: #666666;
     }
 
-    .main > > > .gray {
+    .main>>> .course-bg, .main>>> .course-teacher, .main>>> .course-location {
+        color: #666666;
+    }
+
+    .main>>> .gray {
         position: relative;
         top: 3rem;
     }
 
     /*nav-title是类似，全部 - 经营管理 - 领导力*/
-    .main > > > .nav-title {
+    .main>>> .nav-title {
         color: #666666;
         font-size: 0.875rem;
         padding: 1rem 0 0.5rem 0;
     }
 
-    .main > > > .subtitle {
+    .main>>> .subtitle {
         color: #666666;
         background-color: #F3F5F7;
         margin: 0;
         font-size: 0.875rem;
         padding: 1rem 0 0 1rem;
+        height: 3rem;
+        width: 100%;
     }
 
-    .main > > > .course-number {
+    .main>>> .course-number {
         float: left;
     }
 
-    .main > > > .course-type {
+    .main>>> .course-type {
         float: right;
         padding-right: 2rem;
     }
 
-    .main > > > .btns1 {
-        position: absolute;
-        right: 3.125rem;
-        top: 6.25rem;
-    }
 
-    .main > > > .buy {
+
+    .main>>> .buy {
         margin-left: 1rem;
     }
 
-    .main > > > .drop-btn {
+    .main>>> .drop-btn {
         background: transparent;
     }
 
-    .main > > > .courses-category {
+    .main>>> .courses-category {
         background-color: #F3F5F7;
         display: flex;
         flex-wrap: wrap;
@@ -296,30 +251,30 @@
 
     /*课程信息和课程播放公用部分开始*/
 
-    .main > > > .public-style-info {
+    .main>>> .public-style-info {
         float: right;
         width: 65rem;
         padding-right: 4rem;
         margin-top: 0.5rem;
     }
 
-    .main > > > .all-comment {
+    .main>>> .all-comment {
         padding: 1rem;
         position: relative;
     }
 
-    .main > > > .img-left {
+    .main>>> .img-left {
         width: 3.75rem;
         height: 3.75rem;
         border-radius: 3.75rem;
         float: left;
     }
 
-    .main > > > .inputcon {
+    .main>>> .inputcon {
         position: relative;
     }
 
-    .main > > > .minput {
+    .main>>> .minput {
         width: 69rem;
         height: 6.25rem;
         background: #E9EBEC;
@@ -330,7 +285,7 @@
 
     }
 
-    .main > > > .send-btn {
+    .main>>> .send-btn {
         position: absolute;
         right: 1rem;
         bottom: 1rem;
@@ -342,8 +297,8 @@
         border-radius: 2px;
     }
 
-    .main > > > textarea.minput::-webkit-input-placeholder,
-    .main > > > textarea.return-input::-webkit-input-placeholder {
+    .main>>> textarea.minput::-webkit-input-placeholder,
+    .main>>> textarea.return-input::-webkit-input-placeholder {
         /* placeholder颜色  */
         color: #666666;
         border: none;

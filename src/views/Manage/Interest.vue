@@ -1,5 +1,5 @@
 <template>
-    <div class="manage-right">
+    <div>
         <div class="manage-content">
             <div class="font-big">选择你感兴趣的知识</div>
             <div class="font-small">请至少选择一项</div>
@@ -24,13 +24,6 @@
 </template>
 <style scoped>
 
-    .manage-right {
-        width: 80%;
-        background: #FFFFFF;
-        border-radius: 2px;
-        float: right;
-        height: 43rem;
-    }
 
     .manage-content {
         width: 80%;
