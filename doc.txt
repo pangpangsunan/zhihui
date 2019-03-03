@@ -4,5 +4,65 @@
 前缀
     http://www.zhihui-app.com/edu/
 
-`接口地址，可测试
+接口地址，可测试
     http://www.zhihui-app.com/edu/swagger-ui.html
+
+
+接口
+
+1.home： /edu/recommendation/getRecommendationCourseList
+
+2.courseInfo：/edu/course/getCourseInfoById
+
+3.评论的接口：/edu/comment/getCommenPageByCourseNew?cid=263
+回复的时候带上pid
+
+4.添加评论：https://www.showdoc.cc/113014908063361?page_id=816018907137722（/edu/comment/addComment）
+
+备注：评论里面，要加入回复的按钮，来进行回复的功能（改设计稿）
+
+
+购买成功的账号17184817795， 密码zhihui123456
+
+
+5.视频播放进度：http://116.62.23.7:3060/edu/video/savePlayRecord?uid=189&cid=268&chapterid=22¤ttime=100&duration=400
+
+
+6.拿到视频播放的真实地址：/edu/video/getRealDownloadUrl?downloadUrl=%2F190%2F249.mp4
+
+
+7.分类课程：行业列表：https://www.showdoc.cc/113014908063361?page_id=785386619854561
+（http://zh.zhihui-app.com/edu/dic/getIndustryList）
+        职能列表：https://www.showdoc.cc/113014908063361?page_id=785502516917835
+（http://zh.zhihui-app.com/edu/dic/getFunctionList）
+
+用户没有操作的时候显示：https://www.showdoc.cc/113014908063361?page_id=768352890153898
+（/edu/course/getCoursePageByIndustryAndFunction）
+
+8.已购课程：https://www.showdoc.cc/113014908063361?page_id=740323960225912（/edu/course/GetEnrollByUser）
+
+9.我的关注：https://www.showdoc.cc/113014908063361?page_id=768394309427144（/edu/collection/getCollectionPage）备注：参数type的类型，表示老师或者课程的列表
+
+10:教师详情页：https://www.showdoc.cc/113014908063361page_id=923845259586830（/edu/user/getUserDetail）
+
+教师下面的课程列表：https://www.showdoc.cc/113014908063361?page_id=837312611812909（/edu/course/getCoursePageByTeacher）
+
+11.私信列表：https://www.showdoc.cc/113014908063361?page_id=798482397179418（/edu/message/getSystemMessage）
+
+（有没有平台推送，待定）
+
+12:发布课程与需求 https://www.showdoc.cc/113014908063361?page_id=878748842336139（/edu/user/addCourseRequirement）
+
+下面是manage文件里面的页面
+
+13:学习兴趣：https://www.showdoc.cc/113014908063361?page_id=879177043513389（http://116.62.23.7:3060/edu/dic/getInterestList）
+
+14:完善信息：https://www.showdoc.cc/113014908063361?page_id=695009554395488（/edu/user/updateUser）
+
+15修改密码：https://www.showdoc.cc/113014908063361?page_id=1242545251189906（/edu/user/changePassword）
+备注：这里的修改密码和登录注册时候的短信验证的重置密码是同一个接口
+
+
+
+
+
