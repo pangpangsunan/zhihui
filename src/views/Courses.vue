@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div class="container" style="position: relative">
-            <div class="diolog-coursetype" v-if="init">
-                <coursetype></coursetype>
+            <div class="diolog-coursetype" v-if="showDialog">
+                <coursetype @loaddata="loaddata"></coursetype>
             </div>
         </div>
-        <p class="nav-title">全部 - 经营管理 - 领导力</p>
+        <p class="nav-title">全部 - {{ obj1.name }} - {{ obj2.name }}</p>
         <div class="subtitle">
-            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="course-number">{{ arr.length }}门课程</div>
             <div class="dropdown course-type">
                 <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -17,84 +17,34 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                     <li>
-                        <router-link to="/">线上</router-link>
+                        <a @click.prevent="reload(1)">线上</a>
                     </li>
                     <li>
-                        <router-link to="/">线下</router-link>
+                        <a @click.prevent="reload(2)">线下</a>
                     </li>
                 </ul>
             </div>
             <div class="clear"></div>
         </div>
         <div class="courses-category border-rad">
-            <div class="pro skin-white">
+            <div class="pro skin-white" v-for="item in arr">
                 <router-link to="/courseInfo">
-                    <img src="@/assets/cat.jpg" class="course-img">
+                    <img :src="item.image" class="course-img">
                     <div class="course-list">
-                        <div class="course-name">美国出口管制新政大盘点<span class="online">线上</span></div>
-                        <div class="course-price font-middle">￥1200</div>
+                        <div class="course-name">{{ item.name }}<span class="online">线上</span></div>
+                        <div class="course-price font-middle">￥{{ item.price }}</div>
                         <div class="course-teacher font-bestsmall">
                             <img src="@/assets/ic_home_teacher.png">
-                            谢顿宁
+                            {{ item['function'] }}
                         </div>
                         <div class="course-location font-bestsmall">
                             <img src="@/assets/ic_location.png">
-                            上海市梅龙镇广场9楼
+                            {{ item.address }}
                         </div>
                     </div>
                 </router-link>
             </div>
-            <div class="pro skin-white">
-                <router-link to="/courseInfo">
-                    <img src="@/assets/cat.jpg" class="course-img">
-                    <div class="course-list">
-                        <div class="course-name">美国出口管制新政大盘点<span class="online">线上</span></div>
-                        <div class="course-price font-middle">￥1200</div>
-                        <div class="course-teacher font-bestsmall">
-                            <img src="@/assets/ic_home_teacher.png">
-                            谢顿宁
-                        </div>
-                        <div class="course-location font-bestsmall">
-                            <img src="@/assets/ic_location.png">
-                            上海市梅龙镇广场9楼
-                        </div>
-                    </div>
-                </router-link>
-            </div>
-            <div class="pro skin-white">
-                <router-link to="/courseInfo">
-                    <img src="@/assets/cat.jpg" class="course-img">
-                    <div class="course-list">
-                        <div class="course-name">美国出口管制新政大盘点<span class="online">线上</span></div>
-                        <div class="course-price font-middle">￥1200</div>
-                        <div class="course-teacher font-bestsmall">
-                            <img src="@/assets/ic_home_teacher.png">
-                            谢顿宁
-                        </div>
-                        <div class="course-location font-bestsmall">
-                            <img src="@/assets/ic_location.png">
-                            上海市梅龙镇广场9楼
-                        </div>
-                    </div>
-                </router-link>
-            </div>
-            <div class="pro skin-white">
-                <router-link to="/courseInfo">
-                    <img src="@/assets/cat.jpg" class="course-img">
-                    <div class="course-list">
-                        <div class="course-name">美国出口管制新政大盘点<span class="online">线上</span></div>
-                        <div class="course-price font-middle">￥1200</div>
-                        <div class="course-teacher font-bestsmall">
-                            <img src="@/assets/ic_home_teacher.png">
-                            谢顿宁
-                        </div>
-                        <div class="course-location font-bestsmall">
-                            <img src="@/assets/ic_location.png">
-                            上海市梅龙镇广场9楼
-                        </div>
-                    </div>
-                </router-link>
-            </div>
+
         </div>
     </div>
 </template>
@@ -146,7 +96,12 @@
 
 </style>
 <script>
+    /*
+    大分类接口 http://zh.zhihui-app.com/edu/dic/getIndustryList
+    小分类 http://zh.zhihui-app.com/edu/dic/getFunctionList
+     */
     import axios from 'axios'
+    import qs from 'querystring'
 
     export default {
         created() {
@@ -157,11 +112,36 @@
         data() {
             return {
                 courseList: [],
-                init: true
+                showDialog: true,
+                arr: [],
+                type: 0,
+                obj1: {},
+                obj2: {}
             }
         },
         components: {
             coursetype: () => import('@/components/coursetype.vue')
+        }, methods: {
+            loaddata(obj1, obj2) {
+                this.obj1 = obj1;
+                this.obj2 = obj2;
+                this.showDialog = false;
+                axios.get('/edu/course/getCoursePageByIndustryAndFunction', {
+                    params: {
+                        industryid: obj1.id,
+                        functionid: obj2.id,
+                        type: this.type,
+                    }
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.arr = p.data.content.records
+                    }
+                })
+            },
+            reload(type) {
+                this.type = type;
+                this.loaddata(this.obj1, this.obj2);
+            }
         }
     }
 </script>

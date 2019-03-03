@@ -2,21 +2,14 @@
     <div>
         <div class="left">
             <ul>
-                <li @click="showpage('yh')">优惠</li>
-                <li @click="showpage('jygl')">经营管理</li>
-                <li @click="showpage('yh')">优惠rrrr</li>
-                <li @click="showpage('jygl')">经营管理tt</li>
-                <li @click="showpage('yh')">优惠bbb</li>
-                <li @click="showpage('jygl')">ttt经营管理</li>
-                <li @click="showpage('yh')">bbbb优惠</li>
+                <li @click="settype1(item)" v-for="item in menus">{{ item.name }}</li>
             </ul>
         </div>
         <div class="right">
             <ul>
-                <li v-for="item in map[currentpage]">
-                    <router-link :to="item.path">{{item.title}}</router-link>
+                <li v-for="item in menus1">
+                    <a @click.prevent="loaddata(item)">{{item.name}}</a>
                 </li>
-
             </ul>
         </div>
         <div class="clear"></div>
@@ -24,48 +17,37 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         data() {
-
             return {
-                map: {
-                    yh: [
-                        {
-                            path: '/courses/laodongfa1',
-                            title: '劳动法'
-                        },
-                        {
-                            path: '/courses/laodongfa2',
-                            title: '薪酬'
-                        },
-                        {
-                            path: '/courses/laodongfa3',
-                            title: '薪酬33333'
-                        }
-                    ],
-                    jygl: [
-                        {
-                            path: '/courses/laodongfa1',
-                            title: '劳动法rrrrrrr'
-                        },
-                        {
-                            path: '/courses/laodongfa2',
-                            title: '薪酬rrrrrr'
-                        },
-                        {
-                            path: '/courses/laodongfa3',
-                            title: '薪酬33333rrrrrrr'
-                        }
-                    ],
-                },
-                currentpage: 'yh'
+                menus: {},
+                menus1: [],
+                currentMenu: {},
             }
 
         },
         methods: {
-            showpage(page) {
-                this.currentpage = page;
+            settype1(obj) {
+                this.currentMenu = obj
+            },
+            loaddata(obj) {
+                this.$emit('loaddata', this.currentMenu, obj)
             }
+        },
+        created() {
+            axios.get('/edu/dic/getIndustryList').then(p => {
+                this.currentMenu = p.data.content[0];
+                for (let obj of p.data.content) {
+                    let id = obj.id
+                    this.menus[id] = obj;
+                }
+            });
+
+            axios.get('/edu/dic/getFunctionList').then(p => {
+                this.menus1 = p.data.content
+            })
         }
     }
 </script>

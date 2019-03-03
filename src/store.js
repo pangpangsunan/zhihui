@@ -5,7 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        baseinfo: null
+        baseinfo: null,
+        course: {},
+        comments: [],
     },
     mutations: {
         login(store, baseinfo) {
@@ -21,6 +23,12 @@ export default new Vuex.Store({
                 store.baseinfo = JSON.parse(localStorage.getItem('userinfo'))
             }
         },
+        course(store, obj) {
+            store.course = obj
+        },
+        comments(store, arr) {
+            store.comments = arr
+        }
     },
     actions: {},
     getters: {
@@ -39,5 +47,11 @@ export default new Vuex.Store({
         isLogin(store) {
             return !!store.baseinfo
         },
+        course(store) {
+            return store.course
+        },
+        comments(store) {
+            return store.comments
+        }
     }
 });

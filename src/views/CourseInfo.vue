@@ -1,18 +1,18 @@
 <template>
     <div class="container">
 
-        <p class="nav-title">全部 - 推荐 - 美国出口管制新政大盘点</p>
+        <p class="nav-title">全部 - 推荐 - {{ course.course.name }}</p>
         <div class="course-top pubwidth1">
             <div class="left">
-                <img src="@/assets/cat.jpg">
+                <img :src="course.course.image">
             </div>
             <div class="right">
-                <p class="course-title font-big">国出口管制新政大盘点</p>
-                <p class="font-middel">线下课程</p>
-                <p class="course-price font-big">$1200</p>
-                <p class="font-middle course-studynum">1234人学过</p>
+                <p class="course-title font-big">{{ course.course.name }}</p>
+                <p class="font-middel">{{ course.course.type|isOnline }}</p>
+                <p class="course-price font-big">${{ course.course.price }}</p>
+                <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
                 <div class="btns2">
-                    <button class="white-btn" @click="$router.replace('/coursePlay')">试看</button>
+                    <button class="white-btn" @click="$router.push('/coursePlay/'+course.course.id)">试看</button>
                     <button class="buy orange-btn">购买</button>
                 </div>
             </div>
@@ -30,51 +30,48 @@
                 <li v-show="current==='page1'">
                     <div class="all-comment">
                         <p class="title">课程讲师</p>
-                        <img src="@/assets/cat.jpg" class="img-left">
+                        <img :src="course.userInfo.headimgurl" class="img-left">
                         <div class="public-style-info">
-                            <span class="font-middle">谢顿宁</span>
-                            <span class="font-bestsmall">7人关注</span>
-                            <span class="attention"><a href="javascript:;">关注</a> </span>
+                            <span class="font-middle">{{ course.userInfo.name }}</span>
+                            <span class="font-bestsmall">{{ course.userExtra.remark||0 }}人关注</span>
+                            <span class="attention"><a @click.prevent="view(course.userInfo.id)">关注</a> </span>
                             <br>
-                            <span class="font-small">世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。国际贸易与海事事务专家、世界海关组织认证培训师、联合国安理会贸易管制专家智库成员。十一年中国海关工作经验，主要研究领域包括：商品归类、海关估价、原产地规则、风险管理、贸易管制等，曾为中国入世谈判提供智力支持。受国内外多个平台和机构邀请，常年为社会各界提供：理论研究、政策咨询、专题演讲、培训辅导等专业服务。</span>
+                            <span class="font-small">{{ course.userExtra.introduction }}</span>
                         </div>
                         <div class="clear"></div>
                         <p class="title">课程背景</p>
-                        <p class="info font-small">2018年是美国对外贸易政策发生剧变的一年。在出口管制领域，美国政府多管齐下，全面加强了整个出口管制体系的立法与执法。</p>
+                        <p class="info font-small">{{ course.course.background }}</p>
                         <p class="title">课程受众</p>
-                        <p class="info font-small">
-                            企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，在保障生产经营活动的连续性和稳定性的同时有效控制合规风险？</p>
+                        <p class="info font-small" v-html="nl2br(course.course.audiences)">
+                        </p>
                         <p class="title">学习目标</p>
-                        <p class="info font-small">
-                            课程要点（Agenda）<br>
-                            美国出口管制法律框架<br>
-                            出口、视同出口、再出口<br>
-                            出口管制清单、实体清单、国别图<br>
-                            许可证申请与例外<br>
-                            2018出口管制改革法案概要<br>
-                            2018外国投资风险评估现代化法案概要<br>
-                            “主要制裁”和“次要制裁”<br>
-                            内部控制/合规计划<br>
-                            出口管制合规实践。</p>
+                        <p class="info font-small" v-html="nl2br(course.course.target)">
+                        </p>
                         <p class="title">学习地点</p>
-                        <p class="info font-small">上海市梅龙镇广场9楼</p>
+                        <p class="info font-small">{{ course.course.address }}</p>
                     </div>
                 </li>
-                <li v-show="current==='page2'">我是two</li>
+                <li v-show="current==='page2'">
+                    <ul>
+                        <li v-for="item in course.introduction">
+                            <img :src="item.url" alt="">
+                        </li>
+                    </ul>
+                </li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
                         <div class="inputcon">
-                            <textarea placeholder="输入您的评论" class="minput" v-model="comment">wwwwwwww</textarea>
+                            <textarea placeholder="输入您的评论" class="minput" v-model="comment"></textarea>
                             <button class="send-btn" @click="send()">发送</button>
                         </div>
-                        <p class="title font-middle">共587条评论</p>
+                        <p class="title font-middle">共{{ comments.length }}条评论</p>
 
 
-                        <div class="con-wrapper" v-for="item in arr">
+                        <div class="con-wrapper" v-for="item in comments">
                             <img :src="item.comment.headimgurl" class="img-left">
                             <div class="public-style-info">
                                 <span class="font-middle">{{item.comment.uname}}</span>
-                                <span class="font-bestsmall">{{item.comment.createDate}}</span>
+                                <span class="font-bestsmall">{{item.comment.createDate|datetime}}</span>
                                 <br>
                                 <span class="font-small">{{item.comment.content}}。</span>
                             </div>
@@ -102,7 +99,6 @@
         width: 24rem;
         height: 13.5rem;
     }
-
 
     .course-top .right {
         position: absolute;
@@ -145,7 +141,6 @@
         padding: 2rem 0;
     }
 
-
     .course-tab {
         margin-top: 2rem;
     }
@@ -181,7 +176,6 @@
         top: 9rem;
     }
 
-
     .tab-list li {
         float: left;
         cursor: pointer;
@@ -198,90 +192,88 @@
 </style>
 
 <script>
+    /* /edu/course/getCourseInfoById
+     https://www.showdoc.cc/item/password/113014908063361?page_id=710161494064376&redirect=%2F113014908063361%3Fpage_id%3D710161494064376s
+     评论 get  http://www.zhihui-app.com/edu/comment/getCommenPageByCourseNew?cid=263
+           post doc https://www.showdoc.cc/113014908063361?page_id=1020245263315513
+
+    */
     import axios from 'axios'
     import qs from 'querystring'
+    import {mapGetters} from 'vuex'
 
     export default {
         data() {
             return {
                 pagenum: 1,
                 comment: '',
-                current: 'page3',
-                arr: [
-                    {
-                        "count": 2,
-                        "comment": {
-                            "id": 49,
-                            "createBy": 0,
-                            "createDate": 1542556800000,
-                            "updateBy": 0,
-                            "updateDate": null,
-                            "remark": null,
-                            "delFlag": 0,
-                            "cid": 103,
-                            "uid": 89,
-                            "uname": "学生1",
-                            "headimgurl": "http://thirdwx.qlogo.cn/mmopen/vi_32/oX72hn1bl4MLvd14N1ziaszYV0TsJztEhOwUeZ6Xf7L45CM5ibaJXgrxBR2FyL0PibS5ptOQYDkowPCZvsd2GJgpA/132",
-                            "pid": 0,
-                            "content": "很不错\n"
-                        }
-                    },
-                    {
-                        "count": 1,
-                        "comment": {
-                            "id": 52,
-                            "createBy": 0,
-                            "createDate": 1542643200000,
-                            "updateBy": 0,
-                            "updateDate": null,
-                            "remark": null,
-                            "delFlag": 0,
-                            "cid": 103,
-                            "uid": 94,
-                            "uname": "磊磊",
-                            "headimgurl": "http://thirdwx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEIvrfXPjYSn0AureofibSMKMjvp2pqPkXoH5gxxibAdLNbCLiaewmsd7RmLHvicvicyk1RibKTFiaJPZibriaw/132",
-                            "pid": 0,
-                            "content": "一般，感觉有点偏颇"
-                        }
-                    },
+                current: 'page1',
+                arr: [],
+                course: {
+                    course: {},
+                    userInfo: {},
+                    userExtra: {},
+                    introduction: []
+                },
+                comments: []
 
-                ]
             }
         },
+        computed: mapGetters([
+            'userInfo',
+            'isLogin'
+        ]),
         created() {
             this.load();
         },
         methods: {
             load() {
-                axios.get("/edu/comment/getCommenPageByCourseNew", {
+                let uid = 0;
+                if (this.isLogin) {
+                    uid = this.userInfo.id
+                }
+                axios.get("/edu/course/getCourseInfoById", {
                     params: {
-                        pagenum: this.pagenum
+                        id: this.$route.params.id,
+                        uid
                     }
                 }).then(p => {
-                    // this.arr = p.data.content.records;
-                    let arr = p.data.content.records;
-                    if (arr.length > 0) {
-                        for (let i of arr) {
-                            this.arr.push(i);
-                        }
-                        this.pagenum++;
+                    if (p.data.httpCode == 200) {
+                        this.course = p.data.content;
+                        this.$store.commit('course', p.data.content.course);
                     }
-
-
                 });
-            },
-            send() {
-                axios.post("/edu/comment/addComment", qs.stringify(
-                    {
-                        cid: 260,
-                        uid: localStorage.uid,
-                        content: this.comment
 
+                axios.get('/edu/comment/getCommenPageByCourseNew', {
+                    params: {
+                        cid: this.$route.params.id
                     }
-                ))
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.comments = p.data.content.records;
+                        this.$store.commit('comments', p.data.content.records);
+                    }
+                })
+            },
+            nl2br(str) {
+                if (str) {
+                    return str.replace(/\n/g, '<br/>')
+                }
+                return null
+            }, send() {
+                axios.post('/edu/comment/addComment', qs.stringify({
+                    cid: this.$route.params.id,
+                    uid: this.userInfo.id,
+                    content: this.comment
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        // alert('添加评论成功');
+                        this.load()
+                    } else {
+                        alert(p.data.msg)
+                    }
+                })
             }
-
         }
-
     }
 </script>

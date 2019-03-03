@@ -4,7 +4,7 @@
             <img src="@/assets/img_follow_nothing.png">
             <p>您尚未关注任何人</p>
         </div>
-        <p class="nav-title">已关注12人</p>
+        <p class="nav-title">已关注{{ arr.length }}人</p>
         <ul class="list-group" v-if="hasData">
             <li class="list-group-item skin-white border-rad" v-for="item in arr">
                 <div class="box-attention">
@@ -24,8 +24,7 @@
                     </div>
                     <div class="attention-right">
                         <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}">
-                            <span><img src="@/assets/cat.jpg" class="course-img"></span>
-                            <span><img src="@/assets/cat.jpg" class="course-img"></span>
+
                         </router-link>
                     </div>
                 </div>
@@ -135,7 +134,7 @@
                     type: 2
                 }
             }).then(p => {
-                this.arr = p.data.content.records
+                this.arr = p.data.content.records;
                 this.hasData = !!p.data.content.records
             })
         }, data() {

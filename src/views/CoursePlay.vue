@@ -1,20 +1,21 @@
 <template>
     <div class="container">
 
-        <p class="nav-title">正在播放 - 美国出口管制新政大盘点</p>
+        <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
             <div class="videosp">
-                <video src="http://47.92.130.227/upload/sp2.mp4" width="100%" height="100%" controls="controls"></video>
+                <video src="http://video.zhihui-app.com/%2F194%2F267-0?e=1551536816&token=JksNydlEkUXgEMbcfG2AtG97Cj0iM3zOq0abjVQS:uQFDCTYW4TTQUSQjj_8AJPmPRRs="
+                       id="vd" width="100%" height="100%" controls="controls"></video>
             </div>
             <div class="right">
-                <p class="title font-big">美国出口管制新政大盘点</p>
+                <p class="title font-big">{{ course.name }}</p>
                 <p class="trywatch">试看版</p>
-                <p class="content">企业如何理解和掌握这些新政的要义，并结合自身的产品与业务特点制定和完善相应的贸易合规制度，</p>
+                <p class="content">{{ course.background }}</p>
                 <div class="att-wrapper">
-                    <img src="@/assets/cat.jpg" class="img-left">
-                    <span>吴苏南</span>
+                    <img :src="course.image" class="img-left">
+                    <span>{{ course['function'] }}</span>
                     <br>
-                    <span class="font-middle">12人关注</span>
+                    <span class="font-middle">{{ course.totalNum }}人关注</span>
                     <button class="attention-btn blue-btn">关注</button>
 
                     <div class="clearfix"></div>
@@ -26,57 +27,17 @@
             <div class="tab-content skin-white">
                 <div class="all-comment">
                     <div class="inputcon">
-                        <textarea placeholder="输入您的评论" class="minput">wwwwwwww</textarea>
-                        <button class="send-btn border-rad">发送</button>
+                        <textarea placeholder="输入您的评论" v-model="comment" class="minput"></textarea>
+                        <button class="send-btn border-rad" @click="send()">发送</button>
                     </div>
-                    <p class="title font-middle">共587条评论</p>
-                    <div class="con-wrapper">
-                        <img src="@/assets/cat.jpg" class="img-left">
+                    <p class="title font-middle">共{{ comments.length }}条评论</p>
+                    <div class="con-wrapper" v-for="item in comments">
+                        <img :src="item.comment.headimgurl" class="img-left">
                         <div class="public-style-info">
-                            <span class="font-middle">吴苏南</span>
-                            <span class="font-bestsmall">2018-12-05 19:10</span>
+                            <span class="font-middle">{{ item.comment.uname }}</span>
+                            <span class="font-bestsmall">{{ item.comment.createDate|datetime }}</span>
                             <br>
-                            <span class="font-small font-small">全是干货，支持。</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="con-wrapper">
-                        <img src="@/assets/cat.jpg" class="img-left">
-                        <div class="public-style-info">
-                            <span class="font-middle">吴苏南</span>
-                            <span class="font-bestsmall">2018-12-05 19:10</span>
-                            <br>
-                            <span class="font-small">全是干货，支持。</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="con-wrapper">
-                        <img src="@/assets/cat.jpg" class="img-left">
-                        <div class="public-style-info">
-                            <span class="font-middle">吴苏南</span>
-                            <span class="font-bestsmall">2018-12-05 19:10</span>
-                            <br>
-                            <span class="font-small">全是干货，支持。</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="con-wrapper">
-                        <img src="@/assets/cat.jpg" class="img-left">
-                        <div class="public-style-info">
-                            <span class="font-middle">吴苏南</span>
-                            <span class="font-bestsmall">2018-12-05 19:10</span>
-                            <br>
-                            <span class="font-small">全是干货，支持。</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="con-wrapper">
-                        <img src="@/assets/cat.jpg" class="img-left">
-                        <div class="public-style-info">
-                            <span class="font-middle">吴苏南</span>
-                            <span class="font-bestsmall">2018-12-05 19:10</span>
-                            <br>
-                            <span class="font-small">全是干货，支持。</span>
+                            <span class="font-small font-small">{{ item.comment.content }}</span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -110,7 +71,6 @@
         padding: 2rem 0;
     }
 
-
     .course-tab {
         margin-top: 2rem;
     }
@@ -126,7 +86,6 @@
         width: 23rem;
         padding-top: 1rem;
     }
-
 
     .content {
         color: #666666;
@@ -158,10 +117,38 @@
 </style>
 
 <script>
+    /*
+    评论接口 http://zh.zhihui-app.com/edu/comment/getCommenPageByCourseNew?cid=263
+    上传进度 https://www.showdoc.cc/113014908063361?page_id=1595552577929797
+     */
+    import {mapGetters} from 'vuex'
+    import axios from 'axios'
+    import qs from 'querystring'
+
     export default {
         data() {
             return {
-                current: 'page3'
+                comment: null
+            }
+        },
+        computed: mapGetters([
+            'course',
+            'comments',
+            'userInfo'
+        ]), methods: {
+            send() {
+                axios.post('/edu/comment/addComment', qs.stringify({
+                    cid: this.$route.params.id,
+                    uid: this.userInfo.id,
+                    content: this.comment
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        // alert('添加评论成功');
+                        this.load()
+                    } else {
+                        alert(p.data.msg)
+                    }
+                })
             }
         }
     }

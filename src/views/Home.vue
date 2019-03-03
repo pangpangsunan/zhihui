@@ -6,7 +6,7 @@
         <p class="recommad-title border-rad skin-white">为您推荐的课程</p>
         <ul class="ulwarpper">
             <li class="col-sm-12 course-list" v-for="item in arr">
-                <router-link to="/courseInfo">
+                <router-link :to="{name:'courseInfo',params:{id:item.course.id}}">
                     <img :src="item.course.image" alt="" class="courseimg">
                     <div class="font-list">
                         <h3 class="course-name">{{ item.course.name}}

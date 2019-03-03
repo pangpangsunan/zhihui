@@ -2,7 +2,7 @@
     <div class="container">
         <p class="nav-title">已购买的课程</p>
         <div class="subtitle">
-            <div class="course-number">{{courseList.length}}门课程</div>
+            <div class="course-number">{{arr.length}}门课程</div>
             <div class="dropdown course-type">
                 <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -22,7 +22,7 @@
             <div class="clear"></div>
         </div>
         <div class="courses-category border-rad" v-if="hasData">
-            <div class="pro skin-white" v-for="item in courseList">
+            <div class="pro skin-white" v-for="item in arr">
                 <img src="@/assets/cat.jpg" class="course-img">
                 <div class="course-list">
                     <div class="course-name">{{ item.name }}<span class="online">{{ item.type|coursType }}</span></div>
@@ -68,6 +68,7 @@
     .course-location {
         margin-top: .5rem;
     }
+
     @media (max-width: 768px) {
 
         .pro {
@@ -80,22 +81,27 @@
 </style>
 <script>
     import axios from 'axios'
+    import {mapGetters} from 'vuex'
 
     export default {
         created() {
-            axios.get('/edu/order/getOrderList').then(p => {
-                for (let item of p.data.content.records) {
-                    for (let item1 of item.courseList) {
-                        item1.userName = item.userName
-                        this.courseList.push(item1)
-                    }
+            axios.get('/edu/course/GetEnrollByUser', {
+                params: {
+                    userid: this.userInfo.id,
                 }
-                this.hasData = !!this.courseList;
+            }).then(p => {
+                if (p.data.httpCode == 200) {
+                    this.arr = p.data.records;
+                    this.hasData = p.data.content.total > 0;
+                }
             })
         },
+        computed: mapGetters([
+            'userInfo'
+        ]),
         data() {
             return {
-                courseList: [],
+                arr: [],
                 hasData: false
             }
         }

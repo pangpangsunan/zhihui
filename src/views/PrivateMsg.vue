@@ -105,7 +105,7 @@
     export default {
         created() {
             axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
+                this.arr = p.data.content.records;
                 this.hasData = !!p.data.content.records
             })
         }, data() {

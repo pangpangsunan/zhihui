@@ -6,6 +6,8 @@ import store from './store'
 import './registerServiceWorker'
 import $ from 'jquery'
 import 'bootstrap/dist/js/bootstrap.min'
+import axios from 'axios'
+import qs from 'querystring'
 
 Vue.config.productionTip = false;
 
@@ -14,12 +16,40 @@ Vue.filter('coursType', id => {
     return arr[id]
 });
 
+Vue.filter('isOnline', id => {
+    let arr = [null, '线下', '音频', '视频', '专栏'];
+    return arr[id]
+});
+
+Vue.filter('nl2br', str => {
+    console.log(str);
+    return str.replace(/\n/g, '<br/>')
+});
+
 Vue.filter('datetime', time => {
     let dt = new Date(time);
     return dt.toLocaleString() + dt.toLocaleTimeString();
 });
 
 store.commit('load');
+
+Vue.prototype.view = (id, type = 2) => {
+    axios.post('/edu/collection/addCollection', qs.stringify({
+        collectionid: id,
+        uid: store.getters.userInfo.id,
+        type: type
+    }))
+};
+
+Vue.prototype.unview = (id, type = 2) => {
+    axios.post('/edu/collection/delCourseCollection', qs.stringify({
+        cid: id,
+        uid: store.getters.userInfo.id,
+    }))
+};
+
+
+Vue.prototype.msg = "fdsfds";
 
 new Vue({
     router,
