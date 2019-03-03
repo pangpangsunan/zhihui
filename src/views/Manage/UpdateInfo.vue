@@ -5,30 +5,28 @@
                 <div class="manage-content">
                     <p>
                         <span class="name">名称</span>
-                        <span class="nickname">风清扬</span>
-                        <span class="update" @click>修改</span>
+                        <span class="nickname">{{ userInfo.nickname||userInfo.phone }}</span>
+                        <span class="update" @click="show=true">修改</span>
                     </p>
                     <div style="margin-top: 2rem">
                         <span class="touxiang">头像</span>
                         <span>
-                            <img src="" class="touxiangimg">
+                            <img :src="userInfo.headimgurl" class="touxiangimg">
                         </span>
                         <div>
                             <button class="blue-btn">上传</button>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div class="clear"></div>
         </div>
-        <div class="diolog" v-if="init">
+        <div class="diolog" v-if="show">
             <div class="updateinfo-diolog skin-white">
                 <div class="font-big">修改名称</div>
-                <div class="newname"><input type="text" placeholder="请输入新名称"></div>
+                <div class="newname"><input type="text" v-model="username" placeholder="请输入新名称"></div>
 
-                <button class="blue-btn">保存</button>
+                <button class="blue-btn" @click="update()">保存</button>
             </div>
         </div>
     </div>
@@ -105,21 +103,35 @@
 
 </style>
 <script>
+
+    /*
+    /edu/user/updateUser
+     */
+    import {mapGetters} from 'vuex'
     import axios from 'axios'
+    import qs from 'querystring'
 
     export default {
-        created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
-            })
-        }, data() {
+        data() {
             return {
-                arr: [],
-                hasData: false,
-                init: false
+                show: false,
+                username: null,
             }
         },
+        computed: mapGetters([
+            'userInfo'
+        ]),
+        methods: {
+            update() {
+                axios.post('/edu/user/updateUser', qs.stringify({
+                    id: this.userInfo.id,
+                    nickname: this.username,
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.show = false;
+                    }
+                })
+            }
+        }
     }
 </script>
-

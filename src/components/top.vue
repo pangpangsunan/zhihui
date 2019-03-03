@@ -20,10 +20,10 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li>
-                            <router-link to="/">完整资料</router-link>
+                            <router-link to="/manage/updateinfo">完整资料</router-link>
                         </li>
                         <li>
-                            <router-link to="/">绑定手机</router-link>
+                            <router-link to="/manage/bindphone">绑定手机</router-link>
                         </li>
                         <li>
                             <router-link to="/user/resetpwd">修改密码</router-link>
