@@ -85,6 +85,9 @@
 
     export default {
         created() {
+            if (!this.isLogin) {
+                return;
+            }
             axios.get('/edu/course/GetEnrollByUser', {
                 params: {
                     userid: this.userInfo.id,
@@ -97,7 +100,8 @@
             })
         },
         computed: mapGetters([
-            'userInfo'
+            'userInfo',
+            'isLogin',
         ]),
         data() {
             return {

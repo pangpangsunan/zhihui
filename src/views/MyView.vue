@@ -17,8 +17,9 @@
                         <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}" class="teachname">
                             <div>{{item.userInfo.name}}</div>
                         </router-link>
-                        <div class="attention-number">{{item.userInfo.balance}} 人关注 <a href=""
-                                                                                       class="attention">取消关注</a>
+                        <div class="attention-number">{{item.userInfo.balance}} 人关注
+                            <a @click.prevent=""
+                               class="attention">取消关注</a>
                         </div>
                         <p class="duty">{{item.userInfo.label}}</p>
                     </div>
@@ -125,12 +126,16 @@
 </style>
 <script>
     import axios from 'axios'
+    import {mapGetters} from 'vuex'
 
     export default {
         created() {
+            if (!this.isLogin) {
+                return;
+            }
             axios.get('/edu/collection/getCollectionPage', {
                 params: {
-                    uid: 192,
+                    uid: this.userInfo.id,
                     type: 2
                 }
             }).then(p => {
@@ -142,7 +147,11 @@
                 arr: [],
                 hasData: false
             }
-        }
+        },
+        computed: mapGetters([
+            'isLogin',
+            'userInfo'
+        ])
     }
 </script>
 

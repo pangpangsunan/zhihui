@@ -261,6 +261,10 @@
                 }
                 return null
             }, send() {
+                if (!this.isLogin) {
+                    alert("请先登录");
+                    return;
+                }
                 axios.post('/edu/comment/addComment', qs.stringify({
                     cid: this.$route.params.id,
                     uid: this.userInfo.id,

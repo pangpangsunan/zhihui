@@ -34,14 +34,28 @@ Vue.filter('datetime', time => {
 store.commit('load');
 
 Vue.prototype.view = (id, type = 2) => {
+    if (!store.getters.isLogin) {
+        alert("请先登录");
+        return;
+    }
     axios.post('/edu/collection/addCollection', qs.stringify({
         collectionid: id,
         uid: store.getters.userInfo.id,
         type: type
-    }))
+    })).then(p => {
+        if (p.data.httpCode == 200) {
+            alert("关注成功")
+        } else {
+            alert(p.data.msg)
+        }
+    })
 };
 
 Vue.prototype.unview = (id, type = 2) => {
+    if (!store.getters.isLogin) {
+        alert("请先登录");
+        return;
+    }
     axios.post('/edu/collection/delCourseCollection', qs.stringify({
         cid: id,
         uid: store.getters.userInfo.id,

@@ -1,21 +1,15 @@
 <template>
     <div class="container">
-        <p class="nav-title">与小仙女对话</p>
+        <p class="nav-title">与{{ tinfo.name }}对话</p>
         <div class="chat-wrapper border-rad">
             <div class="chat-left">
                 <div class="chat-content">
                     <ul id="chat-list">
                         <li v-show="false">
                             <div class="teacher-chat">
-                                <img src="@/assets/cat.jpg" class="touxiang">
+                                <img src="" class="touxiang">
                                 <div class="teacher-chat-bg font-middle">
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言...
-                                    您好，欢迎参加我的课程。如有任何问题，请向我留言... 您好，欢迎参加我的课程。如有任何问题，请向我留言...
-
+                                    message
                                 </div>
                                 <div class="send-time font-bestsmall">2018-11-01 15:00</div>
                             </div>
@@ -37,9 +31,9 @@
                 </div>
             </div>
             <div class="chat-right">
-                <img src="@/assets/cat.jpg" class="teachers-img">
-                <p class="teachers-name">吴苏南nnan</p>
-                <p class="font-small">12345个粉丝</p>
+                <img :src="tinfo.headimgurl" class="teachers-img">
+                <p class="teachers-name">{{ tinfo.name }}</p>
+                <p class="font-small"> {{ 0 }}个粉丝</p>
                 <!--<button class="blue-btn">关注</button>-->
                 <button class="attention ">已关注</button>
             </div>
@@ -183,6 +177,8 @@
             return {
                 arr: [],
                 content: null,
+                tinfo: {},
+                tinfoex: {}
             }
         }, methods: {
             send() {
@@ -203,6 +199,15 @@
                     }
                 })
             }, load() {
+                axios.get('/edu/course/getTeacherInfoByCourse', {
+                    params: {
+                        cid: 268
+                    }
+                }).then(p => {
+                    this.tinfo = p.data.content.userInfo;
+                    this.tinfoex = p.data.content.userExtra;
+                });
+
                 axios.get('/edu/message/getPrivateMessageDetail', {
                     params: {
                         uid: this.$store.getters.userInfo.id,

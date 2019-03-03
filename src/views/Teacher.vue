@@ -3,11 +3,11 @@
         <p class="nav-title">讲师主页</p>
         <div class="teacher-wrapper">
             <div class="teacher-wrapper-top">
-                <img src="@/assets/cat.jpg" class="teacher-img">
+                <img :src="obj.headimgurl" class="teacher-img">
                 <div class="teacher-name">{{obj.name}}</div>
-                <div class="fans-number">1750 粉丝</div>
+                <div class="fans-number">{{ 0 }} 粉丝</div>
                 <div class="msg-btn">
-                    <button class="blue-btn">关注</button>
+                    <button class="blue-btn" @click="view($route.params.id)">关注</button>
                     <button @click="$router.push({name:'chat',params:$route.params})" class="orange-btn"
                             style="margin-left: 1rem">私信
                     </button>
@@ -25,7 +25,7 @@
                     <p class="teacher-tag">语言能力</p>
                     <p>{{obj.language}}</p>
                     <p class="teacher-tag">从业经验</p>
-                    <p>1999-12-31 至 2011-12-31 上海海关</p>
+                    <p>{{ obj2.customerIntroduction }}</p>
                     <p class="spread" @click="expand=false" v-show="expand"><img src="@/assets/ic_less.png"> 收起</p>
                 </div>
             </div>
@@ -52,59 +52,22 @@
         </div>
         <div class="courses-type">
 
-            <div class="pro">
-                <router-link to="/courseInfo">
-                    <div class="top-img"></div>
-                    <div class="p-title">美国出口管制新政大盘点<span class="online">线上</span></div>
-                    <div class="price">￥1200</div>
+            <div class="pro" v-for="item in arr">
+                <router-link :to="{name:'courseInfo',params:$route.params}">
+                    <div class="top-img">
+                        <img :src="item.courseInfo.image">
+                    </div>
+                    <div class="p-title">{{ item.courseInfo.name }}<span class="online">线上</span></div>
+                    <div class="price">￥{{ item.courseInfo.price }}</div>
                     <div class="name">
                         <img src="@/assets/ic_home_teacher.png">
-                        谢顿宁
+                        {{ obj.name }}
                     </div>
                     <div class="name">
                         <img src="@/assets/ic_location.png">
-                        上海市梅龙镇广场9楼
+                        {{ item.courseInfo.address }}
                     </div>
                 </router-link>
-            </div>
-            <div class="pro">
-                <div class="topImg"></div>
-                <div class="p-title">美国出口管制新政大盘点<span class="online">线上</span></div>
-                <div class="price">￥1200</div>
-                <div class="name">
-                    <img src="@/assets/ic_home_teacher.png">
-                    谢顿宁
-                </div>
-                <div class="name">
-                    <img src="@/assets/ic_location.png">
-                    上海市梅龙镇广场9楼
-                </div>
-            </div>
-            <div class="pro">
-                <div class="topImg"></div>
-                <div class="p-title">美国出口管制新政大盘点<span class="online">线上</span></div>
-                <div class="price">￥1200</div>
-                <div class="name">
-                    <img src="@/assets/ic_home_teacher.png">
-                    谢顿宁
-                </div>
-                <div class="name">
-                    <img src="@/assets/ic_location.png">
-                    上海市梅龙镇广场9楼
-                </div>
-            </div>
-            <div class="pro">
-                <div class="topImg"></div>
-                <div class="p-title">美国出口管制新政大盘点<span class="online">线上</span></div>
-                <div class="price">￥1200</div>
-                <div class="name">
-                    <img src="@/assets/ic_home_teacher.png">
-                    谢顿宁
-                </div>
-                <div class="name">
-                    <img src="@/assets/ic_location.png">
-                    上海市梅龙镇广场9楼
-                </div>
             </div>
         </div>
     </div>
@@ -192,6 +155,11 @@
         background-color: blue;
     }
 
+    .top-img img {
+        width: 100%;
+        height: 100%;
+    }
+
     .p-title {
         font-size: 1rem;
         color: #222222;
@@ -236,6 +204,9 @@
             }).then(p => {
                 this.obj = p.data.content.userInfo;
                 this.obj2 = p.data.content.userExtra;
+            });
+            axios.get('/edu/course/getCoursePageByTeacher', {params: {id: this.$route.params.id}}).then(p => {
+                this.arr = p.data.content.records;
             })
         },
         data() {
@@ -243,6 +214,7 @@
                 obj: {},
                 obj2: {},
                 expand: false,
+                arr: []
 
             }
         },
