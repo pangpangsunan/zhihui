@@ -60,17 +60,19 @@
         padding: .6rem;
     }
 
-    .con-wrapper{
+    .con-wrapper {
         border-bottom: 1px solid #D8D8D8;
         padding: 1.5rem;
         position: relative;
 
     }
+
     .public-style-info {
-        width: 62rem!important;
+        width: 62rem !important;
         margin-top: .5rem;
         margin-right: 1rem;
     }
+
     .font-middle {
         color: #222222;
     }
@@ -79,10 +81,12 @@
         color: #666666;
 
     }
+
     .font-bestsmall {
         color: #A5A5A5;
         margin-left: .5rem;
     }
+
     .msg-num {
         border-radius: .625rem;
         background-color: #FF4040;
@@ -92,10 +96,10 @@
         right: 1rem;
         top: 2.5rem;
     }
+
     .title {
         margin-top: 2rem;
     }
-
 
 
 </style>

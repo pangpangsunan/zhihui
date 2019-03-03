@@ -3,7 +3,7 @@
         <p class="nav-title">已购买的课程</p>
         <div class="subtitle">
             <div class="course-number">{{arr.length}}门课程</div>
-            <div class="dropdown course-type">
+            <div class="dropdown course-type" v-if="hasData">
                 <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                     <span class="course-type">全部类型
@@ -22,17 +22,18 @@
             <div class="clear"></div>
         </div>
         <div class="courses-category border-rad" v-if="hasData">
-            <div class="pro skin-white" v-for="item in arr">
-                <img src="@/assets/cat.jpg" class="course-img">
+            <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})" class="pro skin-white"
+                 v-for="item in arr">
+                <img :src="item.userInfo.headimgurl" class="course-img">
                 <div class="course-list">
-                    <div class="course-name">{{ item.name }}<span class="online">{{ item.type|coursType }}</span></div>
+                    <div class="course-name">{{ item.enrollInfo.course.name }}<span class="online">线上</span></div>
                     <div class="course-teacher">
                         <img src="@/assets/ic_home_teacher.png">
-                        {{item.userName}}
+                        {{ item.userInfo.name }}
                     </div>
                     <div class="course-location">
                         <img src="@/assets/ic_location.png">
-                        {{item.address}}
+                        {{ item.enrollInfo.course.address }}
                     </div>
                 </div>
 
@@ -94,7 +95,7 @@
                 }
             }).then(p => {
                 if (p.data.httpCode == 200) {
-                    this.arr = p.data.records;
+                    this.arr = p.data.content.records;
                     this.hasData = p.data.content.total > 0;
                 }
             })
