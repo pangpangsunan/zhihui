@@ -173,7 +173,7 @@
                 }
             },
             submit() {
-                clearinter(page3);
+                // clearinter(page3);
 
             }
         }

@@ -7,7 +7,7 @@
                 <div>联系电话：{{item.phone}}</div>
                 <div>单位地址：{{item.address}}</div>
                 <router-link to="/" class="update-btn">
-                    <span>修改</span>
+                    <span @click="diolog='personal'">修改</span>
                 </router-link>
                 <router-link to="/" class="delete-btn">
                     <span>删除</span>
@@ -21,16 +21,19 @@
                 <div>开户银行：{{item.bank}}111</div>
                 <div>银行卡号：{{item.bankAccount}}111</div>
                 <div>邮寄地址：{{item.mailingAddress}}
-                    <router-link to="/" class="update-btn">
-                        <span>修改</span>
-                    </router-link>
-                    <router-link to="/" class="delete-btn">
+                    <a class="update-btn">
+                        <span @click="diolog='company'">修改</span>
+                    </a>
+                    <a class="delete-btn">
                         <span>删除</span>
-                    </router-link>
+                    </a>
                 </div>
 
             </div>
+            <div style="text-align: center"><button class="blue-btn" @click="diolog='company'">添加抬头信息</button></div>
         </div>
+        <company v-if="diolog=='company'"></company>
+        <personal v-if="diolog=='personal'"></personal>
     </div>
 </template>
 <style scoped>
@@ -75,6 +78,9 @@
     .delete-btn {
         margin-left: 4%;
     }
+    .bule-btn {
+        width: 100%;
+    }
 
 
 </style>
@@ -91,12 +97,19 @@
             }).then(p => {
                 this.arr = p.data.content
             })
-        }, data() {
+        },
+        data() {
             return {
-                arr: []
+                arr: [],
+                diolog: null
             }
 
         },
+        components: {
+            company: () => import('@/components/company.vue'),
+            personal: () => import('@/components/addinvoice.vue'),
+        }
+
 
     }
 

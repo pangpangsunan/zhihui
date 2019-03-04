@@ -129,7 +129,7 @@ let router = new Router({
                         {
                             path: 'updatepassword',
                             component: () => import('./views/Manage/UpdatePassword.vue')
-                        },
+                        }
                     ]
                 },
 

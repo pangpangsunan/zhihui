@@ -37,6 +37,7 @@
     </div>
 </template>
 <style scoped>
+
     .container {
         min-height: 43rem;
         padding: 0;
