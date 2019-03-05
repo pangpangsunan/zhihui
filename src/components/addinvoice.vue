@@ -6,57 +6,57 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">选择类型</label>
                     <span class="col-sm-2">
-                        <input type="radio" name="aa" value="个人" v-model="type">
+                        <input type="radio" name="type" value="1" v-model="invoiceobj.type">
                           个人
-                        <input type="radio" name="aa" value="企业" v-model="type">
+                        <input type="radio" name="type" value="2" v-model="invoiceobj.type">
                             企业
                       </span>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">发票抬头</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="发票抬头">
+                        <input type="text" class="form-control" placeholder="发票抬头" v-model="invoiceobj.title">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">纳税人识别号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="纳税人识别号">
+                        <input type="text" class="form-control" placeholder="纳税人识别号" v-model="invoiceobj.dutyParagraph">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" placeholder="联系电话">
+                        <input type="number" class="form-control" placeholder="联系电话" v-model="invoiceobj.phone">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">单位地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="单位地址">
+                        <input type="text" class="form-control" placeholder="单位地址" v-model="invoiceobj.address">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">开户银行</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="开户银行">
+                        <input type="text" class="form-control" placeholder="开户银行" v-model="invoiceobj.bank">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">银行账号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="银行账号">
+                        <input type="text" class="form-control" placeholder="银行账号" v-model="invoiceobj.bankAccount">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">邮寄地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="邮寄地址">
+                        <input type="text" class="form-control" placeholder="邮寄地址" v-model="invoiceobj.mailingAddress">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button class="blue-btn">保存</button>
+                        <button class="blue-btn" @click="addinvoice()">保存</button>
                     </div>
                 </div>
             </form>
@@ -67,11 +67,6 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: "diolog"
-    }
-</script>
 
 <style scoped>
     .diolog {
@@ -85,7 +80,6 @@
 
     .wrapper-page {
         width: 50rem;
-        height: 42rem;
         margin: 5rem auto;
         border-radius: 4px;
         padding: 2rem 3rem;
@@ -103,12 +97,38 @@
 </style>
 <script>
     import axios from 'axios'
+    import qs from 'querystring'
+    import {mapGetters} from 'vuex'
+
 
     export default {
         data() {
             return {
-                type:[]
+
+                invoiceobj: {
+                    type: '1'
+
+                }
             }
-        }
+        },
+        methods: {
+            addinvoice() {
+                this.invoiceobj.uid=this.userInfo.id
+                axios.post('/edu/invoice/addInvoiceTitle', qs.stringify(this.invoiceobj)).then(p=>{
+                    if(p.data.httpCode==200){
+                        this.$emit('update')
+
+                    }else {
+                        alert(p.data.msg)
+
+                    }
+                })
+
+            }
+        },
+        computed: mapGetters([
+            'userInfo'
+        ])
+
     }
 </script>

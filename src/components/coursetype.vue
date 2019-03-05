@@ -69,7 +69,7 @@
     }
 
     .active {
-        background: #00f;
+        background: #4459CC;
     }
 
     .left li {

@@ -50,17 +50,20 @@
                 </li>
 
             </ul>
-            <div class="diolog">
-                <div class="public-page skin-white">
-                    <div class="font-big">发布课程需求</div>
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label"></label>
-                        </div>
-                    </form>
-                </div>
+            <!--<div class="diolog">-->
+                <!--<div class="public-page skin-white">-->
+                    <!--<div class="font-big">发布课程需求</div>-->
+                    <!--<form class="form-horizontal">-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="" class="col-sm-2 control-label">tttttt</label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<select></select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                <!--</div>-->
 
-            </div>
+            <!--</div>-->
 
         </div>
 
