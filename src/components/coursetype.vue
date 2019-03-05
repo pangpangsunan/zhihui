@@ -2,12 +2,14 @@
     <div>
         <div class="left">
             <ul>
-                <li @click="settype1(item)" v-for="item in menus">{{ item.name }}</li>
+                <li @click="settype1(item)" v-for="item in menus" :class="{'active':item.id==currentMenu.id}">
+                    {{ item.name }}
+                </li>
             </ul>
         </div>
         <div class="right">
             <ul>
-                <li v-for="item in menus1">
+                <li v-for="item in menus1" v-if="currentMenu.id==item.industryid">
                     <a @click.prevent="loaddata(item)">{{item.name}}</a>
                 </li>
             </ul>
@@ -64,6 +66,10 @@
     .left ul {
         padding-top: 1.5rem;
 
+    }
+
+    .active {
+        background: #00f;
     }
 
     .left li {
