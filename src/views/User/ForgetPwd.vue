@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <p class="big-title">重置密码</p>
-        <div class="container">
+        <div class="container-l">
 
             <div class="form-horizontal">
                 <p class="validate-title">请选择一种验证方式</p>
@@ -31,7 +31,7 @@
         text-align: center;
     }
 
-    .container {
+    .container-l {
         height: 16.88rem;
     }
 </style>

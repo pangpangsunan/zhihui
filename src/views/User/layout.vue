@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="logins">
         <router-view class="content"></router-view>
         <bottom></bottom>
     </div>
@@ -7,27 +7,27 @@
 
 <style scoped>
 
-    .main {
+    .logins {
         background: url(../../assets/bg_login.png) no-repeat;
     }
 
-    .main .content {
+    .logins .content {
         min-height: 50rem;
         width: 100%;
     }
 
-    .main >>> .img-log {
+    .logins >>> .img-log {
         width: 8.25rem;
         height: 3rem;
     }
 
-    .main >>> .wrap {
+    .logins >>> .wrap {
         width: 20rem;
         margin: 0 auto;
         padding-top: 10rem;
     }
 
-    .main >>> .container {
+    .logins >>> .container-l {
         width: 20rem;
         background: #fff;
         padding: 2rem 1rem;
@@ -36,7 +36,7 @@
         margin-top: 1rem;
     }
 
-    .main >>> .big-title {
+    .logins >>> .big-title {
         color: #FFFFFF;
         font-size: 1.75rem;
         text-align: center;
@@ -45,54 +45,54 @@
 
     /*.orange-btn是橘黄色按钮，blue-btn2是蓝色按钮，blue-shot-btn是蓝色短按钮*/
 
-    .main >>> .orange-btn, .main >>> .blue-btn, .main >>> .blue-shot-btn {
+    .logins >>> .orange-btn, .logins >>> .blue-btn, .logins >>> .blue-shot-btn {
         width: 18rem;
         height: 3rem;
         color: #fff;
         border-radius: 2px;
     }
 
-    .main >>> .orange-btn {
+    .logins >>> .orange-btn {
         background: #F5892A;
     }
 
-    .main >>> .blue-btn {
+    .logins >>> .blue-btn {
         background: #4459CC;
     }
 
-    .main >>> .blue-shot-btn {
+    .logins >>> .blue-shot-btn {
         width: 5.7rem;
         background: #4459CC;
     }
 
-    .main >>> .btn-top-marge {
+    .logins >>> .btn-top-marge {
         margin-top: 1rem;
     }
 
-    .main >>> .text-grays {
+    .logins >>> .text-grays {
         margin-top: 1rem;
     }
 
-    .main >>> .text-gray1, .main >>> .text-gray2 {
+    .logins >>> .text-gray1, .logins >>> .text-gray2 {
         color: #AAAAAA;
         letter-spacing: 0;
         font-size: .88rem;
         cursor: pointer;
     }
 
-    .main >>> .text-gray2 {
+    .logins >>> .text-gray2 {
         margin-left: 10rem;
 
     }
 
-    .main >>> .tips {
+    .logins >>> .tips {
         position: relative;
         height: 1.5rem;
         color: #D62A2A;
         text-align: right;
     }
 
-    .main >>> .col-sm-12 input, .main >>> .col-sm-8 input {
+    .logins >>> .col-sm-12 input, .logins >>> .col-sm-8 input {
         height: 3rem;
         background: #E5E7EF;
         border-radius: 2px;
@@ -100,11 +100,11 @@
         color: #222222;
     }
 
-    .main >>> .gray {
+    .logins >>> .gray {
         line-height: 4rem;
     }
 
-    .main >>> #remenberpwd-link, .main >>> #register-link {
+    .logins >>> #remenberpwd-link, .logins >>> #register-link {
         border: none;
         color: #AAAAAA;
         letter-spacing: 0;
@@ -112,12 +112,12 @@
         cursor: pointer;
     }
 
-    .main >>> #register-link {
+    .logins >>> #register-link {
         margin-left: 10rem;
 
     }
 
-    .main >>> .val-btn[disabled] {
+    .logins >>> .val-btn[disabled] {
         opacity: 0.5;
     }
 </style>

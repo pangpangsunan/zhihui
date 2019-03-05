@@ -3,7 +3,7 @@
         <div class="page1" v-if="page=='page1'">
             <p>为了您的账号安全，请绑定手机号码</p>
             <div class="bindphone-page">
-                <form class="form-horizontal" @submit.prevent="submit()">
+                <form class="form-horizontal" @submit.prevent="bindphone()">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <input type="text" v-model="phone" class="form-control" placeholder="请输入手机号" required
@@ -16,14 +16,14 @@
                                    pattern="\d{4}">
                         </div>
                         <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
-                                @click="getValCode()">
+                                @click="getFirstCode()">
                             {{ time }}
                         </button>
                     </div>
                     <div class="tips">
                         <span v-if="msg">{{msg}}</span>
                     </div>
-                    <button type="submit" class="orange-btn">绑定</button>
+                    <button type="submit" class="orange-btn">绑定rrrrrrrr</button>
 
                 </form>
             </div>
@@ -131,7 +131,29 @@
             'userInfo'
         ]),
         methods: {
+            bindphone(){
+                if(!this.phone){
+                    return
+                }
+                axios.post('/edu/user/bindingPhone',qs.stringify({
+                    uid:this.userInfo.id,
+                    phone:this.phone,
+                    code:this.valCode,
+
+
+                })).then(p=>{
+                    if(p.data.httpCode == 200){
+                        alert("成功");
+                    }else  {
+                        this.msg = p.data.msg;
+                    }
+                })
+            },
             sendvalcode(phone) {
+                if(!this.phone){
+                    this.msg = '请输入的手机号！'
+                    return
+                }
                 axios.post('/edu/user/sendShortMessage', qs.stringify({phone: phone})).then(p => {
                     if (p.data.httpCode == 200) {
                         this.valCodeTrue = p.data.content;
@@ -156,6 +178,9 @@
                     }
                 });
             },
+            getFirstCode(){
+                this.sendvalcode(this.phone);
+            },
             getValCode() {
                 this.sendvalcode(this.userInfo.phone);
             },
@@ -168,14 +193,15 @@
                     }
                     this.time = '获取验证码';
                     this.valCodeDisabled = false;
+                    this.page = page;
                 } else {
                     this.msg = '验证码输入错误！'
                 }
             },
             submit() {
-                // clearinter(page3);
-
+                clearinter('page3');
             }
+
         }
     }
 

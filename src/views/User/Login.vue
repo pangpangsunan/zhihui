@@ -3,7 +3,7 @@
         <img src="@/assets/img_logo.png">
         <div class="wrap">
             <p class="big-title">学员登陆</p>
-            <div class="container">
+            <div class="container-l">
                 <form class="form-horizontal" @submit.prevent="login()">
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -25,7 +25,7 @@
                                 <router-link to="/user/forget">
                                     <span class="text-gray1">忘记密码</span>
                                 </router-link>
-                                <router-link to="/user/register">
+                                <router-link to="/user/registerbyphone">
                                     <span class="text-gray2">新用户注册</span>
                                 </router-link>
                             </div>

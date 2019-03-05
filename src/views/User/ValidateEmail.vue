@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <p class="big-title">验证邮箱</p>
-        <div class="container">
+        <div class="container-l">
 
             <form class="form-horizontal">
                 <div class="form-group">

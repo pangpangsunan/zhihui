@@ -91,10 +91,13 @@ let router = new Router({
                     component: () => import('./views/User/ValidatePhone.vue')
                 },
                 {
-                    path: 'register',
-                    component: () => import('./views/User/Register.vue')
+                    path: 'registerbyphone',
+                    component: () => import('./views/User/RegisterByPhone.vue')
+                },
+                {
+                    path: 'registerbyemail',
+                    component: () => import('./views/User/RegisterByEmail.vue')
                 }
-
             ]
         },
         {

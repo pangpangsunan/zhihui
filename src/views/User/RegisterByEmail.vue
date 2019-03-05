@@ -1,13 +1,12 @@
 <template>
     <div class="wrap">
         <p class="big-title">新用户注册</p>
-        <div class="container">
+        <div class="container-l">
 
             <form class="form-horizontal" @submit.prevent="submit()">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="tel" class="form-control" v-model="phone" placeholder="手机号码" required
-                               pattern="^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$">
+                        <input type="email" class="form-control" v-model="email" placeholder="邮箱号码" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,8 +40,8 @@
                         <router-link to="/user/login">
                             <span class="text-gray1">用户登陆</span>
                         </router-link>
-                        <router-link to="/user/validateemail">
-                            <span class="text-gray2" style="margin-left: 9rem;">使用邮箱注册</span>
+                        <router-link to="/user/registerbyphone">
+                            <span class="text-gray2" style="margin-left: 9rem;">使用手机注册</span>
                         </router-link>
                     </div>
                 </div>
@@ -66,7 +65,7 @@
                 time: '获取验证码',
                 valCodeDisabled: false,
                 msg: null,
-                phone: null,
+                email: null,
                 valCodeTrue: null,
                 valCode: null,
                 password: null,
@@ -74,7 +73,7 @@
             }
         }, methods: {
             getValCode() {
-                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
+                axios.post('/edu/user/sendEmail', qs.stringify({email: this.email})).then(p => {
                     if (p.data.httpCode == 200) {
                         this.valCodeTrue = p.data.content;
 
@@ -94,7 +93,7 @@
                         }, 1000);
 
                     } else {
-                        this.msg = '短信验证码发送失败'
+                        this.msg = '邮箱验证码发送失败'
                     }
                 });
             },
@@ -110,7 +109,7 @@
                 }
 
                 axios.post('/edu/user/signIn', qs.stringify({
-                    phone: this.phone,
+                    email: this.email,
                     password: this.password,
                     code: this.valCode,
                     roleCode: 'student',
@@ -129,7 +128,7 @@
 </script>
 
 <style scoped>
-    .container {
+    .container-l {
         height: 25.88rem;
     }
 </style>

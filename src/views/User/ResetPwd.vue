@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <p class="big-title">设置新密码</p>
-        <div class="container">
+        <div class="container-l">
             <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -85,7 +85,7 @@
 
 <style scoped>
 
-    .container {
+    .container-l {
         height: 18.88rem;
     }
 </style>

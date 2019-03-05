@@ -1,7 +1,7 @@
 <template>
     <div class="diolog">
         <div class="wrapper-page skin-white">
-            <div class="font-big">添加抬头信息</div>
+            <div class="font-big">修改抬头信息</div>
             <form class="form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">选择类型</label>

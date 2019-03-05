@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <p class="big-title">学员登陆</p>
-        <div class="container">
+        <div class="container-l">
             <p>重置密码成功</p>
             <button class="return-btn" @click="$router.replace('/user/login')">返回登陆页面</button>
         </div>
@@ -16,7 +16,7 @@
 
 <style scoped>
 
-    .container {
+    .container-l {
         height: 16.88rem;
     }
 
