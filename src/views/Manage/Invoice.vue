@@ -7,12 +7,12 @@
                 <div>联系电话：{{item.phone}}</div>
                 <div>邮寄地址：{{item.mailingAddress}}
                     <div class="update-btns">
-                        <router-link to="/" class="update-btn">
-                            <span @click="diolog='personal'">修改</span>
-                        </router-link>
-                        <router-link to="/" class="delete-btn">
-                            <span>删除</span>
-                        </router-link>
+                        <span class="update-btn" @click="diolog='personal'">
+                            修改
+                        </span>
+                        <span class="delete-btn" @click="deleteinvoice(item.id)">
+                            删除
+                        </span>
                     </div>
 
                 </div>
@@ -31,7 +31,7 @@
                             <span @click="diolog='company'">修改</span>
                         </a>
                         <a class="delete-btn">
-                            <span>删除</span>
+                            <span @click="deleteinvoice(item.id)">删除</span>
                         </a>
                     </div>
 
@@ -87,12 +87,12 @@
     }
 
     .update-btn, .delete-btn {
-
         display: inline-block;
         color: #4459CC;
         width: 3rem;
 
     }
+
     .delete-btn {
         margin-left: 2rem;
     }
@@ -121,6 +121,7 @@
 <script>
     import axios from 'axios'
     import {mapGetters} from 'vuex'
+    import qs from 'querystring'
 
     export default {
         created() {
@@ -130,6 +131,7 @@
             return {
                 arr: [],
                 diolog: null
+
             }
 
         },
@@ -148,7 +150,19 @@
                     }
                 }).then(p => {
                     this.arr = p.data.content
+
                 })
+            },
+            deleteinvoice(id) {
+                axios.post("/edu/invoice/delInvoiceTitle", qs.stringify({
+                    id: id
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        alert("删除成功");
+                        select();
+                    }
+                })
+
             }
         },
         computed: mapGetters([

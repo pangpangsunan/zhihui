@@ -108,14 +108,12 @@
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records;
-                this.hasData = !!p.data.content.records
+            axios.get('/edu/message/getPrivateMessageDetail').then(p => {
+                this.arr = p.data.content
             })
         }, data() {
             return {
-                arr: [],
-                hasData: false
+                arr: []
             }
         }
     }

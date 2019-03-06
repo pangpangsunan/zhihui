@@ -7,13 +7,36 @@
                 <li @click="current='page3';load(4)" :class="current==='page3'?'order-active':''">已取消</li>
             </ul>
             <div class="clear"></div>
-            <div class="orderlist" v-for="item in arr">
+            <div class="orderlist page1" v-for="item in arr" v-show="current=='page1'">
                 <img :src="item.image" alt="" class="course-img">
                 <div class="course-info ">
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    <button class="orange-btn">申请发票</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="orderlist page2" v-for="item in arr" v-show="current=='page2'">
+                <img :src="item.image" alt="" class="course-img">
+                <div class="course-info ">
+                    <div class="course-name">{{item.name}}</div>
+                    <div class="course-price font-middle">{{item.price}}</div>
+                    <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    345
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="orderlist page3" v-for="item in arr" v-show="current=='page3'">
+                <img :src="item.image" alt="" class="course-img">
+                <div class="course-info ">
+                    <div class="course-name">{{item.name}}</div>
+                    <div class="course-price font-middle">{{item.price}}</div>
+                    <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    2121
                 </div>
                 <div class="clear"></div>
             </div>
@@ -63,9 +86,17 @@
     .course-info {
         height: 8.75rem;
         position: relative;
-
         float: right;
         width: 67%;
+    }
+
+    .orange-btn {
+        position: absolute;
+        bottom: 1.3rem;
+        right: 2rem;
+        width: 6.75rem !important;
+        height: 2.75rem !important;
+
     }
 
     .course-name {

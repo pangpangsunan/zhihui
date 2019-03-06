@@ -15,43 +15,43 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">发票抬头</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="发票抬头" v-model="invoiceobj.title">
+                        <input type="text" class="form-control" placeholder="必填（企业名称）" required v-model="invoiceobj.title">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">纳税人识别号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="纳税人识别号" v-model="invoiceobj.dutyParagraph">
+                        <input type="text" class="form-control" placeholder="必填" required v-model="invoiceobj.dutyParagraph">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" placeholder="联系电话" v-model="invoiceobj.phone">
+                        <input type="number" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.phone">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">单位地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="单位地址" v-model="invoiceobj.address">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.address">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">开户银行</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="开户银行" v-model="invoiceobj.bank">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.bank">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">银行账号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="银行账号" v-model="invoiceobj.bankAccount">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.bankAccount">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">邮寄地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="邮寄地址" v-model="invoiceobj.mailingAddress">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.mailingAddress">
                     </div>
                 </div>
                 <div class="form-group">

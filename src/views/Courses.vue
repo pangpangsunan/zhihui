@@ -108,11 +108,11 @@
             axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
                 this.courseList = p.data.content.records
             })
-            this.loaddata({
-                id:36,
-            },{
-                id:71
-            })
+            // this.loaddata({
+            //     id:36,
+            // },{
+            //     id:71
+            // })
         },
         data() {
             return {

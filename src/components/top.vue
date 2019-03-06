@@ -4,7 +4,7 @@
             <ul class="pull-right menu">
                 <li>
                     <span class="publish"><img src="@/assets/ic_publish.png"></span>
-                    <router-link to="/" class="color-white">发布课程需求</router-link>
+                    <router-link to="" class="color-white">发布课程需求</router-link>
                 </li>
                 <li>
                     <span class="help"><img src="@/assets/ic_help.png"></span>
@@ -50,20 +50,33 @@
                 </li>
 
             </ul>
-            <!--<div class="diolog">-->
-                <!--<div class="public-page skin-white">-->
-                    <!--<div class="font-big">发布课程需求</div>-->
-                    <!--<form class="form-horizontal">-->
-                        <!--<div class="form-group">-->
-                            <!--<label for="" class="col-sm-2 control-label">tttttt</label>-->
-                            <!--<div class="col-sm-10">-->
-                                <!--<select></select>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</form>-->
-                <!--</div>-->
-
-            <!--</div>-->
+            <!--<div class="diolog">
+                <div class="public-page skin-white">
+                    <div class="font-big">发布课程需求</div>
+                    <form class="form-horizontal">
+                        <div class="select-groups">
+                            <label>所属行业</label>
+                            <select>
+                                <option value="请选择">请选择</option>
+                            </select>
+                        </div>
+                        <div class="select-groups">
+                            <label>适用职能</label>
+                            <select>
+                                <option value="请选择">请选择</option>
+                            </select>
+                        </div>
+                        <div class="select-groups">
+                            具体描述
+                            <textarea></textarea>
+                        </div>
+                        <div class="select-groups">
+                            <button class="blue-btn">发布</button>
+                        </div>
+                    </form>
+                </div>
+-->
+            </div>
 
         </div>
 
@@ -77,13 +90,38 @@
         left: 0;
         top: 0;
         z-index: 100;
+
     }
+
     .public-page {
         border-radius: 4px;
         width: 50rem;
         height: 34.5rem;
+        margin: 5rem auto;
+        padding: 3rem;
+        text-align: center;
+    }
+    .select-groups{
+        margin-top: 1.5rem;
+    }
+    .blue-btn {
+        width: 20rem;
     }
 
+    .public-page select, .public-page textarea {
+        width: 32.5rem;
+        height: 2.75rem;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.24);
+        border-radius: 2px;
+        margin-left: .5rem;
+        color: #666666;
+    }
+    .public-page textarea {
+        height: 10rem;
+        padding: 1rem;
+        vertical-align:middle;
+    }
 
     .menu {
         font-size: 13px;

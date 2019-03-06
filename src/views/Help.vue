@@ -28,14 +28,13 @@
             </p>
         </div>
         <div class="inputcon">
-            <textarea placeholder="请输入反馈内容" class="return-input">wwwwwwww</textarea>
-            <button class="send-btn border-rad">提交</button>
+            <textarea placeholder="请输入反馈内容" class="return-input" v-model="content"></textarea>
+            <button class="send-btn border-rad" @click="submit()">提交</button>
         </div>
     </div>
 </template>
 <style scoped>
     .box-help {
-        width: 71.25rem;
         padding: 1.3rem;
     }
 
@@ -54,7 +53,7 @@
     }
 
     .return-input {
-        width: 71.25rem;
+        width: 100%;
         height: 12.5rem;
         background-color: #fff;
         border: none;
@@ -65,19 +64,34 @@
 </style>
 <script>
     import axios from 'axios'
+    import qs from 'querystring'
+    import {mapGetters} from 'vuex'
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
-            })
+
         }, data() {
             return {
                 arr: [],
-                hasData: false
+                content: null
             }
-        }
+        },
+        methods:{
+            submit(){
+                axios.post('/edu/message/addFeedback',qs.stringify({
+                    uid:this.userInfo.id,
+                    content:this.content
+                })).then(p => {
+                    if (p.data.httpCode == 200) {
+                        alert("提交成功！")
+                    }
+                })
+            }
+
+        },
+        computed: mapGetters([
+            'userInfo'
+        ])
     }
 </script>
 
