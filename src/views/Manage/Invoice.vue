@@ -7,7 +7,7 @@
                 <div>联系电话：{{item.phone}}</div>
                 <div>邮寄地址：{{item.mailingAddress}}
                     <div class="update-btns">
-                        <span class="update-btn" @click="diolog='personal'">
+                        <span class="update-btn" @click="sendid(item)">
                             修改
                         </span>
                         <span class="delete-btn" @click="deleteinvoice(item.id)">
@@ -28,7 +28,7 @@
                 <div>邮寄地址：{{item.mailingAddress}}
                     <div class="update-btns">
                         <a class="update-btn">
-                            <span @click="diolog='company'">修改</span>
+                            <span @click="sendid(item)">修改</span>
                         </a>
                         <a class="delete-btn">
                             <span @click="deleteinvoice(item.id)">删除</span>
@@ -42,7 +42,7 @@
         <div style="text-align: center">
             <button class="blue-btn" @click="diolog='addinvoice'">添加抬头信息</button>
         </div>
-        <company v-if="diolog=='company'"></company>
+        <updateinvoice @update="select()" v-if="diolog=='updateinvoice'" :vinfo="vinfo"></updateinvoice>
         <addinvoice @update="select()" v-if="diolog=='addinvoice'"></addinvoice>
     </div>
 </template>
@@ -130,13 +130,16 @@
         data() {
             return {
                 arr: [],
-                diolog: null
+                diolog: null,
+                vinfo: {
+
+                }
 
             }
 
         },
         components: {
-            company: () => import('@/components/company.vue'),
+            updateinvoice: () => import('@/components/updateinvoice.vue'),
             addinvoice: () => import('@/components/addinvoice.vue'),
         },
         methods: {
@@ -158,10 +161,15 @@
                     id: id
                 })).then(p => {
                     if (p.data.httpCode == 200) {
-                        alert("删除成功");
-                        select();
+
+                        this.select()
                     }
                 })
+
+            },/*sendis1。是为了显示修改的弹框，2为了把vid传到页面去*/
+            sendid(infoid) {
+                this.diolog = 'updateinvoice'
+                this.vinfo = infoid
 
             }
         },

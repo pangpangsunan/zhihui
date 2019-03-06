@@ -75,22 +75,24 @@
     }
 
     .chat-wrapper {
-        background-color: #F4F6F7;
-        width: 71.25rem;
         height: 45rem;
+        background: #F4F6F7;
+
     }
 
     .chat-left {
         background: #FAFAFA;
-        width: 50rem;
+        width: 70%;
         height: 45rem;
         float: left;
+
     }
 
     .chat-content {
         height: 35rem;
+        overflow-y:scroll;
+        padding: .5rem;
     }
-
     .send-msg {
         height: 10rem;
         position: relative;
@@ -162,6 +164,13 @@
 
     .student-chat .touxiang {
         margin-left: .8rem;
+    }
+    @media (max-width: 768px) {
+
+        .chat-left {
+            width: 65%;
+            overflow-y:scroll;
+        }
     }
 
 

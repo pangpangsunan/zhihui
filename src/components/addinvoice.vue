@@ -2,7 +2,7 @@
     <div class="diolog">
         <div class="wrapper-page skin-white">
             <div class="font-big">添加抬头信息</div>
-            <form class="form-horizontal">
+            <form class="form-horizontal" @submit="addinvoice()">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">选择类型</label>
                     <span class="col-sm-2">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button class="blue-btn" @click="addinvoice()">保存</button>
+                        <button class="blue-btn">保存</button>
                     </div>
                 </div>
             </form>
