@@ -1,50 +1,41 @@
 <template>
     <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
             @click="getValCode()">
-        {{ time }}
+        {{ btnText }}
     </button>
 </template>
 
 <script>
     import axios from 'axios'
     import qs from 'querystring'
-    import {mapGetters} from 'vuex'
 
     export default {
         data() {
             return {
-                time: '获取验证码',
-                valCodeDisabled:false
+                btnText: '获取验证码',
+                valCodeDisabled: false
             }
-
-
         },
-        props:{
-          phone:null
+        props: {
+            phone: null
         },
-        methods:{
+        methods: {
             getValCode() {
-
-
-                // if (!this.phone) {
-                //     this.msg = '请输入的手机号！'
-                //     return
-                // }
                 axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
                     if (p.data.httpCode == 200) {
-                        this.time = '60s';
+                        this.btnText = '60s';
                         this.valCodeDisabled = true;
-                        this.$emit('input', p.data.content)
+                        this.$emit('success', p.data.content);
 
                         let intval = setInterval(() => {
-                            let time = parseInt(this.time);
+                            let time = parseInt(this.btnText);
                             if (--time <= 0) {
-                                this.time = '获取验证码';
+                                this.btnText = '获取验证码';
                                 clearInterval(intval);
                                 this.valCodeDisabled = false;
                                 return;
                             }
-                            this.time = time + 's'
+                            this.btnText = time + 's'
 
                         }, 1000);
                         this.intval = intval;
@@ -58,7 +49,3 @@
 
     }
 </script>
-
-<style scoped>
-
-</style>

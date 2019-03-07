@@ -15,10 +15,7 @@
                         <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
                                pattern="\d{4}">
                     </div>
-                    <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
-                            @click="getValCode()">
-                        {{ time }}
-                    </button>
+                    <sendcode @success="valCodeTrue=$event" :phone="phone"></sendcode>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -63,7 +60,6 @@
     export default {
         data() {
             return {
-                time: '获取验证码',
                 valCodeDisabled: false,
                 msg: null,
                 phone: null,
@@ -73,31 +69,6 @@
                 password1: null,
             }
         }, methods: {
-            getValCode() {
-                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.valCodeTrue = p.data.content;
-
-                        this.time = '60s';
-                        this.valCodeDisabled = true;
-                        let intval = setInterval(() => {
-                            let time = parseInt(this.time);
-                            if (--time <= 0) {
-                                this.time = '获取验证码';
-                                clearInterval(intval);
-
-                                this.valCodeDisabled = false;
-                                return;
-                            }
-                            this.time = time + 's'
-
-                        }, 1000);
-
-                    } else {
-                        this.msg = '短信验证码发送失败'
-                    }
-                });
-            },
             submit() {
                 if (this.valCodeTrue != this.valCode) {
                     this.msg = '验证码错误';
@@ -124,6 +95,9 @@
                     this.$router.push('/user/login')
                 })
             }
+        },
+        components: {
+            sendcode: () => import('@/components/sendcode.vue'),
         }
     }
 </script>
