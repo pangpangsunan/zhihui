@@ -15,43 +15,50 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">发票抬头</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="必填（企业名称）" required v-model="invoiceobj.title">
+                        <input type="text" class="form-control" placeholder="必填（企业名称）" required
+                               v-model="invoiceobj.title">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">纳税人识别号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="必填" required v-model="invoiceobj.dutyParagraph">
+                        <input type="text" class="form-control" placeholder="必填" required
+                               v-model="invoiceobj.dutyParagraph">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.phone">
+                        <input type="number" class="form-control" placeholder="增值税专用发票必填" required
+                               v-model="invoiceobj.phone">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">单位地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.address">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required
+                               v-model="invoiceobj.address">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">开户银行</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.bank">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required
+                               v-model="invoiceobj.bank">
                     </div>
                 </div>
                 <div class="form-group" v-if="invoiceobj.type==2">
                     <label class="col-sm-2 control-label">银行账号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.bankAccount">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required
+                               v-model="invoiceobj.bankAccount">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">邮寄地址</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required  v-model="invoiceobj.mailingAddress">
+                        <input type="text" class="form-control" placeholder="增值税专用发票必填" required
+                               v-model="invoiceobj.mailingAddress">
                     </div>
                 </div>
                 <div class="form-group">
@@ -60,9 +67,7 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="wrapper-page personal">
-
+            <close></close>
         </div>
     </div>
 </template>
@@ -84,6 +89,7 @@
         border-radius: 4px;
         padding: 2rem 3rem;
         text-align: center;
+        position: relative;
     }
 
     .col-sm-10 input {
@@ -102,33 +108,40 @@
 
 
     export default {
+        components: {
+            close: () => import('@/components/close.vue'),
+        },
         data() {
             return {
-
                 invoiceobj: {
                     type: '1'
 
-                }
+                },
+                diolog: null
+
             }
         },
         methods: {
+
             addinvoice() {
-                this.invoiceobj.uid=this.userInfo.id
-                axios.post('/edu/invoice/addInvoiceTitle', qs.stringify(this.invoiceobj)).then(p=>{
-                    if(p.data.httpCode==200){
+                this.invoiceobj.uid = this.userInfo.id
+                axios.post('/edu/invoice/addInvoiceTitle', qs.stringify(this.invoiceobj)).then(p => {
+                    if (p.data.httpCode == 200) {
                         this.$emit('update')
 
-                    }else {
+                    } else {
                         alert(p.data.msg)
 
                     }
                 })
 
-            }
+            },
+
         },
         computed: mapGetters([
             'userInfo'
         ])
+
 
     }
 </script>

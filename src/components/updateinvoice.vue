@@ -64,9 +64,7 @@
                 </div>
             </form>
         </div>
-        <div class="wrapper-page personal">
 
-        </div>
     </div>
 </template>
 
@@ -89,7 +87,7 @@
                   if(p.data.httpCode==200){
                       this.$emit('update')
                   }else {
-                      alert("添加失败！")
+                      alert("修改失败！")
                   }
               })
           }

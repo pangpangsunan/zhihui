@@ -14,7 +14,7 @@
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
-                    <button class="orange-btn">申请发票</button>
+                    <button class="orange-btn" @click="diolog='aplicateinvoice'">申请发票</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -41,6 +41,7 @@
                 <div class="clear"></div>
             </div>
         </div>
+        <aplicateinvoice v-if="diolog=='aplicateinvoice'"></aplicateinvoice>
     </div>
 
 </template>
@@ -137,7 +138,8 @@
         data() {
             return {
                 current: 'page1',
-                arr: []
+                arr: [],
+                diolog:null
             }
 
         },
@@ -162,6 +164,9 @@
         },
         created() {
             this.load(1);
+        },
+        components: {
+            aplicateinvoice: () => import('@/components/aplicateinvoice.vue'),
         }
 
     }

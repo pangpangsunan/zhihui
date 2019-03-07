@@ -43,7 +43,7 @@
             <button class="blue-btn" @click="diolog='addinvoice'">添加抬头信息</button>
         </div>
         <updateinvoice @update="select()" v-if="diolog=='updateinvoice'" :vinfo="vinfo"></updateinvoice>
-        <addinvoice @update="select()" v-if="diolog=='addinvoice'"></addinvoice>
+        <addinvoice @hide="hidediolog()" @update="select()" v-if="diolog=='addinvoice'"></addinvoice>
     </div>
 </template>
 <style scoped>
@@ -171,6 +171,9 @@
                 this.diolog = 'updateinvoice'
                 this.vinfo = infoid
 
+            },
+            hidediolog(){
+                this.diolog=null
             }
         },
         computed: mapGetters([

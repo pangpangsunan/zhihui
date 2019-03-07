@@ -1,84 +1,57 @@
 <template>
-        <div class="container">
-            <img src="@/assets/img_logo.png" style="vertical-align: middle" alt="">
-            <ul class="pull-right menu">
-                <li>
-                    <span class="publish"><img src="@/assets/ic_publish.png"></span>
-                    <router-link to="" class="color-white">发布课程需求</router-link>
-                </li>
-                <li>
-                    <span class="help"><img src="@/assets/ic_help.png"></span>
-                    <router-link to="/help" class="color-white">帮助与反馈</router-link>
-                </li>
-                <li v-if="$store.getters.isLogin">
-                    <div class="dropdown">
-                        <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <span><img src="@/assets/img_avatar_default.png"></span>
-                            <span class="username">&nbsp;{{ userInfo.nickname ||  userInfo.phone}}</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dLabel">
-                            <li>
-                                <router-link to="/manage/updateinfo">完整资料</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/manage/bindphone">绑定手机</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/user/resetpwd">修改密码</router-link>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <router-link to="/manage/interest">学习兴趣</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/manage/order">课程订单</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/manage/invoice">发票管理</router-link>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#" @click.prevent="logout()">退出登录</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li v-if="!$store.getters.isLogin">
-                    <router-link to="/user/login" class="color-white">登陆</router-link>
-                </li>
-
-            </ul>
-            <!--<div class="diolog">
-                <div class="public-page skin-white">
-                    <div class="font-big">发布课程需求</div>
-                    <form class="form-horizontal">
-                        <div class="select-groups">
-                            <label>所属行业</label>
-                            <select>
-                                <option value="请选择">请选择</option>
-                            </select>
-                        </div>
-                        <div class="select-groups">
-                            <label>适用职能</label>
-                            <select>
-                                <option value="请选择">请选择</option>
-                            </select>
-                        </div>
-                        <div class="select-groups">
-                            具体描述
-                            <textarea></textarea>
-                        </div>
-                        <div class="select-groups">
-                            <button class="blue-btn">发布</button>
-                        </div>
-                    </form>
+    <div class="container">
+        <img src="@/assets/img_logo.png" style="vertical-align: middle" alt="">
+        <ul class="pull-right menu">
+            <li>
+                <span class="publish"><img src="@/assets/ic_publish.png"></span>
+                <span class="color-white" @click="diolog='publish'">发布课程需求</span>
+            </li>
+            <li>
+                <span class="help"><img src="@/assets/ic_help.png"></span>
+                <router-link to="/help" class="color-white">帮助与反馈</router-link>
+            </li>
+            <li v-if="$store.getters.isLogin">
+                <div class="dropdown">
+                    <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <span><img src="@/assets/img_avatar_default.png"></span>
+                        <span class="username">&nbsp;{{ userInfo.nickname ||  userInfo.phone}}</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li>
+                            <router-link to="/manage/updateinfo">完整资料</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/manage/bindphone">绑定手机</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/user/resetpwd">修改密码</router-link>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <router-link to="/manage/interest">学习兴趣</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/manage/order">课程订单</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/manage/invoice">发票管理</router-link>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" @click="logout()">退出登录</a>
+                        </li>
+                    </ul>
                 </div>
--->
-            </div>
+            </li>
+            <li v-if="!$store.getters.isLogin">
+                <router-link to="/user/login" class="color-white">登陆</router-link>
+            </li>
 
-        </div>
+        </ul>
+        <publish v-if="diolog=='publish'"></publish>
+    </div>
 
 </template>
 <style scoped>
@@ -101,9 +74,11 @@
         padding: 3rem;
         text-align: center;
     }
-    .select-groups{
+
+    .select-groups {
         margin-top: 1.5rem;
     }
+
     .blue-btn {
         width: 20rem;
     }
@@ -112,15 +87,16 @@
         width: 32.5rem;
         height: 2.75rem;
         background: #fff;
-        border: 1px solid rgba(0,0,0,0.24);
+        border: 1px solid rgba(0, 0, 0, 0.24);
         border-radius: 2px;
         margin-left: .5rem;
         color: #666666;
     }
+
     .public-page textarea {
         height: 10rem;
         padding: 1rem;
-        vertical-align:middle;
+        vertical-align: middle;
     }
 
     .menu {
@@ -163,7 +139,9 @@
 
     export default {
         data() {
-            return {}
+            return {
+                diolog: null
+            }
         },
         methods: {
             logout() {
@@ -172,7 +150,10 @@
         },
         computed: mapGetters([
             'userInfo'
-        ])
+        ]),
+        components: {
+            publish: () => import('@/components/publish.vue')
+        }
     }
 
 
