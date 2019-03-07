@@ -28,7 +28,7 @@
         </div>
         <div class="courses-category border-rad">
             <div class="pro skin-white" v-for="item in arr">
-                <router-link to="/courseInfo">
+                <router-link :to="{name:'courseInfo',params:{id:item.id}}">
                     <img :src="item.image" class="course-img">
                     <div class="course-list">
                         <div class="course-name">{{ item.name }}<span class="online">线上</span></div>
