@@ -2,34 +2,34 @@
     <div class="diolog">
         <div class="public-page skin-white">
             <div class="font-big">发布课程需求</div>
-            <form class="form-horizontal">
+            <form class="form-horizontal" @submit.prevent="publish">
                 <div class="select-groups">
                     <label>所属行业</label>
-                    <select>
-                        <option value="请选择">请选择</option>
-                        <option v-for="item in menus">
+                    <select v-model="type1" required>
+                        <option value="">请选择</option>
+                        <option v-for="item in menus" :value="item.id">
                             {{item.name}}
                         </option>
                     </select>
                 </div>
                 <div class="select-groups">
                     <label>适用职能</label>
-                    <select>
-                        <option value="请选择">请选择</option>
-                        <option v-for="item in menus1" v-if="currentMenu.id==item.industryid">
+                    <select v-model="type2" required>
+                        <option value="">请选择</option>
+                        <option v-for="item in menus1" v-if="currentMenu.id==item.industryid" :value="item.id">
                             {{item.name}}
                         </option>
                     </select>
                 </div>
                 <div class="select-groups">
                     具体描述
-                    <textarea></textarea>
+                    <textarea required v-model="content"></textarea>
                 </div>
                 <div class="select-groups">
-                    <button class="blue-btn">发布</button>
+                    <button class="blue-btn" type="submit">发布</button>
                 </div>
             </form>
-            <close @click="hide()"></close>
+            <!--<close @click="hide()"></close>-->
         </div>
 
     </div>
@@ -94,16 +94,37 @@
                 menus: {},
                 menus1: [],
                 currentMenu: {},
-                diolog:null
+                diolog: null,
+                type1: '',
+                type2: '',
+                content: null,
             }
 
         },
+        computed: mapGetters([
+            'userInfo'
+        ]),
         methods: {
             settype1(obj) {
                 this.currentMenu = obj
             },
             loaddata(obj) {
                 this.$emit('loaddata', this.currentMenu, obj)
+            },
+            publish() {
+
+                axios.post('/edu/user/addCourseRequirement', {
+                    uid: this.userInfo.id,
+                    industry: this.type1,
+                    'function': this.type2,
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        // 添加成功
+                        this.$emit('close')
+                    } else {
+                        alert(p.data.msg)
+                    }
+                })
             }
         },
         created() {

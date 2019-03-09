@@ -50,7 +50,7 @@
             </li>
 
         </ul>
-        <publish v-if="diolog=='publish'"></publish>
+        <publish v-if="diolog=='publish'" @close="diolog=null"></publish>
     </div>
 
 </template>
