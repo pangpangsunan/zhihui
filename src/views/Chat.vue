@@ -208,6 +208,7 @@
                     }
                 })
             }, load() {
+                this.content = null;
                 axios.get('/edu/course/getTeacherInfoByCourse', {
                     params: {
                         cid: 268

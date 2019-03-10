@@ -4,23 +4,24 @@
         <div class="page2">
             <p>请设置新密码</p>
             <div class="bindphone-page">
-                <form class="form-horizontal">
+                <form class="form-horizontal" @sumit.prevent="updatepwd">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="password" v-model="password" class="form-control"
+                            <input type="password" required v-model="password" class="form-control"
                                    placeholder="请输入6-12位密码，支持英文字母与数字">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="password" v-model="password1" class="form-control" placeholder="再次输入新密码">
+                            <input type="password" required v-model="password1" class="form-control"
+                                   placeholder="再次输入新密码">
                         </div>
                     </div>
                     <div class="tips">
                         <span v-if="msg">{{msg}}</span>
                     </div>
 
-                    <button type="submit" @click.prevent="resetpwd()" class="orange-btn">完成</button>
+                    <button type="submit" class="orange-btn">完成</button>
 
                 </form>
             </div>
@@ -29,7 +30,7 @@
     </div>
 </template>
 <style scoped>
-    p{
+    p {
         margin-top: 3rem;
         text-align: center;
     }
@@ -40,17 +41,29 @@
     import {mapGetters} from 'vuex'
 
     export default {
-       methods:{
-           updatepwd(){
-               axios.post('/edu/user/changePassword',qs.stringify({
-                   phone:this.userInfo.phone,
-                   email:this.userInfo.email
-               }))
-           },
-           computed: mapGetters([
-               'userInfo'
-           ])
-       }
+        methods: {
+            updatepwd() {
+                if (this.password != this.password1) {
+                    alert('两次密码不一致');
+                    return;
+                }
+                axios.post('/edu/user/changePassword', qs.stringify({
+                    phone: this.userInfo.phone,
+                    email: this.userInfo.email
+                }))
+            },
+
+        },
+        data() {
+            return {
+                msg: null,
+                password1: null,
+                password: null,
+            }
+        },
+        computed: mapGetters([
+            'userInfo'
+        ])
     }
 </script>
 

@@ -133,13 +133,14 @@
 </style>
 <script>
     import axios from 'axios'
+    import vuex from 'vuex';
 
     export default {
         data() {
             return {
                 current: 'page1',
                 arr: [],
-                diolog:null
+                diolog: null
             }
 
         },
@@ -148,7 +149,8 @@
                 this.arr.length = 0;
                 axios.get('/edu/order/getOrderList', {
                     params: {
-                        status: status
+                        status: status,
+                        userid: this.userInfo.id
                     }
                 }).then(p => {
                     // this.arr=p.data.content.records;
@@ -158,13 +160,16 @@
                             this.arr.push(j);
                         }
                     }
-                    console.log(this.arr);
+                    // console.log(this.arr);
                 });
             },
         },
         created() {
             this.load(1);
         },
+        computed: vuex.mapGetters([
+            'userInfo'
+        ]),
         components: {
             aplicateinvoice: () => import('@/components/aplicateinvoice.vue'),
         }
