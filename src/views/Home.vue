@@ -19,7 +19,7 @@
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
                             item.course.address}}</p>
                         <div class="btns1">
-                            <button class="white-btn">试看</button>
+                            <button class="white-btn" v-if="item.course.type!=2">试看</button>
                             <button class="orange-btn buy">购买</button>
                         </div>
                     </div>
@@ -44,6 +44,7 @@
         padding: 0;
         height: 10rem;
         position: relative;
+        margin-top: 1.2rem;
 
     }
 
