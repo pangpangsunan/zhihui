@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </form>
-            <close></close>
+            <div class="closebtn" @click="$emit('close')">关闭</div>
         </div>
     </div>
 </template>

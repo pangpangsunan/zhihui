@@ -29,7 +29,7 @@
                     <button class="blue-btn" type="submit">发布</button>
                 </div>
             </form>
-            <!--<close @click="hide()"></close>-->
+            <div class="closebtn" @click="$emit('close')">关闭</div>
         </div>
 
     </div>

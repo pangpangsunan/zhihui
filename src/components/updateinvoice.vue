@@ -62,8 +62,11 @@
                         <button class="blue-btn" @click="updateinvoice()">保存</button>
                     </div>
                 </div>
+
             </form>
+            <div class="closebtn" @click="$emit('close')">关闭</div>
         </div>
+
 
     </div>
 </template>
@@ -83,6 +86,8 @@
       },
         methods:{
           updateinvoice(){
+              this.vinfo.createDate =  (new Date).toGMTString();
+              this.vinfo.updateDate=this.vinfo.createDate;
               axios.post('/edu/invoice/updateInvoiceTitle',qs.stringify(this.vinfo)).then(p=>{
                   if(p.data.httpCode==200){
                       this.$emit('update')
@@ -112,7 +117,9 @@
         border-radius: 4px;
         padding: 2rem 3rem;
         text-align: center;
+        position: relative;
     }
+   
 
     .col-sm-10 input {
         height: 2.75rem;
