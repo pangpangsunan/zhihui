@@ -1,5 +1,5 @@
 <template>
-    <div class="diolog">
+    <div class="diolog" @click.self="close">
         <div class="public-page skin-white">
             <div class="font-big">发布课程需求</div>
             <form class="form-horizontal" @submit.prevent="publish">
@@ -125,6 +125,9 @@
                         alert(p.data.msg)
                     }
                 })
+            },
+            close() {
+                this.$emit('close')
             }
         },
         created() {
