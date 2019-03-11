@@ -29,7 +29,7 @@
                     <button class="blue-btn">发布</button>
                 </div>
             </form>
-            <close @click="hide()"></close>
+            <div class="closebtn" @click="$emit('close')">关闭</div>
         </div>
 
     </div>
@@ -55,6 +55,7 @@
         margin: 5rem auto;
         padding: 3rem;
         text-align: center;
+        position: relative;
     }
 
     .select-groups {

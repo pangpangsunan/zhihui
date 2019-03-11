@@ -41,7 +41,7 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <aplicateinvoice v-if="diolog=='aplicateinvoice'"></aplicateinvoice>
+        <aplicateinvoice v-if="diolog=='aplicateinvoice'" @close="diolog=null"></aplicateinvoice>
     </div>
 
 </template>

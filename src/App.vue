@@ -130,6 +130,13 @@
     .clear {
         clear: both;
     }
+    .closebtn {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        cursor: pointer;
+        z-index: 102;
+    }
 
 
 

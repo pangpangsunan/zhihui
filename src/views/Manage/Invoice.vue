@@ -42,8 +42,8 @@
         <div style="text-align: center">
             <button class="blue-btn" @click="diolog='addinvoice'">添加抬头信息</button>
         </div>
-        <updateinvoice @update="select()" v-if="diolog=='updateinvoice'" :vinfo="vinfo"></updateinvoice>
-        <addinvoice @hide="hidediolog()" @update="select()" v-if="diolog=='addinvoice'"></addinvoice>
+        <updateinvoice @update="select()" v-if="diolog=='updateinvoice'" :vinfo="vinfo" @close="diolog=null"></updateinvoice>
+        <addinvoice @hide="hidediolog()" @update="select()" v-if="diolog=='addinvoice'" @close="diolog=null"></addinvoice>
     </div>
 </template>
 <style scoped>

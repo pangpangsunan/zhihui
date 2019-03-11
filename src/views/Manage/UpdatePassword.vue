@@ -23,6 +23,7 @@
                     <button type="submit" @click.prevent="resetpwd()" class="orange-btn">完成</button>
 
                 </form>
+
             </div>
         </div>
         <div class="clear"></div>

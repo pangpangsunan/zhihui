@@ -1,18 +1,6 @@
 <template>
-    <div class="closebtn" @click="hide()">关闭</div>
+    <div class="closebtn">关闭</div>
 </template>
-
-<script>
-    export default {
-        created() {
-        },
-        methods:{
-            hide() {
-                this.$emit('hide')
-            },
-        }
-    }
-</script>
 
 <style scoped>
 .closebtn {

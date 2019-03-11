@@ -26,13 +26,14 @@
                     <button class="blue-btn">申请</button>
                 </div>
             </form>
-            <close></close>
+            <div class="closebtn" @click="$emit('close')">关闭</div>
         </div>
     </div>
 </template>
 
 
 <style scoped>
+
     .diolog {
         width: 100vw;
         height: 100vh;
@@ -96,14 +97,13 @@
         },
         data() {
             return {
-                arr: [],
-                diolog: null
+                arr: []
             }
         },
         created() {
             axios.get('/edu/invoice/getInvoiceTitleListByUser', {
-                params:{
-                    uid:this.userInfo.id
+                params: {
+                    uid: this.userInfo.id
                 }
             }).then(p => {
                 if (p.data.httpCode == 200) {
@@ -116,6 +116,7 @@
             })
 
         },
+
 
         computed: mapGetters([
             'userInfo'
