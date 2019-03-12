@@ -54,7 +54,7 @@
                 <li v-show="current==='page2'">
                     <ul>
                         <li v-for="item in course.introduction">
-                            <img :src="item.url" alt="">
+                            <img :src="item.url" alt="" width="100%">
                         </li>
                     </ul>
                 </li>

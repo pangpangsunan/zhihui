@@ -12,7 +12,7 @@ import qs from 'querystring'
 Vue.config.productionTip = false;
 
 Vue.filter('coursType', id => {
-    let arr = [null, '线下', '音频', '视频', '专栏'];
+    let arr = [null, '线上', '线下', '专栏'];
     return arr[id]
 });
 

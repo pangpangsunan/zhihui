@@ -55,6 +55,7 @@
         margin: 5rem auto;
         padding: 3rem;
         text-align: center;
+        position: relative;
     }
 
     .select-groups {

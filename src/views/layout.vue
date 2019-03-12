@@ -287,7 +287,7 @@
 
     .main>>> .send-btn {
         position: absolute;
-        right: 1rem;
+        right: 3rem;
         bottom: 1rem;
         width: 6.75rem;
         height: 2.25rem;
