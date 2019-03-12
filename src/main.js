@@ -38,11 +38,11 @@ Vue.prototype.view = (id, type = 2) => {
         alert("请先登录");
         return;
     }
-    axios.post('/edu/collection/addCollection', qs.stringify({
+    axios.post('/edu/collection/addCollection', {
         collectionid: id,
         uid: store.getters.userInfo.id,
         type: type
-    })).then(p => {
+    }).then(p => {
         if (p.data.httpCode == 200) {
             alert("关注成功")
         } else {
@@ -56,14 +56,19 @@ Vue.prototype.unview = (id, type = 2) => {
         alert("请先登录");
         return;
     }
-    axios.post('/edu/collection/delCourseCollection', qs.stringify({
+    axios.post('/edu/collection/delCourseCollection', {
         cid: id,
         uid: store.getters.userInfo.id,
-    }))
+    })
 };
 
-
-Vue.prototype.msg = "fdsfds";
+axios.defaults.headers.common['Content-Type'] = "application/x-www-form-urlencoded";
+axios.defaults.transformRequest = data => {
+    if (typeof data == 'object') {
+        data = qs.stringify(data);
+    }
+    return data;
+};
 
 new Vue({
     router,

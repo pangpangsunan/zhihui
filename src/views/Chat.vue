@@ -195,12 +195,12 @@
                     alert('消息为空');
                     return;
                 }
-                axios.post('/edu/message/addMessage', qs.stringify({
+                axios.post('/edu/message/addMessage', {
                     content: this.content,
                     sendFrom: this.$store.getters.userInfo.id,
                     sendToIds: this.$route.params.id,
                     type: 3
-                })).then(p => {
+                }).then(p => {
                     if (p.data.httpCode == 200) {
                         this.load()
                     } else {
