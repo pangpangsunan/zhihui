@@ -9,7 +9,7 @@
                     <router-link to="/" active-class="active" exact>首页</router-link>
                 </li>
                 <li>
-                    <router-link to="/courses" @click.prevent active-class="active" exact>分类课程</router-link>
+                    <router-link to="/courses" @click.native="showMenu" active-class="active" exact>分类课程</router-link>
                 </li>
                 <li>
                     <router-link to="/buyered" active-class="active" exact>已购课程</router-link>
@@ -314,6 +314,11 @@
             top: () => import('@/components/top.vue'),
             bottom: () => import('@/components/bottom.vue'),
 
+        },
+        methods: {
+            showMenu() {
+                this.$store.bus.$emit('showMenu');
+            }
         }
     }
 </script>

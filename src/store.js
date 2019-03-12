@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
     state: {
         baseinfo: null,
         course: {},
@@ -55,3 +55,7 @@ export default new Vuex.Store({
         }
     }
 });
+
+store.bus = new Vue;
+
+export default store;
