@@ -4,7 +4,7 @@
             <div class="manage-content">
                 <p>
                     <span class="name">名称</span>
-                    <span class="nickname">{{ userInfo.nickname||userInfo.phone }}</span>
+                    <span class="nickname">{{userInfo.name}}</span>
                     <span class="update" @click="show=true">修改</span>
                 </p>
                 <div style="margin-top: 2rem">
@@ -23,7 +23,7 @@
         <div class="diolog" v-if="show">
             <div class="updateinfo-diolog skin-white">
                 <div class="font-big">修改名称</div>
-                <div class="newname"><input type="text" v-model="username" placeholder="请输入新名称"></div>
+                <div class="newname"><input type="text" v-model="userInfo.name" placeholder="请输入新名称"></div>
 
                 <button class="blue-btn" @click="update()">保存</button>
             </div>
@@ -117,7 +117,7 @@
             update() {
                 axios.post('/edu/user/updateUser', qs.stringify({
                     id: this.userInfo.id,
-                    nickname: this.username,
+                    name: this.userInfo.name,
                 })).then(p => {
                     if (p.data.httpCode == 200) {
                         this.findInfo();

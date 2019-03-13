@@ -25,7 +25,7 @@
             </div>
             <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})" class="pro skin-white"
                  v-for="item in arr">
-                <img :src="item.userInfo.headimgurl" class="course-img">
+                <img :src="item.enrollInfo.course.image" class="course-img">
                 <div class="course-list">
                     <div class="course-name">{{ item.enrollInfo.course.name }}<span class="online">线上</span></div>
                     <div class="course-teacher">

@@ -20,14 +20,12 @@
             </ul>
 
             <div class="top-right">
-                <router-link to="" class="hover">
-                    <i class="glyphicon glyphicon-comment"></i>
-                    消息
-                    <div class="gonggao font-bestsmall">
-                        新年新优惠！购买线下课程，送直播课。此活动于 2019年1月10日
-                    </div>
+                <router-link to="/message" class="hover">
+                    <i class="glyphicon glyphicon-comment"></i>消息
                 </router-link>
-                <router-link to="/privatemsg" class="private"><i class="glyphicon glyphicon-envelope"></i> 私信</router-link>
+                <router-link to="/privatemsg" class="private">
+                    <i class="glyphicon glyphicon-envelope"></i> 私信
+                </router-link>
             </div>
         </div>
 
@@ -43,7 +41,7 @@
         color: #222222;
     }
 
-    .main>>> .public-course {
+    .main >>> .public-course {
         width: 40rem;
         height: 24.5rem;
         margin: 5rem auto;
@@ -170,51 +168,51 @@
     }
 
     /*提取公共样式*/
-    .main>>> .skin-white {
+    .main >>> .skin-white {
         background-color: #fff;
     }
 
     /*.no-attention*/
-    .main>>> .no-attention {
+    .main >>> .no-attention {
         text-align: center;
         margin-top: 6rem;
         min-height: 30rem;
     }
 
-    .main>>> .courses-category {
+    .main >>> .courses-category {
         min-height: 30rem;
     }
 
-    .main>>> .course-list a, .main>>> .pro a {
+    .main >>> .course-list a, .main >>> .pro a {
         color: #222222;
     }
 
-    .main>>> .course-price {
+    .main >>> .course-price {
         color: #f5892a;
     }
 
-    .main>>> .course-name {
+    .main >>> .course-name {
         height: 1rem;
         color: #666666;
     }
 
-    .main>>> .course-bg, .main>>> .course-teacher, .main>>> .course-location {
+    .main >>> .course-bg, .main >>> .course-teacher, .main >>> .course-location {
         color: #666666;
     }
 
-    .main>>> .gray {
+    .main >>> .gray {
         position: relative;
         top: 3rem;
     }
 
     /*nav-title是类似，全部 - 经营管理 - 领导力*/
-    .main>>> .nav-title {
+    .main >>> .nav-title {
         color: #666666;
         font-size: 0.875rem;
         padding: 1rem 0 0.5rem 0;
     }
 
-    .main>>> .subtitle {
+    .main >>> .subtitle {
         color: #666666;
         background-color: #F3F5F7;
         margin: 0;
@@ -224,26 +222,25 @@
         width: 100%;
     }
 
-    .main>>> .course-number {
+    .main >>> .course-number {
         float: left;
     }
 
-    .main>>> .course-type {
+    .main >>> .course-type {
         float: right;
         padding-right: 2rem;
     }
 
 
-
-    .main>>> .buy {
+    .main >>> .buy {
         margin-left: 1rem;
     }
 
-    .main>>> .drop-btn {
+    .main >>> .drop-btn {
         background: transparent;
     }
 
-    .main>>> .courses-category {
+    .main >>> .courses-category {
         background-color: #F3F5F7;
         display: flex;
         flex-wrap: wrap;
@@ -251,30 +248,30 @@
 
     /*课程信息和课程播放公用部分开始*/
 
-    .main>>> .public-style-info {
+    .main >>> .public-style-info {
         float: right;
-        width: 65rem;
-        padding-right: 4rem;
+        width: 94%;
+        padding-right: 3.5rem;
         margin-top: 0.5rem;
     }
 
-    .main>>> .all-comment {
+    .main >>> .all-comment {
         padding: 1rem;
         position: relative;
     }
 
-    .main>>> .img-left {
+    .main >>> .img-left {
         width: 3.75rem;
         height: 3.75rem;
         border-radius: 3.75rem;
         float: left;
     }
 
-    .main>>> .inputcon {
+    .main >>> .inputcon {
         position: relative;
     }
 
-    .main>>> .minput {
+    .main >>> .minput {
         width: 69rem;
         height: 6.25rem;
         background: #E9EBEC;
@@ -285,7 +282,7 @@
 
     }
 
-    .main>>> .send-btn {
+    .main >>> .send-btn {
         position: absolute;
         right: 3rem;
         bottom: 1rem;
@@ -297,8 +294,8 @@
         border-radius: 2px;
     }
 
-    .main>>> textarea.minput::-webkit-input-placeholder,
-    .main>>> textarea.return-input::-webkit-input-placeholder {
+    .main >>> textarea.minput::-webkit-input-placeholder,
+    .main >>> textarea.return-input::-webkit-input-placeholder {
         /* placeholder颜色  */
         color: #666666;
         border: none;
@@ -309,6 +306,8 @@
 </style>
 
 <script>
+    import axios from 'axios'
+
     export default {
         components: {
             top: () => import('@/components/top.vue'),
