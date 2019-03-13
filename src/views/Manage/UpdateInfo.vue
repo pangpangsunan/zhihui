@@ -13,7 +13,9 @@
                             <img :src="userInfo.headimgurl" class="touxiangimg">
                         </span>
                     <div>
-                        <button class="blue-btn">上传</button>
+                        <input v-show="false" @change="change($event)" type="file"
+                               accept="image/png,image/jpeg,image/gif" ref="file">
+                        <button class="blue-btn" @click="upload">上传</button>
                     </div>
                 </div>
             </div>
@@ -106,11 +108,17 @@
             return {
                 show: false,
                 username: null,
+                token: null,
             }
         },
         computed: mapGetters([
             'userInfo'
         ]),
+        created() {
+            this.$post('/edu/video/getUpToken', {}, p => {
+                this.token = p.content
+            })
+        },
         methods: {
             update() {
                 this.$post('/edu/user/updateUser', {
@@ -134,8 +142,32 @@
                         this.msg = p.msg
                     }
                 })
+            },
+            upload() {
+                this.$refs.file.click()
+            },
+            change(ev) {
+                this.$post('/edu/course/uploadPic', {
+                    file: ev.target.files[0],
+                    type: 6
+                }, p => {
+                    if (p.httpCode == 200) {
 
-
+                        this.$post('/edu/user/updateUser', {
+                            id: this.userInfo.id,
+                            headimgurl: p.content
+                        }, p1 => {
+                            if (p1.httpCode == 200) {
+                                this.$get('/edu/user/getUserDetail', {id: this.userInfo.id}, p2 => {
+                                    console.log(p2);
+                                    this.$store.commit('login', p2.content)
+                                })
+                            }
+                        });
+                    } else {
+                        alert("图片上传失败")
+                    }
+                })
             }
         }
     }
