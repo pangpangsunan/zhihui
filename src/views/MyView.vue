@@ -17,7 +17,7 @@
                         <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}" class="teachname">
                             <div>{{item.userInfo.name}}</div>
                         </router-link>
-                        <div class="attention-number">{{item.userInfo.balance}} 人关注
+                        <div class="attention-number">{{item.collectionCount}} 人关注
                             <a @click.prevent=""
                                class="attention">取消关注</a>
                         </div>
