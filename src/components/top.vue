@@ -14,7 +14,7 @@
                 <div class="dropdown">
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                        <span><img src="@/assets/img_avatar_default.png"></span>
+                        <span><img :src="userInfo.headimgurl"></span>
                         <span class="username">&nbsp;{{ userInfo.name ||  userInfo.phone}}</span>
                         <span class="caret"></span>
                     </button>
