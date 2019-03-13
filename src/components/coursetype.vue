@@ -19,7 +19,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
 
     export default {
         data() {
@@ -39,16 +38,16 @@
             }
         },
         created() {
-            axios.get('/edu/dic/getIndustryList').then(p => {
-                this.currentMenu = p.data.content[0];
-                for (let obj of p.data.content) {
-                    let id = obj.id
+            this.$get('/edu/dic/getIndustryList', p => {
+                this.currentMenu = p.content[0];
+                for (let obj of p.content) {
+                    let id = obj.id;
                     this.menus[id] = obj;
                 }
             });
 
-            axios.get('/edu/dic/getFunctionList').then(p => {
-                this.menus1 = p.data.content
+            this.$get('/edu/dic/getFunctionList', p => {
+                this.menus1 = p.content
             })
         }
     }

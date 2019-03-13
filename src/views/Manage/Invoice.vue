@@ -42,8 +42,17 @@
         <div style="text-align: center">
             <button class="blue-btn" @click="diolog='addinvoice'">添加抬头信息</button>
         </div>
-        <updateinvoice @update="select()" v-if="diolog=='updateinvoice'" :vinfo="vinfo" @close="diolog=null"></updateinvoice>
-        <addinvoice @hide="hidediolog()" @update="select()" v-if="diolog=='addinvoice'" @close="diolog=null"></addinvoice>
+        <updateinvoice
+                @update="select()"
+                v-if="diolog=='updateinvoice'"
+                :vinfo="vinfo"
+                @close="diolog=null"></updateinvoice>
+
+        <addinvoice
+                @hide="hidediolog()"
+                @update="select()"
+                v-if="diolog=='addinvoice'"
+                @close="diolog=null"></addinvoice>
     </div>
 </template>
 <style scoped>
@@ -119,9 +128,9 @@
 
 </style>
 <script>
-    import axios from 'axios'
+
     import {mapGetters} from 'vuex'
-    import qs from 'querystring'
+
 
     export default {
         created() {
@@ -131,12 +140,8 @@
             return {
                 arr: [],
                 diolog: null,
-                vinfo: {
-
-                }
-
+                vinfo: {}
             }
-
         },
         components: {
             updateinvoice: () => import('@/components/updateinvoice.vue'),
@@ -145,43 +150,37 @@
         methods: {
             select() {
                 this.diolog = null
-                axios.get('/edu/invoice/getInvoiceTitleListByUser', {
-                    params: {
+                this.$get('/edu/invoice/getInvoiceTitleListByUser', {
                         uid: this.userInfo.id
                         // type: type
-
+                    }, p => {
+                        this.arr = p.content
                     }
-                }).then(p => {
-
-                    this.arr = p.data.content
-
-                })
+                )
             },
             deleteinvoice(id) {
-                axios.post("/edu/invoice/delInvoiceTitle", qs.stringify({
+                this.$post("/edu/invoice/delInvoiceTitle", {
                     id: id
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+                }, p => {
+                    if (p.httpCode == 200) {
 
                         this.select()
                     }
                 })
 
-            },/*sendis1。是为了显示修改的弹框，2为了把vid传到页面去*/
+            }
+            , /*sendis1。是为了显示修改的弹框，2为了把vid传到页面去*/
             sendid(infoid) {
                 this.diolog = 'updateinvoice'
                 this.vinfo = infoid
-
             },
-            hidediolog(){
-                this.diolog=null
+            hidediolog() {
+                this.diolog = null
             }
         },
         computed: mapGetters([
             'userInfo'
         ])
-
-
     }
 
 </script>

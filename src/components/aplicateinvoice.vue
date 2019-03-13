@@ -85,11 +85,9 @@
     }
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
     import {mapGetters} from 'vuex'
     import Close from "./close";
-
 
     export default {
         components: {
@@ -101,20 +99,15 @@
             }
         },
         created() {
-            axios.get('/edu/invoice/getInvoiceTitleListByUser', {
-                params: {
-                    uid: this.userInfo.id
-                }
-            }).then(p => {
-                if (p.data.httpCode == 200) {
-                    this.arr = p.data.content
-
+            this.$get('/edu/invoice/getInvoiceTitleListByUser', {
+                uid: this.userInfo.id
+            }, p => {
+                if (p.httpCode == 200) {
+                    this.arr = p.content
                 } else {
-                    alert(p.data.msg)
-
+                    alert(p.msg)
                 }
             })
-
         },
 
 

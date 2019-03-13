@@ -100,14 +100,14 @@
     大分类接口 http://zh.zhihui-app.com/edu/dic/getIndustryList
     小分类 http://zh.zhihui-app.com/edu/dic/getFunctionList
      */
-    import axios from 'axios'
-    import qs from 'querystring'
+
 
     export default {
         created() {
-            axios.get('/edu/course/getCoursePageByTeacher?id=1').then(p => {
-                this.courseList = p.data.content.records
-            })
+            this.$get('/edu/course/getCoursePageByTeacher?id=1', p => {
+                console.log(p);
+                this.courseList = p.content.records
+            });
 
             this.$store.bus.$on('showMenu', () => {
                 this.showDialog = true;
@@ -130,15 +130,13 @@
                 this.obj1 = obj1;
                 this.obj2 = obj2;
                 this.showDialog = false;
-                axios.get('/edu/course/getCoursePageByIndustryAndFunction', {
-                    params: {
-                        industryid: obj1.id,
-                        functionid: obj2.id,
-                        type: this.type,
-                    }
-                }).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.arr = p.data.content.records
+                this.$get('/edu/course/getCoursePageByIndustryAndFunction', {
+                    industryid: obj1.id,
+                    functionid: obj2.id,
+                    type: this.type,
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.arr = p.content.records
                     }
                 })
             },

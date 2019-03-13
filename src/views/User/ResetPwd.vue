@@ -41,8 +41,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
 
     export default {
         data() {
@@ -60,12 +58,12 @@
                     return;
                 }
                 this.sendCode(p => {
-                    axios.post('/edu/user/changePassword', qs.stringify({
+                    this.$post('/edu/user/changePassword', {
                         phone: this.phone,
                         code: p.content,
                         password: this.password
-                    })).then(p => {
-                        if (p.data.httpCode == 200) {
+                    }, p => {
+                        if (p.httpCode == 200) {
                             this.$router.push('/user/success')
                         } else {
                             this.msg = "接口调用失败"
@@ -75,8 +73,8 @@
             },
             sendCode(callback) {
                 let phone = this.phone;
-                axios.post('/edu/user/sendShortMessage', qs.stringify({phone})).then(p => {
-                    callback(p.data)
+                this.$post('/edu/user/sendShortMessage', {phone}, p => {
+                    callback(p)
                 })
             }
         }

@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div class="page2">
             <p>请设置新密码</p>
             <div class="bindphone-page">
@@ -37,8 +36,8 @@
     }
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
+
     import {mapGetters} from 'vuex'
 
     export default {
@@ -48,12 +47,13 @@
                     alert('两次密码不一致');
                     return;
                 }
-                axios.post('/edu/user/changePassword', qs.stringify({
+                this.$post('/edu/user/changePassword', {
                     phone: this.userInfo.phone,
                     email: this.userInfo.email
-                }))
-            },
+                }, p => {
 
+                })
+            },
         },
         data() {
             return {

@@ -192,22 +192,21 @@
     }
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
 
     export default {
         created() {
-            axios.get('/edu/course/getTeacherInfoByCourse', {
-                params: {
-                    cid: 268
-                }
-            }).then(p => {
-                this.obj = p.data.content.userInfo;
-                this.obj2 = p.data.content.userExtra;
+            this.$get('/edu/course/getTeacherInfoByCourse', {
+                cid: 268
+            }, p => {
+                this.obj = p.content.userInfo;
+                this.obj2 = p.content.userExtra;
             });
-            axios.get('/edu/course/getCoursePageByTeacher', {params: {id: this.$route.params.id}}).then(p => {
-                this.arr = p.data.content.records;
-            })
+            this.$get('/edu/course/getCoursePageByTeacher', {
+                    id: this.$route.params.id
+                },
+                p => {
+                    this.arr = p.content.records;
+                })
         },
         data() {
             return {
@@ -215,7 +214,6 @@
                 obj2: {},
                 expand: false,
                 arr: []
-
             }
         },
     }

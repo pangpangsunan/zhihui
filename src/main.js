@@ -7,7 +7,7 @@ import './registerServiceWorker'
 import $ from 'jquery'
 import 'bootstrap/dist/js/bootstrap.min'
 import axios from 'axios'
-import qs from 'querystring'
+
 
 Vue.config.productionTip = false;
 
@@ -38,15 +38,15 @@ Vue.prototype.view = (id, type = 2) => {
         alert("请先登录");
         return;
     }
-    axios.post('/edu/collection/addCollection', {
+    this.$post('/edu/collection/addCollection', {
         collectionid: id,
         uid: store.getters.userInfo.id,
         type: type
     }).then(p => {
-        if (p.data.httpCode == 200) {
+        if (p.httpCode == 200) {
             alert("关注成功")
         } else {
-            alert(p.data.msg)
+            alert(p.msg)
         }
     })
 };
@@ -67,11 +67,20 @@ Vue.prototype.$post = (url, data, cb) => {
     for (let key in data) {
         formdata.append(key, data[key]);
     }
-    axios.post(url, formdata).then(p => cb(p.data));
+    let promise = axios.post(url, formdata);
+    if (typeof cb == 'function') {
+        promise.then(p => cb(p.data));
+    }
 };
 
 Vue.prototype.$get = (url, data, cb) => {
-    axios.get(url, {params: data}).then(p => cb(p.data));
+    if (typeof data == 'function') {
+        cb = data;
+    }
+    let promise = axios.get(url, {params: data});
+    if (typeof cb == 'function') {
+        promise.then(p => cb(p.data));
+    }
 };
 
 new Vue({

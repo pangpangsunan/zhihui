@@ -122,8 +122,7 @@
     上传进度 https://www.showdoc.cc/113014908063361?page_id=1595552577929797
      */
     import {mapGetters} from 'vuex'
-    import axios from 'axios'
-    import qs from 'querystring'
+
 
     export default {
         data() {
@@ -137,16 +136,16 @@
             'userInfo'
         ]), methods: {
             send() {
-                axios.post('/edu/comment/addComment', qs.stringify({
+                this.$post('/edu/comment/addComment', {
                     cid: this.$route.params.id,
                     uid: this.userInfo.id,
                     content: this.comment
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+                }, p => {
+                    if (p.httpCode == 200) {
                         // alert('添加评论成功');
                         this.load()
                     } else {
-                        alert(p.data.msg)
+                        alert(p.msg)
                     }
                 })
             }

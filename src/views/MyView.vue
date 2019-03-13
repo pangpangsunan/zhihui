@@ -38,6 +38,7 @@
     .list-group {
         min-height: 40rem;
     }
+
     .list-group-item {
         height: 10rem;
         display: flex;
@@ -128,7 +129,7 @@
     }
 </style>
 <script>
-    import axios from 'axios'
+
     import {mapGetters} from 'vuex'
 
     export default {
@@ -137,13 +138,11 @@
                 return;
             }
             axios.get('/edu/collection/getCollectionPage', {
-                params: {
-                    uid: this.userInfo.id,
-                    type: 2
-                }
+                uid: this.userInfo.id,
+                type: 2
             }).then(p => {
-                this.arr = p.data.content.records;
-                this.hasData = !!p.data.content.records
+                this.arr = p.content.records;
+                this.hasData = !!p.content.records
             })
         }, data() {
             return {

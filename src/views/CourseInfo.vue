@@ -198,8 +198,8 @@
            post doc https://www.showdoc.cc/113014908063361?page_id=1020245263315513
 
     */
-    import axios from 'axios'
-    import qs from 'querystring'
+
+
     import {mapGetters} from 'vuex'
 
     export default {
@@ -232,26 +232,22 @@
                 if (this.isLogin) {
                     uid = this.userInfo.id
                 }
-                axios.get("/edu/course/getCourseInfoById", {
-                    params: {
-                        id: this.$route.params.id,
-                        uid
-                    }
-                }).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.course = p.data.content;
-                        this.$store.commit('course', p.data.content.course);
+                this.$get("/edu/course/getCourseInfoById", {
+                    id: this.$route.params.id,
+                    uid
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.course = p.content;
+                        this.$store.commit('course', p.content.course);
                     }
                 });
 
-                axios.get('/edu/comment/getCommenPageByCourseNew', {
-                    params: {
-                        cid: this.$route.params.id
-                    }
-                }).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.comments = p.data.content.records;
-                        this.$store.commit('comments', p.data.content.records);
+                this.$get('/edu/comment/getCommenPageByCourseNew', {
+                    cid: this.$route.params.id
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.comments = p.content.records;
+                        this.$store.commit('comments', p.content.records);
                     }
                 })
             },
@@ -265,16 +261,16 @@
                     alert("请先登录");
                     return;
                 }
-                axios.post('/edu/comment/addComment', qs.stringify({
+                this.$post('/edu/comment/addComment', {
                     cid: this.$route.params.id,
                     uid: this.userInfo.id,
                     content: this.comment
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+                }, p => {
+                    if (p.httpCode == 200) {
                         // alert('添加评论成功');
                         this.load()
                     } else {
-                        alert(p.data.msg)
+                        alert(p.msg)
                     }
                 })
             }

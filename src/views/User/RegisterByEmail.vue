@@ -56,8 +56,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
 
     export default {
         data() {
@@ -73,9 +71,9 @@
             }
         }, methods: {
             getValCode() {
-                axios.post('/edu/user/sendEmail', qs.stringify({email: this.email})).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.valCodeTrue = p.data.content;
+                this.$post('/edu/user/sendEmail', {email: this.email}, p => {
+                    if (p.httpCode == 200) {
+                        this.valCodeTrue = p.content;
 
                         this.time = '60s';
                         this.valCodeDisabled = true;
@@ -108,18 +106,18 @@
                     return;
                 }
 
-                axios.post('/edu/user/signIn', qs.stringify({
+                this.$post('/edu/user/signIn', {
                     email: this.email,
                     password: this.password,
                     code: this.valCode,
                     roleCode: 'student',
-                })).then(p => {
-                    if (p.data.httpCode != 200) {
-                        this.msg = p.data.msg;
+                }, p => {
+                    if (p.httpCode != 200) {
+                        this.msg = p.msg;
                         return;
                     }
 
-                    localStorage.uid = p.data.content;
+                    localStorage.uid = p.content;
                     this.$router.push('/user/login')
                 })
             }

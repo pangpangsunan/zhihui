@@ -43,7 +43,6 @@
         left: 0;
     }
 
-
     .manage-content {
         width: 80%;
         margin-left: 6em;
@@ -100,8 +99,7 @@
     /edu/user/updateUser
      */
     import {mapGetters} from 'vuex'
-    import axios from 'axios'
-    import qs from 'querystring'
+
 
     export default {
         data() {
@@ -115,27 +113,25 @@
         ]),
         methods: {
             update() {
-                axios.post('/edu/user/updateUser', qs.stringify({
+                this.$post('/edu/user/updateUser', {
                     id: this.userInfo.id,
                     name: this.userInfo.name,
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+                }, p => {
+                    if (p.httpCode == 200) {
                         this.findInfo();
                         this.show = false;
                     }
                 })
             },
             findInfo() {
-                axios.get('/edu/user/getUserDetail', {
-                    params: {
-                        id: this.userInfo.id,
-                    }
-                }).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.$store.commit('login', p.data.content)
+                this.$get('/edu/user/getUserDetail', {
+                    id: this.userInfo.id,
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.$store.commit('login', p.content)
                         // this.$router.push('/')
                     } else {
-                        this.msg = p.data.msg
+                        this.msg = p.msg
                     }
                 })
 

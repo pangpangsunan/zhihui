@@ -53,7 +53,8 @@
         margin-left: 1.2rem;
         margin-top: 1rem;
     }
-    .courses-category{
+
+    .courses-category {
         min-height: 40rem;
     }
 
@@ -85,7 +86,6 @@
 
 </style>
 <script>
-    import axios from 'axios'
     import {mapGetters} from 'vuex'
 
     export default {
@@ -93,14 +93,12 @@
             if (!this.isLogin) {
                 return;
             }
-            axios.get('/edu/course/GetEnrollByUser', {
-                params: {
-                    userid: this.userInfo.id,
-                }
-            }).then(p => {
-                if (p.data.httpCode == 200) {
-                    this.arr = p.data.content.records;
-                    this.hasData = p.data.content.total > 0;
+            this.$get('/edu/course/GetEnrollByUser', {
+                userid: this.userInfo.id,
+            }, p => {
+                if (p.httpCode == 200) {
+                    this.arr = p.content.records;
+                    this.hasData = p.content.total > 0;
                 }
             })
         },

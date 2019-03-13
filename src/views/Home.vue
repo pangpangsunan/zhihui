@@ -51,7 +51,6 @@
 
     }
 
-
     .courseimg {
         width: 17.75rem;
         height: 10rem;
@@ -85,13 +84,12 @@
     }
 </style>
 <script>
-    import axios from 'axios'
 
     export default {
         created() {
-            axios.get('/edu/recommendation/getRecommendationCourseList')
+            this.$get('/edu/recommendation/getRecommendationCourseList')
                 .then(p => {
-                    this.arr = p.data.content
+                    this.arr = p.content
                 })
         }, data() {
             return {

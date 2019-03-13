@@ -132,7 +132,7 @@
 
 </style>
 <script>
-    import axios from 'axios'
+
     import vuex from 'vuex';
 
     export default {
@@ -142,25 +142,20 @@
                 arr: [],
                 diolog: null
             }
-
         },
         methods: {
             load(status) {
                 this.arr.length = 0;
-                axios.get('/edu/order/getOrderList', {
-                    params: {
-                        status: status,
-                        userid: this.userInfo.id
-                    }
-                }).then(p => {
-                    // this.arr=p.data.content.records;
-                    for (let i of p.data.content.records) {
+                this.$get('/edu/order/getOrderList', {
+                    status: status,
+                    userid: this.userInfo.id
+                }, p => {
+                    for (let i of p.content.records) {
                         for (let j of i.courseList) {
                             j.orderid = i.orderid;
                             this.arr.push(j);
                         }
                     }
-                    // console.log(this.arr);
                 });
             },
         },
@@ -173,7 +168,6 @@
         components: {
             aplicateinvoice: () => import('@/components/aplicateinvoice.vue'),
         }
-
     }
 
 </script>

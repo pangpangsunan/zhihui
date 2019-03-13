@@ -63,8 +63,8 @@
 
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
+
     import {mapGetters} from 'vuex'
 
     export default {
@@ -76,13 +76,13 @@
                 content: null
             }
         },
-        methods:{
-            submit(){
-                axios.post('/edu/message/addFeedback',qs.stringify({
-                    uid:this.userInfo.id,
-                    content:this.content
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+        methods: {
+            submit() {
+                this.$post('/edu/message/addFeedback', {
+                    uid: this.userInfo.id,
+                    content: this.content
+                }, p => {
+                    if (p.httpCode == 200) {
                         alert("提交成功！")
                     }
                 })

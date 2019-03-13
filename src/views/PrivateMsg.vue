@@ -70,19 +70,16 @@
 
 </style>
 <script>
-    import axios from 'axios'
+
     import {mapGetters} from 'vuex'
-    import qs from 'querystring'
+
 
     export default {
         created() {
-            axios.get('/edu/message/getPrivateMessageUser',{
-                params:{
-                    uid:this.userInfo.id,
-                }
-
-            }).then(p => {
-                this.arr = p.data.content
+            this.$get('/edu/message/getPrivateMessageUser', {
+                uid: this.userInfo.id,
+            }, p => {
+                this.arr = p.content
             })
         }, data() {
             return {

@@ -20,12 +20,11 @@
 </style>
 
 <script>
-    import axios from 'axios'
 
     export default {
         created() {
-            axios.get('/edu/carousel/getCarouselList').then(p => {
-                this.imgs = p.data.content
+            this.$get('/edu/carousel/getCarouselList', p => {
+                this.imgs = p.content
             })
         },
         data() {

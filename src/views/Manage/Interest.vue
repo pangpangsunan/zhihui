@@ -20,7 +20,6 @@
         <div class="clear"></div>
     </div>
 
-
 </template>
 <style scoped>
 
@@ -66,15 +65,22 @@
 
 </style>
 <script>
-    import axios from 'axios'
+    import {mapGetters} from 'vuex'
 
     export default {
         created() {
-            axios.get('/edu/collection/getCollectionPage?uid=192&type=2').then(p => {
-                this.arr = p.data.content.records
-                this.hasData = !!p.data.content.records
+            this.$get('/edu/collection/getCollectionPage', {
+                uid: this.userInfo.id,
+                type: 2
+            }, p => {
+                this.arr = p.content.records
+                this.hasData = !!p.content.records
             })
-        }, data() {
+        },
+        computed: mapGetters([
+            'userInfo'
+        ]),
+        data() {
             return {
                 arr: [],
                 hasData: false

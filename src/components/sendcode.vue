@@ -6,8 +6,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
 
     export default {
         data() {
@@ -21,11 +19,11 @@
         },
         methods: {
             getValCode() {
-                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
-                    if (p.data.httpCode == 200) {
+                this.$post('/edu/user/sendShortMessage', {phone: this.phone}, p => {
+                    if (p.httpCode == 200) {
                         this.btnText = '60s';
                         this.valCodeDisabled = true;
-                        this.$emit('success', p.data.content);
+                        this.$emit('success', p.content);
 
                         let intval = setInterval(() => {
                             let time = parseInt(this.btnText);

@@ -29,7 +29,7 @@
     }
 
     .public-style-info {
-        width:100%;
+        width: 100%;
         margin-top: .5rem;
         margin-right: 1rem;
     }
@@ -67,20 +67,18 @@
 
 </style>
 <script>
-    import axios from 'axios'
+
     import {mapGetters} from 'vuex'
-    import qs from 'querystring'
 
     export default {
         created() {
-            axios.get('/edu/message/getSystemMessage', {
-                params: {
-                    uid: this.userInfo.id,
-                    type: 1
-                }
+            this.$get('/edu/message/getSystemMessage', {
 
-            }).then(p => {
-                this.arr = p.data.content.records
+                uid: this.userInfo.id,
+                type: 1
+
+            }, p => {
+                this.arr = p.content.records
             })
         }, data() {
             return {

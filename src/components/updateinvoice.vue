@@ -72,30 +72,31 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
-     import {mapGetters} from 'vuex'
+
+
+    import {mapGetters} from 'vuex'
 
     export default {
 
-      props:{
-          vinfo:{
+        props: {
+            vinfo: {}
 
-          }
-
-      },
-        methods:{
-          updateinvoice(){
-              this.vinfo.createDate =  (new Date).toGMTString();
-              this.vinfo.updateDate=this.vinfo.createDate;
-              axios.post('/edu/invoice/updateInvoiceTitle',qs.stringify(this.vinfo)).then(p=>{
-                  if(p.data.httpCode==200){
-                      this.$emit('update')
-                  }else {
-                      alert("修改失败！")
-                  }
-              })
-          }
+        },
+        methods: {
+            updateinvoice() {
+                let dt = (new Date).toGMTString();
+                this.$post('/edu/invoice/updateInvoiceTitle', {
+                    ...this.vinfo,
+                    createDate: dt,
+                    updateDate: dt,
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.$emit('update')
+                    } else {
+                        alert("修改失败！")
+                    }
+                })
+            }
         }
     }
 </script>
@@ -119,7 +120,6 @@
         text-align: center;
         position: relative;
     }
-   
 
     .col-sm-10 input {
         height: 2.75rem;

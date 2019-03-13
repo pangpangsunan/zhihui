@@ -44,8 +44,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
 
     export default {
         data() {
@@ -61,9 +60,9 @@
         }, methods: {
             getValCode() {
 
-                axios.post('/edu/user/sendShortMessage', qs.stringify({phone: this.phone})).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.valCodeTrue = p.data.content;
+                this.$post('/edu/user/sendShortMessage', {phone: this.phone}, p => {
+                    if (p.httpCode == 200) {
+                        this.valCodeTrue = p.content;
 
                         this.time = '60s';
                         this.valCodeDisabled = true;

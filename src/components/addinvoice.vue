@@ -102,8 +102,8 @@
     }
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
+
     import {mapGetters} from 'vuex'
 
 
@@ -122,26 +122,21 @@
             }
         },
         methods: {
-
             addinvoice() {
-                this.invoiceobj.uid = this.userInfo.id
-                axios.post('/edu/invoice/addInvoiceTitle', qs.stringify(this.invoiceobj)).then(p => {
-                    if (p.data.httpCode == 200) {
+                this.$post('/edu/invoice/addInvoiceTitle', {
+                    ...this.invoiceobj,
+                    uid: this.userInfo.id
+                }, p => {
+                    if (p.httpCode == 200) {
                         this.$emit('update')
-
                     } else {
-                        alert(p.data.msg)
-
+                        alert(p.msg)
                     }
                 })
-
             },
-
         },
         computed: mapGetters([
             'userInfo'
         ])
-
-
     }
 </script>

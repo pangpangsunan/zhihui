@@ -178,8 +178,6 @@
 
 </style>
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
 
     export default {
         created() {
@@ -210,25 +208,21 @@
                 });
             }, load() {
                 this.content = null;
-                axios.get('/edu/course/getTeacherInfoByCourse', {
-                    params: {
-                        cid: 268
-                    }
-                }).then(p => {
-                    this.tinfo = p.data.content.userInfo;
-                    this.tinfoex = p.data.content.userExtra;
+                this.$get('/edu/course/getTeacherInfoByCourse', {
+                    cid: 268
+                }, p => {
+                    this.tinfo = p.content.userInfo;
+                    this.tinfoex = p.content.userExtra;
                 });
 
-                axios.get('/edu/message/getPrivateMessageDetail', {
-                    params: {
-                        uid: this.$store.getters.userInfo.id,
-                        uidother: this.$route.params.id
+                this.$get('/edu/message/getPrivateMessageDetail', {
+                    uid: this.$store.getters.userInfo.id,
+                    uidother: this.$route.params.id
+                }, p => {
+                    if (p.content) {
+                        this.arr = p.content;
                     }
-                }).then(p => {
-                    if (p.data.content) {
-                        this.arr = p.data.content;
-                    }
-                })
+                });
             }, msgcls(item) {
                 return item.sendFromId == this.$store.getters.userInfo.id ? "student-chat" : "teacher-chat"
             }

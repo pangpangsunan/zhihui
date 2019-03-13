@@ -64,8 +64,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
-                               pattern="\d{4}">
+                            <input type="text" class="form-control" v-model="valCode" placeholder="验证码" required
+                                   pattern="\d{4}">
                         </div>
                         <sendcode :phone="phone" @seccess="valCodeTrue=$event"></sendcode>
                     </div>
@@ -93,8 +93,6 @@
 </style>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
     import {mapGetters} from 'vuex'
 
     export default {
@@ -128,18 +126,16 @@
                 if (!this.phone) {
                     return
                 }
-                axios.post('/edu/user/bindingPhone', qs.stringify({
+                this.$post('/edu/user/bindingPhone', {
                     uid: this.userInfo.id,
                     phone: this.phone,
-                    code: this.valCode,
-
-
-                })).then(p => {
-                    if (p.data.httpCode == 200) {
+                    code: this.valCode
+                }, p => {
+                    if (p.httpCode == 200) {
                         alert("成功");
                         this.page = "page2"
                     } else {
-                        this.msg = p.data.msg;
+                        this.msg = p.msg;
                     }
                 })
             },

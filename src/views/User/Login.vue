@@ -39,9 +39,6 @@
 </template>
 <script>
     //
-    import axios from 'axios'
-    import qs from 'querystring'
-
     export default {
         data() {
             return {
@@ -52,17 +49,16 @@
         },
         methods: {
             login() {
-                axios.post('/edu/user/login',
-                    qs.stringify({
-                        account: this.account,
-                        password: this.password,
-                        platform: 1,
-                    })).then(p => {
-                    if (p.data.httpCode == 200) {
-                        this.$store.commit('login', p.data.content)
+                this.$post('/edu/user/login', {
+                    account: this.account,
+                    password: this.password,
+                    platform: 1,
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.$store.commit('login', p.content)
                         this.$router.push('/')
                     } else {
-                        this.msg = p.data.msg
+                        this.msg = p.msg
                     }
                 })
             }

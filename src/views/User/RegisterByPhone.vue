@@ -54,8 +54,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import qs from 'querystring'
+
 
     export default {
         data() {
@@ -80,18 +79,18 @@
                     return;
                 }
 
-                axios.post('/edu/user/signIn', qs.stringify({
+                this.$post('/edu/user/signIn', {
                     phone: this.phone,
                     password: this.password,
                     code: this.valCode,
                     roleCode: 'student',
-                })).then(p => {
-                    if (p.data.httpCode != 200) {
-                        this.msg = p.data.msg;
+                }, p => {
+                    if (p.httpCode != 200) {
+                        this.msg = p.msg;
                         return;
                     }
 
-                    localStorage.uid = p.data.content;
+                    localStorage.uid = p.content;
                     this.$router.push('/user/login')
                 })
             }
