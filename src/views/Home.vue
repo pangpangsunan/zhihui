@@ -18,6 +18,9 @@
                             item.course['function'] }}</p>
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
                             item.course.address}}</p>
+                        <p class="course-location font-bestsmall" v-if="item.course.type==2">
+                            {{item.course.startDate|datetime}}&nbsp;-&nbsp;{{item.course.endDate|datetime}}
+                        </p>
                         <div class="btns1">
                             <button class="white-btn" v-if="item.course.type!=2">试看</button>
                             <button class="orange-btn buy">购买</button>
@@ -42,7 +45,7 @@
 
     .course-list {
         padding: 0;
-        height: 10rem;
+        height: 11rem;
         position: relative;
         margin-top: 1.2rem;
 
@@ -52,6 +55,7 @@
     .courseimg {
         width: 17.75rem;
         height: 10rem;
+        margin-top: .5rem;
     }
 
     .font-list {

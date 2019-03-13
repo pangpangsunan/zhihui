@@ -28,7 +28,7 @@ Vue.filter('nl2br', str => {
 
 Vue.filter('datetime', time => {
     let dt = new Date(time);
-    return dt.toLocaleString() + dt.toLocaleTimeString();
+    return dt.toLocaleString();
 });
 
 store.commit('load');
