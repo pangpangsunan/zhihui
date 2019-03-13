@@ -33,35 +33,6 @@ Vue.filter('datetime', time => {
 
 store.commit('load');
 
-Vue.prototype.view = (id, type = 2) => {
-    if (!store.getters.isLogin) {
-        alert("请先登录");
-        return;
-    }
-    this.$post('/edu/collection/addCollection', {
-        collectionid: id,
-        uid: store.getters.userInfo.id,
-        type: type
-    }).then(p => {
-        if (p.httpCode == 200) {
-            alert("关注成功")
-        } else {
-            alert(p.msg)
-        }
-    })
-};
-
-Vue.prototype.unview = (id, type = 2) => {
-    if (!store.getters.isLogin) {
-        alert("请先登录");
-        return;
-    }
-    axios.post('/edu/collection/delCourseCollection', {
-        cid: id,
-        uid: store.getters.userInfo.id,
-    })
-};
-
 Vue.prototype.$post = (url, data, cb) => {
     let formdata = new FormData;
     for (let key in data) {
@@ -82,6 +53,35 @@ Vue.prototype.$get = (url, data, cb) => {
     if (typeof cb == 'function') {
         promise.then(p => cb(p.data));
     }
+};
+
+Vue.prototype.view = (id, type = 2) => {
+    if (!store.getters.isLogin) {
+        alert("请先登录");
+        return;
+    }
+    Vue.prototype.$post('/edu/collection/addCollection', {
+        collectionid: id,
+        uid: store.getters.userInfo.id,
+        type: type
+    }, p => {
+        if (p.httpCode == 200) {
+            alert("关注成功")
+        } else {
+            alert(p.msg)
+        }
+    });
+};
+
+Vue.prototype.unview = (id, type = 2) => {
+    if (!store.getters.isLogin) {
+        alert("请先登录");
+        return;
+    }
+    Vue.prototype.$post('/edu/collection/delCourseCollection', {
+        cid: id,
+        uid: store.getters.userInfo.id,
+    });
 };
 
 new Vue({

@@ -87,18 +87,21 @@
 
     export default {
         created() {
-            this.$get('/edu/recommendation/getRecommendationCourseList')
-                .then(p => {
+            this.$get('/edu/recommendation/getRecommendationCourseList',
+                p => {
                     this.arr = p.content
-                })
-        }, data() {
+                });
+        },
+        data() {
             return {
                 arr: [],
             }
-        },
+        }
+        ,
         components: {
             carousel: () => import('@/components/carousel.vue')
-        },
+        }
+        ,
 
     }
 </script>

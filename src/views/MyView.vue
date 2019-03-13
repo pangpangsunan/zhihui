@@ -137,10 +137,10 @@
             if (!this.isLogin) {
                 return;
             }
-            axios.get('/edu/collection/getCollectionPage', {
+            this.$get('/edu/collection/getCollectionPage', {
                 uid: this.userInfo.id,
                 type: 2
-            }).then(p => {
+            }, p => {
                 this.arr = p.content.records;
                 this.hasData = !!p.content.records
             })
