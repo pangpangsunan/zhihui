@@ -90,9 +90,10 @@
 
     .chat-content {
         height: 35rem;
-        overflow-y:scroll;
+        overflow-y: scroll;
         padding: .5rem;
     }
+
     .send-msg {
         height: 10rem;
         position: relative;
@@ -165,11 +166,12 @@
     .student-chat .touxiang {
         margin-left: .8rem;
     }
+
     @media (max-width: 768px) {
 
         .chat-left {
             width: 65%;
-            overflow-y:scroll;
+            overflow-y: scroll;
         }
     }
 
@@ -195,18 +197,17 @@
                     alert('消息为空');
                     return;
                 }
-                axios.post('/edu/message/addMessage', {
+
+                this.$post('/edu/message/addMessage', {
                     content: this.content,
                     sendFrom: this.$store.getters.userInfo.id,
                     sendToIds: this.$route.params.id,
                     type: 3
-                }).then(p => {
-                    if (p.data.httpCode == 200) {
+                }, p => {
+                    if (p.httpCode == 200) {
                         this.load()
-                    } else {
-
                     }
-                })
+                });
             }, load() {
                 this.content = null;
                 axios.get('/edu/course/getTeacherInfoByCourse', {

@@ -62,12 +62,16 @@ Vue.prototype.unview = (id, type = 2) => {
     })
 };
 
-axios.defaults.headers.common['Content-Type'] = "application/x-www-form-urlencoded";
-axios.defaults.transformRequest = data => {
-    if (typeof data == 'object') {
-        data = qs.stringify(data);
+Vue.prototype.$post = (url, data, cb) => {
+    let formdata = new FormData;
+    for (let key in data) {
+        formdata.append(key, data[key]);
     }
-    return data;
+    axios.post(url, formdata).then(p => cb(p.data));
+};
+
+Vue.prototype.$get = (url, data, cb) => {
+    axios.get(url, {params: data}).then(p => cb(p.data));
 };
 
 new Vue({
