@@ -105,7 +105,6 @@
     export default {
         created() {
             this.$get('/edu/course/getCoursePageByTeacher?id=1', p => {
-                console.log(p);
                 this.courseList = p.content.records
             });
 

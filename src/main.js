@@ -76,6 +76,7 @@ Vue.prototype.$post = (url, data, cb) => {
 Vue.prototype.$get = (url, data, cb) => {
     if (typeof data == 'function') {
         cb = data;
+        data = null;
     }
     let promise = axios.get(url, {params: data});
     if (typeof cb == 'function') {
