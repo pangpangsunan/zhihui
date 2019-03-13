@@ -116,6 +116,7 @@
 
                 axios.post('/edu/user/addCourseRequirement', {
                     uid: this.userInfo.id,
+
                     industry: this.type1,
                     'function': this.type2,
                 }).then(p => {
