@@ -14,7 +14,7 @@
                 <div class="dropdown">
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                        <span><img :src="userInfo.headimgurl"></span>
+                        <span><img :src="userInfo.headimgurl" style="width:1.5rem;height: 1.5rem;border-radius: 1.5rem "></span>
                         <span class="username">&nbsp;{{ userInfo.name ||  userInfo.phone}}</span>
                         <span class="caret"></span>
                     </button>
