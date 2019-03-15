@@ -75,6 +75,18 @@
     .border-rad {
         border-radius: 2px;
     }
+    .lightgray-btn,.darkgray-btn{
+        width: 12.5rem;
+        height: 2.5rem;
+        background: #AAAAAA;
+        border-radius: 4px;
+        color: #fff;
+    }
+    .lightgray-btn {
+        border: 1px solid #AAAAAA ;
+        background-color: #F3F5F7;
+        color: #000;
+    }
 
     .blue-btn, .orange-btn, .white-btn {
         width: 6.75rem;

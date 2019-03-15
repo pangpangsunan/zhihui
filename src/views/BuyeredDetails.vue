@@ -1,32 +1,38 @@
 <template>
     <div class="container">
 
-        <p class="nav-title">全部 - 推荐 - {{ course.course.name }}</p>
-        <div class="course-top pubwidth1">
-            <div class="left">
-                <img :src="course.course.image">
+        <p class="nav-title">正在播放 - {{ course.name }}</p>
+        <div class="course-play skin-white border-rad">
+            <div class="videosp">
+                <video src="http://video.zhihui-app.com/%2F194%2F267-0?e=1551536816&token=JksNydlEkUXgEMbcfG2AtG97Cj0iM3zOq0abjVQS:uQFDCTYW4TTQUSQjj_8AJPmPRRs="
+                       id="vd" width="100%" height="100%" controls="controls"></video>
             </div>
             <div class="right">
-                <p class="course-title font-big">{{ course.course.name }}</p>
-                <p class="font-middel">{{ course.course.type|isOnline }}</p>
-                <p class="course-price font-big">${{ course.course.price }}</p>
-                <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
-                <div class="btns2">
-                    <button class="white-btn" @click="$router.push('/coursePlay/'+course.course.id)">试看</button>
-                    <button class="buy orange-btn" @click="diolog='pay'">购买</button>
+                <p class="title font-big">{{ course.name }}</p>
+                <p class="trywatch">试看版</p>
+                <p class="content">{{ course.background }}</p>
+                <div class="att-wrapper">
+                    <img :src="course.image" class="img-left">
+                    <span>{{ course['function'] }}</span>
+                    <br>
+                    <span class="font-middle">{{ course.totalNum }}人关注</span>
+                    <button class="attention-btn blue-btn">关注</button>
+
+                    <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
         <div class="course-tab pubwidth1 border-rad">
             <div class="tab-bg">
                 <ul class="tab-list font-middle">
-                    <li @click="current='page1'" :class="current==='page1'?'active':''">课程信息</li>
-                    <li @click="current='page2'" :class="current==='page2'?'active':''">图文介绍</li>
+                    <li @click="current='page1'" :class="current==='page1'?'active':''">课程通知</li>
+                    <li @click="current='page2'" :class="current==='page2'?'active':''">课程问卷</li>
                     <li @click="current='page3'" :class="current==='page3'?'active':''">课程评论</li>
                 </ul>
             </div>
 
-            <ul class="tab-content skin-white">
+            <ul class="tab-content">
                 <li v-show="current==='page1'">
                     <div class="all-comment">
                         <p class="title">课程讲师</p>
@@ -52,11 +58,13 @@
                     </div>
                 </li>
                 <li v-show="current==='page2'">
-                    <ul>
-                        <li v-for="item in course.introduction">
-                            <img :src="item.url" alt="" width="100%">
-                        </li>
-                    </ul>
+                   <div class="questions">
+                        <p>问卷名称：被商说效将在将建律影</p>
+                       <div>题目一 （单选）</div>
+                       <div>石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
+                       <div><button class="lightgray-btn">是</button> </div>
+                       <div><button class="darkgray-btn">不是</button> </div>
+                   </div>
                 </li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
@@ -82,30 +90,52 @@
                 </li>
             </ul>
         </div>
-        <pay v-if="diolog=='pay'" @close="diolog=null"></pay>
+
     </div>
 </template>
 
 
 <style scoped>
 
-    .course-top {
-        height: 13.5rem;
-        background-color: #F3F5F7;
-        position: relative;
+    .videosp {
+        width: 46rem;
+        height: 25rem;
+        float: left;
     }
 
-    .course-top .left img {
-        width: 24rem;
-        height: 13.5rem;
+    .course-play .right {
+        float: right;
+        width: 23rem;
+        padding-top: 1rem;
     }
 
-    .course-top .right {
-        position: absolute;
-        left: 25rem;
-        top: 1rem;
+    .content {
+        color: #666666;
     }
 
+    .trywatch {
+        font-size: 14px;
+        color: #888888;
+        letter-spacing: 0;
+        line-height: 24px;
+    }
+
+    .att-wrapper {
+        margin-top: 10rem;
+    }
+
+    .attention-btn {
+        margin-left: 7rem;
+    }
+
+    .title {
+        margin-top: 2rem;
+        color: #8087AB;
+    }
+
+    .active {
+        background: #ffffff;
+    }
     /*课程信息部分*/
     .all-comment .title {
         color: #8087AB;
@@ -136,6 +166,16 @@
 
     /*课程信息结束*/
 
+    /*问卷调查*/
+    .tab-content {
+        background-color: #F3F5F7;
+
+    }
+    .questions {
+        text-align: center;
+    }
+
+
     .con-wrapper {
         border-bottom: 1px solid #D8D8D8;
         padding: 2rem 0;
@@ -143,6 +183,7 @@
 
     .course-tab {
         margin-top: 2rem;
+        min-height: 30rem;
     }
 
     .tab-bg {
@@ -201,16 +242,13 @@
 
 
     import {mapGetters} from 'vuex'
-    import Pay from "../components/pay";
 
     export default {
-        components: {Pay},
         data() {
             return {
                 pagenum: 1,
                 comment: '',
-                diolog:null,
-                current: 'page1',
+                current: 'page2',
                 arr: [],
                 course: {
                     course: {},

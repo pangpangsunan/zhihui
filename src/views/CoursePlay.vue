@@ -83,8 +83,8 @@
 
     .course-play .right {
         float: right;
-        width: 23rem;
-        padding-top: 1rem;
+        width: 25rem;
+        padding: 1rem;
     }
 
     .content {
