@@ -5,25 +5,20 @@
             <form class="form-horizontal">
                 <div class="select-groups">
                     <label>发票抬头</label>
-                    <select>
+                    <select v-model="titleId" @change="change">
                         <option value="请选择">请选择</option>
-                        <option v-for="item in arr">
-                            {{item.title}}
+                        <option v-for="item in arr" :value="item.id">
+                            {{ item.title }}
                         </option>
                     </select>
                 </div>
                 <div class="select-groups">
                     <label>发票类型</label>
-                    <select>
-                        <option value="请选择">请选择</option>
-                        <option v-for="item in arr">
-                            {{item.type}}
-                        </option>
-                    </select>
+                    <input type="text" :value="invtype|invType" readonly>
                 </div>
 
                 <div class="select-groups">
-                    <button class="blue-btn">申请</button>
+                    <button class="blue-btn" @click="submit">申请</button>
                 </div>
             </form>
             <div class="closebtn" @click="$emit('close')">关闭</div>
@@ -95,7 +90,14 @@
         },
         data() {
             return {
-                arr: []
+                arr: [],
+                titleId: 0,
+                invtype: 0,
+            }
+        },
+        filters: {
+            invType: p => {
+                return p == 0 ? '个人' : '公司';
             }
         },
         created() {
@@ -109,11 +111,23 @@
                 }
             })
         },
-
-
         computed: mapGetters([
             'userInfo'
-        ])
+        ]),
+        methods: {
+            change() {
+                let item = {};
+                for (let item1 of this.arr) {
+                    if (item1.id === this.titleId) {
+                        item = item1;
+                    }
+                }
+                this.invtype = item.type;
+            },
+            submit() {
+
+            }
+        }
 
     }
 </script>

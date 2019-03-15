@@ -14,20 +14,26 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li>
-                            <router-link to="/">线上</router-link>
+                            <a @click="type=1">线上</a>
                         </li>
                         <li>
-                            <router-link to="/">线下</router-link>
+                            <a @click="type=2">线下</a>
+                        </li>
+                        <li>
+                            <a @click="type=3">专栏</a>
                         </li>
                     </ul>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})" class="pro skin-white"
-                 v-for="item in arr">
+            <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})"
+                 class="pro skin-white"
+                 v-for="item in arr"
+                 v-show="type==item.enrollInfo.course.type">
                 <img :src="item.enrollInfo.course.image" class="course-img">
                 <div class="course-list">
-                    <div class="course-name">{{ item.enrollInfo.course.name }}<span class="online">线上</span></div>
+                    <div class="course-name">{{ item.enrollInfo.course.name }}<span class="online">{{ item.enrollInfo.course.type|coursType }}</span>
+                    </div>
                     <div class="course-teacher">
                         <img src="@/assets/ic_home_teacher.png">
                         {{ item.userInfo.name }}
@@ -109,7 +115,8 @@
         data() {
             return {
                 arr: [],
-                hasData: false
+                hasData: false,
+                type: 1,
             }
         }
     }
