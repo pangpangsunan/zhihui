@@ -97,7 +97,6 @@
             return {
                 arr: [],
                 titleId: '',
-                orderId: 0,
                 content: '会务费',
             }
         },
@@ -117,6 +116,10 @@
         ]),
         methods: {
             submit() {
+                if (!this.titleId) {
+                    alert("请选择发票抬头")
+                    return;
+                }
                 this.$post('/edu/invoice/addInvoiceNew', {
                     titleId: this.titleId,
                     content: this.content,
