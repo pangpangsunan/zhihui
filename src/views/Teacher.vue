@@ -196,7 +196,7 @@
     export default {
         created() {
             this.$get('/edu/course/getTeacherInfoByCourse', {
-                cid: 268
+                cid: this.$route.params.id
             }, p => {
                 this.obj = p.content.userInfo;
                 this.obj2 = p.content.userExtra;

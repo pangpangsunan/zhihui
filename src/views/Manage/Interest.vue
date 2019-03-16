@@ -4,14 +4,12 @@
             <div class="font-big">选择你感兴趣的知识</div>
             <div class="font-small">请至少选择一项</div>
             <ul class="font-middle">
-                <li>只想了</li>
-                <li>只想了</li>
-                <li>只想了</li>
-                <li>只想了</li>
-                <li>只想了</li>
-                <li>只想了</li>
+                <li v-for="item in arr" @click="addInt(item)"
+                    :class="{'clicked':arr1.indexOf(item.id)!==-1}">{{
+                    item.name }}
+                </li>
             </ul>
-            <button class="blue-btn">保存</button>
+            <button class="blue-btn" @click="save">保存</button>
         </div>
         <div class="clear"></div>
     </div>
@@ -64,6 +62,10 @@
         margin-top: 3rem;
     }
 
+    .clicked {
+        color: #fff;
+        background-color: #00f;
+    }
 
 </style>
 <script>
@@ -71,12 +73,8 @@
 
     export default {
         created() {
-            this.$get('/edu/collection/getCollectionPage', {
-                uid: this.userInfo.id,
-                type: 2
-            }, p => {
-                this.arr = p.content.records
-                this.hasData = !!p.content.records
+            this.$get('/edu/dic/getInterestList', p => {
+                this.arr = p.content
             })
         },
         computed: mapGetters([
@@ -85,9 +83,32 @@
         data() {
             return {
                 arr: [],
-                hasData: false
+                arr1: []
             }
         },
+        methods: {
+            addInt(item) {
+                let idx = this.arr1.indexOf(item.id);
+                if (idx === -1) {
+                    this.arr1.push(item.id)
+                } else {
+                    this.arr1.splice(idx, 1);
+                }
+
+            },
+            save() {
+                this.$post('/edu/dic/addUserInterestList', {
+                    uid: this.userInfo.id,
+                    iid: this.arr1.join(',')
+                }, p => {
+                    if (p.httpCode == 200) {
+                        alert("提交成功")
+                    } else {
+                        alert(p.msg)
+                    }
+                })
+            }
+        }
     }
 </script>
 

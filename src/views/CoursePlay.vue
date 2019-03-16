@@ -127,11 +127,11 @@
     export default {
         data() {
             return {
-                comment: null
+                comment: null,
+                address: null,
             }
         },
         computed: mapGetters([
-            'course',
             'comments',
             'userInfo'
         ]), methods: {
@@ -148,7 +148,25 @@
                         alert(p.msg)
                     }
                 })
+
             }
+        },
+        props: [
+            'course'
+        ],
+        created() {
+            if (!this.course) {
+                this.$router.replace('/courseInfo/' + this.$route.params.id)
+                return;
+            }
+            console.log(this.course);
+            this.$get('/edu/video/getRealDownloadUrl', {
+                    downloadUrl: this.course
+                },
+                p => {
+                    console.log(p);
+                }
+            )
         }
     }
 </script>
