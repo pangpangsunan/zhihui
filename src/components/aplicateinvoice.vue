@@ -5,8 +5,8 @@
             <form class="form-horizontal">
                 <div class="select-groups">
                     <label>发票抬头</label>
-                    <select v-model="titleId" @change="change">
-                        <option value="请选择">请选择</option>
+                    <select v-model="titleId">
+                        <option value="">请选择</option>
                         <option v-for="item in arr" :value="item.id">
                             {{ item.title }}
                         </option>
@@ -14,7 +14,12 @@
                 </div>
                 <div class="select-groups">
                     <label>发票类型</label>
-                    <input type="text" :value="invtype|invType" readonly>
+                    <select v-model="content">
+                        <option value="会务费">会务费</option>
+                        <option value="培训费">培训费</option>
+                        <option value="咨询费">咨询费</option>
+                        <option value="服务费">服务费</option>
+                    </select>
                 </div>
 
                 <div class="select-groups">
@@ -91,13 +96,9 @@
         data() {
             return {
                 arr: [],
-                titleId: 0,
-                invtype: 0,
-            }
-        },
-        filters: {
-            invType: p => {
-                return p == 0 ? '个人' : '公司';
+                titleId: '',
+                orderId: 0,
+                content: '会务费',
             }
         },
         created() {
@@ -115,18 +116,22 @@
             'userInfo'
         ]),
         methods: {
-            change() {
-                let item = {};
-                for (let item1 of this.arr) {
-                    if (item1.id === this.titleId) {
-                        item = item1;
-                    }
-                }
-                this.invtype = item.type;
-            },
             submit() {
-
+                this.$post('/edu/invoice/addInvoiceNew', {
+                    titleId: this.titleId,
+                    content: this.content,
+                    orderid: this.orderId
+                }, p => {
+                    if (p.httpCode == 200) {
+                        alert("申请发票成功")
+                    } else {
+                        alert(p.msg)
+                    }
+                })
             }
+        },
+        props: {
+            orderId: 0
         }
 
     }

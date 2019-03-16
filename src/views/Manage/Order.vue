@@ -14,7 +14,7 @@
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
-                    <button class="orange-btn" @click="diolog='aplicateinvoice'">申请发票</button>
+                    <button class="orange-btn" @click="apply(item)">申请发票</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -36,12 +36,11 @@
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
-                    2121
                 </div>
                 <div class="clear"></div>
             </div>
         </div>
-        <aplicateinvoice v-if="diolog=='aplicateinvoice'" @close="diolog=null"></aplicateinvoice>
+        <aplicateinvoice v-if="diolog=='aplicateinvoice'" :orderId="orderId" @close="diolog=null"></aplicateinvoice>
     </div>
 
 </template>
@@ -140,7 +139,8 @@
             return {
                 current: 'page1',
                 arr: [],
-                diolog: null
+                diolog: null,
+                orderId: 0,
             }
         },
         methods: {
@@ -158,6 +158,10 @@
                     }
                 });
             },
+            apply(item) {
+                this.diolog = 'aplicateinvoice';
+                this.orderId = item.orderid;
+            }
         },
         created() {
             this.load(1);
