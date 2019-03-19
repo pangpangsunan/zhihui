@@ -19,6 +19,7 @@
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
                             item.course.address}}</p>
                         <p class="course-location font-bestsmall" v-if="item.course.type==2">
+                            <img src="@/assets/ic_time.png" style="width: .9rem;height: .9rem">
                             {{item.course.startDate|datetime}}&nbsp;-&nbsp;{{item.course.endDate|datetime}}
                         </p>
                         <div class="btns1">
