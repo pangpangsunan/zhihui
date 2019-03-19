@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div v-show="isPlay">
+            <div v-if="isPlay">
                 <play :course="course.course" :url="videoUrl"></play>
             </div>
         </div>

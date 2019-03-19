@@ -5,6 +5,7 @@
                    id="vd"
                    width="100%"
                    height="100%"
+                   ref="video"
                    controls="controls"></video>
         </div>
         <div class="right">
@@ -30,6 +31,18 @@
         props: {
             course: {},
             url: ''
+        },
+        created() {
+            setInterval(() => {
+                let video = this.$refs.video;
+                this.$post('/edu/video/savePlayRecord', {
+                    uid: this.$store.getters.userInfo.id,
+                    cid: this.course.id,
+                    currenttime: video.currentTime,
+                    duration: video.duration
+                });
+                console.log(video.currentTime, video.duration);
+            }, 1000)
         }
     }
 </script>
