@@ -101,6 +101,9 @@
         color: #222222;
         font-size: 1rem;
     }
+    .grayfont {
+        color: #666666;
+    }
 
     .font-style-lightgray {
         color: #888888;
