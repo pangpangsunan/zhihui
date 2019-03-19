@@ -3,22 +3,27 @@
 
         <p class="nav-title">全部 - 推荐 - {{ course.course.name }}</p>
         <div class="course-top pubwidth1">
-            <div class="left">
-                <img :src="course.course.image">
-            </div>
-            <div class="right">
-                <p class="course-title font-big">{{ course.course.name }}</p>
-                <p class="font-middel">{{ course.course.type|isOnline }}</p>
-                <p class="course-price font-big">${{ course.course.price }}</p>
-                <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
-                <div class="btns2">
-                    <button class="white-btn" @click="$router.push('/coursePlay/'+course.course.id)">试看</button>
-                    <button class="buy orange-btn" @click="diolog='pay'">购买</button>
+            <div v-show="!isPlay">
+                <div class="left">
+                    <img :src="course.course.image">
                 </div>
+                <div class="right">
+                    <p class="course-title font-big">{{ course.course.name }}</p>
+                    <p class="font-middel">{{ course.course.type|isOnline }}</p>
+                    <p class="course-price font-big">${{ course.course.price }}</p>
+                    <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
+                    <div class="btns2">
+                        <button class="white-btn" @click="play()">试看</button>
+                        <button class="buy orange-btn" @click="diolog='pay'">购买</button>
+                    </div>
+                </div>
+            </div>
+            <div v-show="isPlay">
+                <play :course="course.course" :url="videoUrl"></play>
             </div>
         </div>
         <div class="course-tab pubwidth1 border-rad">
-            <div class="tab-bg">
+            <div class="tab-bg" v-show="!isPlay">
                 <ul class="tab-list font-middle">
                     <li @click="current='page1'" :class="current==='page1'?'active':''">课程信息</li>
                     <li @click="current='page2'" :class="current==='page2'?'active':''">图文介绍</li>
@@ -90,14 +95,14 @@
 <style scoped>
 
     .course-top {
-        height: 13.5rem;
+        /*height: 13.5rem;*/
         background-color: #F3F5F7;
         position: relative;
     }
 
     .course-top .left img {
         width: 24rem;
-        height: 13.5rem;
+        /*height: 13.5rem;*/
     }
 
     .course-top .right {
@@ -202,16 +207,19 @@
 
     import {mapGetters} from 'vuex'
     import Pay from "../components/pay";
+    import play from "../components/play";
 
     export default {
-        components: {Pay},
+        components: {Pay, play},
         data() {
             return {
                 pagenum: 1,
                 comment: '',
-                diolog:null,
+                diolog: null,
                 current: 'page1',
+                isPlay: false,
                 arr: [],
+                videoUrl: '',
                 course: {
                     course: {},
                     userInfo: {},
@@ -238,10 +246,14 @@
                 this.$get("/edu/course/getCourseInfoById", {
                     id: this.$route.params.id,
                     uid
-                }, p => {
-                    if (p.httpCode == 200) {
-                        this.course = p.content;
-                        this.$store.commit('course', p.content.course);
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.course = p.data.content;
+                        this.$get('/edu/video/getRealDownloadUrl', {
+                            downloadUrl: p.data.content.course.freeVideo
+                        }, p => {
+                            this.videoUrl = p.content
+                        })
                     }
                 });
 
@@ -276,6 +288,9 @@
                         alert(p.msg)
                     }
                 })
+            }, play() {
+                this.isPlay = true;
+                this.current = 'page3';
             }
         }
     }

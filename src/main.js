@@ -42,6 +42,7 @@ Vue.prototype.$post = (url, data, cb) => {
     if (typeof cb == 'function') {
         promise.then(p => cb(p.data));
     }
+    return promise;
 };
 
 Vue.prototype.$get = (url, data, cb) => {
@@ -53,6 +54,7 @@ Vue.prototype.$get = (url, data, cb) => {
     if (typeof cb == 'function') {
         promise.then(p => cb(p.data));
     }
+    return promise;
 };
 
 Vue.prototype.view = (id, type = 2) => {
