@@ -19,7 +19,7 @@
                         <p class="course-location font-bestsmall"><img src="@/assets/ic_location.png">{{
                             item.course.address}}</p>
                         <p class="course-location font-bestsmall" v-if="item.course.type==2">
-                            <img src="@/assets/ic_time.png" style="width: .9rem;height: .9rem">
+                            <img src="@/assets/ic_time.png" style="width: .8rem;height: .8rem">
                             {{item.course.startDate|datetime}}&nbsp;-&nbsp;{{item.course.endDate|datetime}}
                         </p>
                         <div class="btns1">
@@ -46,7 +46,7 @@
 
     .course-list {
         padding: 0;
-        height: 11rem;
+        height: 11.5rem;
         position: relative;
         margin-top: 1.2rem;
 
@@ -55,15 +55,17 @@
     .courseimg {
         width: 17.75rem;
         height: 10rem;
-        margin-top: .5rem;
+        margin-top: .7rem;
+        margin-left: .7rem;
     }
 
     .font-list {
         position: absolute;
         top: .8rem;
-        left: 18.5rem;
+        left: 19rem;
         width: 70%;
     }
+
 
     .btns1 {
         position: absolute;
@@ -82,6 +84,10 @@
 
     .ulwarpper {
         min-height: 30rem;
+    }
+
+    .font-bestsmall img {
+        vertical-align: middle;
     }
 </style>
 <script>

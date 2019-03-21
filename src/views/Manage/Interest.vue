@@ -4,8 +4,8 @@
             <div class="font-big">选择你感兴趣的知识</div>
             <div class="font-small">请至少选择一项</div>
             <ul class="font-middle">
-                <li v-for="item in arr" @click="addInt(item)"
-                    :class="{'clicked':arr1.indexOf(item.id)!==-1}">{{
+                <li class="noclick" v-for="item in arr" @click="addInt(item)"
+                    :class="{'click-choice':arr1.indexOf(item.id)!==-1}">{{
                     item.name }}
                 </li>
             </ul>
@@ -33,7 +33,7 @@
         width: 47rem;
     }
 
-    .manage-content li {
+    .noclick {
         width: 11.25rem;
         height: 3.5rem;
         line-height: 3.5rem;
@@ -43,13 +43,13 @@
         margin-left: 3rem;
         margin-top: 1rem;
         float: left;
-
+        cursor: pointer;
     }
 
     /*.click-choice表示点击选项后每个选项背景色的变化*/
-    .manage-content li .click-choice {
+     .click-choice {
         color: #fff;
-        background-color: #4459CC;
+        background: #4459CC;
     }
 
     .font-small {
@@ -62,10 +62,7 @@
         margin-top: 3rem;
     }
 
-    .clicked {
-        color: #fff;
-        background-color: #00f;
-    }
+
 
 </style>
 <script>
