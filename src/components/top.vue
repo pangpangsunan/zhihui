@@ -4,7 +4,7 @@
         <ul class="pull-right menu">
             <li>
                 <span class="publish"><img src="@/assets/ic_publish.png"></span>
-                <span class="color-white" @click="diolog='publish'">发布课程需求</span>
+                <span class="color-white" @click="publish">发布课程需求</span>
             </li>
             <li>
                 <span class="help"><img src="@/assets/ic_help.png"></span>
@@ -148,6 +148,14 @@
             logout() {
                 this.$store.commit('logout');
                 this.$router.replace('/user/login');
+            },
+            publish() {
+                if (this.userInfo) {
+                    this.diolog = 'publish'
+                } else {
+                    this.$router.push('/user/login')
+                }
+
             }
         },
         computed: mapGetters([
