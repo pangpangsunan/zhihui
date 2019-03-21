@@ -34,7 +34,8 @@
                 <router-link :to="{name:'courseInfo',params:{id:item.id}}">
                     <img :src="item.image" class="course-img">
                     <div class="course-list">
-                        <div class="course-name">{{ item.name }}<span class="online">线上</span></div>
+                        <div class="course-name">{{ item.name }}<span class="online">{{ item.type|coursType }}</span>
+                        </div>
                         <div class="course-price font-middle">￥{{ item.price }}</div>
                         <div class="course-teacher font-bestsmall">
                             <img src="@/assets/ic_home_teacher.png">
