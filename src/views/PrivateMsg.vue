@@ -2,8 +2,8 @@
     <div class="container">
         <p class="nav-title">私信列表</p>
         <div class="msg-list skin-white border-rad">
-            <div class="con-wrapper" v-for="item in arr">
-                <img src="@/assets/cat.jpg" class="img-left">
+            <div class="con-wrapper" v-for="item in arr" @click="$router.push({name:'chat',params:{id:item.sendToId}})">
+                <img :src="item.sendToHeadimag" class="img-left">
                 <div class="public-style-info">
                     <span class="font-middle">{{item.sendFromName}}</span>
                     <span class="font-bestsmall">{{item.sendDate|datetime}}</span>
