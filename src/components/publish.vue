@@ -5,7 +5,7 @@
             <form class="form-horizontal" @submit.prevent="publish">
                 <div class="select-groups">
                     <label>所属行业</label>
-                    <select v-model="type1" required>
+                    <select v-model="type1" required @change="type2=''">
                         <option value="">请选择</option>
                         <option v-for="item in menus" :value="item.id">
                             {{item.name}}
