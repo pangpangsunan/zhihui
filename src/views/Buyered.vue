@@ -26,7 +26,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div @click="$router.push({name:'courseInfo',params:{id:item.enrollInfo.course.id}})"
+            <div @click="$router.push({name:'buyereddetails',params:{id:item.enrollInfo.course.id}})"
                  class="pro skin-white"
                  v-for="item in arr"
                  v-show="type==item.enrollInfo.course.type">

@@ -195,11 +195,16 @@
 
     export default {
         created() {
-            this.$get('/edu/course/getTeacherInfoByCourse', {
-                cid: this.$route.params.id
+            this.$get('/edu/course/getUserDetail', {
+                id: this.$route.params.id
             }, p => {
-                this.obj = p.content.userInfo;
-                this.obj2 = p.content.userExtra;
+                if (p.httpCode == 200) {
+                    this.obj = p.content.userInfo;
+                    this.obj2 = p.content.userExtra;
+                } else {
+                    alert(p.msg)
+                }
+
             });
             this.$get('/edu/course/getCoursePageByTeacher', {
                     id: this.$route.params.id

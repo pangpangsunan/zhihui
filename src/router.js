@@ -27,7 +27,8 @@ let router = new Router({
                     component: () => import( './views/Buyered.vue')
                 },
                 {
-                    path: 'buyereddetails',
+                    path: 'buyereddetails/:id',
+                    name: "buyereddetails",
                     component: () => import( './views/BuyeredDetails.vue')
                 },
                 {
