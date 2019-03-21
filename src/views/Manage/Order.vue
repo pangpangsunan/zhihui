@@ -13,7 +13,7 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
                     <button class="orange-btn" @click="apply(item)">申请发票</button>
                 </div>
                 <div class="clear"></div>
@@ -24,7 +24,7 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
                     345
                 </div>
                 <div class="clear"></div>
@@ -35,7 +35,7 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
                 </div>
                 <div class="clear"></div>
             </div>
