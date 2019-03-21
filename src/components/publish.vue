@@ -16,7 +16,7 @@
                     <label>适用职能</label>
                     <select v-model="type2" required>
                         <option value="">请选择</option>
-                        <option v-for="item in menus1" v-if="currentMenu.id==item.industryid" :value="item.id">
+                        <option v-for="item in menus1" v-if="type1==item.industryid" :value="item.id">
                             {{item.name}}
                         </option>
                     </select>
