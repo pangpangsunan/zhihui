@@ -22,6 +22,9 @@
                     <li>
                         <a @click.prevent="reload(2)">线下</a>
                     </li>
+                    <li>
+                        <a @click.prevent="reload(3)">专栏</a>
+                    </li>
                 </ul>
             </div>
             <div class="clear"></div>
