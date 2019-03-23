@@ -2,29 +2,43 @@
     <div class="diolog">
         <div class="public-page skin-white">
             <div class="font-big">提交订单</div>
-            <form class="form-horizontal">
+            <form class="form-horizontal" @submit.prevent>
                 <div class="order-course">
                     <div class="left"></div>
                     <div class="right">
-                        <p>美国出口管制新政大盘点</p>
-                        <div class="price">¥ 1200</div>
-                        <div class="font-small">上课时间：2019-01-01 07:35</div>
+                        <p>{{ info.name }}</p>
+                        <div class="price">¥ {{ info.price }}</div>
+                        <div class="font-small">上课时间：{{ info.startDate|datetime }}</div>
                     </div>
                 </div>
                 <div class="font-middle">实付金额</div>
                 <div class="clear"></div>
-                <div class="true-price">1200元</div>
+                <div class="true-price">{{ info.price }}元</div>
                 <div class="clear"></div>
                 <hr>
                 <div class="font-middle">支付方式</div>
                 <div class="clear"></div>
                 <ul class="paystyle">
-                    <li><input type="radio"><img src="@/assets/ic_wechat.png"></li>
-                    <li><input type="radio"><img src="@/assets/ic_zfb.png"></li>
-                    <li><input type="radio">其他支付方式</li>
+                    <li>
+                        <label>
+                            <input type="radio" name="paytype" v-model="paytype" value="weixin"><img
+                                src="@/assets/ic_wechat.png">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="paytype" v-model="paytype" value="zhifubao"><img
+                                src="@/assets/ic_zfb.png">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="paytype" v-model="paytype" value="other">其他支付方式
+                        </label>
+                    </li>
                 </ul>
                 <div class="clear"></div>
-                <div class="otherpay">
+                <div class="otherpay" v-show="paytype=='other'">
                     <div>银行转账</div>
                     <div class="grayfont">杭州小同网络科技有限公司<br>
                         招商银行股份有限公司杭州钱塘支行<br>
@@ -37,7 +51,7 @@
                 </div>
 
                 <div class="select-groups">
-                    <button class="blue-btn">申请</button>
+                    <button class="blue-btn" @click="pay">提交订单</button>
                 </div>
             </form>
             <div class="closebtn" @click="$emit('close')">关闭</div>
@@ -56,6 +70,7 @@
         left: 0;
         top: 0;
         z-index: 100;
+        overflow-y: scroll;
 
     }
 
@@ -67,18 +82,21 @@
         text-align: center;
         position: relative;
     }
+
     .order-course {
         width: 42.5rem;
         height: 8.75rem;
         background: #F3F5F7;
         margin-top: 2rem;
     }
+
     .left {
         float: left;
         width: 15.5rem;
         border: 1px solid red;
         height: 100%;
     }
+
     .right {
         float: right;
         width: 26rem;
@@ -86,43 +104,50 @@
         padding: 1rem;
 
     }
+
     .price {
         color: #F5892A;
     }
+
     .font-small {
         margin-top: 2rem;
         color: #666666;
     }
+
     .font-middle {
         color: #8087AB;
         float: right;
         padding-right: 2rem;
         margin-top: 1rem;
     }
+
     .true-price {
         font-size: 1.5rem;
         color: #222222;
         float: right;
         padding-right: 2rem;
     }
-    .paystyle li{
+
+    .paystyle li {
         float: left;
         margin-left: 2rem;
         width: 12rem;
         height: 4rem;
         line-height: 4rem;
     }
+
     .otherpay {
         text-align: left;
         margin-left: 2.5rem;
     }
+
     .select-groups {
         margin-top: 3rem;
     }
-    .blue-btn{
+
+    .blue-btn {
         width: 20rem;
     }
-
 
 
 </style>
@@ -138,8 +163,12 @@
         data() {
             return {
                 arr: [],
-                diolog:null
+                paytype: '',
+                diolog: null
             }
+        },
+        props: {
+            info: {}
         },
         created() {
             this.$get('/edu/invoice/getInvoiceTitleListByUser', {
@@ -152,7 +181,22 @@
                 }
             })
         },
+        methods: {
+            pay() {
+                if (!this.paytype) {
+                    alert("请选择支付方式");
+                    return;
+                }
+                if (this.paytype == 'weixin') {
 
+                }
+
+                if (this.paytype == 'zhifubao') {
+
+                }
+
+            }
+        },
 
         computed: mapGetters([
             'userInfo'

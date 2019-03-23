@@ -87,7 +87,7 @@
                 </li>
             </ul>
         </div>
-        <pay v-if="diolog=='pay'" @close="diolog=null"></pay>
+        <pay v-if="diolog=='pay'" @close="diolog=null" :info="course.course"></pay>
     </div>
 </template>
 
