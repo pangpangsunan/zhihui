@@ -30,7 +30,13 @@
                  class="pro skin-white"
                  v-for="item in arr"
                  v-show="type==item.enrollInfo.course.type">
-                <img :src="item.enrollInfo.course.image" class="course-img">
+                <div>
+                    <img :src="item.enrollInfo.course.image" class="course-img">
+                    <div class="jindu">
+                        <div class="jindu-inner"></div>
+                    </div>
+                </div>
+
                 <div class="course-list">
                     <div class="course-name">{{ item.enrollInfo.course.name }}<span class="online">{{ item.enrollInfo.course.type|coursType }}</span>
                     </div>
@@ -42,6 +48,7 @@
                         <img src="@/assets/ic_location.png">
                         {{ item.enrollInfo.course.address }}
                     </div>
+
                 </div>
 
             </div>
@@ -53,6 +60,16 @@
     </div>
 </template>
 <style scoped>
+    .jindu{
+        height: .4rem;
+        background-color: gray;
+        width: 100%;
+    }
+    .jindu-inner{
+        width: 70%;
+        background-color: #1CAF5E ;
+        height: .4rem;
+    }
     .pro {
         width: 22.25rem;
         min-height: 18rem;
