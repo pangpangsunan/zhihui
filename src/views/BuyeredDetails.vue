@@ -41,23 +41,31 @@
 
                         候四南和认员两造观识，包给百才专却离与日感，响类村离各次算直。 两开原头线太世元厂太层，定没况看个队除建区，如花H贡下村便僚投。 <br>
                         <img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
-
                     </div>
                 </li>
                 <li v-show="current==='page2'">
-                    <div class="questions-page">
-                        <p>问卷名称：被商说效将在将建律影</p>
-                        <div class="question-group">
-                            <div class="num">题目一 （单选）</div>
-                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
-                            <div class="choose1">
-                                <button class="lightgray-btn">选项一</button>
+                    <div class="questions-page" v-for="record in records">
+                        <p>问卷名称：{{ record.name }}</p>
+
+                        <div v-for="item in record.questions">
+                            <div class="question-group" v-if="item.type=='radio'">
+                                <div class="num">{{ item.name }}</div>
+                                <div class="question"></div>
+                                <div class="choose1" v-for="item1 in item.options">
+                                    <label style="margin-left:8rem">
+                                        <input type="radio" :name="item.name" :value="item1.name"/>
+                                        &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                    </label>
+                                </div>
                             </div>
-                            <div class="choose2">
-                                <button class="darkgray-btn">选项二</button>
+
+                            <div class="question-group" v-if="item.type=='text'">
+                                <div class="num">{{ item.name }}</div>
+                                <div class="question"></div>
+                                <div class="input"><input type="text" placeholder="请填写"></div>
                             </div>
                         </div>
-                        <div class="question-group">
+                        <div class="question-group" v-show="false">
                             <div class="num">题目二 （多选）</div>
                             <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
                             <div class="choose1">
@@ -73,12 +81,6 @@
                                 <button class="darkgray-btn">选项四</button>
                             </div>
                         </div>
-                        <div class="question-group">
-                            <div class="num">题目三(请填写）</div>
-                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
-                            <div class="input"><input type="text" placeholder="请填写"></div>
-                        </div>
-
                     </div>
                 </li>
                 <li v-show="current==='page3'">
@@ -194,7 +196,7 @@
     }
 
     .questions-page {
-        text-align: center;
+        /*text-align: center;*/
         width: 70%;
         margin: 0 auto;
         padding: 2rem 0;
@@ -224,7 +226,6 @@
         background-color: #F3F5F7;
         border: 1px solid gray;
     }
-
 
     .con-wrapper {
         border-bottom: 1px solid #D8D8D8;
@@ -298,8 +299,8 @@
             return {
                 pagenum: 1,
                 comment: '',
-                current: 'page2',
-                arr: [],
+                current: 'page1',
+                records: [],
                 name: null,
                 questions: [],
                 course: {
@@ -346,13 +347,19 @@
 
                 this.$get('/edu/survey/getSurveyPageByCourse', {
                     cid: this.$route.params.id,
-
                 }, p => {
-                    this.name = p.content.name
-                    this.$get('/edu/survey/getSurveyAnswerDetail', {
-                        uid: this.userInfo.id,
-                        surveyId: p.content.id
-                    })
+                    this.records = p.content.records;
+                    for (let key in this.records) {
+                        let record = this.records[key];
+                        this.$get('/edu/survey/getSurveyAnswerDetail', {
+                            uid: this.userInfo.id,
+                            surveyId: record.id
+                        }, p => {
+                            if (p.httpCode == 200) {
+                                this.records[key].questions = p.content.topics
+                            }
+                        })
+                    }
                 })
 
 
