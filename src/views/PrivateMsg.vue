@@ -11,7 +11,7 @@
                     <span class="font-small">{{item.content}}</span>
 
                 </div>
-                <span class="msg-num">99+</span>
+                <span class="msg-num" style="display: none;">99+</span>
                 <div class="clearfix"></div>
             </div>
 
@@ -83,7 +83,8 @@
             })
         }, data() {
             return {
-                arr: []
+                arr: [],
+
             }
         },
         computed: mapGetters([

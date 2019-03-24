@@ -34,37 +34,52 @@
 
             <ul class="tab-content">
                 <li v-show="current==='page1'">
-                    <div class="all-comment">
-                        <p class="title">课程讲师</p>
-                        <img :src="course.userInfo.headimgurl" class="img-left">
-                        <div class="public-style-info">
-                            <span class="font-middle">{{ course.userInfo.name }}</span>
-                            <span class="font-bestsmall">{{ course.userExtra.remark||0 }}人关注</span>
-                            <span class="attention"><a @click.prevent="view(course.userInfo.id)">关注</a> </span>
-                            <br>
-                            <span class="font-small">{{ course.userExtra.introduction }}</span>
-                        </div>
-                        <div class="clear"></div>
-                        <p class="title">课程背景</p>
-                        <p class="info font-small">{{ course.course.background }}</p>
-                        <p class="title">课程受众</p>
-                        <p class="info font-small" v-html="nl2br(course.course.audiences)">
-                        </p>
-                        <p class="title">学习目标</p>
-                        <p class="info font-small" v-html="nl2br(course.course.target)">
-                        </p>
-                        <p class="title">学习地点</p>
-                        <p class="info font-small">{{ course.course.address }}</p>
+                    <div class="notices">
+                        课程下载链接：<a href="http://g.fw.f67VGB2ofHJ">http://g.fw.f67VGB2ofHJ</a> <br>
+
+                        题常达面问山，飞意K孟。 然运过酸相育思果完，代有目信达拉部知该，美8标消半相岗。 商学江认或部和议，市资带平提发果，用隶吧细图红。<br>
+
+                        候四南和认员两造观识，包给百才专却离与日感，响类村离各次算直。 两开原头线太世元厂太层，定没况看个队除建区，如花H贡下村便僚投。 <br>
+                        <img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
+
                     </div>
                 </li>
                 <li v-show="current==='page2'">
-                   <div class="questions">
+                    <div class="questions-page">
                         <p>问卷名称：被商说效将在将建律影</p>
-                       <div>题目一 （单选）</div>
-                       <div>石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
-                       <div><button class="lightgray-btn">是</button> </div>
-                       <div><button class="darkgray-btn">不是</button> </div>
-                   </div>
+                        <div class="question-group">
+                            <div class="num">题目一 （单选）</div>
+                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
+                            <div class="choose1">
+                                <button class="lightgray-btn">选项一</button>
+                            </div>
+                            <div class="choose2">
+                                <button class="darkgray-btn">选项二</button>
+                            </div>
+                        </div>
+                        <div class="question-group">
+                            <div class="num">题目二 （多选）</div>
+                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
+                            <div class="choose1">
+                                <button class="lightblue-btn">选项一</button>
+                            </div>
+                            <div class="choose2">
+                                <button class="darkblue-btn">选项二</button>
+                            </div>
+                            <div class="choose1">
+                                <button class="lightgray-btn">选项三</button>
+                            </div>
+                            <div class="choose2">
+                                <button class="darkgray-btn">选项四</button>
+                            </div>
+                        </div>
+                        <div class="question-group">
+                            <div class="num">题目三(请填写）</div>
+                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
+                            <div class="input"><input type="text" placeholder="请填写"></div>
+                        </div>
+
+                    </div>
                 </li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
@@ -103,6 +118,11 @@
         float: left;
     }
 
+    .notices {
+        padding: 2rem;
+        line-height: 2rem;
+    }
+
     .course-play .right {
         float: right;
         width: 23rem;
@@ -136,6 +156,7 @@
     .active {
         background: #ffffff;
     }
+
     /*课程信息部分*/
     .all-comment .title {
         color: #8087AB;
@@ -171,8 +192,37 @@
         background-color: #F3F5F7;
 
     }
-    .questions {
+
+    .questions-page {
         text-align: center;
+        width: 70%;
+        margin: 0 auto;
+        padding: 2rem 0;
+
+    }
+
+    .question-group {
+        margin-top: 2rem;
+    }
+
+    .num, .question {
+        text-align: left;
+    }
+
+    .choose1, .choose2 {
+        margin-top: 1.5rem;
+    }
+
+    .input {
+        text-align: left;
+    }
+
+    .input input {
+        height: 2rem;
+        width: 90%;
+        margin-top: .5rem;
+        background-color: #F3F5F7;
+        border: 1px solid gray;
     }
 
 
@@ -250,6 +300,8 @@
                 comment: '',
                 current: 'page2',
                 arr: [],
+                name: null,
+                questions: [],
                 course: {
                     course: {},
                     userInfo: {},
@@ -291,6 +343,19 @@
                         this.$store.commit('comments', p.content.records);
                     }
                 })
+
+                this.$get('/edu/survey/getSurveyPageByCourse', {
+                    cid: this.$route.params.id,
+
+                }, p => {
+                    this.name = p.content.name
+                    this.$get('/edu/survey/getSurveyAnswerDetail', {
+                        uid: this.userInfo.id,
+                        surveyId: p.content.id
+                    })
+                })
+
+
             },
             nl2br(str) {
                 if (str) {

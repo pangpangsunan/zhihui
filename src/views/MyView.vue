@@ -9,12 +9,14 @@
             <li class="list-group-item skin-white border-rad" v-for="item in arr">
                 <div class="box-attention">
                     <div class="attention-left">
-                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}">
+                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id,cnt:item.collectionCount}}">
                             <img :src="item.userInfo.headimgurl" class="img-circle">
                         </router-link>
                     </div>
                     <div class="attention-center">
-                        <router-link :to="{name:'teacher',params:{id:item.userInfo.id}}" class="teachname">
+                        <router-link
+                                :to="{name:'teacher',params:{id:item.userInfo.id,cnt:item.usercollectionCountInfo}}"
+                                class="teachname">
                             <div>{{item.userInfo.name}}</div>
                         </router-link>
                         <div class="attention-number">{{item.collectionCount}} 人关注

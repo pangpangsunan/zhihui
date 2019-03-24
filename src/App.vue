@@ -75,7 +75,7 @@
     .border-rad {
         border-radius: 2px;
     }
-    .lightgray-btn,.darkgray-btn{
+    .lightgray-btn,.darkgray-btn,.darkblue-btn,.lightblue-btn{
         width: 12.5rem;
         height: 2.5rem;
         background: #AAAAAA;
@@ -86,6 +86,15 @@
         border: 1px solid #AAAAAA ;
         background-color: #F3F5F7;
         color: #000;
+    }
+    .darkblue-btn {
+        background-color: #4459CC;
+        color: #fff;
+    }
+    .lightblue-btn {
+        border: 1px solid #4459CC;
+        color: #4459CC;
+        background-color: #F3F5F7;
     }
 
     .blue-btn, .orange-btn, .white-btn {

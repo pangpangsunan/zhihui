@@ -5,7 +5,7 @@
             <div class="teacher-wrapper-top">
                 <img :src="obj.headimgurl" class="teacher-img">
                 <div class="teacher-name">{{obj.name}}</div>
-                <div class="fans-number">{{ 0 }} 粉丝</div>
+                <div class="fans-number">{{ $route.params.cnt }} 粉丝</div>
                 <div class="msg-btn">
                     <button class="blue-btn" @click="view($route.params.id)">关注</button>
                     <button @click="$router.push({name:'chat',params:$route.params})" class="orange-btn"
@@ -195,19 +195,20 @@
 
     export default {
         created() {
-            this.$get('/edu/course/getUserDetail', {
+            this.$get('/edu/user/getUserDetail', {
                 id: this.$route.params.id
             }, p => {
                 if (p.httpCode == 200) {
                     this.obj = p.content.userInfo;
-                    this.obj2 = p.content.userExtra;
+                    this.obj2 = p.content.userDetail;
                 } else {
                     alert(p.msg)
                 }
 
             });
             this.$get('/edu/course/getCoursePageByTeacher', {
-                    id: this.$route.params.id
+                    id: this.$route.params.id,
+                    status: 1,
                 },
                 p => {
                     this.arr = p.content.records;

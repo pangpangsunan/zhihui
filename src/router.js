@@ -46,7 +46,7 @@ let router = new Router({
                     component: () => import( './views/CoursePlay.vue')
                 },
                 {
-                    path: 'teacher/:id',
+                    path: 'teacher/:id/:cnt',
                     name: 'teacher',
                     component: () => import( './views/Teacher.vue')
                 },

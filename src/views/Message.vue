@@ -74,7 +74,7 @@
         created() {
             this.$get('/edu/message/getSystemMessage', {
 
-                uid: this.userInfo.id,
+                userid: this.userInfo.id,
                 type: 1
 
             }, p => {
