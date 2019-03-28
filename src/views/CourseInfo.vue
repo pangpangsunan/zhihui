@@ -14,7 +14,8 @@
                     <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
                     <div class="btns2">
                         <button class="white-btn" @click="play()">试看</button>
-                        <button class="buy orange-btn" @click="diolog='pay'">购买</button>
+                        <button class="buy orange-btn" @click="toPay" v-if="!course.isEnroll">购买</button>
+                        <span v-if="course.isEnroll">已购买</span>
                     </div>
                 </div>
             </div>
@@ -291,6 +292,13 @@
             }, play() {
                 this.isPlay = true;
                 this.current = 'page3';
+            },
+            toPay() {
+                if (!this.isLogin) {
+                    this.$router.push('/user/login');
+                    return;
+                }
+                this.diolog = 'pay'
             }
         }
     }
