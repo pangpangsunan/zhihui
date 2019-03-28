@@ -25,7 +25,8 @@
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
-                    345
+
+                    <button @click="topay(item.orderid)" class="btn btn-info btn-sm">去支付</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -41,6 +42,8 @@
             </div>
         </div>
         <aplicateinvoice v-if="diolog=='aplicateinvoice'" :orderId="orderId" @close="diolog=null"></aplicateinvoice>
+
+        <orderDialog v-if="payurl" :url="payurl" @payEnd="payEnd"></orderDialog>
     </div>
 
 </template>
@@ -141,6 +144,7 @@
                 arr: [],
                 diolog: null,
                 orderId: 0,
+                payurl: null
             }
         },
         methods: {
@@ -161,6 +165,20 @@
             apply(item) {
                 this.diolog = 'aplicateinvoice';
                 this.orderId = item.orderid;
+            },
+            topay(orderid) {
+                this.$post("/edu/wewebpay/unifiedorder", {
+                    uid: this.userInfo.id,
+                    billno: orderid,
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.payurl = "/edu/wewebpay/qrCodePic?code_url=" + p.content.code_url;
+                    }
+                })
+            },
+            payEnd() {
+                this.payurl = null;
+                this.load(0);
             }
         },
         created() {
@@ -171,6 +189,7 @@
         ]),
         components: {
             aplicateinvoice: () => import('@/components/aplicateinvoice.vue'),
+            orderDialog: () => import("@/components/showPayQrCode.vue")
         }
     }
 

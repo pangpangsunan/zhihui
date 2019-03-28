@@ -17,6 +17,7 @@
         methods: {
             payed() {
                 this.$router.push('/manage/order');
+                this.$emit("payEnd")
                 // alert("还没有查询订单状态接口!!!");
                 // this.$post("")
             }
