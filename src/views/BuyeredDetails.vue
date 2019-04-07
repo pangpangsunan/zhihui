@@ -44,42 +44,29 @@
                     </div>
                 </li>
                 <li v-show="current==='page2'">
-                    <div class="questions-page" v-for="record in records">
-                        <p>问卷名称：{{ record.name }}</p>
+                    <div class="questions-page" v-for="record in records" v-show="topics.length==0">
+                        <p class="col-sm-10">问卷名称：{{ record.name }}</p>
 
-                        <div v-for="item in record.questions">
-                            <div class="question-group" v-if="item.type=='radio'">
-                                <div class="num">{{ item.name }}</div>
-                                <div class="question"></div>
-                                <div class="choose1" v-for="item1 in item.options">
-                                    <label style="margin-left:8rem">
-                                        <input type="radio" :name="item.name" :value="item1.name"/>
-                                        &nbsp;&nbsp;&nbsp;{{ item1.content }}
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="question-group" v-if="item.type=='text'">
-                                <div class="num">{{ item.name }}</div>
-                                <div class="question"></div>
-                                <div class="input"><input type="text" placeholder="请填写"></div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-info btn-sm" @click="toComplete(record.id)">去完成</button>
+                        </div>
+                    </div>
+                    <div v-for="topic in topics" v-show="topics.length > 0">
+                        <div class="question-group" v-if="topic.type=='radio'">
+                            <div class="num">{{ topic.name }}</div>
+                            <div class="question"></div>
+                            <div class="choose1" v-for="item1 in topic.options">
+                                <label style="margin-left:8rem">
+                                    <input type="radio" :name="topic.name" :value="item1.name"/>
+                                    &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                </label>
                             </div>
                         </div>
-                        <div class="question-group" v-show="false">
-                            <div class="num">题目二 （多选）</div>
-                            <div class="question">石斗织华响越生加极，院明运局值白构，去京询壳鹰写医</div>
-                            <div class="choose1">
-                                <button class="lightblue-btn">选项一</button>
-                            </div>
-                            <div class="choose2">
-                                <button class="darkblue-btn">选项二</button>
-                            </div>
-                            <div class="choose1">
-                                <button class="lightgray-btn">选项三</button>
-                            </div>
-                            <div class="choose2">
-                                <button class="darkgray-btn">选项四</button>
-                            </div>
+
+                        <div class="question-group" v-if="topic.type=='text'">
+                            <div class="num">{{ topic.name }}</div>
+                            <div class="question"></div>
+                            <div class="input"><input type="text" placeholder="请填写"></div>
                         </div>
                     </div>
                 </li>
@@ -309,8 +296,8 @@
                     userExtra: {},
                     introduction: []
                 },
-                comments: []
-
+                comments: [],
+                topics: [],
             }
         },
         computed: mapGetters([
@@ -343,22 +330,15 @@
                         this.comments = p.content.records;
                         this.$store.commit('comments', p.content.records);
                     }
-                })
+                });
 
                 this.$get('/edu/survey/getSurveyPageByCourse', {
                     cid: this.$route.params.id,
                 }, p => {
-                    this.records = p.content.records;
-                    for (let key in this.records) {
-                        let record = this.records[key];
-                        this.$get('/edu/survey/getSurveyAnswerDetail', {
-                            uid: this.userInfo.id,
-                            surveyId: record.id
-                        }, p => {
-                            if (p.httpCode == 200) {
-                                this.records[key].questions = p.content.topics
-                            }
-                        })
+                    for (let item of p.content.records) {
+                        if (item) {
+                            this.records.push(item)
+                        }
                     }
                 })
 
@@ -384,6 +364,16 @@
                         this.load()
                     } else {
                         alert(p.msg)
+                    }
+                })
+            },
+            toComplete(rec_id) {
+                this.$get('/edu/survey/getSurveyAnswerDetail', {
+                    uid: this.userInfo.id,
+                    surveyId: rec_id
+                }, p => {
+                    if (p.httpCode == 200) {
+                        this.topics = p.content.topics
                     }
                 })
             }
