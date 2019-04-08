@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="subtitle">
-            <div class="course-number">门课程</div>
+            <!--<div class="course-number">{{arr.length}}门课程</div>-->
             <div class="dropdown course-type">
                 <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -41,10 +41,13 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                     <li>
-                        <router-link to="/">线上</router-link>
+                        <a @click.prevent="reload(1)">线上</a>
                     </li>
                     <li>
-                        <router-link to="/">线下</router-link>
+                        <a @click.prevent="reload(2)">线下</a>
+                    </li>
+                    <li>
+                        <a @click.prevent="reload(3)">专栏</a>
                     </li>
                 </ul>
             </div>
@@ -53,7 +56,7 @@
         <div class="courses-type">
 
             <div class="pro" v-for="item in arr">
-                <router-link :to="{name:'courseInfo',params:$route.params}">
+                <router-link :to="{name:'courseInfo',params:{id:item.courseInfo.id}}">
                     <div class="top-img">
                         <img :src="item.courseInfo.image">
                     </div>
@@ -205,14 +208,10 @@
                     alert(p.msg)
                 }
 
+
             });
-            this.$get('/edu/course/getCoursePageByTeacher', {
-                    id: this.$route.params.id,
-                    status: 1,
-                },
-                p => {
-                    this.arr = p.content.records;
-                })
+            this.reload(1)
+
         },
         data() {
             return {
@@ -222,6 +221,19 @@
                 arr: []
             }
         },
+        methods:{
+            reload(xyz){
+
+                this.$get('/edu/course/getCoursePageByTeacher', {
+                        id: this.$route.params.id,
+                        status: xyz,
+
+                    },
+                    p => {
+                        this.arr = p.content.records;
+                    })
+            }
+        }
     }
 
 </script>

@@ -4,7 +4,7 @@
 
         <div class="courses-category border-rad" v-if="hasData">
             <div class="subtitle">
-                <div class="course-number">{{arr.length}}门课程</div>
+                <div class="course-number">{{length}}门课程</div>
                 <div class="dropdown course-type" v-if="hasData">
                     <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -60,16 +60,18 @@
     </div>
 </template>
 <style scoped>
-    .jindu{
+    .jindu {
         height: .4rem;
         background-color: gray;
         width: 100%;
     }
-    .jindu-inner{
+
+    .jindu-inner {
         width: 70%;
-        background-color: #1CAF5E ;
+        background-color: #1CAF5E;
         height: .4rem;
     }
+
     .pro {
         width: 22.25rem;
         min-height: 18rem;
@@ -125,16 +127,27 @@
                 }
             })
         },
-        computed: mapGetters([
-            'userInfo',
-            'isLogin',
-        ]),
+        computed: {
+            ...mapGetters([
+                'userInfo',
+                'isLogin',
+            ]),
+            length() {
+                let ret = 0;
+                for (let item of this.arr) {
+                    if (this.type == item.enrollInfo.course.type) {
+                        ret++;
+                    }
+                }
+                return ret;
+            }
+        },
         data() {
             return {
                 arr: [],
                 hasData: false,
                 type: 1,
             }
-        }
+        },
     }
 </script>

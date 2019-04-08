@@ -33,7 +33,7 @@
             <div class="chat-right">
                 <img :src="tinfo.headimgurl" class="teachers-img">
                 <p class="teachers-name">{{ tinfo.name }}</p>
-                <p class="font-small"> {{ 0 }}个粉丝</p>
+                <p class="font-small"> {{ $route.params.cnt }}个粉丝</p>
                 <!--<button class="blue-btn">关注</button>-->
                 <button class="attention ">已关注</button>
             </div>
@@ -208,8 +208,8 @@
                 });
             }, load() {
                 this.content = null;
-                this.$get('/edu/course/getTeacherInfoByCourse', {
-                    cid: 268
+                this.$get('/edu/user/getUserDetail', {
+                    id: this.$route.params.id
                 }, p => {
                     this.tinfo = p.content.userInfo;
                     this.tinfoex = p.content.userExtra;
