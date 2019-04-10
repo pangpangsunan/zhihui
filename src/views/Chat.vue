@@ -5,17 +5,16 @@
             <div class="chat-left">
                 <div class="chat-content">
                     <ul id="chat-list">
-                        <li v-show="false">
-                            <div class="teacher-chat">
-                                <img src="" class="touxiang">
-                                <div class="teacher-chat-bg font-middle">
-                                    message
-                                </div>
-                                <div class="send-time font-bestsmall">2018-11-01 15:00</div>
-                            </div>
-                        </li>
+
                         <li v-for="item in arr">
-                            <div :class="msgcls(item)">
+                            <div class="teacher-chat" v-if="!iSstudent(item)">
+                                <img :src="item.sendFromHeadimag" class="touxiang">
+                                <div class="teacher-chat-bg font-middle">
+                                    {{ item.content }}
+                                </div>
+                                <div class="send-time font-bestsmall">{{ item.sendDate|datetime }}</div>
+                            </div>
+                            <div class="student-chat" v-if="iSstudent(item)">
                                 <div class="student-chat-bg font-middle">
                                     {{ item.content }}
                                 </div>
@@ -223,8 +222,8 @@
                         this.arr = p.content;
                     }
                 });
-            }, msgcls(item) {
-                return item.sendFromId == this.$store.getters.userInfo.id ? "student-chat" : "teacher-chat"
+            }, iSstudent(item) {
+                return item.sendFromId == this.$store.getters.userInfo.id
             }
         }
     }

@@ -51,25 +51,28 @@
                             <button class="btn blue-btn" @click="toComplete(record.id)">去完成</button>
                         </div>
                     </div>
-                    <div v-for="topic in topics" v-show="topics.length > 0">
-                        <div class="question-group" v-if="topic.type=='radio'">
-                            <div class="num">{{ topic.name }}</div>
-                            <div class="question"></div>
-                            <div class="choose1" v-for="item1 in topic.options">
-                                <label style="margin-left:8rem">
-                                    <input type="radio" :name="topic.name" :value="item1.name"/>
-                                    &nbsp;&nbsp;&nbsp;{{ item1.content }}
-                                </label>
-                            </div>
-                        </div>
 
-                        <div class="question-group" v-if="topic.type=='text'">
-                            <div class="num">{{ topic.name }}</div>
-                            <div class="question"></div>
-                            <div class="input"><input type="text" placeholder="请填写"></div>
+                        <div v-for="topic in topics" v-show="topics.length > 0">
+                            <div class="question-group" v-if="topic.type=='radio'">
+                                <div class="num">{{ topic.name }}</div>
+                                <div class="question"></div>
+                                <div class="choose1" v-for="item1 in topic.options">
+                                    <label style="margin-left:8rem">
+                                        <input type="radio" :name="topic.name" :value="item1.name"/>
+                                        &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="question-group" v-if="topic.type=='text'">
+                                <div class="num">{{ topic.name }}</div>
+                                <div class="question"></div>
+                                <div class="input"><input type="text" placeholder="请填写"></div>
+                            </div>
+
                         </div>
-                        <div style="text-align: center;margin-top: 3rem"><button class="btn orange-btn" @click="sendsur(topic.id)">提交问卷</button></div>
-                    </div>
+                        <div style="text-align: center;margin-top: 3rem"><button v-if="topics.length>0" class="btn orange-btn" @click="sendsur()">提交问卷</button></div>
+
                 </li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
@@ -387,6 +390,9 @@
                     surveyId: this.rec_id
                 },p=>{
                     alert("提交成功！")
+
+                    this.topics.length=0;
+                    this.$forceUpdate()
                 })
             }
 
