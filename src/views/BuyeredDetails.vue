@@ -35,11 +35,7 @@
             <ul class="tab-content">
                 <li v-show="current==='page1'">
                     <div class="notices">
-                        课程下载链接：<a href="http://g.fw.f67VGB2ofHJ">http://g.fw.f67VGB2ofHJ</a> <br>
-
-                        题常达面问山，飞意K孟。 然运过酸相育思果完，代有目信达拉部知该，美8标消半相岗。 商学江认或部和议，市资带平提发果，用隶吧细图红。<br>
-
-                        候四南和认员两造观识，包给百才专却离与日感，响类村离各次算直。 两开原头线太世元厂太层，定没况看个队除建区，如花H贡下村便僚投。 <br>
+                        <p v-for="item in course.message.data">{{ item.content }}</p>
                         <img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
                     </div>
                 </li>
