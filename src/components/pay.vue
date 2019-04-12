@@ -4,7 +4,9 @@
             <div class="font-big">提交订单</div>
             <form class="form-horizontal" @submit.prevent>
                 <div class="order-course">
-                    <div class="left"></div>
+                    <div class="left">
+                        <img :src="src">
+                    </div>
                     <div class="right">
                         <p>{{ info.name }}</p>
                         <div class="price">¥ {{ info.price }}</div>
@@ -52,6 +54,7 @@
 
                 <div class="select-groups">
                     <button class="blue-btn" @click="pay">提交订单</button>
+                    <div v-html="form"></div>
                 </div>
             </form>
             <div class="closebtn" @click="$emit('close')">关闭</div>
@@ -94,7 +97,11 @@
     .left {
         float: left;
         width: 15.5rem;
-        border: 1px solid red;
+        height: 100%;
+    }
+
+    .left img {
+        width: 100%;
         height: 100%;
     }
 
@@ -167,11 +174,13 @@
                 arr: [],
                 paytype: '',
                 diolog: null,
-                url: null
+                url: null,
+                form: null
             }
         },
         props: {
-            info: {}
+            info: {},
+            src: ''
         },
         created() {
             this.$get('/edu/invoice/getInvoiceTitleListByUser', {
@@ -221,7 +230,31 @@
                 }
 
                 if (this.paytype == 'zhifubao') {
-
+                    this.$post('/edu/order/addOrder', {
+                        userid: this.$store.getters.userInfo.id,
+                        cid: this.info.id,
+                        price: this.info.price
+                    }).then(p => {
+                        if (p.data.httpCode == 200) {
+                            return this.$post('/edu/alipay/getOrderStringWebPage', {
+                                uid: this.$store.getters.userInfo.id,
+                                billno: p.data.content,
+                            })
+                        }
+                        alert(p.data.msg)
+                        return false;
+                    }).then(p => {
+                        if (p === false) {
+                            return;
+                        }
+                        console.log(p.data);
+                        if (p.data.httpCode == 200) {
+                            this.form = p.data.content;
+                            return
+                        }
+                        alert(p.data.msg);
+                        this.$router.push('/manage/order');
+                    })
                 }
 
             }

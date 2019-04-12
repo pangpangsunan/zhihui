@@ -5,17 +5,16 @@
             <div class="chat-left">
                 <div class="chat-content">
                     <ul id="chat-list">
-                        <li v-show="false">
-                            <div class="teacher-chat">
-                                <img src="" class="touxiang">
-                                <div class="teacher-chat-bg font-middle">
-                                    message
-                                </div>
-                                <div class="send-time font-bestsmall">2018-11-01 15:00</div>
-                            </div>
-                        </li>
+
                         <li v-for="item in arr">
-                            <div :class="msgcls(item)">
+                            <div class="teacher-chat" v-if="!iSstudent(item)">
+                                <img :src="item.sendFromHeadimag" class="touxiang">
+                                <div class="teacher-chat-bg font-middle">
+                                    {{ item.content }}
+                                </div>
+                                <div class="send-time font-bestsmall">{{ item.sendDate|datetime }}</div>
+                            </div>
+                            <div class="student-chat" v-if="iSstudent(item)">
                                 <div class="student-chat-bg font-middle">
                                     {{ item.content }}
                                 </div>
@@ -33,7 +32,7 @@
             <div class="chat-right">
                 <img :src="tinfo.headimgurl" class="teachers-img">
                 <p class="teachers-name">{{ tinfo.name }}</p>
-                <p class="font-small"> {{ 0 }}个粉丝</p>
+                <p class="font-small"> {{ $route.params.cnt }}个粉丝</p>
                 <!--<button class="blue-btn">关注</button>-->
                 <button class="attention ">已关注</button>
             </div>
@@ -208,8 +207,8 @@
                 });
             }, load() {
                 this.content = null;
-                this.$get('/edu/course/getTeacherInfoByCourse', {
-                    cid: 268
+                this.$get('/edu/user/getUserDetail', {
+                    id: this.$route.params.id
                 }, p => {
                     this.tinfo = p.content.userInfo;
                     this.tinfoex = p.content.userExtra;
@@ -223,8 +222,8 @@
                         this.arr = p.content;
                     }
                 });
-            }, msgcls(item) {
-                return item.sendFromId == this.$store.getters.userInfo.id ? "student-chat" : "teacher-chat"
+            }, iSstudent(item) {
+                return item.sendFromId == this.$store.getters.userInfo.id
             }
         }
     }

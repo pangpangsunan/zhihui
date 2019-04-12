@@ -88,7 +88,7 @@
                 </li>
             </ul>
         </div>
-        <pay v-if="diolog=='pay'" @close="diolog=null" :info="course.course"></pay>
+        <pay v-if="diolog=='pay'" @close="diolog=null" :info="course.course" :src="course.course.image"></pay>
     </div>
 </template>
 
@@ -103,7 +103,7 @@
 
     .course-top .left img {
         width: 24rem;
-        /*height: 13.5rem;*/
+        height: 13.5rem;
     }
 
     .course-top .right {

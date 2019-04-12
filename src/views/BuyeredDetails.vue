@@ -44,27 +44,31 @@
                         <p class="col-sm-10">问卷名称：{{ record.name }}</p>
 
                         <div class="col-sm-2">
-                            <button class="btn btn-info btn-sm" @click="toComplete(record.id)">去完成</button>
+                            <button class="btn blue-btn" @click="toComplete(record.id)">去完成</button>
                         </div>
                     </div>
-                    <div v-for="topic in topics" v-show="topics.length > 0">
-                        <div class="question-group" v-if="topic.type=='radio'">
-                            <div class="num">{{ topic.name }}</div>
-                            <div class="question"></div>
-                            <div class="choose1" v-for="item1 in topic.options">
-                                <label style="margin-left:8rem">
-                                    <input type="radio" :name="topic.name" :value="item1.name"/>
-                                    &nbsp;&nbsp;&nbsp;{{ item1.content }}
-                                </label>
-                            </div>
-                        </div>
 
-                        <div class="question-group" v-if="topic.type=='text'">
-                            <div class="num">{{ topic.name }}</div>
-                            <div class="question"></div>
-                            <div class="input"><input type="text" placeholder="请填写"></div>
+                        <div v-for="topic in topics" v-show="topics.length > 0">
+                            <div class="question-group" v-if="topic.type=='radio'">
+                                <div class="num">{{ topic.name }}</div>
+                                <div class="question"></div>
+                                <div class="choose1" v-for="item1 in topic.options">
+                                    <label style="margin-left:8rem">
+                                        <input type="radio" :name="topic.name" :value="item1.name"/>
+                                        &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="question-group" v-if="topic.type=='text'">
+                                <div class="num">{{ topic.name }}</div>
+                                <div class="question"></div>
+                                <div class="input"><input type="text" placeholder="请填写"></div>
+                            </div>
+
                         </div>
-                    </div>
+                        <div style="text-align: center;margin-top: 3rem"><button v-if="topics.length>0" class="btn orange-btn" @click="sendsur()">提交问卷</button></div>
+
                 </li>
                 <li v-show="current==='page3'">
                     <div class="all-comment">
@@ -175,6 +179,7 @@
     /*问卷调查*/
     .tab-content {
         background-color: #F3F5F7;
+        min-height: 40rem;
 
     }
 
@@ -188,6 +193,7 @@
 
     .question-group {
         margin-top: 2rem;
+        padding: 1rem;
     }
 
     .num, .question {
@@ -294,6 +300,7 @@
                 },
                 comments: [],
                 topics: [],
+                rec_id:0,
             }
         },
         computed: mapGetters([
@@ -336,8 +343,7 @@
                             this.records.push(item)
                         }
                     }
-                })
-
+                });
 
             },
             nl2br(str) {
@@ -364,6 +370,7 @@
                 })
             },
             toComplete(rec_id) {
+                this.rec_id = rec_id;
                 this.$get('/edu/survey/getSurveyAnswerDetail', {
                     uid: this.userInfo.id,
                     surveyId: rec_id
@@ -372,7 +379,19 @@
                         this.topics = p.content.topics
                     }
                 })
+            },
+            sendsur(){
+                this.$post('/edu/survey/sendSurvey',{
+                    uid: this.userInfo.id,
+                    surveyId: this.rec_id
+                },p=>{
+                    alert("提交成功！")
+
+                    this.topics.length=0;
+                    this.$forceUpdate()
+                })
             }
+
         }
     }
 </script>

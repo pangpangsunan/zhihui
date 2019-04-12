@@ -2,8 +2,8 @@
     <div class="container">
         <p class="nav-title">私信列表</p>
         <div class="msg-list skin-white border-rad">
-            <div class="con-wrapper" v-for="item in arr" @click="$router.push({name:'chat',params:{id:item.sendToId}})">
-                <img :src="item.sendToHeadimag" class="img-left">
+            <div class="con-wrapper" v-for="item in arr">
+                <img :src="item.sendFromHeadimag" class="img-left">
                 <div class="public-style-info">
                     <span class="font-middle">{{item.sendFromName}}</span>
                     <span class="font-bestsmall">{{item.sendDate|datetime}}</span>
@@ -11,7 +11,7 @@
                     <span class="font-small">{{item.content}}</span>
 
                 </div>
-                <span class="msg-num" style="display: none;">99+</span>
+                <button class=" blue-btn msg-num" @click="$router.push({name:'chat',params:{id:item.sendToId}})">查看详情</button>
                 <div class="clearfix"></div>
             </div>
 
@@ -55,7 +55,6 @@
 
     .msg-num {
         border-radius: .625rem;
-        background-color: #FF4040;
         color: #fff;
         padding: .3rem;
         position: absolute;
