@@ -33,7 +33,7 @@
                 <div>
                     <img :src="item.enrollInfo.course.image" class="course-img">
                     <div class="jindu">
-                        <div class="jindu-inner"></div>
+                        <div class="jindu-inner" :style="{width: item.percent+'px'}"></div>
                     </div>
                 </div>
 
@@ -67,7 +67,6 @@
     }
 
     .jindu-inner {
-        width: 70%;
         background-color: #1CAF5E;
         height: .4rem;
     }
@@ -123,6 +122,14 @@
             }, p => {
                 if (p.httpCode == 200) {
                     this.arr = p.content.records;
+                    for (let item of this.arr) {
+                        this.$get('/edu/video/getVideoAndRecordList', {
+                            uid: this.userInfo.id,
+                            cid: item.enrollInfo.course.id,
+                        }).then(p => {
+                            item.percent = parseInt(p.data.content[0].currenttime / p.data.content[0].duration);
+                        })
+                    }
                     this.hasData = p.content.total > 0;
                 }
             })
