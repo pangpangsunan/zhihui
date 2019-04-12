@@ -114,7 +114,11 @@
 
             this.$store.bus.$on('showMenu', () => {
                 this.showDialog = true;
-            })
+            });
+
+            this.$get('/edu/course/getCourseListByPage?status=2', p => {
+                this.arr = p.content.records
+            });
         },
         data() {
             return {
