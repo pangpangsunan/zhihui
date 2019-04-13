@@ -13,9 +13,10 @@
                     <p class="course-price font-big">${{ course.course.price }}</p>
                     <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
                     <div class="btns2">
-                        <button class="white-btn" @click="play()">试看</button>
-                        <button class="buy orange-btn" @click="toPay" v-if="!course.isEnroll">购买</button>
-                        <span v-if="course.isEnroll">已购买</span>
+                        <button class="white-btn" @click="play()">{{course.isEnroll?'观看':'试看'}}</button>
+                        <button class="buy orange-btn"
+                                @click="toPay">{{course.isEnroll ? '已购买':'购买' }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -298,6 +299,11 @@
                     this.$router.push('/user/login');
                     return;
                 }
+
+                if (this.course.isEnroll) {
+                    return;
+                }
+
                 this.diolog = 'pay'
             }
         }
