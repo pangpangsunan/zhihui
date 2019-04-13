@@ -38,10 +38,9 @@
                 this.$post('/edu/video/savePlayRecord', {
                     uid: this.$store.getters.userInfo.id,
                     cid: this.course.id,
-                    currenttime: video.currentTime,
-                    duration: video.duration
+                    currenttime: parseInt(video.currentTime),
+                    duration: parseInt(video.duration)
                 });
-                console.log(video.currentTime, video.duration);
             }, 1000)
         }
     }
