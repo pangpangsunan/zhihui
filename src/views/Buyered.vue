@@ -33,7 +33,7 @@
                 <div>
                     <img :src="item.enrollInfo.course.image" class="course-img">
                     <div class="jindu">
-                        <div class="jindu-inner" :style="{width: item.percent+'px'}"></div>
+                        <div class="jindu-inner" :style="{width:playPercent(item.enrollInfo.course.id) }"></div>
                     </div>
                 </div>
 
@@ -122,17 +122,15 @@
             }, p => {
                 if (p.httpCode == 200) {
                     this.arr = p.content.records;
-                    for (let item of this.arr) {
-                        this.$get('/edu/video/getVideoAndRecordList', {
-                            uid: this.userInfo.id,
-                            cid: item.enrollInfo.course.id,
-                        }).then(p => {
-                            item.percent = parseInt(p.data.content[0].currenttime / p.data.content[0].duration);
-                        })
-                    }
                     this.hasData = p.content.total > 0;
                 }
-            })
+            });
+
+            this.$get('/edu/video/getVideoAndRecordList', {
+                uid: this.userInfo.id,
+            }, p => {
+                this.timeData = p.content
+            });
         },
         computed: {
             ...mapGetters([
@@ -154,7 +152,19 @@
                 arr: [],
                 hasData: false,
                 type: 1,
+                timeData: {},
             }
         },
+        methods: {
+            playPercent(id) {
+                for (let item of this.timeData) {
+                    if (item.cid == id) {
+                        return parseInt(item.currenttime * 100 / item.duration) + 'px'
+                    }
+                }
+                return 0;
+
+            }
+        }
     }
 </script>
