@@ -323,7 +323,7 @@
                     uid
                 }, p => {
                     if (p.httpCode == 200) {
-                        this.course = p.content;
+                        this.course = p.content.course;
                         this.$store.commit('course', p.content.course);
                     }
                 });
