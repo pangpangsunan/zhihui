@@ -34,7 +34,7 @@
 
             <ul class="tab-content">
                 <li v-show="current==='page1'">
-                    <div class="notices">
+                    <div class="notices" v-if="course && course.message">
                         <p v-for="item in course.message.data">{{ item.content }}</p>
                         <img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
                     </div>
@@ -48,26 +48,28 @@
                         </div>
                     </div>
 
-                        <div v-for="topic in topics" v-show="topics.length > 0">
-                            <div class="question-group" v-if="topic.type=='radio'">
-                                <div class="num">{{ topic.name }}</div>
-                                <div class="question"></div>
-                                <div class="choose1" v-for="item1 in topic.options">
-                                    <label style="margin-left:8rem">
-                                        <input type="radio" :name="topic.name" :value="item1.name"/>
-                                        &nbsp;&nbsp;&nbsp;{{ item1.content }}
-                                    </label>
-                                </div>
+                    <div v-for="topic in topics" v-show="topics.length > 0">
+                        <div class="question-group" v-if="topic.type=='radio'">
+                            <div class="num">{{ topic.name }}</div>
+                            <div class="question"></div>
+                            <div class="choose1" v-for="item1 in topic.options">
+                                <label style="margin-left:8rem">
+                                    <input type="radio" :name="topic.name" :value="item1.name"/>
+                                    &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                </label>
                             </div>
-
-                            <div class="question-group" v-if="topic.type=='text'">
-                                <div class="num">{{ topic.name }}</div>
-                                <div class="question"></div>
-                                <div class="input"><input type="text" placeholder="请填写"></div>
-                            </div>
-
                         </div>
-                        <div style="text-align: center;margin-top: 3rem"><button v-if="topics.length>0" class="btn orange-btn" @click="sendsur()">提交问卷</button></div>
+
+                        <div class="question-group" v-if="topic.type=='text'">
+                            <div class="num">{{ topic.name }}</div>
+                            <div class="question"></div>
+                            <div class="input"><input type="text" placeholder="请填写"></div>
+                        </div>
+
+                    </div>
+                    <div style="text-align: center;margin-top: 3rem">
+                        <button v-if="topics.length>0" class="btn orange-btn" @click="sendsur()">提交问卷</button>
+                    </div>
 
                 </li>
                 <li v-show="current==='page3'">
@@ -300,7 +302,7 @@
                 },
                 comments: [],
                 topics: [],
-                rec_id:0,
+                rec_id: 0,
             }
         },
         computed: mapGetters([
@@ -380,14 +382,14 @@
                     }
                 })
             },
-            sendsur(){
-                this.$post('/edu/survey/sendSurvey',{
+            sendsur() {
+                this.$post('/edu/survey/sendSurvey', {
                     uid: this.userInfo.id,
                     surveyId: this.rec_id
-                },p=>{
+                }, p => {
                     alert("提交成功！")
 
-                    this.topics.length=0;
+                    this.topics.length = 0;
                     this.$forceUpdate()
                 })
             }
