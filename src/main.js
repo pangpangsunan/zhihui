@@ -80,10 +80,21 @@ Vue.prototype.unview = (id, type = 2) => {
         alert("请先登录");
         return;
     }
-    if(type==2){
-        Vue.prototype.$post('/edu/collection/delCollection', {
-            id: id,
-            // uid: store.getters.userInfo.id,
+    if (type === 2) {
+        Vue.prototype.$post('/edu/collection/delTeacherCollection', {
+            tid: id,
+            uid: store.getters.userInfo.id,
+        }, p => {
+            if (p.httpCode == 200) {
+                alert("取消关注成功")
+            } else {
+                alert(p.msg)
+            }
+        });
+    } else {
+        Vue.prototype.$post('/edu/collection/delCourseCollection', {
+            cid: id,
+            uid: store.getters.userInfo.id,
         }, p => {
             if (p.httpCode == 200) {
                 alert("取消关注成功")
