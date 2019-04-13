@@ -39,7 +39,7 @@
                     uid: this.$store.getters.userInfo.id,
                     cid: this.course.id,
                     currenttime: parseInt(video.currentTime),
-                    duration: parseInt(video.duration)
+                    duration: parseInt(video.duration) || 0,
                 });
             }, 1000)
         }
