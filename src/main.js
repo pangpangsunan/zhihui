@@ -75,7 +75,7 @@ Vue.prototype.view = (id, type = 2) => {
     });
 };
 
-Vue.prototype.unview = (id, type = 2) => {
+Vue.prototype.unview = (id, type = 2, callback = null) => {
     if (!store.getters.isLogin) {
         alert("请先登录");
         return;
@@ -87,6 +87,9 @@ Vue.prototype.unview = (id, type = 2) => {
         }, p => {
             if (p.httpCode == 200) {
                 alert("取消关注成功")
+                if (typeof callback == 'function') {
+                    callback();
+                }
             } else {
                 alert(p.msg)
             }
@@ -98,6 +101,9 @@ Vue.prototype.unview = (id, type = 2) => {
         }, p => {
             if (p.httpCode == 200) {
                 alert("取消关注成功")
+                if (typeof callback == 'function') {
+                    callback();
+                }
             } else {
                 alert(p.msg)
             }
