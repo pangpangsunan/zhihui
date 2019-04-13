@@ -20,7 +20,7 @@
                             <div>{{item.userInfo.name}}</div>
                         </router-link>
                         <div class="attention-number">{{item.collectionCount}} 人关注
-                            <a @click.prevent="unview(item.userInfo.id)"
+                            <a @click.prevent="unview(item.userInfo.id,2,reload)"
                                class="attention">取消关注</a>
                         </div>
                         <p class="duty">{{item.userInfo.label}}</p>
@@ -139,13 +139,7 @@
             if (!this.isLogin) {
                 return;
             }
-            this.$get('/edu/collection/getCollectionPage', {
-                uid: this.userInfo.id,
-                type: 2
-            }, p => {
-                this.arr = p.content.records;
-                this.hasData = !!p.content.records
-            })
+            this.reload();
         }, data() {
             return {
                 arr: [],
@@ -155,7 +149,18 @@
         computed: mapGetters([
             'isLogin',
             'userInfo'
-        ])
+        ]),
+        methods: {
+            reload() {
+                this.$get('/edu/collection/getCollectionPage', {
+                    uid: this.userInfo.id,
+                    type: 2
+                }, p => {
+                    this.arr = p.content.records;
+                    this.hasData = !!p.content.records
+                })
+            }
+        }
     }
 </script>
 
