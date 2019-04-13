@@ -32,16 +32,27 @@
             course: {},
             url: ''
         },
-        created() {
-            setInterval(() => {
-                let video = this.$refs.video;
+        mounted() {
+            let video = this.$refs.video;
+            video.ontimeupdate = () => {
                 this.$post('/edu/video/savePlayRecord', {
                     uid: this.$store.getters.userInfo.id,
                     cid: this.course.id,
                     currenttime: parseInt(video.currentTime),
                     duration: parseInt(video.duration) || 0,
                 });
-            }, 1000)
+            };
+
+            this.$get('/edu/video/getVideoAndRecordList', {
+                uid: this.$store.getters.userInfo.id
+            }, p => {
+                for (let item of p.content) {
+                    if (item.cid == this.course.id && item.currentTime > 0) {
+                        video.currentTime = item.currentTime;
+                    }
+                    break;
+                }
+            })
         }
     }
 </script>
@@ -53,7 +64,7 @@
     }
 
     .videosp {
-        width: 46rem;
+        width: 44rem;
         height: 25rem;
         float: left;
     }
