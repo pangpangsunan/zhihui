@@ -47,10 +47,10 @@
                 uid: this.$store.getters.userInfo.id
             }, p => {
                 for (let item of p.content) {
-                    if (item.cid == this.course.id && item.currentTime > 0) {
-                        video.currentTime = item.currentTime;
+                    if (item.cid == this.course.id && item.currenttime > 0) {
+                        video.currentTime = item.currenttime;
+                        break;
                     }
-                    break;
                 }
             })
         }
