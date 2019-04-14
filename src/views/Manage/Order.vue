@@ -13,7 +13,7 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
                     <button class="orange-btn" @click="apply(item)">申请发票</button>
                 </div>
                 <div class="clear"></div>
@@ -24,9 +24,9 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
 
-                    <button @click="topay(item.orderid)" class="btn btn-info btn-sm">去支付</button>
+                    <button @click="topay(item.id)" class="btn btn-info btn-sm">去支付</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -36,7 +36,7 @@
                     <div class="course-name">{{item.name}}</div>
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
-                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate|datetime}}</div>
+                    <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -166,15 +166,8 @@
                 this.diolog = 'aplicateinvoice';
                 this.orderId = item.orderid;
             },
-            topay(orderid) {
-                this.$post("/edu/wewebpay/unifiedorder", {
-                    uid: this.userInfo.id,
-                    billno: orderid,
-                }, p => {
-                    if (p.httpCode == 200) {
-                        this.payurl = "/edu/wewebpay/qrCodePic?code_url=" + p.content.code_url;
-                    }
-                })
+            topay(id) {
+                this.$router.push('/orderpay/' + id);
             },
             payEnd() {
                 this.payurl = null;

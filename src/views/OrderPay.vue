@@ -93,6 +93,7 @@
                     for (let obj1 of obj.courseList) {
                         if (obj1.id == this.course.id) {
                             // 找到已有订单
+
                             this.zhifubao(obj.orderid);
                             this.weixin(obj.orderid);
                             return Promise.resolve(null);
@@ -108,12 +109,14 @@
                 if (!p) {
                     return;
                 }
+
                 this.zhifubao(p.data.content);
                 this.weixin(p.data.content);
             });
         },
         methods: {
             weixin(orderid){
+                console.debug("Fd");
                 this.$post('/edu/wewebpay/unifiedorder', {
                     uid: this.$store.getters.userInfo.id,
                     billno: orderid,
@@ -123,7 +126,6 @@
                         return;
                     }
                     alert(p.data.msg);
-                    this.$router.push('/manage/order');
                 })
             },
             zhifubao(orderid){
@@ -131,7 +133,6 @@
                     uid: this.$store.getters.userInfo.id,
                     billno: orderid,
                 }).then(p => {
-                    console.log(p);
                     this.$refs.zhifubao.srcdoc = p.data.content;
                 })
             },
