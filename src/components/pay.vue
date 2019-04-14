@@ -18,9 +18,9 @@
                 <div class="true-price">{{ info.price }}元</div>
                 <div class="clear"></div>
                 <hr>
-                <div class="font-middle">支付方式</div>
+                <!--<div class="font-middle">支付方式</div>-->
                 <div class="clear"></div>
-                <ul class="paystyle">
+                <ul class="paystyle" v-show="false">
                     <li>
                         <label>
                             <input type="radio" name="paytype" v-model="paytype" value="weixin"><img
