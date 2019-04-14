@@ -44,7 +44,9 @@
                         <p class="col-sm-10">问卷名称：{{ record.name }}</p>
 
                         <div class="col-sm-2">
-                            <button class="btn blue-btn" @click="toComplete(record.id)">去完成</button>
+                            <button class="btn blue-btn" v-if="showToComplete(record.id)"
+                                    @click="toComplete(record.id)">去完成
+                            </button>
                         </div>
                     </div>
 
@@ -85,7 +87,7 @@
                             <img :src="item.comment.headimgurl" class="img-left">
                             <div class="public-style-info">
                                 <span class="font-middle">{{item.comment.uname}}</span>
-                                <span class="font-bestsmall">{{item.comment.createDate|datetime}}</span>
+                                <span class="font-bestsmall">{{item.comment.createDate | datetime}}</span>
                                 <br>
                                 <span class="font-small">{{item.comment.content}}。</span>
                             </div>
@@ -278,9 +280,9 @@
     /* /edu/course/getCourseInfoById
      https://www.showdoc.cc/item/password/113014908063361?page_id=710161494064376&redirect=%2F113014908063361%3Fpage_id%3D710161494064376s
      评论 get  http://www.zhihui-app.com/edu/comment/getCommenPageByCourseNew?cid=263
-           post doc https://www.showdoc.cc/113014908063361?page_id=1020245263315513
+     post doc https://www.showdoc.cc/113014908063361?page_id=1020245263315513
 
-    */
+     */
 
 
     import {mapGetters} from 'vuex'
@@ -303,6 +305,7 @@
                 comments: [],
                 topics: [],
                 rec_id: 0,
+                survey: [],
             }
         },
         computed: mapGetters([
@@ -324,6 +327,7 @@
                 }, p => {
                     if (p.httpCode == 200) {
                         this.course = p.content.course;
+                        this.survey = p.content.survey.data;
                         this.$store.commit('course', p.content.course);
                     }
                 });
@@ -382,12 +386,20 @@
                     }
                 })
             },
+            showToComplete(id){
+                for (let obj of this.survey) {
+                    if (id == obj.surveyId) {
+                        return obj.status == 0;
+                    }
+                }
+                return true;
+            },
             sendsur() {
                 this.$post('/edu/survey/sendSurvey', {
                     uid: this.userInfo.id,
                     surveyId: this.rec_id
                 }, p => {
-                    alert("提交成功！")
+                    alert("提交成功！");
 
                     this.topics.length = 0;
                     this.$forceUpdate()
