@@ -10,7 +10,7 @@
                     <div class="right">
                         <p>{{ info.name }}</p>
                         <div class="price">¥ {{ info.price }}</div>
-                        <div class="font-small">上课时间：{{ info.startDate|datetime }}</div>
+                        <div class="font-small">上课时间：{{ info.startDate | datetime }}</div>
                     </div>
                 </div>
                 <div class="font-middle">实付金额</div>
@@ -195,68 +195,7 @@
         },
         methods: {
             pay() {
-                if (!this.paytype) {
-                    alert("请选择支付方式");
-                    return;
-                }
-
-                if (this.paytype == 'weixin') {
-                    // this.$store.getters.userInfo.id = 266;
-                    this.$post('/edu/order/addOrder', {
-                        userid: this.$store.getters.userInfo.id,
-                        cid: this.info.id,
-                        price: this.info.price
-                    }).then(p => {
-                        if (p.data.httpCode == 200) {
-                            return this.$post('/edu/wewebpay/unifiedorder', {
-                                uid: this.$store.getters.userInfo.id,
-                                billno: p.data.content,
-                            })
-                        }
-                        alert(p.data.msg)
-                        return false;
-                    }).then(p => {
-                        if (p === false) {
-                            return;
-                        }
-                        console.log(p.data);
-                        if (p.data.httpCode == 200) {
-                            this.url = "/edu/wewebpay/qrCodePic?code_url=" + p.data.content.code_url;
-                            return
-                        }
-                        alert(p.data.msg);
-                        this.$router.push('/manage/order');
-                    })
-                }
-
-                if (this.paytype == 'zhifubao') {
-                    this.$post('/edu/order/addOrder', {
-                        userid: this.$store.getters.userInfo.id,
-                        cid: this.info.id,
-                        price: this.info.price
-                    }).then(p => {
-                        if (p.data.httpCode == 200) {
-                            return this.$post('/edu/alipay/getOrderStringWebPage', {
-                                uid: this.$store.getters.userInfo.id,
-                                billno: p.data.content,
-                            })
-                        }
-                        alert(p.data.msg)
-                        return false;
-                    }).then(p => {
-                        if (p === false) {
-                            return;
-                        }
-                        console.log(p.data);
-                        if (p.data.httpCode == 200) {
-                            this.form = p.data.content;
-                            return
-                        }
-                        alert(p.data.msg);
-                        this.$router.push('/manage/order');
-                    })
-                }
-
+                this.$router.push("/orderpay/" + this.info.id);
             }
         },
 
