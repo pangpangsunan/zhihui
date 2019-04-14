@@ -25,7 +25,7 @@
                     <li v-show="current==='page1'" id="page1">
                         <img src="../assets/ic_wechat_wallet.png" style="margin-top: 3rem">
                         <div class="qcode">
-                            123
+                            <img :src="url" alt="" width="100%">
                         </div>
                         <img src="../assets/ic_wechat_qr_text.png"/>
                         <div>
@@ -37,7 +37,7 @@
                     <li v-show="current==='page2'" id="page2">
                         <img src="../assets/ic_alipay.png" style="margin-top: 3rem"/>
                         <div class="qcode">
-                            123
+                            <iframe ref="zhifubao" style="width:100%"></iframe>
                         </div>
                         <div class="tippay">
                             使用支付宝扫码付款
@@ -60,8 +60,6 @@
                 </ul>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -73,6 +71,7 @@
                 current: 'page1',
                 course: {},
                 order: {},
+                url: null,
             }
         },
         created(){
@@ -90,91 +89,52 @@
                     userid: uid,
                 })
             }).then(p => {
-                let ret = [];
                 for (let obj of p.data.content.records) {
-                    ret.push(this.$post('/edu/order/refund', {
-                        orderid: obj.orderid
-                    }))
+                    for (let obj1 of obj.courseList) {
+                        if (obj1.id == this.course.id) {
+                            // 找到已有订单
+                            this.zhifubao(obj.orderid);
+                            this.weixin(obj.orderid);
+                            return Promise.resolve(null);
+                        }
+                    }
                 }
-                return Promise.all(ret)
-            }).then(p => {
-
-               return this.$post('/edu/order/addOrder', {
+                return this.$post('/edu/order/addOrder', {
                     userid: uid,
                     cid: this.course.id,
                     price: this.course.price,
                 })
             }).then(p => {
-                if (p.data.httpCode == 200) {
-
-                } else {
-                    alert(p.data.msg);
+                if (!p) {
+                    return;
                 }
+                this.zhifubao(p.data.content);
+                this.weixin(p.data.content);
             });
         },
         methods: {
-            pay(){
-                if (!this.paytype) {
-                    alert("请选择支付方式");
-                    return;
-                }
-                if (this.paytype == 'weixin') {
-                    // this.$store.getters.userInfo.id = 266;
-                    this.$post('/edu/order/addOrder', {
-                        userid: this.$store.getters.userInfo.id,
-                        cid: this.info.id,
-                        price: this.info.price
-                    }).then(p => {
-                        if (p.data.httpCode == 200) {
-                            return this.$post('/edu/wewebpay/unifiedorder', {
-                                uid: this.$store.getters.userInfo.id,
-                                billno: p.data.content,
-                            })
-                        }
-                        alert(p.data.msg)
-                        return false;
-                    }).then(p => {
-                        if (p === false) {
-                            return;
-                        }
-                        console.log(p.data);
-                        if (p.data.httpCode == 200) {
-                            this.url = "/edu/wewebpay/qrCodePic?code_url=" + p.data.content.code_url;
-                            return
-                        }
-                        alert(p.data.msg);
-                        this.$router.push('/manage/order');
-                    })
-                }
-
-                if (this.paytype == 'zhifubao') {
-                    this.$post('/edu/order/addOrder', {
-                        userid: this.$store.getters.userInfo.id,
-                        cid: this.info.id,
-                        price: this.info.price
-                    }).then(p => {
-                        if (p.data.httpCode == 200) {
-                            return this.$post('/edu/alipay/getOrderStringWebPage', {
-                                uid: this.$store.getters.userInfo.id,
-                                billno: p.data.content,
-                            })
-                        }
-                        alert(p.data.msg)
-                        return false;
-                    }).then(p => {
-                        if (p === false) {
-                            return;
-                        }
-                        console.log(p.data);
-                        if (p.data.httpCode == 200) {
-                            this.form = p.data.content;
-                            return
-                        }
-                        alert(p.data.msg);
-                        this.$router.push('/manage/order');
-                    })
-                }
-            }
+            weixin(orderid){
+                this.$post('/edu/wewebpay/unifiedorder', {
+                    uid: this.$store.getters.userInfo.id,
+                    billno: orderid,
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.url = "/edu/wewebpay/qrCodePic?code_url=" + p.data.content.code_url;
+                        return;
+                    }
+                    alert(p.data.msg);
+                    this.$router.push('/manage/order');
+                })
+            },
+            zhifubao(orderid){
+                this.$get('/edu/alipay/getOrderStringWebPage', {
+                    uid: this.$store.getters.userInfo.id,
+                    billno: orderid,
+                }).then(p => {
+                    console.log(p);
+                    this.$refs.zhifubao.srcdoc = p.data.content;
+                })
+            },
         }
     }
 </script>
