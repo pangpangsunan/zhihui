@@ -8,7 +8,7 @@
                    ref="video"
                    controls="controls"></video>
         </div>
-        <div class="right">
+        <div class="right" v-if="onlyshow">
             <p class="title font-big">{{ course.name }}</p>
             <p class="trywatch">试看版</p>
             <p class="content">{{ course.background }}</p>
@@ -30,7 +30,8 @@
         name: "play",
         props: {
             course: {},
-            url: ''
+            url: '',
+            onlyshow: true,
         },
         mounted() {
             let video = this.$refs.video;

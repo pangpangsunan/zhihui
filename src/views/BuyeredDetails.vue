@@ -4,8 +4,7 @@
         <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
             <div class="videosp">
-                <video src="http://video.zhihui-app.com/%2F194%2F267-0?e=1551536816&token=JksNydlEkUXgEMbcfG2AtG97Cj0iM3zOq0abjVQS:uQFDCTYW4TTQUSQjj_8AJPmPRRs="
-                       id="vd" width="100%" height="100%" controls="controls"></video>
+                <play :url="url" :course="course" :onlyshow="false"></play>
             </div>
             <div class="right">
                 <p class="title font-big">{{ course.name }}</p>
@@ -303,6 +302,7 @@
                 comments: [],
                 topics: [],
                 rec_id: 0,
+                url: '',
             }
         },
         computed: mapGetters([
@@ -325,6 +325,12 @@
                     if (p.httpCode == 200) {
                         this.course = p.content.course;
                         this.$store.commit('course', p.content.course);
+
+                        this.$get('/edu/video/getRealDownloadUrl', {
+                            downloadUrl: p.content.course.video
+                        }, p => {
+                            this.url = p.content
+                        })
                     }
                 });
 
@@ -394,6 +400,9 @@
                 })
             }
 
+        },
+        components: {
+            play: () => import('@/components/play.vue')
         }
     }
 </script>
