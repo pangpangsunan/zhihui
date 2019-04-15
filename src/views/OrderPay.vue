@@ -2,12 +2,12 @@
     <div class="container">
         <p class="nav-title">订单支付</p>
         <div class="orderlist">
-            <img  alt="" class="course-img">
+            <img alt="" class="course-img">
             <div class="course-info ">
-                <div class="course-name">课程名称</div>
-                <div class="course-price font-middle">12000</div>
-                <div class="orderid font-bestsmall"> 订单编号：12344058989348534</div>
-                <div class="order-finishedtime font-bestsmall">订单创建时间{{}}你直接去</div>
+                <div class="course-name">{{ course.name }}</div>
+                <div class="course-price font-middle">{{ course.price }}</div>
+                <div class="orderid font-bestsmall"> 订单编号：{{ order.orderid }}</div>
+                <div class="order-finishedtime font-bestsmall">订单创建时间{{ order.createTime }}</div>
             </div>
             <div class="clear"></div>
         </div>
@@ -25,7 +25,7 @@
                     <li v-show="current==='page1'" id="page1">
                         <img src="../assets/ic_wechat_wallet.png" style="margin-top: 3rem">
                         <div class="qcode">
-                            123
+                            <img :src="url" alt="" width="100%">
                         </div>
                         <img src="../assets/ic_wechat_qr_text.png"/>
                         <div>
@@ -37,16 +37,14 @@
                     <li v-show="current==='page2'" id="page2">
                         <img src="../assets/ic_alipay.png" style="margin-top: 3rem"/>
                         <div class="qcode">
-                            123
+                            <iframe ref="zhifubao" style="width:100%"></iframe>
                         </div>
                         <div class="tippay">
                             使用支付宝扫码付款
                         </div>
                         <div>
                             <button class="btn orange-btn">我已完成付款</button>
-
                         </div>
-
                     </li>
                     <li v-show="current==='page3'" id="page3">
                         <div>银行转账</div>
@@ -62,8 +60,6 @@
                 </ul>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -72,25 +68,90 @@
         name: "order-pay",
         data() {
             return {
-
                 current: 'page1',
-
-
+                course: {},
+                order: {},
+                url: null,
             }
+        },
+        created(){
+            let uid = this.$store.getters.userInfo.id;
+
+            Promise.resolve().then(p => {
+                return this.$get("/edu/course/getCourseInfoById", {
+                    id: this.$route.params.id,
+                    uid: uid,
+                })
+            }).then(p => {
+                this.course = p.data.content.course;
+
+                return this.$get('/edu/order/getOrderList', {
+                    userid: uid,
+                })
+            }).then(p => {
+                for (let obj of p.data.content.records) {
+                    for (let obj1 of obj.courseList) {
+                        if (obj1.id == this.course.id) {
+                            // 找到已有订单
+
+                            this.zhifubao(obj.orderid);
+                            this.weixin(obj.orderid);
+                            return Promise.resolve(null);
+                        }
+                    }
+                }
+                return this.$post('/edu/order/addOrder', {
+                    userid: uid,
+                    cid: this.course.id,
+                    price: this.course.price,
+                })
+            }).then(p => {
+                if (!p) {
+                    return;
+                }
+
+                this.zhifubao(p.data.content);
+                this.weixin(p.data.content);
+            });
+        },
+        methods: {
+            weixin(orderid){
+                console.debug("Fd");
+                this.$post('/edu/wewebpay/unifiedorder', {
+                    uid: this.$store.getters.userInfo.id,
+                    billno: orderid,
+                }).then(p => {
+                    if (p.data.httpCode == 200) {
+                        this.url = "/edu/wewebpay/qrCodePic?code_url=" + p.data.content.code_url;
+                        return;
+                    }
+                    alert(p.data.msg);
+                })
+            },
+            zhifubao(orderid){
+                this.$get('/edu/alipay/getOrderStringWebPage', {
+                    uid: this.$store.getters.userInfo.id,
+                    billno: orderid,
+                }).then(p => {
+                    this.$refs.zhifubao.srcdoc = p.data.content;
+                })
+            },
         }
     }
 </script>
 
 <style scoped>
-    #page1,#page2 {
+    #page1, #page2 {
         text-align: center;
     }
+
     .qcode {
         width: 8.75rem;
         height: 8.75rem;
         border: 1px solid red;
         margin: 1rem auto;
     }
+
     .tippay {
         color: #fff;
         background: #00A8F5;
@@ -99,13 +160,16 @@
         line-height: 2.88rem;
         margin: 0 auto;
     }
+
     #page3 {
         padding: 2rem;
     }
+
     .grayfont {
-        color:#666666;
+        color: #666666;
         margin: .5rem 0;
     }
+
     .orderlist {
         width: 100%;
         background-color: #F3F5F7;
@@ -128,7 +192,6 @@
         width: 78%;
     }
 
-
     .course-name {
         font-size: 1rem;
         margin: 1rem 0;
@@ -146,11 +209,13 @@
         color: #666666;
 
     }
+
     .pay-wrapper {
         width: 100%;
         background: #fff;
-        padding:  1rem .5rem;
+        padding: 1rem .5rem;
     }
+
     .pay-page {
         width: 50rem;
         height: 28rem;
@@ -159,6 +224,7 @@
         margin: 0 auto;
         margin-top: 2rem;
     }
+
     .tab-bg {
         height: 2.5rem;
         background-color: #E4EAF3;
@@ -167,6 +233,7 @@
     .font-middle {
         color: #222222;
     }
+
     .orange-btn {
         width: 9rem;
         margin-top: 2rem;
@@ -219,8 +286,4 @@
         }
 
     }
-
-
-
-
 </style>

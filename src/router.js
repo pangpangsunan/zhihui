@@ -69,7 +69,7 @@ let router = new Router({
                     component: () => import('./views/Message.vue')
                 },
                 {
-                    path: 'orderpay',
+                    path: 'orderpay/:id',
                     name: 'message',
                     component: () => import('./views/OrderPay.vue')
                 },

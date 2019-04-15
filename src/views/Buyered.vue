@@ -32,9 +32,7 @@
                  v-show="type==item.enrollInfo.course.type">
                 <div>
                     <img :src="item.enrollInfo.course.image" class="course-img">
-                    <div class="jindu">
-                        <div class="jindu-inner" :style="{width:playPercent(item.enrollInfo.course.id) }"></div>
-                    </div>
+
                 </div>
 
                 <div class="course-list">
@@ -50,6 +48,12 @@
                     </div>
 
                 </div>
+                <div class="jindu">
+                    <div class="jindu-inner" :style="{width:playPercent(item.enrollInfo.course.id) }"></div>
+                </div>
+                <div>
+                    {{playPercentNum(item.enrollInfo.course.id)}}%
+                </div>
 
             </div>
         </div>
@@ -61,14 +65,14 @@
 </template>
 <style scoped>
     .jindu {
-        height: .4rem;
+        height: .8rem;
         background-color: gray;
         width: 100%;
     }
 
     .jindu-inner {
         background-color: #1CAF5E;
-        height: .4rem;
+        height: .8rem;
     }
 
     .pro {
@@ -164,6 +168,14 @@
                 }
                 return 0;
 
+            },
+            playPercentNum(id){
+                for (let item of this.timeData) {
+                    if (item.cid == id) {
+                        return parseInt(item.currenttime * 100 / item.duration)
+                    }
+                }
+                return 0;
             }
         }
     }
