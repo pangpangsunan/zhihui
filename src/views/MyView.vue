@@ -139,7 +139,7 @@
             if (!this.isLogin) {
                 return;
             }
-
+            this.reload();
         }, data() {
             return {
                 arr: [],
@@ -152,7 +152,13 @@
         ]),
         methods: {
             reload() {
-
+                this.$get('/edu/collection/getCollectionPage', {
+                    uid: this.userInfo.id,
+                    type: 2
+                }, p => {
+                    this.arr = p.content.records;
+                    this.hasData = !!p.content.records
+                })
             }
         }
     }
