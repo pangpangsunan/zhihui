@@ -8,11 +8,11 @@
             </div>
             <div class="right">
                 <p class="title font-big">{{ course.name }}</p>
-                <p class="trywatch">试看版</p>
+                <!--<p class="trywatch">试看版</p>-->
                 <p class="content">{{ course.background }}</p>
                 <div class="att-wrapper">
-                    <img :src="course.image" class="img-left">
-                    <span>{{ course['function'] }}</span>
+                    <img :src="teacherInfo.headimgurl" class="img-left" style="margin:0 .5rem;">
+                    <span>{{ teacherInfo.name}}</span>
                     <br>
                     <span class="font-middle">{{ course.totalNum }}人关注</span>
                     <button class="attention-btn blue-btn">关注</button>
@@ -133,11 +133,11 @@
     }
 
     .att-wrapper {
-        margin-top: 10rem;
+        margin-top: 7rem;
     }
 
     .attention-btn {
-        margin-left: 7rem;
+        margin-left: 6rem;
     }
 
     .title {
@@ -301,6 +301,7 @@
                     userExtra: {},
                     introduction: []
                 },
+                teacherInfo:{},
                 comments: [],
                 topics: [],
                 rec_id: 0,
@@ -328,6 +329,7 @@
                     if (p.httpCode == 200) {
                         this.course = p.content.course;
                         this.survey = p.content.survey.data;
+                        this.teacherInfo=p.content.userInfo;
                         this.$store.commit('course', p.content.course);
 
                         this.$get('/edu/video/getRealDownloadUrl', {

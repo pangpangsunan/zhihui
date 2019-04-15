@@ -4,32 +4,31 @@
 
         <div class="courses-category border-rad" v-if="hasData">
             <div class="subtitle">
-                <div class="course-number">{{length}}门课程</div>
+                <div class="course-number">{{arr.length}}门课程</div>
                 <div class="dropdown course-type" v-if="hasData">
-                    <button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                    <span class="course-type">全部类型
-				        <span class="caret"></span>
-			        </span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li>
-                            <a @click="type=1">线上</a>
-                        </li>
-                        <li>
-                            <a @click="type=2">线下</a>
-                        </li>
-                        <li>
-                            <a @click="type=3">专栏</a>
-                        </li>
-                    </ul>
+                    <!--<button class="drop-btn" type="button" data-toggle="dropdown" aria-haspopup="true"-->
+                            <!--aria-expanded="false">-->
+                    <!--<span class="course-type">全部类型-->
+				        <!--<span class="caret"></span>-->
+			        <!--</span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu" aria-labelledby="dLabel">-->
+                        <!--<li>-->
+                            <!--<a @click="type=1">线上</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a @click="type=2">线下</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a @click="type=3">专栏</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
                 </div>
                 <div class="clear"></div>
             </div>
             <div @click="$router.push({name:'buyereddetails',params:{id:item.enrollInfo.course.id}})"
                  class="pro skin-white"
-                 v-for="item in arr"
-                 v-show="type==item.enrollInfo.course.type">
+                 v-for="item in arr">
                 <div>
                     <img :src="item.enrollInfo.course.image" class="course-img">
 
@@ -84,6 +83,7 @@
 
     .courses-category {
         min-height: 40rem;
+        padding-bottom: 2rem;
     }
 
     .course-img {
