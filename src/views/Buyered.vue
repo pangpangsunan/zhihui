@@ -52,7 +52,7 @@
                     <div class="jindu-inner" :style="{width:playPercent(item.enrollInfo.course.id) }"></div>
                 </div>
                 <div>
-                    {{playPercentNum(item.enrollInfo.course.id)}}%
+                    {{playPercent(item.enrollInfo.course.id)}}
                 </div>
 
             </div>
@@ -163,20 +163,12 @@
             playPercent(id) {
                 for (let item of this.timeData) {
                     if (item.cid == id) {
-                        return parseInt(item.currenttime * 100 / item.duration) + 'px'
+                        return parseInt(item.currenttime * 100 / item.duration) + '%'
                     }
                 }
                 return 0;
 
             },
-            playPercentNum(id){
-                for (let item of this.timeData) {
-                    if (item.cid == id) {
-                        return parseInt(item.currenttime * 100 / item.duration)
-                    }
-                }
-                return 0;
-            }
         }
     }
 </script>
