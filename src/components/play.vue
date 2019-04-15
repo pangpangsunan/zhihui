@@ -36,12 +36,14 @@
         mounted() {
             let video = this.$refs.video;
             video.ontimeupdate = () => {
-                this.$post('/edu/video/savePlayRecord', {
-                    uid: this.$store.getters.userInfo.id,
-                    cid: this.course.id,
-                    currenttime: parseInt(video.currentTime),
-                    duration: parseInt(video.duration) || 0,
-                });
+                if (parseInt(video.currentTime) > 0) {
+                    this.$post('/edu/video/savePlayRecord', {
+                        uid: this.$store.getters.userInfo.id,
+                        cid: this.course.id,
+                        currenttime: parseInt(video.currentTime),
+                        duration: parseInt(video.duration) || 0,
+                    });
+                }
             };
 
             this.$get('/edu/video/getVideoAndRecordList', {
