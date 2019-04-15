@@ -47,11 +47,15 @@
             this.$get('/edu/video/getVideoAndRecordList', {
                 uid: this.$store.getters.userInfo.id
             }, p => {
+
                 for (let item of p.content) {
-                    if (item.cid == this.course.id && item.currentTime > 0) {
-                        video.currentTime = item.currentTime;
+                    // console.log(item.cid, this.course.id, item.currenttime);
+
+                    if (item.cid == this.course.id && item.currenttime > 0) {
+                        // console.log(item);
+                        video.currentTime = item.currenttime;
+                        break;
                     }
-                    break;
                 }
             })
         }
