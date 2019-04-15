@@ -163,7 +163,9 @@
             playPercent(id) {
                 for (let item of this.timeData) {
                     if (item.cid == id) {
-                        return parseInt(item.currenttime * 100 / item.duration) + '%'
+                        let rate = parseInt(item.currenttime * 100 / item.duration);
+                        rate = rate || 0;
+                        return rate + '%'
                     }
                 }
                 return 0;
