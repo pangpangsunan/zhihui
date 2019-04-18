@@ -2,7 +2,7 @@
     <div>
         <div class="left">
             <ul>
-                <li @click="settype1(item)" v-for="item in menus" :class="{'active':item.id==currentMenu.id}">
+                <li @click="settype1(item)" v-for="item in menus">
                     {{ item.name }}
                 </li>
             </ul>
@@ -80,6 +80,7 @@
 
     .left li:hover, .left li:active {
         background: #4459CC;
+        cursor: pointer;
     }
 
     .right {
