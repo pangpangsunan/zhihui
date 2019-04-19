@@ -74,7 +74,7 @@
                 url: null,
             }
         },
-        created(){
+        created() {
             let uid = this.$store.getters.userInfo.id;
 
             Promise.resolve().then(p => {
@@ -115,7 +115,7 @@
             });
         },
         methods: {
-            weixin(orderid){
+            weixin(orderid) {
                 console.debug("Fd");
                 this.$post('/edu/wewebpay/unifiedorder', {
                     uid: this.$store.getters.userInfo.id,
@@ -128,10 +128,11 @@
                     alert(p.data.msg);
                 })
             },
-            zhifubao(orderid){
+            zhifubao(orderid) {
                 this.$get('/edu/alipay/getOrderStringWebPage', {
                     uid: this.$store.getters.userInfo.id,
                     billno: orderid,
+                    qrcodeWidth: 140,
                 }).then(p => {
                     this.$refs.zhifubao.srcdoc = p.data.content;
                 })
@@ -148,7 +149,7 @@
     .qcode {
         width: 8.75rem;
         height: 8.75rem;
-        border: 1px solid red;
+        /*border: 1px solid red;*/
         margin: 1rem auto;
     }
 
