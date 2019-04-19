@@ -27,6 +27,7 @@
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
 
                     <button @click="topay(item.id)" class="btn btn-info btn-sm">去支付</button>
+                    <button @click="cancel(item.id)" class="btn btn-info btn-sm">取消</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -168,6 +169,12 @@
             },
             topay(id) {
                 this.$router.push('/orderpay/' + id);
+            },
+            cancel(id) {
+                // todo  没有接口
+                this.$post('', p => {
+                    this.load();
+                })
             },
             payEnd() {
                 this.payurl = null;

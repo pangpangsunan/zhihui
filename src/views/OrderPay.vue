@@ -43,7 +43,7 @@
                             使用支付宝扫码付款
                         </div>
                         <div>
-                            <button class="btn orange-btn">我已完成付款</button>
+                            <button class="btn orange-btn" @click="complete">我已完成付款</button>
                         </div>
                     </li>
                     <li v-show="current==='page3'" id="page3">
@@ -137,6 +137,9 @@
                     this.$refs.zhifubao.srcdoc = p.data.content;
                 })
             },
+            complete() {
+                this.$router.push('/manage/order')
+            }
         }
     }
 </script>
