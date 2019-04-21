@@ -25,9 +25,8 @@
                     <div class="course-price font-middle">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
-
-                    <button @click="topay(item.id)" class="btn btn-info btn-sm">去支付</button>
-                    <button @click="cancel(item.id)" class="btn btn-info btn-sm">取消</button>
+                    <button @click="topay(item.id)" class="btn btn-info ">去支付</button>
+                    <button @click="cancel(item.orderid)" class="btn btn-info ">取消</button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -132,6 +131,18 @@
 
     }
 
+    .btn-info {
+        float: right;
+        margin-left: 1.5rem;
+        width: 7rem;
+        background: #4459CC;
+        position: relative;
+        bottom: 2rem;
+        right: 3rem;
+
+    }
+
+
 
 </style>
 <script>
@@ -155,12 +166,14 @@
                     status: status,
                     userid: this.userInfo.id
                 }, p => {
+                    this.arr.length=0;
                     for (let i of p.content.records) {
                         for (let j of i.courseList) {
                             j.orderid = i.orderid;
                             this.arr.push(j);
                         }
                     }
+                    this.$forceUpdate();
                 });
             },
             apply(item) {
@@ -171,9 +184,10 @@
                 this.$router.push('/orderpay/' + id);
             },
             cancel(id) {
-                // todo  没有接口
-                this.$post('', p => {
-                    this.load();
+                this.$post('/edu/order/deleteOrder' ,{
+                    orderid:id
+                }, p => {
+                    this.load(0);
                 })
             },
             payEnd() {

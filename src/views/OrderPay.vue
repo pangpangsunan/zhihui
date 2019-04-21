@@ -29,7 +29,7 @@
                         </div>
                         <img src="../assets/ic_wechat_qr_text.png"/>
                         <div>
-                            <button class="btn orange-btn">我已完成付款</button>
+                            <button class="btn orange-btn" @click="complete">我已完成付款</button>
 
                         </div>
                     </li>
