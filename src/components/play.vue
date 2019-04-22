@@ -1,13 +1,16 @@
 <template>
-    <div>
+    <div class="sp">
         <div class="videosp">
             <video :src="url"
                    id="vd"
                    width="100%"
                    height="100%"
                    ref="video"
-                   controls="controls"></video>
+                   autoplay="true"
+                   controls="controls">
+            </video>
         </div>
+
         <div class="right" v-if="onlyshow">
             <p class="title font-big">{{ course.name }}</p>
             <p class="trywatch">试看版</p>
@@ -70,8 +73,10 @@
         color: #222222;
     }
 
+
+
     .videosp {
-        width: 44rem;
+        width: 46rem;
         height: 25rem;
         float: left;
     }

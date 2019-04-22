@@ -23,6 +23,7 @@
             <div v-if="isPlay">
                 <play :course="course.course" :url="videoUrl"></play>
             </div>
+            <div class="clear"></div>
         </div>
         <div class="course-tab pubwidth1 border-rad">
             <div class="tab-bg" v-show="!isPlay">

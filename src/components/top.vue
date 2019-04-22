@@ -26,9 +26,9 @@
                         <li>
                             <router-link to="/manage/bindphone">绑定手机</router-link>
                         </li>
-                        <li>
-                            <router-link to="/user/resetpwd">修改密码</router-link>
-                        </li>
+                        <!--<li>-->
+                            <!--<router-link to="/user/resetpwd">修改密码</router-link>-->
+                        <!--</li>-->
                         <li class="divider"></li>
                         <li>
                             <router-link to="/manage/interest">学习兴趣</router-link>

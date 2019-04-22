@@ -2,12 +2,12 @@
     <div class="container">
         <p class="nav-title">订单支付</p>
         <div class="orderlist">
-            <img alt="" class="course-img">
+            <img :src="course.image" class="course-img">
             <div class="course-info ">
                 <div class="course-name">{{ course.name }}</div>
                 <div class="course-price font-middle">{{ course.price }}</div>
                 <div class="orderid font-bestsmall"> 订单编号：{{ order.orderid }}</div>
-                <div class="order-finishedtime font-bestsmall">订单创建时间{{ order.createTime }}</div>
+                <div class="order-finishedtime font-bestsmall">订单创建时间{{ order.updateDate | datetime }}</div>
             </div>
             <div class="clear"></div>
         </div>
@@ -93,7 +93,7 @@
                     for (let obj1 of obj.courseList) {
                         if (obj1.id == this.course.id) {
                             // 找到已有订单
-
+                            this.order=obj;
                             this.zhifubao(obj.orderid);
                             this.weixin(obj.orderid);
                             return Promise.resolve(null);
@@ -109,7 +109,8 @@
                 if (!p) {
                     return;
                 }
-
+                this.order.orderid=p.data.content;
+                this.order.updateDate=p.data.timestamp;
                 this.zhifubao(p.data.content);
                 this.weixin(p.data.content);
             });
@@ -150,10 +151,11 @@
     }
 
     .qcode {
-        width: 8.75rem;
-        height: 8.75rem;
-        /*border: 1px solid red;*/
+        width: 9rem;
+        height: 9rem;
         margin: 1rem auto;
+        overflow: hidden;
+        border: none;
     }
 
     .tippay {

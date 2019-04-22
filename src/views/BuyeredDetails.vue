@@ -3,9 +3,9 @@
 
         <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
-            <div class="videosp">
+
                 <play :url="url" :course="course" :onlyshow="false"></play>
-            </div>
+
             <div class="right">
                 <p class="title font-big">{{ course.name }}</p>
                 <!--<p class="trywatch">试看版</p>-->
@@ -33,9 +33,9 @@
 
             <ul class="tab-content">
                 <li v-show="current==='page1'">
-                    <div class="notices" v-if="course && course.message">
-                        <p v-for="item in course.message.data">{{ item.content }}</p>
-                        <img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
+                    <div class="notices">
+                        <p v-for="item in message.data">{{ item.content }}</p>
+                        <!--<img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">-->
                     </div>
                 </li>
                 <li v-show="current==='page2'">
@@ -103,13 +103,6 @@
 
 
 <style scoped>
-
-    .videosp {
-        width: 46rem;
-        height: 25rem;
-        float: left;
-    }
-
     .notices {
         padding: 2rem;
         line-height: 2rem;
@@ -301,6 +294,7 @@
                     userExtra: {},
                     introduction: []
                 },
+                message:{},
                 teacherInfo:{},
                 comments: [],
                 topics: [],
@@ -328,6 +322,7 @@
                 }, p => {
                     if (p.httpCode == 200) {
                         this.course = p.content.course;
+                        this.message=p.content.message;
                         this.survey = p.content.survey.data;
                         this.teacherInfo=p.content.userInfo;
                         this.$store.commit('course', p.content.course);

@@ -6,11 +6,12 @@
                     <td colspan="3" class="right ">客服电话</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="font-big right">0157-28874128-6</td>
+                    <td class="left">关于我们</td>
+                    <td colspan="3" class="font-big right">0517-28874128-6</td>
                 </tr>
                 <tr class="three">
                     <td class="left">Copyright@2019.All rights reserved</td>
-                    <td class="center">沪CP备 000001号</td>
+                    <td class="center">浙ICP备17048837号-2</td>
                     <td class="right">Email：cs@xiaotongtech.net</td>
                 </tr>
             </table>
