@@ -55,6 +55,10 @@ let router = new Router({
                     component: () => import('./views/Help.vue')
                 },
                 {
+                    path: 'about',
+                    component: () => import('./views/About.vue')
+                },
+                {
                     path: 'privatemsg',
                     component: () => import('./views/PrivateMsg.vue')
                 },
