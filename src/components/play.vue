@@ -36,6 +36,26 @@
             url: '',
             onlyshow: true,
         },
+        watch: {
+            course() {
+                if (this.course) {
+                    this.$get('/edu/video/getVideoAndRecordList', {
+                        uid: this.$store.getters.userInfo.id
+                    }, p => {
+                        let video = this.$refs.video;
+                        for (let item of p.content) {
+                            console.log(item.cid, this.course.id, item.currenttime);
+
+                            if (item.cid == this.course.id && item.currenttime > 0) {
+                                // console.log(item);
+                                video.currentTime = item.currenttime;
+                                break;
+                            }
+                        }
+                    })
+                }
+            }
+        },
         mounted() {
             let video = this.$refs.video;
             video.ontimeupdate = () => {
@@ -48,21 +68,6 @@
                     });
                 }
             };
-
-            this.$get('/edu/video/getVideoAndRecordList', {
-                uid: this.$store.getters.userInfo.id
-            }, p => {
-
-                for (let item of p.content) {
-                    // console.log(item.cid, this.course.id, item.currenttime);
-
-                    if (item.cid == this.course.id && item.currenttime > 0) {
-                        // console.log(item);
-                        video.currentTime = item.currenttime;
-                        break;
-                    }
-                }
-            })
         }
     }
 </script>
@@ -72,8 +77,6 @@
     .font-middle {
         color: #222222;
     }
-
-
 
     .videosp {
         width: 46rem;
