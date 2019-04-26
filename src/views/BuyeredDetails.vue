@@ -4,7 +4,7 @@
         <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
 
-                <play :url="url" :course="course" :onlyshow="false"></play>
+            <play :url="url" :course="course" :onlyshow="false"></play>
 
             <div class="right">
                 <p class="title font-big">{{ course.name }}</p>
@@ -35,7 +35,7 @@
                 <li v-show="current==='page1'">
                     <div class="notices">
                         <p v-for="item in message.data">{{ item.content }}</p>
-                        <!--<img src="@/assets/qcode.png" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">-->
+                        <img :src="course.course.qrcode" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
                     </div>
                 </li>
                 <li v-show="current==='page2'">
@@ -294,8 +294,8 @@
                     userExtra: {},
                     introduction: []
                 },
-                message:{},
-                teacherInfo:{},
+                message: {},
+                teacherInfo: {},
                 comments: [],
                 topics: [],
                 rec_id: 0,
@@ -322,9 +322,9 @@
                 }, p => {
                     if (p.httpCode == 200) {
                         this.course = p.content.course;
-                        this.message=p.content.message;
+                        this.message = p.content.message;
                         this.survey = p.content.survey.data;
-                        this.teacherInfo=p.content.userInfo;
+                        this.teacherInfo = p.content.userInfo;
                         this.$store.commit('course', p.content.course);
 
                         this.$get('/edu/video/getRealDownloadUrl', {
