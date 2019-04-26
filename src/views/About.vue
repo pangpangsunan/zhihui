@@ -61,6 +61,7 @@
         text-align: center;
         margin: 0 auto;
         background: url(../assets/bg_login.png) no-repeat;
+        padding-top: 5rem;
 
     }
 
@@ -71,7 +72,7 @@
         letter-spacing: 2px;
         text-align: center;
         line-height: 28px;
-        margin-top: 5rem;
+
     }
 
     .about-intro {

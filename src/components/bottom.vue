@@ -6,7 +6,9 @@
                     <td colspan="3" class="right ">客服电话</td>
                 </tr>
                 <tr>
-                    <td class="left">关于我们</td>
+                    <td class="left">
+                        <router-link to="/about" style="color: #fff;">关于我们</router-link>
+                    </td>
                     <td colspan="3" class="font-big right">0517-28874128-6</td>
                 </tr>
                 <tr class="three">
