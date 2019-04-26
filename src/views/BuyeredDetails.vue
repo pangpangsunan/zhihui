@@ -35,7 +35,8 @@
                 <li v-show="current==='page1'">
                     <div class="notices">
                         <p v-for="item in message.data">{{ item.content }}</p>
-                        <img :src="course.course.qrcode" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem">
+                        <img :src="course.course.qrcode" style="width: 7.5rem;height: 7.5rem; margin-top: 3rem"
+                             v-if="course.course&&course.course.qrcode">
                     </div>
                 </li>
                 <li v-show="current==='page2'">

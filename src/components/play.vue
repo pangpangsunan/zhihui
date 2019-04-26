@@ -44,7 +44,7 @@
                     }, p => {
                         let video = this.$refs.video;
                         for (let item of p.content) {
-                            console.log(item.cid, this.course.id, item.currenttime);
+                            // console.log(item.cid, this.course.id, item.currenttime);
 
                             if (item.cid == this.course.id && item.currenttime > 0) {
                                 // console.log(item);
