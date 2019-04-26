@@ -70,9 +70,15 @@
                 }
                 this.$post('/edu/user/changePassword', {
                     phone: this.userInfo.phone,
-                    email: this.userInfo.email
+                    email: this.userInfo.email,
+                    password: this.password,
+                    code: this.valCode,
                 }, p => {
+                    if (p.httpCode == 200) {
+                        alert("密码修改成功")
+                    }
 
+                    alert(p.msg)
                 })
             },
             bindphone() {
