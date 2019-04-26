@@ -3,7 +3,7 @@
         <div class="bg-black">
             <top></top>
         </div>
-        <div class="container navcontainer">
+        <div class="container navcontainer" v-if="$route.name!=='about'">
             <ul class="nav">
                 <li>
                     <router-link to="/" active-class="active" exact>首页</router-link>
