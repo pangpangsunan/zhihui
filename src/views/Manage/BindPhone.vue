@@ -133,6 +133,7 @@
                 }, p => {
                     if (p.httpCode == 200) {
                         alert("成功");
+                        this.$router.push('/user/login')
                         this.page = "page2"
                     } else {
                         this.msg = p.msg;

@@ -9,6 +9,7 @@
                     item.name }}
                 </li>
             </ul>
+            <div class="clear"></div>
             <button class="blue-btn" @click="save">保存</button>
         </div>
         <div class="clear"></div>
