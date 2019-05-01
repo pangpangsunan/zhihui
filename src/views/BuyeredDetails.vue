@@ -41,11 +41,10 @@
                 <li v-show="current==='page2'">
                     <div class="questions-page" v-for="record in records" v-show="topics.length==0">
                         <p class="col-sm-10">问卷名称：{{ record.name }}</p>
-
                         <div class="col-sm-2">
-                            <button class="btn blue-btn" v-if="showToComplete(record.id)"
-                                    @click="toComplete(record.id)">去完成
+                            <button class="btn blue-btn" v-if="showToComplete(record.id)" @click="toComplete(record.id)">去完成
                             </button>
+                            <button class="btn blue-btn" v-if="!showToComplete(record.id)">已完成</button>
                         </div>
                     </div>
 
@@ -403,9 +402,25 @@
                     surveyId: this.rec_id
                 }, p => {
                     alert("提交成功！");
+                    // this.$router.push('/buyereddetails');
 
-                    this.topics.length = 0;
-                    this.$forceUpdate()
+                    this.$get("/edu/course/getCourseInfoById", {
+                        id: this.$route.params.id,
+                        uid:this.userInfo.id,
+                    }, p => {
+                        if (p.httpCode == 200) {
+                            this.course = p.content.course;
+                            this.message = p.content.message;
+                            this.survey = p.content.survey.data;
+                            this.teacherInfo = p.content.userInfo;
+                            this.$store.commit('course', p.content.course);
+
+                            this.topics.length = 0;
+                            this.$forceUpdate();
+                        }
+                    });
+
+
                 })
             }
 

@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <router-link to="/user/login">
-                            <span class="text-gray1">用户登陆</span>
+                            <span class="text-gray1">用户登录</span>
                         </router-link>
                         <router-link to="/user/registerbyphone">
                             <span class="text-gray2" style="margin-left: 9rem;">使用手机注册</span>

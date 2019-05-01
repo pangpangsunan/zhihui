@@ -2,7 +2,7 @@
     <div>
         <img src="@/assets/img_logo.png">
         <div class="wrap">
-            <p class="big-title">学员登陆</p>
+            <p class="big-title">学员登录</p>
             <div class="container-l">
                 <form class="form-horizontal" @submit.prevent="login()">
                     <div class="form-group">

@@ -6,12 +6,12 @@
             <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="email" class="form-control" placeholder="邮箱地址" required pattern="">
+                        <input type="email" v-model="email" class="form-control" placeholder="邮箱地址" required pattern="">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="验证码" required pattern="\d{4}">
+                        <input type="text" v-model="valCode" class="form-control" placeholder="验证码" required pattern="\d{4}">
                     </div>
                     <button type="button" class="val-btn blue-shot-btn" :disabled="valCodeDisabled"
                             @click="getValCode()">
@@ -32,8 +32,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="orange-btn">下一步</button>
-
+                    <button type="submit" class="orange-btn" @click="next()">下一步</button>
             </form>
         </div>
 
@@ -42,30 +41,60 @@
 </template>
 
 <script>
+
+
     export default {
         data() {
             return {
                 time: '获取验证码',
                 valCodeDisabled: false,
-                msg: null
+                phone: null,
+                valCode: null,
+                valCodeTrue: null,
+                email :null,
+                msg: null,
+
             }
         }, methods: {
             getValCode() {
 
-                this.time = '60s';
-                this.valCodeDisabled = true;
-                let intval = setInterval(() => {
-                    let time = parseInt(this.time);
-                    if (--time <= 0) {
-                        this.time = '获取验证码';
-                        clearInterval(intval);
+                this.$post('/edu/user/sendShortMessage', {email: this.email}, p => {
+                    if (p.httpCode == 200) {
+                        this.valCodeTrue = p.content;
 
-                        this.valCodeDisabled = false;
-                        return;
+                        this.time = '60s';
+                        this.valCodeDisabled = true;
+                        let intval = setInterval(() => {
+                            let time = parseInt(this.time);
+                            if (--time <= 0) {
+                                this.time = '获取验证码';
+                                clearInterval(intval);
+
+                                this.valCodeDisabled = false;
+                                return;
+                            }
+                            this.time = time + 's'
+
+                        }, 1000);
+
+                    } else {
+                        this.msg = '短信验证码发送失败'
                     }
-                    this.time = time + 's'
+                });
 
-                }, 1000);
+            },
+            submit() {
+
+            },
+            next(){
+                if(this.phone&&this.valCode&&this.valCode===this.valCodeTrue){
+                    localStorage.email = this.email;
+                    localStorage.code = this.valCode
+                    this.$router.push('/user/resetpwd');
+                }else {
+                    alert("请输入正确的信息")
+                }
+
             }
         }
     }

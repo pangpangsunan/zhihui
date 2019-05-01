@@ -34,7 +34,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="orange-btn">下一步</button>
+                    <button type="submit" class="orange-btn" @click="next()">下一步</button>
+
 
             </form>
         </div>
@@ -86,6 +87,16 @@
 
             },
             submit() {
+
+            },
+            next(){
+                if(this.phone&&this.valCode&&this.valCode===this.valCodeTrue){
+                    localStorage.phone = this.phone;
+                    localStorage.code = this.valCode
+                    this.$router.push('/user/resetpwd');
+                }else {
+                    alert("请输入正确的信息")
+                }
 
             }
         }

@@ -57,10 +57,11 @@
                     this.msg = '两次密码不一致';
                     return;
                 }
-                this.sendCode(p => {
+
                     this.$post('/edu/user/changePassword', {
-                        phone: this.phone,
-                        code: p.content,
+                        phone: localStorage.phone,
+                        code: localStorage.code,
+                        email:localStorage.email,
                         password: this.password
                     }, p => {
                         if (p.httpCode == 200) {
@@ -69,11 +70,11 @@
                             this.msg = "接口调用失败"
                         }
                     })
-                })
+
             },
             sendCode(callback) {
-                let phone = this.phone;
-                this.$post('/edu/user/sendShortMessage', {phone}, p => {
+                let email = this.email;
+                this.$post('/edu/user/sendShortMessage', {email}, p => {
                     callback(p)
                 })
             }

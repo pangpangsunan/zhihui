@@ -9,7 +9,7 @@
                     <td class="left">
                         <router-link to="/about" style="color: #fff;">关于我们</router-link>
                     </td>
-                    <td colspan="3" class="font-big right">0517-28874128-6</td>
+                    <td colspan="3" class="font-big right">0571-28874128-6</td>
                 </tr>
                 <tr class="three">
                     <td class="left">Copyright@2019.All rights reserved</td>
