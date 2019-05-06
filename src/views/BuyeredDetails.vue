@@ -7,20 +7,35 @@
             <play :url="url" :course="course" :onlyshow="false"></play>
 
             <div class="right">
-                <p class="title font-big">{{ course.name }}</p>
-                <!--<p class="trywatch">试看版</p>-->
-                <p class="content">{{ course.background }}</p>
-                <div class="att-wrapper">
-                    <img :src="teacherInfo.headimgurl" class="img-left" style="margin:0 .5rem;">
-                    <span>{{ teacherInfo.name}}</span>
-                    <br>
-                    <span class="font-middle">{{ course.totalNum }}人关注</span>
-                    <button class="attention-btn blue-btn">关注</button>
+                <div class="zhangjie">
+                    <div class="font-big">{{ course.name }}</div>
+                    <div class="content">{{ course.background }}</div>
+                    <div class="zhuanlan">
+                        <p>一共5章节</p>
+                        <ul>
+                           <li>12344</li>
+                            <li>12344</li>
+                            <li>12344</li>
+                            <li>12344</li>
+                            <li>12344</li>
+                            <li>12344</li>
+                        </ul>
 
-                    <div class="clearfix"></div>
+
+                    </div>
+                    <div class="att-wrapper">
+                        <img :src="teacherInfo.headimgurl" class="img-left" style="margin:0 .5rem;">
+                        <span>{{ teacherInfo.name}}</span>
+                        <br>
+                        <span class="font-middle">{{ course.totalNum }}人关注</span>
+                        <button class="attention-btn blue-btn">关注</button>
+
+                        <div class="clear"></div>
+                    </div>
                 </div>
+
             </div>
-            <div class="clearfix"></div>
+            <div class="clear"></div>
         </div>
         <div class="course-tab pubwidth1 border-rad">
             <div class="tab-bg">
@@ -102,6 +117,18 @@
 
 
 <style scoped>
+    .zhuanlan ul {
+        height: 12rem;
+        overflow-y: scroll;
+        background: #888E98;
+        color: #fff;
+    }
+    .zhuanlan li {
+        padding: .5rem 1rem;
+    }
+    .zhuanlan li:hover {
+        background: blue;
+    }
     .notices {
         padding: 2rem;
         line-height: 2rem;
@@ -109,12 +136,18 @@
 
     .course-play .right {
         float: right;
-        width: 23rem;
+        width: 27rem;
         padding-top: 1rem;
     }
 
     .content {
         color: #666666;
+
+    }
+    .zhangjie {
+        position: relative;
+        height: 24rem;
+        width: 100%;
     }
 
     .trywatch {
@@ -125,11 +158,15 @@
     }
 
     .att-wrapper {
-        margin-top: 7rem;
+        position: absolute;
+        bottom: 2rem;
+        width: 100%;
     }
 
     .attention-btn {
-        margin-left: 6rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
 
     .title {
