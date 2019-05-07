@@ -407,9 +407,8 @@
                 return null
             },
             playvideo(url) {
-
-                this.url = "/edu/wewebpay/qrCodePic?code_url=" + url;
                 this.show = false;
+                this.url = "/edu/wewebpay/qrCodePic?code_url=" + url;
                 this.$nextTick(p => {
                     this.show = true
                 })
