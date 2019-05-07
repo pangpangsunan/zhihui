@@ -355,6 +355,14 @@
             this.load();
         },
         methods: {
+            getVideoUrl: function (url) {
+                this.$get('/edu/video/getRealDownloadUrl', {
+                    downloadUrl: url
+                }, p => {
+                    this.url = p.content
+                })
+
+            },
             load() {
                 let uid = 0;
                 if (this.isLogin) {
@@ -372,11 +380,8 @@
                         this.fans = p.content.collectionNum;
                         this.$store.commit('course', p.content.course);
                         this.arr = p.content.chapter.data;
-                        this.$get('/edu/video/getRealDownloadUrl', {
-                            downloadUrl: p.content.course.video
-                        }, p => {
-                            this.url = p.content
-                        })
+                        this.getVideoUrl(p.content.course.video);
+
                     }
                 });
 
@@ -407,11 +412,11 @@
                 return null
             },
             playvideo(url) {
-                this.show = false;
-                this.url = "/edu/wewebpay/qrCodePic?code_url=" + url;
-                this.$nextTick(p => {
-                    this.show = true
-                })
+                // this.show = false;
+                this.getVideoUrl(url);
+                // this.$nextTick(p => {
+                //     this.show = true
+                // })
             },
             send() {
                 if (!this.isLogin) {
