@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="show">
 
         <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
@@ -9,28 +9,24 @@
             <div class="right">
                 <div class="zhangjie">
                     <div class="font-big">{{ course.name }}</div>
-                    <div class="content">{{ course.background }}</div>
-                    <div class="zhuanlan">
-                        <p>一共5章节</p>
+                    <!--<div class="content">{{ course.background }}</div>-->
+                    <div class="zhuanlan" v-if="getZhuanlan">
+                        <p>一共{{arr.length}}章节</p>
                         <ul>
-                           <li>12344</li>
-                            <li>12344</li>
-                            <li>12344</li>
-                            <li>12344</li>
-                            <li>12344</li>
-                            <li>12344</li>
+                            <li v-for="item in arr" @click="playvideo(item.url)">{{item.chaptername}}</li>
                         </ul>
 
 
                     </div>
                     <div class="att-wrapper">
-                        <img :src="teacherInfo.headimgurl" class="img-left" style="margin:0 .5rem;">
-                        <span>{{ teacherInfo.name}}</span>
+                        <img :src="teacherInfo.headimgurl" class="img-left" style="margin:0 .5rem;"
+                             @click="jumpTotinfo()">
+                        <span style="padding-left: 1rem">{{ teacherInfo.name}}</span>
                         <br>
-                        <span class="font-middle">{{ course.totalNum }}人关注</span>
-                        <button class="attention-btn blue-btn">关注</button>
+                        <span class="font-middle" style="padding-left: 1rem">{{ fans }}人关注</span>
+                        <!--<button class="attention-btn blue-btn">关注</button>-->
 
-                        <div class="clear"></div>
+                        <!--<div class="clear"></div>-->
                     </div>
                 </div>
 
@@ -57,7 +53,8 @@
                     <div class="questions-page" v-for="record in records" v-show="topics.length==0">
                         <p class="col-sm-10">问卷名称：{{ record.name }}</p>
                         <div class="col-sm-2">
-                            <button class="btn blue-btn" v-if="showToComplete(record.id)" @click="toComplete(record.id)">去完成
+                            <button class="btn blue-btn" v-if="showToComplete(record.id)"
+                                    @click="toComplete(record.id)">去完成
                             </button>
                             <button class="btn blue-btn" v-if="!showToComplete(record.id)">已完成</button>
                         </div>
@@ -94,8 +91,6 @@
                             <button class="send-btn" @click="send()">发送</button>
                         </div>
                         <p class="title font-middle">共{{ comments.length }}条评论</p>
-
-
                         <div class="con-wrapper" v-for="item in comments">
                             <img :src="item.comment.headimgurl" class="img-left">
                             <div class="public-style-info">
@@ -115,7 +110,6 @@
     </div>
 </template>
 
-
 <style scoped>
     .zhuanlan ul {
         height: 12rem;
@@ -123,12 +117,15 @@
         background: #888E98;
         color: #fff;
     }
+
     .zhuanlan li {
         padding: .5rem 1rem;
     }
+
     .zhuanlan li:hover {
         background: blue;
     }
+
     .notices {
         padding: 2rem;
         line-height: 2rem;
@@ -144,6 +141,7 @@
         color: #666666;
 
     }
+
     .zhangjie {
         position: relative;
         height: 24rem;
@@ -320,6 +318,7 @@
             return {
                 pagenum: 1,
                 comment: '',
+                fans: 0,
                 current: 'page1',
                 records: [],
                 name: null,
@@ -337,12 +336,21 @@
                 rec_id: 0,
                 url: '',
                 survey: [],
+                arr: [],
+                show: true
             }
         },
-        computed: mapGetters([
-            'userInfo',
-            'isLogin'
-        ]),
+        computed: {
+            getZhuanlan() {
+                return localStorage.zhuanlan == 'true'
+            },
+            ...mapGetters([
+                'userInfo',
+                'isLogin'
+            ]),
+        },
+
+
         created() {
             this.load();
         },
@@ -361,8 +369,9 @@
                         this.message = p.content.message;
                         this.survey = p.content.survey.data;
                         this.teacherInfo = p.content.userInfo;
+                        this.fans = p.content.collectionNum;
                         this.$store.commit('course', p.content.course);
-
+                        this.arr = p.content.chapter.data;
                         this.$get('/edu/video/getRealDownloadUrl', {
                             downloadUrl: p.content.course.video
                         }, p => {
@@ -396,7 +405,16 @@
                     return str.replace(/\n/g, '<br/>')
                 }
                 return null
-            }, send() {
+            },
+            playvideo(url) {
+
+                this.url = "/edu/wewebpay/qrCodePic?code_url=" + url;
+                this.show = false;
+                this.$nextTick(p => {
+                    this.show = true
+                })
+            },
+            send() {
                 if (!this.isLogin) {
                     alert("请先登录");
                     return;
@@ -433,6 +451,11 @@
                 }
                 return true;
             },
+            jumpTotinfo() {
+                let url = '/teacher/' + this.teacherInfo.id + '/' + this.fans
+                this.$router.push(url)
+            },
+
             sendsur() {
                 this.$post('/edu/survey/sendSurvey', {
                     uid: this.userInfo.id,
@@ -443,15 +466,16 @@
 
                     this.$get("/edu/course/getCourseInfoById", {
                         id: this.$route.params.id,
-                        uid:this.userInfo.id,
+                        uid: this.userInfo.id,
                     }, p => {
                         if (p.httpCode == 200) {
                             this.course = p.content.course;
                             this.message = p.content.message;
                             this.survey = p.content.survey.data;
                             this.teacherInfo = p.content.userInfo;
+                            this.fans = p.content.collectionNum;
+                            this.arr = p.content.chapter.data;
                             this.$store.commit('course', p.content.course);
-
                             this.topics.length = 0;
                             this.$forceUpdate();
                         }

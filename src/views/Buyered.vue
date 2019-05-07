@@ -26,7 +26,8 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div @click="$router.push({name:'buyereddetails',params:{id:item.enrollInfo.course.id}})"
+            <!--<div @click="$router.push({name:'buyereddetails',params:{id:item.enrollInfo.course.id}})"-->
+            <div @click="zhuanlan(item)"
                  class="pro skin-white"
                  v-for="item in arr">
                 <div>
@@ -171,6 +172,13 @@
                 return '0%';
 
             },
+            zhuanlan(item){
+                localStorage.zhuanlan=(3==item.enrollInfo.course.type)
+
+                this.$router.push({name:'buyereddetails',params:{id:item.enrollInfo.course.id}})
+
+
+            }
         }
     }
 </script>
