@@ -78,6 +78,17 @@
                             <div class="input"><input type="text" placeholder="请填写"></div>
                         </div>
 
+                        <div class="question-group" v-if="topic.type=='checkbox'">
+                            <div class="num">{{ topic.name }}</div>
+                            <div class="question"></div>
+                            <div class="choose1" v-for="item1 in topic.options">
+                                <label style="margin-left:8rem">
+                                    <input type="checkbox" :name="topic.name" :value="item1.name"/>
+                                    &nbsp;&nbsp;&nbsp;{{ item1.content }}
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                     <div style="text-align: center;margin-top: 3rem">
                         <button v-if="topics.length>0" class="btn orange-btn" @click="sendsur()">提交问卷</button>
@@ -461,7 +472,7 @@
             },
 
             sendsur() {
-                this.$post('/edu/survey/sendSurvey', {
+                this.$post('/edu/survey/addUserAnswer', {
                     uid: this.userInfo.id,
                     surveyId: this.rec_id
                 }, p => {
