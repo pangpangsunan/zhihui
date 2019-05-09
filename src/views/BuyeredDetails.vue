@@ -66,7 +66,9 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="radio" :name="topic.name" :value="item1.name"/>
+                                    <input type="radio" :name="topic.name" :value="item1.name"
+                                           @click="answer(topic,item1)"
+                                    />
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -75,7 +77,7 @@
                         <div class="question-group" v-if="topic.type=='text'">
                             <div class="num">{{ topic.name }}</div>
                             <div class="question"></div>
-                            <div class="input"><input type="text" placeholder="请填写"></div>
+                            <div class="input"><input type="text" v-model="topic.answer" placeholder="请填写"></div>
                         </div>
 
                         <div class="question-group" v-if="topic.type=='checkbox'">
@@ -83,7 +85,8 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="checkbox" :name="topic.name" :value="item1.name"/>
+                                    <input type="checkbox" :name="item1.name" :value="item1.name"
+                                           @click="answer(topic,item1)"/>
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -323,6 +326,7 @@
 
 
     import {mapGetters} from 'vuex'
+    import axios from 'axios'
 
     export default {
         data() {
@@ -348,7 +352,9 @@
                 url: '',
                 survey: [],
                 arr: [],
-                show: true
+                show: true,
+                ans: [],
+                serverInfo: {}
             }
         },
         computed: {
@@ -373,6 +379,14 @@
                     this.url = p.content
                 })
 
+            },
+            answer(topic, item) {
+                console.log(item, this.ans);
+                this.ans.push({
+                    ...this.serverInfo,
+                    topicId: item.topicid,
+                    answer: item.content | item.name,
+                })
             },
             load() {
                 let uid = 0;
@@ -449,6 +463,11 @@
             },
             toComplete(rec_id) {
                 this.rec_id = rec_id;
+                this.serverInfo = {
+                    uid: this.userInfo.id,
+                    surveyId: rec_id
+                };
+
                 this.$get('/edu/survey/getSurveyAnswerDetail', {
                     uid: this.userInfo.id,
                     surveyId: rec_id
@@ -472,10 +491,11 @@
             },
 
             sendsur() {
-                this.$post('/edu/survey/addUserAnswer', {
-                    uid: this.userInfo.id,
-                    surveyId: this.rec_id
-                }, p => {
+                axios.post('/edu/survey/addUserAnswer', "data=" + JSON.stringify(this.ans), p => {
+                    if (p.data.httpCode != 200) {
+                        alert("提交失败");
+                        return;
+                    }
                     alert("提交成功！");
                     // this.$router.push('/buyereddetails');
 
