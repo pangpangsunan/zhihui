@@ -77,7 +77,8 @@
                         <div class="question-group" v-if="topic.type=='text'">
                             <div class="num">{{ topic.name }}</div>
                             <div class="question"></div>
-                            <div class="input"><input type="text" v-model="topic.answer" placeholder="请填写"></div>
+                            <div class="input"><input type="text" v-model="topic.answer"
+                                                      @click="answer(null,topic.options[0])" placeholder="请填写"></div>
                         </div>
 
                         <div class="question-group" v-if="topic.type=='checkbox'">
