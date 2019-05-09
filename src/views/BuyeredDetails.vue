@@ -385,7 +385,7 @@
                 this.ans.push({
                     ...this.serverInfo,
                     topicId: item.topicid,
-                    answer: item.content | item.name,
+                    answer: true,
                 })
             },
             load() {
@@ -491,7 +491,11 @@
             },
 
             sendsur() {
-                axios.post('/edu/survey/addUserAnswer', "data=" + JSON.stringify(this.ans), p => {
+                axios.post('/edu/survey/addUserAnswer', JSON.stringify(this.ans), {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(p => {
                     if (p.data.httpCode != 200) {
                         alert("提交失败");
                         return;
