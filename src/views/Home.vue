@@ -24,7 +24,8 @@
                         </p>
                         <div class="btns1">
                             <button class="white-btn" v-if="item.course.type!=2">试看</button>
-                            <button class="orange-btn buy">购买</button>
+                            <button class="orange-btn buy" v-if="item.course.status!==2">购买</button>
+                            <button class="orange-btn buy" v-if="item.course.status==2">已购买</button>
                         </div>
                     </div>
                 </router-link>
@@ -46,7 +47,7 @@
 
     .course-list {
         padding: 0;
-        height: 11.5rem;
+        height: 12.5rem;
         position: relative;
         margin-top: 1.2rem;
 
@@ -55,7 +56,7 @@
     .courseimg {
         width: 17.75rem;
         height: 10rem;
-        margin-top: .7rem;
+        margin-top: 1.2rem;
         margin-left: .7rem;
     }
 

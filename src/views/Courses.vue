@@ -63,12 +63,12 @@
     }
 
     .course-teacher, .course-price {
-        margin-top: .8rem;
+        margin-top: 1.5rem;
     }
 
     .pro {
         width: 22.25rem;
-        height: 21rem;
+        height: 22rem;
         margin-left: 1.2rem;
         margin-top: 1rem;
     }

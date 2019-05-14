@@ -9,9 +9,9 @@
                 </div>
                 <div class="right">
                     <p class="course-title font-big">{{ course.course.name }}</p>
-                    <p class="font-middel">{{ course.course.type|isOnline }}</p>
+                    <p class="font-middel">{{ course.course.type|coursType }}</p>
                     <p class="course-price font-big">${{ course.course.price }}</p>
-                    <p class="font-middle course-studynum">{{ course.course.totalNum }}人学过</p>
+                    <p class="font-middle course-studynum">{{ course.enrollNum }}人学过</p>
                     <div class="btns2">
                         <button class="white-btn" @click="play()">{{course.isEnroll?'观看':'试看'}}</button>
                         <button class="buy orange-btn"

@@ -47,7 +47,7 @@
                 </div>
             </li>
             <li v-if="!$store.getters.isLogin">
-                <router-link to="/user/login" class="color-white">登陆</router-link>
+                <router-link to="/user/login" class="color-white">登录</router-link>
             </li>
 
         </ul>

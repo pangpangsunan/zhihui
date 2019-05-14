@@ -22,7 +22,7 @@
                 <img :src="item.image" alt="" class="course-img">
                 <div class="course-info ">
                     <div class="course-name">{{item.name}}</div>
-                    <div class="course-price font-middle">{{item.price}}</div>
+                    <div class="course-price font-middle" style="margin-top: .5rem">{{item.price}}</div>
                     <div class="orderid font-bestsmall"> 订单编号：{{item.orderid}}</div>
                     <div class="order-finishedtime font-bestsmall">订单完成时间{{item.updateDate | datetime}}</div>
                     <button @click="topay(item.id)" class="btn btn-info ">去支付</button>
@@ -109,6 +109,7 @@
 
     .course-price {
         color: #F5892A;
+        margin-top: 1.8rem;
     }
 
     .orderid {

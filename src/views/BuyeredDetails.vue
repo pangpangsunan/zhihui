@@ -77,8 +77,9 @@
                         <div class="question-group" v-if="topic.type=='text'">
                             <div class="num">{{ topic.name }}</div>
                             <div class="question"></div>
-                            <div class="input"><input type="text" v-model="topic.answer"
-                                                      @click="answer(null,topic.options[0])" placeholder="请填写"></div>
+                            <div class="input">
+                                <textarea v-model="topic.answer" @click="answer(null,topic.options[0])"></textarea>
+                            </div>
                         </div>
 
                         <div class="question-group" v-if="topic.type=='checkbox'">
@@ -102,7 +103,7 @@
                 <li v-show="current==='page3'">
                     <div class="all-comment">
                         <div class="inputcon">
-                            <textarea placeholder="输入您的评论" class="minput" v-model="comment"></textarea>
+                            <textarea placeholder="输入您的评论" class="input" v-model="comment"></textarea>
                             <button class="send-btn" @click="send()">发送</button>
                         </div>
                         <p class="title font-middle">共{{ comments.length }}条评论</p>
@@ -259,6 +260,10 @@
         margin-top: .5rem;
         background-color: #F3F5F7;
         border: 1px solid gray;
+    }
+    .input textarea {
+        width: 90%;
+        height: 6rem;
     }
 
     .con-wrapper {
