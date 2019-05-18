@@ -5,12 +5,12 @@
             <form class="form-horizontal" @submit="addinvoice()">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">选择类型</label>
-                    <span class="col-sm-2">
+                    <div class="col-sm-3">
                         <input type="radio" name="type" value="1" v-model="invoiceobj.type">
                           个人
-                        <input type="radio" name="type" value="2" v-model="invoiceobj.type">
+                        <input type="radio" name="type" value="2" v-model="invoiceobj.type" style="margin-left: 1rem">
                             企业
-                      </span>
+                      </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">发票抬头</label>
@@ -96,9 +96,12 @@
         height: 2.75rem;
     }
 
-    .col-sm-2 {
+    .col-sm-2 ,.col-sm-3{
         height: 2.75rem;
         line-height: 2rem;
+    }
+    .col-sm-3 {
+        line-height: 2.75rem;
     }
 </style>
 <script>
