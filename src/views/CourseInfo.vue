@@ -41,7 +41,7 @@
                         <img :src="course.userInfo.headimgurl" class="img-left">
                         <div class="public-style-info">
                             <span class="font-middle">{{ course.userInfo.name }}</span>
-                            <span class="font-bestsmall">{{ course.userExtra.remark||0 }}人关注</span>
+                            <span class="font-bestsmall">{{ course.collectionNum }}人关注</span>
                             <span class="attention"><a @click.prevent="view(course.userInfo.id)">关注</a> </span>
                             <br>
                             <span class="font-small">{{ course.userExtra.introduction }}</span>

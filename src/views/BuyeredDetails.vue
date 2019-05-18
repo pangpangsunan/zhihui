@@ -4,7 +4,10 @@
         <p class="nav-title">正在播放 - {{ course.name }}</p>
         <div class="course-play skin-white border-rad">
 
-            <play :url="url" :course="course" :onlyshow="false"></play>
+            <play :url="url" :course="course" :onlyshow="false" v-if="course.type!=2"></play>
+            <div v-if="course.type==2" class="vdimg">
+                <img :src="course.image" alt="" style="">
+            </div>
 
             <div class="right">
                 <div class="zhangjie">
@@ -127,6 +130,16 @@
 </template>
 
 <style scoped>
+    .vdimg {
+        width: 44rem;
+        float: left;
+        padding: 1rem;
+    }
+    .vdimg img {
+        vertical-align: middle;
+        width: 100%;
+        height: 22rem;
+    }
     .zhuanlan ul {
         height: 12rem;
         overflow-y: scroll;
@@ -261,6 +274,7 @@
         background-color: #F3F5F7;
         border: 1px solid gray;
     }
+
     .input textarea {
         width: 90%;
         height: 6rem;
