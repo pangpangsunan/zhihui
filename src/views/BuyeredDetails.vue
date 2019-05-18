@@ -69,9 +69,7 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="radio" :name="topic.name" :value="item1.name"
-                                           @click="answer(topic,item1)"
-                                    />
+                                    <input type="radio" :name="topic.name" :value="item1.content" v-model="topic.answer" />
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -81,7 +79,7 @@
                             <div class="num">{{ topic.name }}</div>
                             <div class="question"></div>
                             <div class="input">
-                                <textarea v-model="topic.answer" @click="answer(null,topic.options[0])"></textarea>
+                                <textarea v-model="topic.answer"></textarea>
                             </div>
                         </div>
 
@@ -90,8 +88,7 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="checkbox" :name="item1.name" :value="item1.name"
-                                           @click="answer(topic,item1)"/>
+                                    <input type="checkbox" :value="item1.content" v-model="topic.answer"/>
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -135,11 +132,13 @@
         float: left;
         padding: 1rem;
     }
+
     .vdimg img {
         vertical-align: middle;
         width: 100%;
         height: 22rem;
     }
+
     .zhuanlan ul {
         height: 12rem;
         overflow-y: scroll;
@@ -482,6 +481,7 @@
                 })
             },
             toComplete(rec_id) {
+                console.log(rec_id);
                 this.rec_id = rec_id;
                 this.serverInfo = {
                     uid: this.userInfo.id,
@@ -493,7 +493,12 @@
                     surveyId: rec_id
                 }, p => {
                     if (p.httpCode == 200) {
-                        this.topics = p.content.topics
+                        for (let item of p.content.topics) {
+                            item.uid = this.userInfo.id;
+                            item.serveryId = rec_id;
+                            item.topicId = item.options[0].topicid;
+                            this.topics.push(item)
+                        }
                     }
                 })
             },
@@ -511,11 +516,7 @@
             },
 
             sendsur() {
-                axios.post('/edu/survey/addUserAnswer', JSON.stringify(this.ans), {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }).then(p => {
+                axios.post('/edu/survey/addUserAnswer', this.topics).then(p => {
                     if (p.data.httpCode != 200) {
                         alert("提交失败");
                         return;
