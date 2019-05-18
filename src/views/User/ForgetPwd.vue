@@ -14,9 +14,9 @@
             </div>
             <div class="text-grays">
                 <router-link to="/user/login">
-                    <span class="text-gray1">用户登陆</span>
+                    <span class="text-gray1">用户登录</span>
                 </router-link>
-                <router-link to="/user/register">
+                <router-link to="/user/registerbyphone">
                     <span class="text-gray2">新用户注册</span>
                 </router-link>
             </div>
