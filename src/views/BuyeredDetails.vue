@@ -69,7 +69,7 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="radio" :name="topic.name" :value="item1.content" v-model="topic.answer" />
+                                    <input type="radio" :name="topic.name" :value="item1.id" v-model="topic.answer"/>
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -88,7 +88,7 @@
                             <div class="question"></div>
                             <div class="choose1" v-for="item1 in topic.options">
                                 <label style="margin-left:8rem">
-                                    <input type="checkbox" :value="item1.content" v-model="topic.answer"/>
+                                    <input type="checkbox" :value="item1.id" v-model="topic.answer"/>
                                     &nbsp;&nbsp;&nbsp;{{ item1.content }}
                                 </label>
                             </div>
@@ -516,7 +516,24 @@
             },
 
             sendsur() {
-                axios.post('/edu/survey/addUserAnswer', this.topics).then(p => {
+                let arr = [];
+                for (let item of this.topics) {
+                    let ans = item.answer;
+                    if ({}.toString.call(ans) == '[object Array]') {
+                        ans = item.answer.join(",");
+                    }
+
+                    arr.push({
+                        name: item.name,
+                        type: item.type,
+                        answer: ans,
+                        uid: item.uid,
+                        serveryId: item.serveryId,
+                        topicId: item.topicId,
+                    })
+                }
+
+                axios.post('/edu/survey/addUserAnswer', arr).then(p => {
                     if (p.data.httpCode != 200) {
                         alert("提交失败");
                         return;
