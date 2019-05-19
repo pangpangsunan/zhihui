@@ -523,6 +523,10 @@
                         ans = item.answer.join(",");
                     }
 
+                    if ({}.toString.call(ans) != '[object String]') {
+                        ans = ans.toString();
+                    }
+
                     arr.push({
                         name: item.name,
                         type: item.type,
